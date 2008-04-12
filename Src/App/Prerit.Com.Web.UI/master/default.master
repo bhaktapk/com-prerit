@@ -1,0 +1,71 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="default.master.cs" Inherits="master_default" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!--
+ ____________________________________________________________
+|                                                            |
+|    DESIGN + Pat Heard { http://fullahead.org }             |
+|      DATE + 2005.11.30                                     |
+| COPYRIGHT + Free use if this notice is left in place       |
+|____________________________________________________________|
+
+-->
+<head runat="server">
+	<title></title>
+	<meta id="contentLanguageMeta" http-equiv="content-language" content="" />
+	<meta id="contentTypeMeta" http-equiv="content-type" content="{0}; charset={1}" />
+	<meta id="authorMeta" name="author" content="" />
+	<meta id="copyrightMeta" name="copyright" content="Copyright &#169; {0} {1}" />
+	<meta id="descriptionMeta" name="description" content="" />
+	<meta id="keywordsMeta" name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="~/styles/print.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="~/styles/screen.css" media="projection, screen, tv" />
+</head>
+<body>
+	<div id="header">
+		<div id="innerHeader">
+			<h1><span><a id="siteNameLink" href="" title="" runat="server"></a></span></h1>
+			<h2><span>Main Menu</span></h2>
+			<asp:SiteMapDataSource ID="menuDataSource" ShowStartingNode="false" runat="server" />
+			<asp:Repeater ID="menuRepeater" DataSourceID="menuDataSource" OnItemDataBound="MenuRepeater_ItemDataBound"
+				runat="server">
+				<HeaderTemplate>
+					<ul>
+				</HeaderTemplate>
+				<ItemTemplate>
+					<li><a id="menuLink" href="" title="" runat="server"><em>{0}</em>{1}</a></li>
+				</ItemTemplate>
+				<FooterTemplate>
+					</ul>
+				</FooterTemplate>
+			</asp:Repeater>
+		</div>
+	</div>
+	<div id="content">
+		<form id="form" runat="server">
+			<div id="sidebar">
+				<asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
+				<ctrl:login ID="loginControl" runat="server" />
+				<ctrl:randomPhoto ID="randomPhotoControl" runat="server" />
+			</div>
+			<div id="mainbar">
+				<asp:ContentPlaceHolder ID="mainbarPlaceHolder" runat="server" />
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<h1>Copyright &amp; Acknowledgements</h1>
+		<p id="designer">
+			<a href="http://fullahead.org" title="designed by fullahead.org"><span>designed by fullhead.org</span></a>
+		</p>
+		<p>
+			Valid <a id="validateCssLink" href="" title="Validate this page's Cascading Style Sheets (CSS) under the W3C's guidelines"
+				runat="server">CSS</a> &amp; <a id="validateXhtmlLink" href="" title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines"
+					runat="server">XHTML</a>
+		</p>
+		<p id="copyright">
+			<asp:Literal ID="copyrightLiteral" runat="server">Copyright &#169; {0} {1}</asp:Literal>
+		</p>
+	</div>
+</body>
+</html>
