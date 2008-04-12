@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+
+	<!-- Root Directory -->
+	<siteMapNode url="~/default.aspx"
+				 title="Home"
+				 description="prerit.com"
+				 keywords="home" 
+				 lastModified="2006-12-09"
+				 changeFrequency="monthly"
+				 priority="0.5">
+
+		<!-- About Directory -->
+		<siteMapNode url="~/about/default.aspx"
+					 title="About"
+					 description="A brief description about prerit.com and it's author"
+					 keywords="about, prerit.com, Prerit Bhakta"
+					 lastModified="2006-12-09"
+					 changeFrequency="monthly"
+					 priority="0.5" />
+
+		<!-- Contact Directory -->
+		<siteMapNode url="~/contact/default.aspx"
+					 title="Contact"
+					 description="Contact me through a handy web form"
+					 keywords="contact, Prerit Bhakta"
+					 lastModified="2006-12-09"
+					 changeFrequency="monthly"
+					 priority="0.5" />
+
+		<!-- Photos Directory -->
+		<siteMapNode url="~/photos/default.aspx"
+					 title="Photos"
+					 description="Photos of Prerit Bhakta and his friends and family"
+					 keywords="coming soon"
+					 lastModified="2006-12-09"
+					 changeFrequency="weekly"
+					 priority="0.5" />
+
+		<!-- Resume Directory -->
+		<siteMapNode url="~/resume/default.aspx"
+					 title="Resume"
+					 description="Resume of Prerit Bhakta"
+					 keywords="resume, Prerit Bhakta"
+					 lastModified="2006-12-09"
+					 changeFrequency="monthly"
+					 priority="0.5">
+
+			<siteMapNode url="~/resume/resume_of_prerit_bhakta.doc"
+						 title="Microsoft Word Resume"
+						 description="Resume of Prerit Bhakta in Microsoft Word"
+						 keywords="resume, Prerit Bhakta, Microsoft Word"
+						 lastModified="2006-12-09"
+						 changeFrequency="monthly"
+						 priority="0.5" />
+
+			<siteMapNode url="~/resume/resume_of_prerit_bhakta.pdf"
+						 title="Adobe PDF Resume"
+						 description="Resume of Prerit Bhakta in Adobe PDF"
+						 keywords="resume, Prerit Bhakta, Adobe PDF"
+						 lastModified="2006-12-09"
+						 changeFrequency="monthly"
+						 priority="0.5" />
+
+			<siteMapNode url="~/resume/resume_of_prerit_bhakta.xml"
+						 title="XML Resume"
+						 description="Resume of Prerit Bhakta in XML"
+						 keywords="resume, Prerit Bhakta, XML"
+						 lastModified="2006-12-09"
+						 changeFrequency="monthly"
+						 priority="0.5" />
+		</siteMapNode>
+	</siteMapNode>
+</siteMap>

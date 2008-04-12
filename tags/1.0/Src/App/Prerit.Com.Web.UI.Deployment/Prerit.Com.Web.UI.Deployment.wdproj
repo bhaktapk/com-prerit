@@ -1,0 +1,71 @@
+﻿<!-- 
+  Microsoft Visual Studio 2005 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkId=55111
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.60403</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A4CEF74C-9CAC-4ECE-B9CE-01C617C169F7}</ProjectGuid>
+    <SourceWebPhysicalPath>..\Prerit.Com.Web.UI</SourceWebPhysicalPath>
+    <SourceWebProject>{DEE1A9F3-912A-41ED-AC0D-B0D845D7ED8D}|..\Prerit.Com.Web.UI</SourceWebProject>
+    <SourceWebVirtualPath>/Prerit.Com.Web.UI</SourceWebVirtualPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\Build\</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Prerit.Com.Web.UI</SingleAssemblyName>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <VirtualDirectoryAlias>build.prerit.com</VirtualDirectoryAlias>
+    <ReplaceExistingVirtualDirectory>true</ReplaceExistingVirtualDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\Build\</OutputPath>
+    <EnableUpdateable>false</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Prerit.Com.Web.UI</SingleAssemblyName>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <VirtualDirectoryAlias>build.prerit.com</VirtualDirectoryAlias>
+    <ReplaceExistingVirtualDirectory>true</ReplaceExistingVirtualDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{54F7A9DF-CA9C-42FD-A37E-614DB51C2AC0}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prerit.Com.Web\Prerit.Com.Web.csproj">
+      <Project>{D476930D-0CE3-445D-B90B-B1ACA876DD2C}</Project>
+      <Name>Prerit.Com.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v8.0\Microsoft.WebDeployment.targets" />
+  <ItemGroup>
+    <!-- recursively exclude by folder name -->
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\.svn\**\*.*" />
+    <!-- exclude by file type -->
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.exclude" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.log" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.pdb" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.resx" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.scc" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\**\*.xsx" />
+    <!-- exclude by file type in specific folders -->
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\photos\christmas\*.jpg" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\photos\honeymoon\*.jpg" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\photos\pithi\*.jpg" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\photos\wedding\*.jpg" />
+    <!-- exclude by file -->
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\production_web.config" />
+    <ExcludeFromBuild Include="$(SourceWebPhysicalPath)\web.config" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Copy SourceFiles="$(SourceWebPhysicalPath)\production_web.config" DestinationFiles="$(CopyBeforeBuildTargetPath)\web.config" />
+  </Target>
+</Project>
