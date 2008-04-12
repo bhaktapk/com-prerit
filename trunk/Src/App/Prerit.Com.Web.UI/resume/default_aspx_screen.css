@@ -1,0 +1,14 @@
+﻿#languageList li.group2first,
+#languageList li.group3first {
+	margin-top: -8.75em; /* line-height times max items in a column */
+}
+
+#techList li.group2first,
+#techList li.group3first {
+	margin-top: -7em; /* line-height times max items in a column */
+}
+
+#dbList li.group2first,
+#dbList li.group3first {
+	margin-top: -1.75em; /* line-height times max items in a column */
+}

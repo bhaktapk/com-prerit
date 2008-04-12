@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project name="prerit.com" default="build">
+  <!-- directories -->
+  <property name="dir.base"               value="${project::get-base-directory()}" />
+  <property name="dir.build"              value="${dir.base}\Build" />
+  <property name="dir.config"             value="${dir.base}\Config" />
+  <property name="dir.config.build"       value="${dir.config}\Build" />
+  <property name="dir.src"                value="${dir.base}\Src" />
+  <property name="dir.src.app"            value="${dir.src}\App" />
+  <property name="dir.tools"              value="${dir.base}\Tools" />
+  <property name="dir.tools.nant"         value="${dir.tools}\NAnt" />
+  <property name="dir.tools.nantcontrib"  value="${dir.tools}\NAntContrib" />
+  <!-- end directories -->
+
+  <if test="${file::exists(dir.config.build + '\local.properties.xml')}">
+    <echo message="Loading local.properties.xml" />
+
+    <include buildfile="${dir.config.build}\local.properties.xml" />
+  </if>
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+  </target>
+
+  <target name="prebuild" depends="clean">
+    <mkdir dir="${dir.build}" />
+  </target>
+
+  <target name="build.debug" depends="prebuild">
+    <call target="build" />
+  </target>
+
+  <target name="build.release" depends="prebuild">
+    <property name="build.sln.config" value="Release" />
+
+    <call target="build" />
+  </target>
+
+  <target name="build" depends="prebuild">
+    <property name="build.sln.config" value="Debug" unless="${property::exists('build.sln.config')}" />
+
+    <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
+
+    <msbuild project="${dir.src.app}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
+      <property name="configuration" value="${build.sln.config}" />
+    </msbuild>
+  </target>
+</project>
