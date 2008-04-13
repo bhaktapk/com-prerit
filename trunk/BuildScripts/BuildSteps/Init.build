@@ -7,5 +7,6 @@
 
   <target name="init">
     <mkdir dir="${dir.build}" />
+    <mkdir dir="${dir.packages}" />
   </target>
 </project>
