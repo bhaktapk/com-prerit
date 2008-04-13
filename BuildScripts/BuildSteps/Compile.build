@@ -6,15 +6,11 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="compile">
-    <property name="build.sln.config"
-              value="Debug"
-              unless="${property::exists('build.sln.config')}" />
-
     <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
 
     <msbuild project="${dir.code}\Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj">
       <property name="configuration"
-                value="${build.sln.config}" />
+                value="${msbuild.configuration}" />
     </msbuild>
   </target>
 </project>

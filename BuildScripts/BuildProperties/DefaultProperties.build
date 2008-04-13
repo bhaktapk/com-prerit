@@ -8,8 +8,13 @@
             value="${path::get-full-path('..')}"
             overwrite="false" />
 
-  <property name="dir.build"
+  <property name="dir.build-base"
             value="${dir.base}\Build"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.build"
+            value="${dir.build-base}\${msbuild.configuration}"
             dynamic="true"
             overwrite="false" />
 
@@ -31,5 +36,13 @@
   <property name="dir.tools.nantcontrib"
             value="${dir.tools}\NAntContrib"
             dynamic="true"
+            overwrite="false" />
+
+
+
+  <!-- MSBUILD PROPERTIES -->
+
+  <property name="msbuild.configuration"
+            value="Debug"
             overwrite="false" />
 </project>
