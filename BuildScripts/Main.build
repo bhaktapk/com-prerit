@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="Main"
-         default="compile"
+         default="deploy"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- INCLUDES -->
@@ -36,5 +36,29 @@
           depends="init">
 
     <nant buildfile="BuildSteps\Compile.build" />
+  </target>
+
+  <target name="test"
+          depends="compile">
+
+    <nant buildfile="BuildSteps\Test.build" />
+  </target>
+
+  <target name="document"
+          depends="compile">
+
+    <nant buildfile="BuildSteps\Document.build" />
+  </target>
+
+  <target name="package"
+          depends="test document">
+
+    <nant buildfile="BuildSteps\Package.build" />
+  </target>
+
+  <target name="deploy"
+          depends="package">
+
+    <nant buildfile="BuildSteps\Deploy.build" />
   </target>
 </project>
