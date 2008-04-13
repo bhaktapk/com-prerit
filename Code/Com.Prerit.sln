@@ -29,6 +29,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Com.Prerit.Web.UI", "Com.Pr
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Deployment", "Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj", "{DE2526A5-EDCF-4579-8AE5-BE61C399A543}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Com.Prerit.Web namespace", "Com.Prerit.Web namespace", "{F107BE01-4C79-478E-9339-BF8D7FF10AC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Com.Prerit.Web.UI namespace", "Com.Prerit.Web.UI namespace", "{11696AB3-9C27-40E7-BB3B-50FD20287984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework namespace", "Framework namespace", "{2CDB32A3-8C72-4D7A-A0AB-E970F33E8454}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -80,5 +86,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E00A3AB-6238-47E6-8765-707327A7B4EA} = {F107BE01-4C79-478E-9339-BF8D7FF10AC7}
+		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
+		{DE2526A5-EDCF-4579-8AE5-BE61C399A543} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
+		{6AD34CE9-046F-4EB2-93F5-57836984D3E5} = {2CDB32A3-8C72-4D7A-A0AB-E970F33E8454}
 	EndGlobalSection
 EndGlobal
