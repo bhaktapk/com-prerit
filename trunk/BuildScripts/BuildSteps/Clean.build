@@ -23,6 +23,6 @@
   </target>
 
   <target name="delete-build-directory">
-    <delete dir="${dir.build}" />
+    <delete dir="${dir.build-base}" />
   </target>
 </project>

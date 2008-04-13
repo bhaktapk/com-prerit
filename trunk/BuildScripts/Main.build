@@ -20,25 +20,18 @@
     <nant buildfile="BuildSteps\Clean.build" />
   </target>
 
-  <target name="init"
-          depends="clean">
-
-    <nant buildfile="BuildSteps\Init.build" />
+  <target name="debug">
+    <property name="msbuild.configuration"
+              value="Debug" />
   </target>
 
-  <target name="build.debug"
-          depends="init">
-
-    <call target="compile" />
-  </target>
-
-  <target name="build.release"
-          depends="init">
-
-    <property name="build.sln.config"
+  <target name="release">
+    <property name="msbuild.configuration"
               value="Release" />
+  </target>
 
-    <call target="compile" />
+  <target name="init">
+    <nant buildfile="BuildSteps\Init.build" />
   </target>
 
   <target name="compile"
