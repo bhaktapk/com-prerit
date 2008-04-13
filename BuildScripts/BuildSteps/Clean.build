@@ -6,6 +6,23 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="clean">
+    <call target="clean-solution" />
+    <call target="delete-build-directory" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="clean-solution">
+    <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
+
+    <msbuild project="${dir.code}\Com.Prerit.sln"
+             target="Clean">
+    </msbuild>
+  </target>
+
+  <target name="delete-build-directory">
     <delete dir="${dir.build}" />
   </target>
 </project>
