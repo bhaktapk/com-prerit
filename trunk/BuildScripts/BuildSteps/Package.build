@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<project name="Package"
+         default="package"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <target name="package">
+  </target>
+</project>
