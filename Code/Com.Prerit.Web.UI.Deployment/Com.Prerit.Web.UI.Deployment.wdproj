@@ -20,7 +20,7 @@
     <OutputPath>.\Debug\</OutputPath>
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <OutputPath>.\Release\</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
   </PropertyGroup>
   <ItemGroup>
