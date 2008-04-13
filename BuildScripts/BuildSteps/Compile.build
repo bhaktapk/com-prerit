@@ -3,6 +3,8 @@
          default="compile"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
+  <!-- PUBLIC TARGETS -->
+
   <target name="compile">
     <property name="build.sln.config"
               value="Debug"
