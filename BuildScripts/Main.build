@@ -7,6 +7,11 @@
 
   <include buildfile="BuildProperties\DefaultProperties.build" />
 
+  <if test="${file::exists('BuildProperties\LocalProperties.build')}">
+    <echo message="Loading BuildProperties\LocalProperties.build" />
+    <include buildfile="BuildProperties\LocalProperties.build" />
+  </if>
+
 
 
   <!-- PUBLIC TARGETS -->
