@@ -1,30 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Src\App\Framework\Framework.csproj", "{54F7A9DF-CA9C-42FD-A37E-614DB51C2AC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "App\Framework\Framework.csproj", "{54F7A9DF-CA9C-42FD-A37E-614DB51C2AC0}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prerit.Com.Web", "Src\App\Prerit.Com.Web\Prerit.Com.Web.csproj", "{D476930D-0CE3-445D-B90B-B1ACA876DD2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prerit.Com.Web", "App\Prerit.Com.Web\Prerit.Com.Web.csproj", "{D476930D-0CE3-445D-B90B-B1ACA876DD2C}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\Prerit.Com.Web.UI\", "Src\App\Prerit.Com.Web.UI", "{DEE1A9F3-912A-41ED-AC0D-B0D845D7ED8D}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\Prerit.Com.Web.UI\", "App\Prerit.Com.Web.UI", "{DEE1A9F3-912A-41ED-AC0D-B0D845D7ED8D}"
 	ProjectSection(WebsiteProperties) = preProject
 		ProjectReferences = "{54F7A9DF-CA9C-42FD-A37E-614DB51C2AC0}|Framework.dll;{D476930D-0CE3-445D-B90B-B1ACA876DD2C}|Prerit.Com.Web.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Build"
-		Debug.AspNetCompiler.PhysicalPath = "Src\App\Prerit.Com.Web.UI\"
+		Debug.AspNetCompiler.PhysicalPath = "App\Prerit.Com.Web.UI\"
 		Debug.AspNetCompiler.TargetPath = "Build\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/Build"
-		Release.AspNetCompiler.PhysicalPath = "Src\App\Prerit.Com.Web.UI\"
+		Release.AspNetCompiler.PhysicalPath = "App\Prerit.Com.Web.UI\"
 		Release.AspNetCompiler.TargetPath = "Build\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -33,7 +33,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\Prerit.Com.Web.UI\",
 		VWDPort = "1532"
 	EndProjectSection
 EndProject
-Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Prerit.Com.Web.UI.Deployment", "Src\App\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj", "{A4CEF74C-9CAC-4ECE-B9CE-01C617C169F7}"
+Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Prerit.Com.Web.UI.Deployment", "App\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj", "{A4CEF74C-9CAC-4ECE-B9CE-01C617C169F7}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
