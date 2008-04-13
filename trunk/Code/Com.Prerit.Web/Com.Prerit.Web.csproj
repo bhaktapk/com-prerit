@@ -8,8 +8,8 @@
     <ProjectGuid>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Prerit.Com.Web</RootNamespace>
-    <AssemblyName>Prerit.Com.Web</AssemblyName>
+    <RootNamespace>Com.Prerit.Web</RootNamespace>
+    <AssemblyName>Com.Prerit.Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
