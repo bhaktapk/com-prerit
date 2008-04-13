@@ -12,7 +12,7 @@
 
     <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
 
-    <msbuild project="${dir.code}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
+    <msbuild project="${dir.code}\Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj">
       <property name="configuration"
                 value="${build.sln.config}" />
     </msbuild>
