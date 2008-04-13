@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="Compile"
+         default="compile"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <target name="compile">
+    <property name="build.sln.config"
+              value="Debug"
+              unless="${property::exists('build.sln.config')}" />
+
+    <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
+
+    <msbuild project="${dir.code}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
+      <property name="configuration"
+                value="${build.sln.config}" />
+    </msbuild>
+  </target>
+</project>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="Clean"
+         default="clean"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <target name="clean">
+    <delete dir="${dir.build}" />
+  </target>
+</project>
