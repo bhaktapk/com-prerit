@@ -7,6 +7,10 @@
 
   <include buildfile="BuildProperties\DefaultProperties.build" />
 
+
+
+  <!-- PUBLIC TARGETS -->
+
   <target name="clean">
     <nant buildfile="BuildSteps\Clean.build" />
   </target>

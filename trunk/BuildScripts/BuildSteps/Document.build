@@ -3,6 +3,8 @@
          default="document"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
+  <!-- PUBLIC TARGETS -->
+
   <target name="document">
   </target>
 </project>
