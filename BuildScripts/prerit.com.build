@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
-<project name="prerit.com" default="build">
-  <!-- directories -->
-  <property name="dir.base"               value="${path::get-full-path('..')}" />
-  <property name="dir.build"              value="${dir.base}\Build" />
-  <property name="dir.code"               value="${dir.base}\Code" />
-  <property name="dir.tools"              value="${dir.base}\Tools" />
-  <property name="dir.tools.nant"         value="${dir.tools}\NAnt" />
-  <property name="dir.tools.nantcontrib"  value="${dir.tools}\NAntContrib" />
-  <!-- end directories -->
+<project name="prerit.com"
+         default="build" 
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- INCLUDES -->
+  
+  <include buildfile="BuildProperties\DefaultProperties.build" />
 
   <target name="clean">
     <delete dir="${dir.build}" />
