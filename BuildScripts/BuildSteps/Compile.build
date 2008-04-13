@@ -11,6 +11,9 @@
     <msbuild project="${dir.code}\Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj">
       <property name="configuration"
                 value="${msbuild.configuration}" />
+
+      <property name="OutputPath"
+                value="${dir.build}" />
     </msbuild>
   </target>
 </project>
