@@ -6,7 +6,6 @@
   <property name="dir.config"             value="${dir.base}\Config" />
   <property name="dir.config.build"       value="${dir.config}\Build" />
   <property name="dir.code"               value="${dir.base}\Code" />
-  <property name="dir.code.app"            value="${dir.code}\App" />
   <property name="dir.tools"              value="${dir.base}\Tools" />
   <property name="dir.tools.nant"         value="${dir.tools}\NAnt" />
   <property name="dir.tools.nantcontrib"  value="${dir.tools}\NAntContrib" />
@@ -41,7 +40,7 @@
 
     <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
 
-    <msbuild project="${dir.code.app}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
+    <msbuild project="${dir.code}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
       <property name="configuration" value="${build.sln.config}" />
     </msbuild>
   </target>
