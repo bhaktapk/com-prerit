@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="prerit.com" default="build">
   <!-- directories -->
-  <property name="dir.base"               value="${project::get-base-directory()}" />
+  <property name="dir.base"               value="${path::get-full-path('..')}" />
   <property name="dir.build"              value="${dir.base}\Build" />
   <property name="dir.config"             value="${dir.base}\Config" />
   <property name="dir.config.build"       value="${dir.config}\Build" />
