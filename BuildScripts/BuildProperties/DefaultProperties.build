@@ -23,6 +23,11 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.packages"
+            value="${dir.base}\Packages"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.tools"
             value="${dir.base}\Tools"
             dynamic="true"
@@ -44,5 +49,25 @@
 
   <property name="msbuild.configuration"
             value="Debug"
+            overwrite="false" />
+
+
+
+  <!-- PROJECT PROPERTIES -->
+
+  <property name="project.name.com-prerit-web-ui"
+            value="Com.Prerit.Web.UI"
+            overwrite="false" />
+
+  <property name="project.name.com-prerit-web-ui-deployment"
+            value="Com.Prerit.Web.UI.Deployment"
+            overwrite="false" />
+
+
+
+  <!-- PACKAGE PROPERTIES -->
+
+  <property name="package.name.com-prerit-web-ui"
+            value="${project.name.com-prerit-web-ui}-${msbuild.configuration}.zip"
             overwrite="false" />
 </project>
