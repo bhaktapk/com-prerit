@@ -2,27 +2,34 @@
 <project name="DefaultProperties"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
+  <!-- DIRECTORIES -->
+
   <property name="dir.base"
             value="${path::get-full-path('..')}"
             overwrite="false" />
 
   <property name="dir.build"
             value="${dir.base}\Build"
+            dynamic="true"
             overwrite="false" />
 
   <property name="dir.code"
             value="${dir.base}\Code"
+            dynamic="true"
             overwrite="false" />
 
   <property name="dir.tools"
             value="${dir.base}\Tools"
+            dynamic="true"
             overwrite="false" />
 
   <property name="dir.tools.nant"
             value="${dir.tools}\NAnt"
+            dynamic="true"
             overwrite="false" />
 
   <property name="dir.tools.nantcontrib"
             value="${dir.tools}\NAntContrib"
+            dynamic="true"
             overwrite="false" />
 </project>
