@@ -1,31 +1,40 @@
 <?xml version="1.0"?>
 <project name="Main"
-         default="compile" 
+         default="compile"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- INCLUDES -->
-  
+
   <include buildfile="BuildProperties\DefaultProperties.build" />
 
   <target name="clean">
     <nant buildfile="BuildSteps\Clean.build" />
   </target>
 
-  <target name="init" depends="clean">
+  <target name="init"
+          depends="clean">
+
     <nant buildfile="BuildSteps\Init.build" />
   </target>
 
-  <target name="build.debug" depends="init">
-    <call target="compile" />
-  </target>
-
-  <target name="build.release" depends="init">
-    <property name="build.sln.config" value="Release" />
+  <target name="build.debug"
+          depends="init">
 
     <call target="compile" />
   </target>
 
-  <target name="compile" depends="init">
+  <target name="build.release"
+          depends="init">
+
+    <property name="build.sln.config"
+              value="Release" />
+
+    <call target="compile" />
+  </target>
+
+  <target name="compile"
+          depends="init">
+
     <nant buildfile="BuildSteps\Compile.build" />
   </target>
 </project>
