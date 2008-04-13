@@ -9,7 +9,7 @@
     <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
 
     <msbuild project="${dir.code}\Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj">
-      <property name="configuration"
+      <property name="Configuration"
                 value="${msbuild.configuration}" />
 
       <property name="OutputPath"
