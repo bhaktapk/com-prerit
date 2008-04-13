@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="Main"
-         default="build" 
+         default="compile" 
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- INCLUDES -->
@@ -16,16 +16,16 @@
   </target>
 
   <target name="build.debug" depends="init">
-    <call target="build" />
+    <call target="compile" />
   </target>
 
   <target name="build.release" depends="init">
     <property name="build.sln.config" value="Release" />
 
-    <call target="build" />
+    <call target="compile" />
   </target>
 
-  <target name="build" depends="init">
+  <target name="compile" depends="init">
     <nant buildfile="BuildSteps\Compile.build" />
   </target>
 </project>
