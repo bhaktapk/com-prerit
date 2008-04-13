@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="Init"
+         default="init"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <target name="init">
+    <mkdir dir="${dir.build}" />
+  </target>
+</project>

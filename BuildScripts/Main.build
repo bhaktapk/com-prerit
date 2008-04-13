@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="prerit.com"
+<project name="Main"
          default="build" 
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
@@ -8,30 +8,24 @@
   <include buildfile="BuildProperties\DefaultProperties.build" />
 
   <target name="clean">
-    <delete dir="${dir.build}" />
+    <nant buildfile="BuildSteps\Clean.build" />
   </target>
 
-  <target name="prebuild" depends="clean">
-    <mkdir dir="${dir.build}" />
+  <target name="init" depends="clean">
+    <nant buildfile="BuildSteps\Init.build" />
   </target>
 
-  <target name="build.debug" depends="prebuild">
+  <target name="build.debug" depends="init">
     <call target="build" />
   </target>
 
-  <target name="build.release" depends="prebuild">
+  <target name="build.release" depends="init">
     <property name="build.sln.config" value="Release" />
 
     <call target="build" />
   </target>
 
-  <target name="build" depends="prebuild">
-    <property name="build.sln.config" value="Debug" unless="${property::exists('build.sln.config')}" />
-
-    <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
-
-    <msbuild project="${dir.code}\Prerit.Com.Web.UI.Deployment\Prerit.Com.Web.UI.Deployment.wdproj">
-      <property name="configuration" value="${build.sln.config}" />
-    </msbuild>
+  <target name="build" depends="init">
+    <nant buildfile="BuildSteps\Compile.build" />
   </target>
 </project>
