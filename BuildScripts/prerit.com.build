@@ -3,19 +3,11 @@
   <!-- directories -->
   <property name="dir.base"               value="${path::get-full-path('..')}" />
   <property name="dir.build"              value="${dir.base}\Build" />
-  <property name="dir.config"             value="${dir.base}\Config" />
-  <property name="dir.config.build"       value="${dir.config}\Build" />
   <property name="dir.code"               value="${dir.base}\Code" />
   <property name="dir.tools"              value="${dir.base}\Tools" />
   <property name="dir.tools.nant"         value="${dir.tools}\NAnt" />
   <property name="dir.tools.nantcontrib"  value="${dir.tools}\NAntContrib" />
   <!-- end directories -->
-
-  <if test="${file::exists(dir.config.build + '\local.properties.xml')}">
-    <echo message="Loading local.properties.xml" />
-
-    <include buildfile="${dir.config.build}\local.properties.xml" />
-  </if>
 
   <target name="clean">
     <delete dir="${dir.build}" />
