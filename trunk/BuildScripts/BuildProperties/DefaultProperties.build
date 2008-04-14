@@ -43,6 +43,32 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.tools.svn"
+            value="${dir.tools}\SVN"
+            dynamic="true"
+            overwrite="false" />
+
+
+
+  <!-- VERSION CONTROL PROPERTIES -->
+
+  <property name="version-control.revision"
+            value="0"
+            overwrite="false" />
+
+
+
+  <!-- ASSEMBLY PROPERTIES -->
+
+  <property name="assembly.version"
+            value="2.0.0"
+            overwrite="false" />
+
+  <property name="assembly.version.informational"
+            value="${assembly.version}.${version-control.revision}"
+            dynamic="true"
+            overwrite="false" />
+
 
 
   <!-- MSBUILD PROPERTIES -->
