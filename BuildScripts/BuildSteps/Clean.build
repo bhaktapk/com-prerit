@@ -16,11 +16,10 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="clean-solution">
-    <loadtasks assembly="${dir.tools.nantcontrib}\NAnt.Contrib.Tasks.dll" />
-
-    <msbuild project="${dir.code}\Com.Prerit.sln"
-             target="Clean">
-    </msbuild>
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
+      <arg value="${dir.code}\Com.Prerit.sln" />
+      <arg value="/t:Clean" />
+    </exec>
   </target>
 
   <target name="delete-build-directory">
