@@ -6,12 +6,12 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Prerit.Com.Web")]
+[assembly: AssemblyTitle("Com.Prerit.Web.UI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Prerit.Com.Web")]
-[assembly: AssemblyCopyright("Copyright ©  2007")]
+[assembly: AssemblyProduct("Com.Prerit.Web.UI")]
+[assembly: AssemblyCopyright("Copyright © 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6ebd1e7d-4b15-41e1-a60e-18c28eb987e9")]
+[assembly: Guid("72a357f8-cb78-4abb-932f-e4f1d545d247")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,6 +32,7 @@ using System.Security;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("@VERSION@")]
+[assembly: AssemblyFileVersion("@VERSION@")]
+
 [assembly: AllowPartiallyTrustedCallers]

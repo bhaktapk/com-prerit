@@ -22,7 +22,8 @@
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
-    <AllowPartiallyTrustedCallers>true</AllowPartiallyTrustedCallers>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -31,7 +32,8 @@
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
-    <AllowPartiallyTrustedCallers>true</AllowPartiallyTrustedCallers>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
