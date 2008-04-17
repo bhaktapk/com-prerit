@@ -61,12 +61,7 @@
   <!-- ASSEMBLY PROPERTIES -->
 
   <property name="assembly.version"
-            value="2.0.0"
-            overwrite="false" />
-
-  <property name="assembly.version.informational"
-            value="${assembly.version}.${version-control.revision}"
-            dynamic="true"
+            value="2.0.0.${version-control.revision}"
             overwrite="false" />
 
 

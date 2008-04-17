@@ -17,7 +17,7 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="get-revision">
-    <!--<property name="file.svn-info"
+    <property name="file.svn-info"
               value="${dir.base}\SvnInfo.xml" />
 
     <exec program="${dir.tools.svn}\svn.exe"
@@ -25,14 +25,14 @@
 
       <arg value="info" />
       <arg value="${dir.base}" />
-      <arg value="- -xml" />
+      <arg value="--xml" />
     </exec>
 
     <xmlpeek file="${file.svn-info}"
              xpath="/info/entry/@revision"
              property="version-control.revision" />
 
-    <delete file="${file.svn-info}" />-->
+    <delete file="${file.svn-info}" />
   </target>
 
   <target name="make-build-directory">
@@ -44,7 +44,7 @@
   </target>
 
   <target name="set-version">
-    <!--<foreach item="File"
+    <foreach item="File"
              property="filename">
       <in>
         <items basedir="${dir.code}">
@@ -60,13 +60,10 @@
             <replacetokens>
               <token key="VERSION"
                      value="${assembly.version}" />
-              
-              <token key="VERSION_INFORMATIONAL"
-                     value="${assembly.version.informational}" />
             </replacetokens>
           </filterchain>
         </copy>
       </do>
-    </foreach>-->
+    </foreach>
   </target>
 </project>
