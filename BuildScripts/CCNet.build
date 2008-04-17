@@ -9,7 +9,7 @@
           depends="init">
 
     <nant buildfile="Main.build"
-          target="clean deploy" />
+          target="clean deploy-locally" />
   </target>
 
 
