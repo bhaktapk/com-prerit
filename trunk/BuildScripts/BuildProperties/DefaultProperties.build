@@ -62,6 +62,7 @@
 
   <property name="assembly.version"
             value="2.0.0.${version-control.revision}"
+            dynamic="true"
             overwrite="false" />
 
 
