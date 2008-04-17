@@ -21,7 +21,7 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="bring-website-online">
-    <delete file="${file::exists(dir.deploy + '\app_offline.htm')}" />
+    <delete file="${dir.deploy}\app_offline.htm" />
   </target>
 
   <target name="copy-new-deployment">
