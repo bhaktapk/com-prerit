@@ -1,19 +1,15 @@
 <?xml version="1.0"?>
 <project name="Deploy"
-         default="deploy-locally"
+         default="deploy"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="deploy-locally">
+  <target name="deploy">
     <call target="take-website-offline" />
     <call target="delete-previous-deployment" />
     <call target="copy-new-deployment" />
     <call target="bring-website-online" />
-  </target>
-
-  <target name="deploy-to-production">
-    <!-- TODO: implement -->
   </target>
 
 
