@@ -58,9 +58,17 @@
     <nant buildfile="BuildSteps\Package.build" />
   </target>
 
-  <target name="deploy"
+  <target name="deploy-locally"
           depends="package">
 
-    <nant buildfile="BuildSteps\Deploy.build" />
+    <nant buildfile="BuildSteps\Deploy.build"
+          target="deploy-locally" />
+  </target>
+
+  <target name="deploy-to-production"
+          depends="package">
+
+    <nant buildfile="BuildSteps\Deploy.build"
+          target="deploy-to-production" />
   </target>
 </project>

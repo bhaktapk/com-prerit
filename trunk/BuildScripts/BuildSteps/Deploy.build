@@ -1,10 +1,47 @@
 <?xml version="1.0"?>
 <project name="Deploy"
-         default="deploy"
+         default="deploy-locally"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="deploy">
+  <target name="deploy-locally">
+    <call target="take-website-offline" />
+    <call target="delete-previous-deployment" />
+    <call target="copy-new-deployment" />
+    <call target="bring-website-online" />
+  </target>
+
+  <target name="deploy-to-production">
+    <!-- TODO: implement -->
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="bring-website-online">
+    <delete file="${file::exists(dir.deploy + '\app_offline.htm')}" />
+  </target>
+
+  <target name="copy-new-deployment">
+    <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
+           todir="${dir.deploy}" />
+  </target>
+
+  <target name="delete-previous-deployment">
+    <delete>
+      <fileset basedir="${dir.deploy}">
+        <include name="**" />
+        <exclude name="app_offline.htm" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="take-website-offline">
+    <if test="${file::exists(dir.deploy + '\app_offline.config')}">
+      <move file="${dir.deploy}\app_offline.config"
+            tofile="${dir.deploy}\app_offline.htm" />
+    </if>
   </target>
 </project>

@@ -23,6 +23,10 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.deploy"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\com-prerit"
+            overwrite="true" />
+
   <property name="dir.packages"
             value="${dir.base}\Packages"
             dynamic="true"
