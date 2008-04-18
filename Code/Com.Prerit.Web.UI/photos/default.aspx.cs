@@ -5,102 +5,110 @@ using System.Web.UI;
 
 public partial class photos_default : Page
 {
-	private static readonly object syncRoot = new object();
+    #region Fields
 
-	protected void Page_Load(object sender, EventArgs e)
-	{
-		int albumId;
+    private static readonly object syncRoot = new object();
 
-		List<string> photoList;
+    #endregion
 
-		int.TryParse(Request.QueryString["albumid"], out albumId);
+    #region Methods
 
-		switch (albumId)
-		{
-			default:
-			case 0:
-				photoAlbumViewMultiView.ActiveViewIndex = 0;
-				photoList = GetPithiPhotoList();
-				break;
-			case 1:
-				photoAlbumViewMultiView.ActiveViewIndex = 1;
-				photoList = GetWeddingPhotoList();
-				break;
-			case 2:
-				photoAlbumViewMultiView.ActiveViewIndex = 2;
-				photoList = GetHoneymoonPhotoList();
-				break;
-			case 3:
-				photoAlbumViewMultiView.ActiveViewIndex = 3;
-				photoList = GetChristmasPhotoList();
-				break;
-		}
+    private List<string> GetChristmasPhotoList()
+    {
+        const string cacheKey = "christmasPhotoList";
 
-		photoRepeater.DataSource = photoList;
-		photoRepeater.DataBind();
-	}
+        string folderPath = "~/photos/christmas/";
 
-	private List<string> GetPhotoList(string cacheKey, string folderPath)
-	{
-		if (Cache[cacheKey] == null)
-		{
-			lock (syncRoot)
-			{
-				if (Cache[cacheKey] == null)
-				{
-					List<string> photoList = new List<string>();
+        return GetPhotoList(cacheKey, folderPath);
+    }
 
-					foreach (string fileName in Directory.GetFiles(MapPath(folderPath)))
-					{
-						if (Path.GetExtension(fileName) == ".jpg" && !fileName.EndsWith("_thumb.jpg"))
-						{
-							string baseFileName = Path.GetFileNameWithoutExtension(fileName);
+    private List<string> GetHoneymoonPhotoList()
+    {
+        const string cacheKey = "honeymoonPhotoList";
 
-							photoList.Add(ResolveUrl(folderPath + Path.GetFileName(baseFileName)));
-						}
-					}
+        string folderPath = "~/photos/honeymoon/";
 
-					Cache[cacheKey] = photoList;
-				}
-			}
-		}
+        return GetPhotoList(cacheKey, folderPath);
+    }
 
-		return (List<string>) Cache[cacheKey];
-	}
+    private List<string> GetPhotoList(string cacheKey, string folderPath)
+    {
+        if (Cache[cacheKey] == null)
+        {
+            lock (syncRoot)
+            {
+                if (Cache[cacheKey] == null)
+                {
+                    List<string> photoList = new List<string>();
 
-	private List<string> GetPithiPhotoList()
-	{
-		const string cacheKey = "pithiPhotoList";
+                    foreach (string fileName in Directory.GetFiles(MapPath(folderPath)))
+                    {
+                        if (Path.GetExtension(fileName) == ".jpg" && !fileName.EndsWith("_thumb.jpg"))
+                        {
+                            string baseFileName = Path.GetFileNameWithoutExtension(fileName);
 
-		string folderPath = "~/photos/pithi/";
+                            photoList.Add(ResolveUrl(folderPath + Path.GetFileName(baseFileName)));
+                        }
+                    }
 
-		return GetPhotoList(cacheKey, folderPath);
-	}
+                    Cache[cacheKey] = photoList;
+                }
+            }
+        }
 
-	private List<string> GetWeddingPhotoList()
-	{
-		const string cacheKey = "weddingPhotoList";
+        return (List<string>) Cache[cacheKey];
+    }
 
-		string folderPath = "~/photos/wedding/";
+    private List<string> GetPithiPhotoList()
+    {
+        const string cacheKey = "pithiPhotoList";
 
-		return GetPhotoList(cacheKey, folderPath);
-	}
+        string folderPath = "~/photos/pithi/";
 
-	private List<string> GetHoneymoonPhotoList()
-	{
-		const string cacheKey = "honeymoonPhotoList";
+        return GetPhotoList(cacheKey, folderPath);
+    }
 
-		string folderPath = "~/photos/honeymoon/";
+    private List<string> GetWeddingPhotoList()
+    {
+        const string cacheKey = "weddingPhotoList";
 
-		return GetPhotoList(cacheKey, folderPath);
-	}
+        string folderPath = "~/photos/wedding/";
 
-	private List<string> GetChristmasPhotoList()
-	{
-		const string cacheKey = "christmasPhotoList";
+        return GetPhotoList(cacheKey, folderPath);
+    }
 
-		string folderPath = "~/photos/christmas/";
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        int albumId;
 
-		return GetPhotoList(cacheKey, folderPath);
-	}
+        List<string> photoList;
+
+        int.TryParse(Request.QueryString["albumid"], out albumId);
+
+        switch (albumId)
+        {
+            default:
+            case 0:
+                photoAlbumViewMultiView.ActiveViewIndex = 0;
+                photoList = GetPithiPhotoList();
+                break;
+            case 1:
+                photoAlbumViewMultiView.ActiveViewIndex = 1;
+                photoList = GetWeddingPhotoList();
+                break;
+            case 2:
+                photoAlbumViewMultiView.ActiveViewIndex = 2;
+                photoList = GetHoneymoonPhotoList();
+                break;
+            case 3:
+                photoAlbumViewMultiView.ActiveViewIndex = 3;
+                photoList = GetChristmasPhotoList();
+                break;
+        }
+
+        photoRepeater.DataSource = photoList;
+        photoRepeater.DataBind();
+    }
+
+    #endregion
 }

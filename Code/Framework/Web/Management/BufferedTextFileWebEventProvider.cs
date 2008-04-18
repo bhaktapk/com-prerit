@@ -8,183 +8,213 @@ using System.Web.Management;
 
 namespace Framework.Web.Management
 {
-	public class BufferedTextFileWebEventProvider : BufferedWebEventProvider
-	{
-		private string logDirectoryPath;
+    public class BufferedTextFileWebEventProvider : BufferedWebEventProvider
+    {
+        #region Fields
 
-		private string logFileNameFormat;
+        private string logDirectoryPath;
 
-		public override void Initialize(string name, NameValueCollection config)
-		{
-			if (string.IsNullOrEmpty(name))
-			{
-				throw new ArgumentNullException("name");
-			}
+        private string logFileNameFormat;
 
-			if (config == null)
-			{
-				throw new ArgumentNullException("config");
-			}
+        #endregion
 
-			logDirectoryPath = GetValidatedLogDirectoryPath(name, config);
+        #region Methods
 
-			logFileNameFormat = GetValidatedLogFileNameFormat(name, config);
+        private string GetFormattedFileName(string fileNameFormat)
+        {
+            return DateTime.Today.ToString(fileNameFormat);
+        }
 
-			config.Remove(BufferedTextFileWebEventProviderMarkup.LogDirectoryPath);
+        private StreamWriter GetLogWriter()
+        {
+            string filePath = Path.Combine(logDirectoryPath, GetFormattedFileName(logFileNameFormat));
 
-			config.Remove(BufferedTextFileWebEventProviderMarkup.LogFileFormat);
+            StreamWriter writer = new StreamWriter(filePath, true, Encoding.UTF8);
 
-			base.Initialize(name, config);
-		}
+            writer.NewLine = "\r\n";
 
-		public override void ProcessEvent(WebBaseEvent webEvent)
-		{
-			if (UseBuffering)
-			{
-				base.ProcessEvent(webEvent);
-			}
-			else
-			{
-				LogEntry(webEvent);
-			}
-		}
+            return writer;
+        }
 
-		public override void ProcessEventFlush(WebEventBufferFlushInfo flushInfo)
-		{
-			LogEntries(flushInfo.Events);
-		}
+        private string GetValidatedLogDirectoryPath(string name, NameValueCollection config)
+        {
+            string fullPhysicalPath;
 
-		public override void Shutdown()
-		{
-			Flush();
+            string logDirectoryPathConfigValue = config[BufferedTextFileWebEventProviderMarkup.LogDirectoryPath];
 
-			base.Shutdown();
-		}
+            if (string.IsNullOrEmpty(logDirectoryPathConfigValue))
+            {
+                throw new ProviderException(
+                    string.Format("The required attribute '{0}' is missing a valid value in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogDirectoryPath,
+                                  name));
+            }
 
-		private string GetFormattedFileName(string fileNameFormat)
-		{
-			return DateTime.Today.ToString(fileNameFormat);
-		}
+            if (logDirectoryPathConfigValue.IndexOfAny(Path.GetInvalidPathChars()) != -1)
+            {
+                throw new ProviderException(
+                    string.Format("The attribute '{0}' contains illegal characters in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogDirectoryPath,
+                                  name));
+            }
 
-		private string GetValidatedLogDirectoryPath(string name, NameValueCollection config)
-		{
-			string fullPhysicalPath;
+            try
+            {
+                string physicalPath;
 
-			string logDirectoryPathConfigValue = config[BufferedTextFileWebEventProviderMarkup.LogDirectoryPath];
+                if (VirtualPathUtilityLinq.IsPathVirtual(logDirectoryPathConfigValue))
+                {
+                    physicalPath = HostingEnvironment.MapPath(logDirectoryPathConfigValue);
+                }
+                else
+                {
+                    physicalPath = logDirectoryPathConfigValue;
+                }
 
-			if (string.IsNullOrEmpty(logDirectoryPathConfigValue))
-			{
-				throw new ProviderException(string.Format("The required attribute '{0}' is missing a valid value in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogDirectoryPath, name));
-			}
+                fullPhysicalPath = Path.GetFullPath(physicalPath);
+            }
+            catch (Exception e)
+            {
+                throw new ProviderException(
+                    string.Format("The attribute '{0}' is not a valid physical or virtual path in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogDirectoryPath,
+                                  name),
+                    e);
+            }
 
-			if (logDirectoryPathConfigValue.IndexOfAny(Path.GetInvalidPathChars()) != -1)
-			{
-				throw new ProviderException(string.Format("The attribute '{0}' contains illegal characters in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogDirectoryPath, name));
-			}
+            return fullPhysicalPath;
+        }
 
-			try
-			{
-				string physicalPath;
+        private string GetValidatedLogFileNameFormat(string name, NameValueCollection config)
+        {
+            string formattedFileName;
 
-				if (VirtualPathUtilityLinq.IsPathVirtual(logDirectoryPathConfigValue))
-				{
-					physicalPath = HostingEnvironment.MapPath(logDirectoryPathConfigValue);
-				}
-				else
-				{
-					physicalPath = logDirectoryPathConfigValue;
-				}
+            string logFileNameFormatConfigValue = config[BufferedTextFileWebEventProviderMarkup.LogFileFormat];
 
-				fullPhysicalPath = Path.GetFullPath(physicalPath);
-			}
-			catch (Exception e)
-			{
-				throw new ProviderException(string.Format("The attribute '{0}' is not a valid physical or virtual path in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogDirectoryPath, name), e);
-			}
+            if (string.IsNullOrEmpty(logFileNameFormatConfigValue))
+            {
+                throw new ProviderException(
+                    string.Format("The required attribute '{0}' is missing a valid value in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogFileFormat,
+                                  name));
+            }
 
-			return fullPhysicalPath;
-		}
+            if (logFileNameFormatConfigValue.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
+            {
+                throw new ProviderException(
+                    string.Format("The attribute '{0}' contains illegal characters in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogFileFormat,
+                                  name));
+            }
 
-		private string GetValidatedLogFileNameFormat(string name, NameValueCollection config)
-		{
-			string formattedFileName;
+            try
+            {
+                formattedFileName = GetFormattedFileName(logFileNameFormatConfigValue);
+            }
+            catch (Exception e)
+            {
+                throw new ProviderException(
+                    string.Format("The attribute '{0}' is not a valid DateTimeFormat pattern in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogFileFormat,
+                                  name),
+                    e);
+            }
 
-			string logFileNameFormatConfigValue = config[BufferedTextFileWebEventProviderMarkup.LogFileFormat];
+            try
+            {
+                Path.GetFullPath(Path.Combine(logDirectoryPath, formattedFileName));
+            }
+            catch (Exception e)
+            {
+                throw new ProviderException(
+                    string.Format("The attribute '{0}' is not a valid file name in the configuration of the '{1}' provider.",
+                                  BufferedTextFileWebEventProviderMarkup.LogFileFormat,
+                                  name),
+                    e);
+            }
 
-			if (string.IsNullOrEmpty(logFileNameFormatConfigValue))
-			{
-				throw new ProviderException(string.Format("The required attribute '{0}' is missing a valid value in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogFileFormat, name));
-			}
+            return logFileNameFormatConfigValue;
+        }
 
-			if (logFileNameFormatConfigValue.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
-			{
-				throw new ProviderException(string.Format("The attribute '{0}' contains illegal characters in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogFileFormat, name));
-			}
+        public override void Initialize(string name, NameValueCollection config)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("name");
+            }
 
-			try
-			{
-				formattedFileName = GetFormattedFileName(logFileNameFormatConfigValue);
-			}
-			catch (Exception e)
-			{
-				throw new ProviderException(string.Format("The attribute '{0}' is not a valid DateTimeFormat pattern in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogFileFormat, name), e);
-			}
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
 
-			try
-			{
-				Path.GetFullPath(Path.Combine(logDirectoryPath, formattedFileName));
-			}
-			catch (Exception e)
-			{
-				throw new ProviderException(string.Format("The attribute '{0}' is not a valid file name in the configuration of the '{1}' provider.", BufferedTextFileWebEventProviderMarkup.LogFileFormat, name), e);
-			}
+            logDirectoryPath = GetValidatedLogDirectoryPath(name, config);
 
-			return logFileNameFormatConfigValue;
-		}
+            logFileNameFormat = GetValidatedLogFileNameFormat(name, config);
 
-		private StreamWriter GetLogWriter()
-		{
-			string filePath = Path.Combine(logDirectoryPath, GetFormattedFileName(logFileNameFormat));
+            config.Remove(BufferedTextFileWebEventProviderMarkup.LogDirectoryPath);
 
-			StreamWriter writer = new StreamWriter(filePath, true, Encoding.UTF8);
+            config.Remove(BufferedTextFileWebEventProviderMarkup.LogFileFormat);
 
-			writer.NewLine = "\r\n";
+            base.Initialize(name, config);
+        }
 
-			return writer;
-		}
+        private void LogEntries(WebBaseEventCollection eventCollection)
+        {
+            using (StreamWriter writer = GetLogWriter())
+            {
+                foreach (WebBaseEvent webEvent in eventCollection)
+                {
+                    LogEntry(webEvent, writer);
+                }
+            }
+        }
 
-		private void LogEntries(WebBaseEventCollection eventCollection)
-		{
-			using (StreamWriter writer = GetLogWriter())
-			{
-				foreach (WebBaseEvent webEvent in eventCollection)
-				{
-					LogEntry(webEvent, writer);
-				}
-			}
-		}
+        private void LogEntry(WebBaseEvent webEvent)
+        {
+            using (StreamWriter writer = GetLogWriter())
+            {
+                LogEntry(webEvent, writer);
+            }
+        }
 
-		private void LogEntry(WebBaseEvent webEvent)
-		{
-			using (StreamWriter writer = GetLogWriter())
-			{
-				LogEntry(webEvent, writer);
-			}
-		}
+        private void LogEntry(WebBaseEvent webEvent, StreamWriter writer)
+        {
+            writer.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+            writer.WriteLine(ScrubLog(webEvent.ToString(true, true)));
+            writer.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+            writer.WriteLine();
+        }
 
-		private void LogEntry(WebBaseEvent webEvent, StreamWriter writer)
-		{
-			writer.WriteLine(
-				"-----------------------------------------------------------------------------------------------------------------------");
-			writer.WriteLine(ScrubLog(webEvent.ToString(true, true)));
-			writer.WriteLine(
-				"-----------------------------------------------------------------------------------------------------------------------");
-			writer.WriteLine();
-		}
+        public override void ProcessEvent(WebBaseEvent webEvent)
+        {
+            if (UseBuffering)
+            {
+                base.ProcessEvent(webEvent);
+            }
+            else
+            {
+                LogEntry(webEvent);
+            }
+        }
 
-		private string ScrubLog(string log)
-		{
-			return log.Trim().Replace("\n", "\r\n").Replace("\r\r\n", "\r\n");
-		}
-	}
+        public override void ProcessEventFlush(WebEventBufferFlushInfo flushInfo)
+        {
+            LogEntries(flushInfo.Events);
+        }
+
+        private string ScrubLog(string log)
+        {
+            return log.Trim().Replace("\n", "\r\n").Replace("\r\r\n", "\r\n");
+        }
+
+        public override void Shutdown()
+        {
+            Flush();
+
+            base.Shutdown();
+        }
+
+        #endregion
+    }
 }

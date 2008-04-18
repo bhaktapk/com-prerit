@@ -2,46 +2,63 @@ using System;
 
 namespace Framework
 {
-	public abstract class StringEnum<T> : IEquatable<T> where T : StringEnum<T>
-	{
-		private readonly string value;
+    public abstract class StringEnum<T> : IEquatable<T> where T : StringEnum<T>
+    {
+        #region Fields
 
-		public string Value
-		{
-			get
-			{
-				return value;
-			}
-		}
+        private readonly string value;
 
-		protected StringEnum(string value)
-		{
-			this.value = value;
-		}
+        #endregion
 
-		public override bool Equals(object obj)
-		{
-			return Equals(obj as T);
-		}
+        #region Properties
 
-		public bool Equals(T other)
-		{
-			return other != null && (ReferenceEquals(this, other) || Value == other.Value);
-		}
+        public string Value
+        {
+            get { return value; }
+        }
 
-		public override int GetHashCode()
-		{
-			return Value.GetHashCode();
-		}
+        #endregion
 
-		public override string ToString()
-		{
-			return Value;
-		}
+        #region Constructors
 
-		public static implicit operator string(StringEnum<T> stringEnum)
-		{
-			return stringEnum.Value;
-		}
-	}
+        protected StringEnum(string value)
+        {
+            this.value = value;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as T);
+        }
+
+        public bool Equals(T other)
+        {
+            return other != null && (ReferenceEquals(this, other) || Value == other.Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+
+        #endregion
+
+        #region Operators
+
+        public static implicit operator string(StringEnum<T> stringEnum)
+        {
+            return stringEnum.Value;
+        }
+
+        #endregion
+    }
 }

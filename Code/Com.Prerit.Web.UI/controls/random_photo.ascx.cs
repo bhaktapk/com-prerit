@@ -6,44 +6,48 @@ using Prerit.Com.Web;
 
 public partial class controls_random_photo : UserControl
 {
-	protected void Page_Load(object sender, EventArgs args)
-	{
-		string file;
-		string folder;
+    #region Methods
 
-		string[] files;
+    protected void Page_Load(object sender, EventArgs args)
+    {
+        string file;
+        string folder;
 
-		Random random = new Random();
+        string[] files;
 
-		switch (random.Next() % 4)
-		{
-			default:
-			case 0:
-				folder = "~/photos/pithi/";
-				break;
-			case 1:
-				folder = "~/photos/wedding/";
-				break;
-			case 2:
-				folder = "~/photos/honeymoon/";
-				break;
-			case 3:
-				folder = "~/photos/christmas/";
-				break;
-		}
+        Random random = new Random();
 
-		files = Directory.GetFiles(MapPath(folder));
+        switch (random.Next() % 4)
+        {
+            default:
+            case 0:
+                folder = "~/photos/pithi/";
+                break;
+            case 1:
+                folder = "~/photos/wedding/";
+                break;
+            case 2:
+                folder = "~/photos/honeymoon/";
+                break;
+            case 3:
+                folder = "~/photos/christmas/";
+                break;
+        }
 
-		do
-		{
-			file = Path.GetFileName(files[random.Next() % files.Length]);
-		}
-		while (file.EndsWith("_thumb.jpg"));
+        files = Directory.GetFiles(MapPath(folder));
 
-		photoLink.HRef = ResolveUrl(folder + file);
+        do
+        {
+            file = Path.GetFileName(files[random.Next() % files.Length]);
+        }
+        while (file.EndsWith("_thumb.jpg"));
 
-		photoLink.Attributes[HtmlMarkup.OnClick] = string.Format(photoLink.Attributes[HtmlMarkup.OnClick], ResolveUrl(folder + file));
+        photoLink.HRef = ResolveUrl(folder + file);
 
-		photoImage.Src = ResolveUrl(folder + Path.GetFileNameWithoutExtension(file) + "_thumb.jpg");
-	}
+        photoLink.Attributes[HtmlMarkup.OnClick] = string.Format(photoLink.Attributes[HtmlMarkup.OnClick], ResolveUrl(folder + file));
+
+        photoImage.Src = ResolveUrl(folder + Path.GetFileNameWithoutExtension(file) + "_thumb.jpg");
+    }
+
+    #endregion
 }

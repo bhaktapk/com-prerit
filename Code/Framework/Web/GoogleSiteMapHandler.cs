@@ -6,119 +6,124 @@ using System.Xml;
 
 namespace Framework.Web
 {
-	public class GoogleSiteMapHandler : IHttpHandler
-	{
-		public bool IsReusable
-		{
-			get
-			{
-				return true;
-			}
-		}
+    public class GoogleSiteMapHandler : IHttpHandler
+    {
+        #region Properties
 
-		public void ProcessRequest(HttpContext context)
-		{
-			if (SiteMap.RootNode == null)
-			{
-				throw new ConfigurationErrorsException("A sitemap must be configured.");
-			}
+        public bool IsReusable
+        {
+            get { return true; }
+        }
 
-			context.Response.ContentType = MediaTypeNames.Text.Xml;
+        #endregion
 
-			RenderGoogleSiteMap(context);
-		}
+        #region Methods
 
-		private void RenderGoogleSiteMap(HttpContext context)
-		{
-			using (XmlTextWriter writer = new XmlTextWriter(context.Response.OutputStream, context.Response.ContentEncoding))
-			{
-				SetXmlTextWriterProperties(writer);
+        private Uri GetBaseUrl(HttpContext context)
+        {
+            return new Uri(context.Request.Url.Scheme + Uri.SchemeDelimiter + context.Request.Url.Authority);
+        }
 
-				writer.WriteStartDocument();
+        public void ProcessRequest(HttpContext context)
+        {
+            if (SiteMap.RootNode == null)
+            {
+                throw new ConfigurationErrorsException("A sitemap must be configured.");
+            }
 
-				writer.WriteStartElement(GoogleSiteMapMarkup.Urlset);
+            context.Response.ContentType = MediaTypeNames.Text.Xml;
 
-				WriteUrlSetAttributes(writer);
+            RenderGoogleSiteMap(context);
+        }
 
-				WriteUrlElement(GetBaseUrl(context), SiteMap.RootNode, writer);
+        private void RenderGoogleSiteMap(HttpContext context)
+        {
+            using (XmlTextWriter writer = new XmlTextWriter(context.Response.OutputStream, context.Response.ContentEncoding))
+            {
+                SetXmlTextWriterProperties(writer);
 
-				writer.WriteEndElement();
+                writer.WriteStartDocument();
 
-				writer.WriteEndDocument();
-			}
-		}
+                writer.WriteStartElement(GoogleSiteMapMarkup.Urlset);
 
-		private Uri GetBaseUrl(HttpContext context)
-		{
-			return new Uri(context.Request.Url.Scheme + Uri.SchemeDelimiter + context.Request.Url.Authority);
-		}
+                WriteUrlSetAttributes(writer);
 
-		private void SetXmlTextWriterProperties(XmlTextWriter writer)
-		{
-			writer.Formatting = Formatting.Indented;
+                WriteUrlElement(GetBaseUrl(context), SiteMap.RootNode, writer);
 
-			writer.IndentChar = '\t';
+                writer.WriteEndElement();
 
-			writer.Indentation = 1;
-		}
+                writer.WriteEndDocument();
+            }
+        }
 
-		private void TryWriteElement(string elementName, string elementValue, XmlTextWriter writer)
-		{
-			if (!string.IsNullOrEmpty(elementValue))
-			{
-				writer.WriteElementString(elementName, elementValue);
-			}
-		}
+        private void SetXmlTextWriterProperties(XmlTextWriter writer)
+        {
+            writer.Formatting = Formatting.Indented;
 
-		private void WriteChangeFrequencyElement(SiteMapNode node, XmlTextWriter writer)
-		{
-			TryWriteElement(GoogleSiteMapMarkup.Changefreq, node[AspNetSiteMapMarkup.ChangeFrequency], writer);
-		}
+            writer.IndentChar = '\t';
 
-		private void WriteLastModifiedElement(SiteMapNode node, XmlTextWriter writer)
-		{
-			TryWriteElement(GoogleSiteMapMarkup.Lastmod, node[AspNetSiteMapMarkup.LastModified], writer);
-		}
+            writer.Indentation = 1;
+        }
 
-		private void WriteLocElement(Uri baseUrl, SiteMapNode node, XmlTextWriter writer)
-		{
-			Uri absoluteUri = new Uri(baseUrl, node.Url);
+        private void TryWriteElement(string elementName, string elementValue, XmlTextWriter writer)
+        {
+            if (!string.IsNullOrEmpty(elementValue))
+            {
+                writer.WriteElementString(elementName, elementValue);
+            }
+        }
 
-			writer.WriteElementString(GoogleSiteMapMarkup.Loc, absoluteUri.AbsoluteUri);
-		}
+        private void WriteChangeFrequencyElement(SiteMapNode node, XmlTextWriter writer)
+        {
+            TryWriteElement(GoogleSiteMapMarkup.Changefreq, node[AspNetSiteMapMarkup.ChangeFrequency], writer);
+        }
 
-		private void WritePriorityElement(SiteMapNode node, XmlTextWriter writer)
-		{
-			TryWriteElement(GoogleSiteMapMarkup.Priority, node[AspNetSiteMapMarkup.Priority], writer);
-		}
+        private void WriteLastModifiedElement(SiteMapNode node, XmlTextWriter writer)
+        {
+            TryWriteElement(GoogleSiteMapMarkup.Lastmod, node[AspNetSiteMapMarkup.LastModified], writer);
+        }
 
-		private void WriteUrlElement(Uri baseUrl, SiteMapNode node, XmlTextWriter writer)
-		{
-			writer.WriteStartElement(GoogleSiteMapMarkup.Url);
+        private void WriteLocElement(Uri baseUrl, SiteMapNode node, XmlTextWriter writer)
+        {
+            Uri absoluteUri = new Uri(baseUrl, node.Url);
 
-			WriteLocElement(baseUrl, node, writer);
+            writer.WriteElementString(GoogleSiteMapMarkup.Loc, absoluteUri.AbsoluteUri);
+        }
 
-			WriteLastModifiedElement(node, writer);
+        private void WritePriorityElement(SiteMapNode node, XmlTextWriter writer)
+        {
+            TryWriteElement(GoogleSiteMapMarkup.Priority, node[AspNetSiteMapMarkup.Priority], writer);
+        }
 
-			WriteChangeFrequencyElement(node, writer);
+        private void WriteUrlElement(Uri baseUrl, SiteMapNode node, XmlTextWriter writer)
+        {
+            writer.WriteStartElement(GoogleSiteMapMarkup.Url);
 
-			WritePriorityElement(node, writer);
+            WriteLocElement(baseUrl, node, writer);
 
-			writer.WriteEndElement();
+            WriteLastModifiedElement(node, writer);
 
-			foreach (SiteMapNode subNode in node.ChildNodes)
-			{
-				WriteUrlElement(baseUrl, subNode, writer);
-			}
-		}
+            WriteChangeFrequencyElement(node, writer);
 
-		private void WriteUrlSetAttributes(XmlTextWriter writer)
-		{
-			writer.WriteAttributeString(GoogleSiteMapMarkup.Xmlns, GoogleSiteMapMarkup.XmlnsValue);
+            WritePriorityElement(node, writer);
 
-			writer.WriteAttributeString(GoogleSiteMapMarkup.Xmlns, GoogleSiteMapMarkup.Xsi, null, GoogleSiteMapMarkup.XsiValue);
+            writer.WriteEndElement();
 
-			writer.WriteAttributeString(GoogleSiteMapMarkup.Xsi, GoogleSiteMapMarkup.SchemaLocation, null, GoogleSiteMapMarkup.SchemaLocationValue);
-		}
-	}
+            foreach (SiteMapNode subNode in node.ChildNodes)
+            {
+                WriteUrlElement(baseUrl, subNode, writer);
+            }
+        }
+
+        private void WriteUrlSetAttributes(XmlTextWriter writer)
+        {
+            writer.WriteAttributeString(GoogleSiteMapMarkup.Xmlns, GoogleSiteMapMarkup.XmlnsValue);
+
+            writer.WriteAttributeString(GoogleSiteMapMarkup.Xmlns, GoogleSiteMapMarkup.Xsi, null, GoogleSiteMapMarkup.XsiValue);
+
+            writer.WriteAttributeString(GoogleSiteMapMarkup.Xsi, GoogleSiteMapMarkup.SchemaLocation, null, GoogleSiteMapMarkup.SchemaLocationValue);
+        }
+
+        #endregion
+    }
 }
