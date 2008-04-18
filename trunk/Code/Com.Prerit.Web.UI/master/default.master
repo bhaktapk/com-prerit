@@ -46,7 +46,6 @@
 			<div id="sidebar">
 				<asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
 				<ctrl:login ID="loginControl" runat="server" />
-				<ctrl:randomPhoto ID="randomPhotoControl" runat="server" />
 			</div>
 			<div id="mainbar">
 				<asp:ContentPlaceHolder ID="mainbarPlaceHolder" runat="server" />
