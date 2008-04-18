@@ -24,7 +24,7 @@
             overwrite="false" />
 
   <property name="dir.deploy"
-            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\com-prerit"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\Com.Prerit.Web.UI"
             overwrite="true" />
 
   <property name="dir.packages"
