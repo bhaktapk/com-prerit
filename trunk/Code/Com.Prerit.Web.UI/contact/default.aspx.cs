@@ -7,90 +7,99 @@ using Prerit.Com.Web;
 
 public partial class contact_default : Page
 {
-	protected void Page_Load(object sender, EventArgs args)
-	{
-		SetDefaultButton();
+    #region Methods
 
-		SetDefaultFocus();
-	}
+    private void ClearForm()
+    {
+        emailInputText.Value = null;
+        nameInputText.Value = null;
+        messageTextarea.Value = null;
+    }
 
-	private void SetDefaultFocus()
-	{
-		if (string.IsNullOrEmpty(User.Identity.Name))
-		{
-			Form.DefaultFocus = nameInputText.ClientID;
-		}
-		else
-		{
-			nameInputText.Value = User.Identity.Name;
+    protected void EmailCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
+    {
+        args.IsValid = emailRequiredFieldValidator.IsValid && emailRegularExpressionValidator.IsValid;
 
-			Form.DefaultFocus = emailInputText.ClientID;
-		}
-	}
+        if (!args.IsValid)
+        {
+            emailLabel.CssClass = CssClassSelector.FormError;
+            emailInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
+        }
+    }
 
-	private void SetDefaultButton()
-	{
-		Form.DefaultButton = sendMessageButton.UniqueID;
-	}
+    protected void MessageCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
+    {
+        args.IsValid = messageRequiredFieldValidator.IsValid;
 
-	protected void EmailCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
-	{
-		args.IsValid = emailRequiredFieldValidator.IsValid && emailRegularExpressionValidator.IsValid;
+        if (!args.IsValid)
+        {
+            messageLabel.CssClass = CssClassSelector.FormError;
+            messageTextarea.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
+        }
+    }
 
-		if (!args.IsValid)
-		{
-			emailLabel.CssClass = CssClassSelector.FormError;
-			emailInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
-		}
-	}
+    protected void NameCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
+    {
+        args.IsValid = nameRequiredFieldValidator.IsValid;
 
-	protected void MessageCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
-	{
-		args.IsValid = messageRequiredFieldValidator.IsValid;
+        if (!args.IsValid)
+        {
+            nameLabel.CssClass = CssClassSelector.FormError;
+            nameInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
+        }
+    }
 
-		if (!args.IsValid)
-		{
-			messageLabel.CssClass = CssClassSelector.FormError;
-			messageTextarea.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
-		}
-	}
+    protected void Page_Load(object sender, EventArgs args)
+    {
+        SetDefaultButton();
 
-	protected void NameCustomValidator_ServerValidate(object sender, ServerValidateEventArgs args)
-	{
-		args.IsValid = nameRequiredFieldValidator.IsValid;
+        SetDefaultFocus();
+    }
 
-		if (!args.IsValid)
-		{
-			nameLabel.CssClass = CssClassSelector.FormError;
-			nameInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
-		}
-	}
+    protected void SendMessageButton_Click(object sender, EventArgs args)
+    {
+        if (IsValid)
+        {
+            SmtpClient smtpClient = new SmtpClient();
 
-	protected void SendMessageButton_Click(object sender, EventArgs args)
-	{
-		if (IsValid)
-		{
-			SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Host = WebsiteInfo.SmtpHost;
 
-			smtpClient.Host = WebsiteInfo.SmtpHost;
+            using (
+                MailMessage message =
+                    new MailMessage(emailInputText.Value,
+                                    WebsiteInfo.AuthorEmailAddress,
+                                    WebsiteInfo.GetContactEmailSubject(nameInputText.Value),
+                                    messageTextarea.Value))
+            {
+                message.IsBodyHtml = false;
 
-			using (MailMessage message = new MailMessage(emailInputText.Value, WebsiteInfo.AuthorEmailAddress, WebsiteInfo.GetContactEmailSubject(nameInputText.Value), messageTextarea.Value))
-			{
-				message.IsBodyHtml = false;
+                smtpClient.Send(message);
+            }
 
-				smtpClient.Send(message);
-			}
+            successMessage.Visible = true;
 
-			successMessage.Visible = true;
+            ClearForm();
+        }
+    }
 
-			ClearForm();
-		}
-	}
+    private void SetDefaultButton()
+    {
+        Form.DefaultButton = sendMessageButton.UniqueID;
+    }
 
-	private void ClearForm()
-	{
-		emailInputText.Value = null;
-		nameInputText.Value = null;
-		messageTextarea.Value = null;
-	}
+    private void SetDefaultFocus()
+    {
+        if (string.IsNullOrEmpty(User.Identity.Name))
+        {
+            Form.DefaultFocus = nameInputText.ClientID;
+        }
+        else
+        {
+            nameInputText.Value = User.Identity.Name;
+
+            Form.DefaultFocus = emailInputText.ClientID;
+        }
+    }
+
+    #endregion
 }

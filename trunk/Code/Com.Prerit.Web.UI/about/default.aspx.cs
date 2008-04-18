@@ -8,33 +8,37 @@ using Prerit.Com.Web;
 
 public partial class about_default : Page
 {
-	protected void Page_Load(object sender, EventArgs args)
-	{
-		AddGoogleVerificationMetaTag();
+    #region Methods
 
-		SetLinks();
-	}
+    private void AddGoogleVerificationMetaTag()
+    {
+        HtmlMeta htmlMeta = new HtmlMeta();
 
-	private void SetLinks()
-	{
-		SiteMapNode resumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(resumeLink.HRef);
+        htmlMeta.Content = WebsiteInfo.GoogleVerificationMetaTagContent;
 
-		if (resumeNode == null)
-		{
-			throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", resumeLink.HRef));
-		}
+        htmlMeta.Name = WebsiteInfo.GoogleVerificationMetaTagName;
 
-		resumeLink.Title = resumeNode.Description;
-	}
+        Header.Controls.Add(htmlMeta);
+    }
 
-	private void AddGoogleVerificationMetaTag()
-	{
-		HtmlMeta htmlMeta = new HtmlMeta();
+    protected void Page_Load(object sender, EventArgs args)
+    {
+        AddGoogleVerificationMetaTag();
 
-		htmlMeta.Content = WebsiteInfo.GoogleVerificationMetaTagContent;
+        SetLinks();
+    }
 
-		htmlMeta.Name = WebsiteInfo.GoogleVerificationMetaTagName;
+    private void SetLinks()
+    {
+        SiteMapNode resumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(resumeLink.HRef);
 
-		Header.Controls.Add(htmlMeta);
-	}
+        if (resumeNode == null)
+        {
+            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", resumeLink.HRef));
+        }
+
+        resumeLink.Title = resumeNode.Description;
+    }
+
+    #endregion
 }

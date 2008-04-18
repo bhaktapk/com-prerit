@@ -7,119 +7,128 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 using Framework.Web;
+
 using Prerit.Com.Web;
 
 public partial class master_default : MasterPage
 {
-	protected const string MenuLinkID = "menuLink";
+    #region Constants
 
-	protected void MenuRepeater_ItemDataBound(object sender, RepeaterItemEventArgs args)
-	{
-		switch (args.Item.ItemType)
-		{
-			case ListItemType.AlternatingItem:
-			case ListItemType.Item:
-				HtmlAnchor menuLink = args.Item.FindControl(MenuLinkID) as HtmlAnchor;
+    protected const string MenuLinkID = "menuLink";
 
-				SiteMapNode node = args.Item.DataItem as SiteMapNode;
+    #endregion
 
-				if (menuLink == null)
-				{
-					throw new ConfigurationErrorsException(string.Format("Cannot find control {0}.", MenuLinkID));
-				}
+    #region Methods
 
-				if (node == null)
-				{
-					throw new ConfigurationErrorsException(string.Format("The dataItem is not of type {0}.", typeof(SiteMapNode)));
-				}
+    protected void MenuRepeater_ItemDataBound(object sender, RepeaterItemEventArgs args)
+    {
+        switch (args.Item.ItemType)
+        {
+            case ListItemType.AlternatingItem:
+            case ListItemType.Item:
+                HtmlAnchor menuLink = args.Item.FindControl(MenuLinkID) as HtmlAnchor;
 
-				menuLink.Attributes[HtmlMarkup.AccessKey] = char.ToLowerInvariant(node.Title[0]).ToString();
+                SiteMapNode node = args.Item.DataItem as SiteMapNode;
 
-				menuLink.HRef = node.Url;
+                if (menuLink == null)
+                {
+                    throw new ConfigurationErrorsException(string.Format("Cannot find control {0}.", MenuLinkID));
+                }
 
-				menuLink.InnerHtml = string.Format(menuLink.InnerHtml, node.Title[0], node.Title.Substring(1));
+                if (node == null)
+                {
+                    throw new ConfigurationErrorsException(string.Format("The dataItem is not of type {0}.", typeof(SiteMapNode)));
+                }
 
-				menuLink.Title = node.Description;
+                menuLink.Attributes[HtmlMarkup.AccessKey] = char.ToLowerInvariant(node.Title[0]).ToString();
 
-				if (SiteMap.CurrentNode == null)
-				{
-					throw new ConfigurationErrorsException(string.Format("No sitemap node exists for {0}.", Request.Url));
-				}
+                menuLink.HRef = node.Url;
 
-				//TODO: cleanup
-				if (SiteMap.CurrentNode.Url.ToLowerInvariant().StartsWith(node.Url.Substring(0, node.Url.LastIndexOf('/') + 1).ToLowerInvariant()))
-				{
-					menuLink.Attributes[HtmlMarkup.Class] = CssClassSelector.Active;
-				}
+                menuLink.InnerHtml = string.Format(menuLink.InnerHtml, node.Title[0], node.Title.Substring(1));
 
-				break;
-		}
-	}
+                menuLink.Title = node.Description;
 
-	protected override void OnInit(EventArgs args)
-	{
-		base.OnInit(args);
+                if (SiteMap.CurrentNode == null)
+                {
+                    throw new ConfigurationErrorsException(string.Format("No sitemap node exists for {0}.", Request.Url));
+                }
 
-		SetPageTitle();
+                //TODO: cleanup
+                if (SiteMap.CurrentNode.Url.ToLowerInvariant().StartsWith(node.Url.Substring(0, node.Url.LastIndexOf('/') + 1).ToLowerInvariant()))
+                {
+                    menuLink.Attributes[HtmlMarkup.Class] = CssClassSelector.Active;
+                }
 
-		SetMetaTags();
+                break;
+        }
+    }
 
-		SetLiterals();
+    protected override void OnInit(EventArgs args)
+    {
+        base.OnInit(args);
 
-		SetLinks();
+        SetPageTitle();
 
-		if (SiteMap.RootNode != null)
-		{
-			siteNameLink.HRef = SiteMap.RootNode.Url;
+        SetMetaTags();
 
-			siteNameLink.Title = SiteMap.RootNode.Description;
-		}
-	}
+        SetLiterals();
 
-	protected void SetLinks()
-	{
-		siteNameLink.InnerText = WebsiteInfo.SiteName;
+        SetLinks();
 
-		validateCssLink.HRef = HttpUtility.HtmlEncode(W3OrgLink.GetCssValidatorUrl(Request.Url.AbsoluteUri));
+        if (SiteMap.RootNode != null)
+        {
+            siteNameLink.HRef = SiteMap.RootNode.Url;
 
-		validateXhtmlLink.HRef = HttpUtility.HtmlEncode(W3OrgLink.GetXhtmlValidatorUrl(Request.Url.AbsoluteUri));
-	}
+            siteNameLink.Title = SiteMap.RootNode.Description;
+        }
+    }
 
-	protected void SetLiterals()
-	{
-		copyrightLiteral.Text = string.Format(copyrightLiteral.Text, DateTime.Today.Year, WebsiteInfo.Author);
-	}
+    protected void SetLinks()
+    {
+        siteNameLink.InnerText = WebsiteInfo.SiteName;
 
-	protected void SetMetaTags()
-	{
-		authorMeta.Content = WebsiteInfo.Author;
+        validateCssLink.HRef = HttpUtility.HtmlEncode(W3OrgLink.GetCssValidatorUrl(Request.Url.AbsoluteUri));
 
-		contentLanguageMeta.Content = CultureInfo.CurrentCulture.Name.ToLowerInvariant();
+        validateXhtmlLink.HRef = HttpUtility.HtmlEncode(W3OrgLink.GetXhtmlValidatorUrl(Request.Url.AbsoluteUri));
+    }
 
-		contentTypeMeta.Content = string.Format(contentTypeMeta.Content, Response.ContentType, Response.Charset);
+    protected void SetLiterals()
+    {
+        copyrightLiteral.Text = string.Format(copyrightLiteral.Text, DateTime.Today.Year, WebsiteInfo.Author);
+    }
 
-		copyrightMeta.Content = string.Format(copyrightMeta.Content, DateTime.Today.Year, WebsiteInfo.Author);
+    protected void SetMetaTags()
+    {
+        authorMeta.Content = WebsiteInfo.Author;
 
-		if (SiteMap.CurrentNode != null)
-		{
-			descriptionMeta.Content = SiteMap.CurrentNode.Description;
+        contentLanguageMeta.Content = CultureInfo.CurrentCulture.Name.ToLowerInvariant();
 
-			keywordsMeta.Content = SiteMap.CurrentNode[AspNetSiteMapMarkup.Keywords];
-		}
-	}
+        contentTypeMeta.Content = string.Format(contentTypeMeta.Content, Response.ContentType, Response.Charset);
 
-	protected void SetPageTitle()
-	{
-		TrySetPageTitleFromSiteMap();
+        copyrightMeta.Content = string.Format(copyrightMeta.Content, DateTime.Today.Year, WebsiteInfo.Author);
 
-		Page.Title = WebsiteInfo.FormatPageTitle(Page.Title);
-	}
+        if (SiteMap.CurrentNode != null)
+        {
+            descriptionMeta.Content = SiteMap.CurrentNode.Description;
 
-	protected void TrySetPageTitleFromSiteMap()
-	{
-		if (string.IsNullOrEmpty(Page.Title) && SiteMap.CurrentNode != null)
-		{
-			Page.Title = SiteMap.CurrentNode.Title;
-		}
-	}
+            keywordsMeta.Content = SiteMap.CurrentNode[AspNetSiteMapMarkup.Keywords];
+        }
+    }
+
+    protected void SetPageTitle()
+    {
+        TrySetPageTitleFromSiteMap();
+
+        Page.Title = WebsiteInfo.FormatPageTitle(Page.Title);
+    }
+
+    protected void TrySetPageTitleFromSiteMap()
+    {
+        if (string.IsNullOrEmpty(Page.Title) && SiteMap.CurrentNode != null)
+        {
+            Page.Title = SiteMap.CurrentNode.Title;
+        }
+    }
+
+    #endregion
 }

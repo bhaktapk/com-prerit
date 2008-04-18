@@ -1,23 +1,26 @@
 using System;
-using System.Web;
 using System.Web.UI;
 
 public partial class controls_photo_search : UserControl
 {
-	protected void Page_Load(object sender, EventArgs args)
-	{
-		if (string.IsNullOrEmpty(Page.Form.DefaultButton))
-		{
-			Page.Form.DefaultButton = photoSearchButton.UniqueID;
-		}
+    #region Methods
 
-		if (string.IsNullOrEmpty(Page.Form.DefaultFocus))
-		{
-			Page.Form.DefaultFocus = photoSearchInputText.ClientID;
-		}
-	}
+    protected void Page_Load(object sender, EventArgs args)
+    {
+        if (string.IsNullOrEmpty(Page.Form.DefaultButton))
+        {
+            Page.Form.DefaultButton = photoSearchButton.UniqueID;
+        }
 
-	protected void PhotoSearchButton_Click(object sender, EventArgs args)
-	{
-	}
+        if (string.IsNullOrEmpty(Page.Form.DefaultFocus))
+        {
+            Page.Form.DefaultFocus = photoSearchInputText.ClientID;
+        }
+    }
+
+    protected void PhotoSearchButton_Click(object sender, EventArgs args)
+    {
+    }
+
+    #endregion
 }
