@@ -51,8 +51,6 @@ public partial class contact_default : Page
 
     protected void Page_Load(object sender, EventArgs args)
     {
-        SetDefaultButton();
-
         SetDefaultFocus();
     }
 
@@ -80,11 +78,6 @@ public partial class contact_default : Page
 
             ClearForm();
         }
-    }
-
-    private void SetDefaultButton()
-    {
-        Form.DefaultButton = sendMessageButton.UniqueID;
     }
 
     private void SetDefaultFocus()
