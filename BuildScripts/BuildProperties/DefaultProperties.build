@@ -77,6 +77,10 @@
             value="Debug"
             overwrite="false" />
 
+  <property name="msbuild.verbosity"
+            value="minimal"
+            overwrite="false" />
+
 
 
   <!-- PROJECT PROPERTIES -->

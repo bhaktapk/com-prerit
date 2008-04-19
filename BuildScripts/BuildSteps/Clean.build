@@ -19,6 +19,7 @@
     <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
       <arg value="${dir.code}\Com.Prerit.sln" />
       <arg value="/t:Clean" />
+      <arg value="/v:${msbuild.verbosity}" />
     </exec>
   </target>
 
