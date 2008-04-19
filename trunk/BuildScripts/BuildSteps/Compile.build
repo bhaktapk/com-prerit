@@ -24,6 +24,7 @@
       <arg value="${dir.code}\${project.name.com-prerit-web-ui-deployment}\${project.name.com-prerit-web-ui-deployment}.wdproj" />
       <arg value="/p:Configuration=${msbuild.configuration}" />
       <arg value="/p:OutputPath=&quot;${dir.build}\${project.name.com-prerit-web-ui}&quot;" />
+      <arg value="/v:${msbuild.verbosity}" />
     </exec>
   </target>
 
