@@ -77,13 +77,6 @@ public partial class controls_login : UserControl
     {
         HtmlInputText userNameInputText = FindControlFromLoginView<HtmlInputText>(UserNameInputTextID);
 
-        Button loginButton = FindControlFromLoginView<Button>(LoginButtonID);
-
-        if (loginButton != null && string.IsNullOrEmpty(Page.Form.DefaultButton))
-        {
-            Page.Form.DefaultButton = loginButton.UniqueID;
-        }
-
         if (userNameInputText != null && string.IsNullOrEmpty(Page.Form.DefaultFocus))
         {
             Page.Form.DefaultFocus = userNameInputText.ClientID;
