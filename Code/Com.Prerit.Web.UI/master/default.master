@@ -49,6 +49,7 @@
 				<ctrl:login ID="loginControl" runat="server" />
 			</div>
 			<div id="mainbar">
+			    <ctrl:ajax_processing_notification runat="server" />
 				<asp:ContentPlaceHolder ID="mainbarPlaceHolder" runat="server" />
 			</div>
 		</form>
