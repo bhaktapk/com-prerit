@@ -35,8 +35,8 @@
   </target>
 
   <target name="take-website-offline">
-    <if test="${file::exists(dir.deploy + '\app_offline.config')}">
-      <move file="${dir.deploy}\app_offline.config"
+    <if test="${file::exists(dir.deploy + '\app_offline.aspx')}">
+      <move file="${dir.deploy}\app_offline.aspx"
             tofile="${dir.deploy}\app_offline.htm" />
     </if>
   </target>
