@@ -422,7 +422,7 @@ img {
 }
 
 #mainbar #processingNotification {
-	background: #85e15f url(../images/ajax-loader.gif) no-repeat 50% 70%;
+	background: #85e15f url(../images/ajax_processing_notifier.gif) no-repeat 50% 70%;
 	border: 2px solid #222;
 	color: #222;
 	font-size: 1.2em;
