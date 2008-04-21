@@ -150,6 +150,9 @@ img {
 	line-height: 18pt;
 }
 
+#mainbar #processingNotification {
+	display: none;
+}
 
 
 /******************************************************************************
