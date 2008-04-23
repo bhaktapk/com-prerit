@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Users>
-	<User>
-		<UserName>Prerit</UserName>
-		<Password>omegared</Password>
-		<EMail>prerit@hotmail.com</EMail>
-	</User>
-	<User>
-		<UserName>Tina</UserName>
-		<Password>moomintroll</Password>
-		<EMail>tinabhakta@hotmail.com</EMail>
-	</User>
-	<User>
-		<UserName>Vikas</UserName>
-		<Password>intown</Password>
-		<EMail>vhb78@yahoo.com</EMail>
-	</User>
+  <User>
+    <UserName>Prerit</UserName>
+    <Password>omegared</Password>
+    <EMail>prerit@hotmail.com</EMail>
+  </User>
+  <User>
+    <UserName>Tina</UserName>
+    <Password>moomintroll</Password>
+    <EMail>tinabhakta@hotmail.com</EMail>
+  </User>
+  <User>
+    <UserName>Vikas</UserName>
+    <Password>intown</Password>
+    <EMail>vhb78@yahoo.com</EMail>
+  </User>
 </Users>
