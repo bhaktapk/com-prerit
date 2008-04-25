@@ -2,12 +2,14 @@
 	XHTML Tags
 ******************************************************************************/
 
-a {
+a
+{
 	color: #000;
 	text-decoration: none;
 }
 
-body {
+body
+{
 	background-color: #fff;
 	color: #000;
 	font-family: "times new roman" , times, roman, serif;
@@ -16,12 +18,14 @@ body {
 	padding: 0;
 }
 
-form {
+form
+{
 	margin: 0;
 	padding: 0;
 }
 
-img {
+img
+{
 	border: 0;
 }
 
@@ -31,7 +35,8 @@ img {
 	Header Section
 ******************************************************************************/
 
-#header h1 {
+#header h1
+{
 	border: 1pt solid #000;
 	font-family: garamond, "times new roman" , times, roman, serif;
 	font-size: 12pt;
@@ -42,7 +47,8 @@ img {
 }
 
 #header h2,
-#header ul {
+#header ul
+{
 	display: none;
 }
 
@@ -52,22 +58,26 @@ img {
 	Content Section - Forms Subsection
 ******************************************************************************/
 
-#content div.validationSummary {
+#content div.validationSummary
+{
 	display: none;
 }
 
-#content fieldset {
+#content fieldset
+{
 	border: 0;
 	margin: 12pt 0;
 	padding: 0;
 }
 
-#content legend {
+#content legend
+{
 	display: none;
 }
 
 #content p.failureMessage,
-#content p.successMessage {
+#content p.successMessage
+{
 	border: 1pt dashed #000;
 	font-weight: bold;
 	text-align: center;
@@ -75,7 +85,8 @@ img {
 
 #content input,
 #content select,
-#content textarea {
+#content textarea
+{
 	border: 1pt solid #000;
 	font-family: verdana, helvetica, arial, sans-serif;
 	font-size: 10pt;
@@ -87,7 +98,8 @@ img {
 	Sidebar Section
 ******************************************************************************/
 
-#sidebar {
+#sidebar
+{
 	display: none;
 }
 
@@ -97,35 +109,42 @@ img {
 	Mainbar Section
 ******************************************************************************/
 
-#mainbar acronym:after {
+#mainbar acronym:after
+{
 	/* Prints titles after the acronyms/titletips. Doesn't work in MSIE */
 	content: " (" attr(title) ")";
 }
 
-#mainbar blockquote {
+#mainbar blockquote
+{
 	border-bottom: 1pt solid #000;
 	border-top: 1pt solid #000;
 }
 
-#mainbar div.photos {
+#mainbar div.photos
+{
 	margin: 0 10pt;
 	text-align: center;
 }
 
-#mainbar div.photos p {
+#mainbar div.photos p
+{
 	display: inline;
 	margin: 0;
 }
 
-#mainbar div.photos p img {
+#mainbar div.photos p img
+{
 	border: 2pt solid #686868;
 }
 
-#mainbar legend {
+#mainbar legend
+{
 	display: none;
 }
 
-#mainbar p img.headshot {
+#mainbar p img.headshot
+{
 	border: 2pt solid #686868;
 	float: left;
 	margin-right: 15pt;
@@ -133,24 +152,28 @@ img {
 
 /* Prints the URL after a link in CSS2 supporting browsers */
 #mainbar a:link:after,
-#mainbar a:visited:after {
+#mainbar a:visited:after
+{
 	content: " (" attr(href) ")";
 }
 
 #mainbar div.photo a:link:after,
 #mainbar div.photo a:visited:after,
 #mainbar div.photos a:link:after,
-#mainbar div.photos a:visited:after {
+#mainbar div.photos a:visited:after
+{
 	content: "";
 }
 
 #mainbar fieldset,
 #mainbar li,
-#mainbar p {
+#mainbar p
+{
 	line-height: 18pt;
 }
 
-#mainbar #processingNotification {
+#mainbar #processingNotification
+{
 	display: none;
 }
 
@@ -159,16 +182,19 @@ img {
 	Mainbar Section - Headings Subsection
 ******************************************************************************/
 
-#mainbar h1 {
+#mainbar h1
+{
 	border-bottom: 1pt solid #000;
 	font-size: 16pt;
 }
 
-#mainbar h2 {
+#mainbar h2
+{
 	font-size: 14pt;
 }
 
-#mainbar h3 {
+#mainbar h3
+{
 	font-size: 12pt;
 }
 
@@ -177,14 +203,16 @@ img {
 #mainbar h3,
 #mainbar h4,
 #mainbar h5,
-#mainbar h6 {
+#mainbar h6
+{
 	clear: both;
 	font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
 }
 
 #mainbar h4,
 #mainbar h5,
-#mainbar h6 {
+#mainbar h6
+{
 	font-size: 10pt;
 }
 
@@ -194,28 +222,33 @@ img {
 	Mainbar Section - Forms Subsection
 ******************************************************************************/
 
-#mainbar input {
+#mainbar input
+{
 	width: 85%;
 }
 
-#mainbar input.button {
+#mainbar input.button
+{
 	margin: 10pt 0;
 	width: auto;
 }
 
-#mainbar label {
+#mainbar label
+{
 	display: block;
 }
 
 #mainbar p.failureMessage
-#mainbar p.successMessage {
+#mainbar p.successMessage
+{
 	margin-left: auto;
 	margin-right: auto;
 	width: 400pt;
 }
 
 #mainbar select,
-#mainbar textarea {
+#mainbar textarea
+{
 	width: 95%;
 }
 
@@ -225,7 +258,8 @@ img {
 	Mainbar Section - Lists Subsection
 ******************************************************************************/
 
-#mainbar ul {
+#mainbar ul
+{
 	margin-left: 0;
 	margin-right: 0;
 	padding-left: 40pt;
@@ -233,12 +267,14 @@ img {
 }
 
 #mainbar ul.long3 li.group2,
-#mainbar ul.long3 li.group2first {
+#mainbar ul.long3 li.group2first
+{
 	margin-left: 167pt;
 }
 
 #mainbar ul.long3 li.group3, 
-#mainbar ul.long3 li.group3first {
+#mainbar ul.long3 li.group3first
+{
 	margin-left: 334pt;
 }
 
@@ -248,7 +284,8 @@ img {
 	Footer Section
 ******************************************************************************/
 
-#footer #copyright {
+#footer #copyright
+{
 	border-top: 1pt solid #000;
 	clear: both;
 	display: block;
@@ -259,6 +296,7 @@ img {
 }
 
 #footer h1,
-#footer p {
+#footer p
+{
 	display: none;
 }

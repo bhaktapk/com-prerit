@@ -2,7 +2,8 @@
 	XHTML Tags
 ******************************************************************************/
 
-body {
+body
+{
 	background: #585858 url(../images/bg_body.gif) repeat-y center top;
 	color: #eee;
 	font-family: verdana, helvetica, arial, sans-serif;
@@ -14,12 +15,14 @@ body {
 	text-align: center;
 }
 
-form {
+form
+{
 	margin: 0;
 	padding: 0;
 }
 
-img {
+img
+{
 	border: 0;
 }
 
@@ -29,7 +32,8 @@ img {
 	Header Section
 ******************************************************************************/
 
-#header {
+#header
+{
 	background: #585858 url(../images/bg_header.gif) repeat-y center top;
 	text-transform: uppercase;
 
@@ -37,53 +41,62 @@ img {
 	text-align: left;
 }
 
-#header h1 {
+#header h1
+{
 	float: right;
 	font-size: 1em;
 	margin: 0;
 }
 
-#header h1 a {
+#header h1 a
+{
 	color: #222;
 	display: block;
 	padding: 10px 55px 10px 0;
 	text-decoration: none;
 }
 
-#header h2 {
+#header h2
+{
 	display: none;
 }
 
-#header ul {
+#header ul
+{
 	margin: 0;
 	padding: 10px 0 10px 15px;
 }
 
-#header ul li {
+#header ul li
+{
 	display: inline;
 	list-style: none;
 }
 
-#header ul li a {
+#header ul li a
+{
 	color: #222;
 	font-weight: bold;
 	padding: 10px 12px;
 	text-decoration: none;
 }
 
-#header ul li a em {
+#header ul li a em
+{
 	font-style: normal;
 	text-decoration: underline;
 }
 
-#header #innerHeader {
+#header #innerHeader
+{
 	background: url(../images/logo_greenery.gif) no-repeat right center;
 	margin: 0 auto;
 	width: 768px;
 }
 
 #header ul li a:hover,
-#header ul li a.active {
+#header ul li a.active
+{
 	background: url(../images/menu_tab.gif) no-repeat center bottom;
 	color: #111;
 }
@@ -94,7 +107,8 @@ img {
 	Content Section
 ******************************************************************************/
 
-#content {
+#content
+{
 	margin: 0 auto;
 	width: 768px;
 
@@ -102,28 +116,34 @@ img {
 	text-align: left;
 }
 
-#content a {
+#content a
+{
 	color: #86e160;
 }
 
-#content a:hover {
+#content a:hover
+{
 	color: #fff;
 }
 
-#content a:visited {
+#content a:visited
+{
 	color: #aaa;
 }
 
-#content em {
+#content em
+{
 	font-style: italic;
 }
 
-#content strong {
+#content strong
+{
 	font-weight: bold;
 }
 
 #content abbr,
-#content acronym {
+#content acronym
+{
 	border-bottom: 1px dotted #777;
 	cursor: help;
 }
@@ -137,7 +157,8 @@ img {
 #content h5,
 #content h6,
 #content p,
-#content ul {
+#content ul
+{
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
@@ -145,7 +166,8 @@ img {
 #content li em,
 #content p em,
 #content li strong,
-#content p strong {
+#content p strong
+{
 	color: #fff;
 }
 
@@ -160,7 +182,8 @@ img {
 #content h3,
 #content h4,
 #content h5,
-#content h6 {
+#content h6
+{
 	clear: both;
 	color: #7bd32c;
 	font-size: 1em;
@@ -172,7 +195,8 @@ img {
 #content h3 a,
 #content h4 a,
 #content h5 a,
-#content h6 a {
+#content h6 a
+{
 	color: #7bd32c;
 }
 
@@ -182,42 +206,50 @@ img {
 	Content Section - Forms Subsection
 ******************************************************************************/
 
-#content div.validationSummary {
+#content div.validationSummary
+{
 	display: none;
 }
 
-#content fieldset {
+#content fieldset
+{
 	border: 0;
 	margin: 0;
 	padding: 0;
 }
 
-#content input.button {
+#content input.button
+{
 	background-color: #777;
 }
 
-#content legend {
+#content legend
+{
 	display: none;
 }
 
-#content p.failureMessage {
+#content p.failureMessage
+{
 	border: 1px dashed #b00;
 	color: #b00;
 }
 
-#content p.successMessage {
+#content p.successMessage
+{
 	border: 1px dashed #83e05e;
 	color: #83e05e;
 }
 
 #content input,
-#content textarea {
+#content textarea
+{
 	padding: 1px 3px;
 }
 
 #content input,
 #content select,
-#content textarea {
+#content textarea
+{
 	background-color: transparent;
 	border: 1px solid #999;
 	color: #eee;
@@ -230,14 +262,16 @@ img {
 #content select:focus,
 #content select:hover,
 #content textarea:focus,
-#content textarea:hover {
+#content textarea:hover
+{
 	border: 1px solid #eee;
 	color: #fff;
 }
 
 #content input.formError,
 #content select.formError,
-#content textarea.formError {
+#content textarea.formError
+{
 	border: 1px solid #b00;
 }
 
@@ -246,13 +280,15 @@ img {
 #content select.formError:focus,
 #content select.formError:hover,
 #content textarea.formError:focus,
-#content textarea.formError:hover {
+#content textarea.formError:hover
+{
 	border: 1px solid #e00;
 	color: #fff;
 }
 
 #content p.failureMessage,
-#content p.successMessage {
+#content p.successMessage
+{
 	font-weight: bold;
 	text-align: center;
 }
@@ -263,27 +299,32 @@ img {
 	Sidebar Section
 ******************************************************************************/
 
-#sidebar {
+#sidebar
+{
 	float: right;
 	padding-right: 20px;
 	width: 145px; /* could use box model hack here but I say screw anything less than IE6 */
 }
 
-#sidebar p {
+#sidebar p
+{
 	text-align: justify;
 }
 
-#sidebar div.photo p {
+#sidebar div.photo p
+{
 	text-align: center;
 }
 
-#sidebar div.photo p img {
+#sidebar div.photo p img
+{
 	border: 2px solid #686868;
 }
 
 #sidebar fieldset,
 #sidebar li,
-#sidebar p {
+#sidebar p
+{
 	line-height: 1.5em;
 }
 
@@ -293,12 +334,14 @@ img {
 	Sidebar Section - Headings Subsection
 ******************************************************************************/
 
-#sidebar h2 {
+#sidebar h2
+{
 	background: #686868 url(../images/rounded_tl.gif) no-repeat left top;
 	text-align: right;
 }
 
-#sidebar h2 span {
+#sidebar h2 span
+{
 	background: url(../images/rounded_bl.gif) no-repeat left bottom;
 	display: block;
 	padding: 2px;
@@ -310,26 +353,31 @@ img {
 	Sidebar Section - Forms Subsection
 ******************************************************************************/
 
-#sidebar input {
+#sidebar input
+{
 	width: 110px;
 }
 
-#sidebar input.button {
+#sidebar input.button
+{
 	cursor: pointer;
 	width: auto;
 }
 
-#sidebar label {
+#sidebar label
+{
 	display: none;
 }
 
-#sidebar textarea {
+#sidebar textarea
+{
 	height: 70px;
 	width: 137px;
 }
 
 #sidebar input,
-#sidebar textarea {
+#sidebar textarea
+{
 	margin: 5px 0;
 }
 
@@ -339,14 +387,16 @@ img {
 	Sidebar Section - Lists Subsection
 ******************************************************************************/
 
-#sidebar ul {
+#sidebar ul
+{
 	margin-left: 0;
 	margin-right: 0;
 	padding-left: 0;
 	padding-right: 0;
 }
 
-#sidebar ul li {
+#sidebar ul li
+{
 	border-bottom: 1px solid #888;
 	border-top: 1px solid #888;
 	list-style-type: none;
@@ -354,13 +404,15 @@ img {
 	text-align: right;
 }
 
-#sidebar ul li a {
+#sidebar ul li a
+{
 	display: block;
 	padding: 2px 0;
 	text-decoration: none;
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li a:hover
+{
 	background: url(../images/bg_subheading.gif) no-repeat left center;
 }
 
@@ -370,7 +422,8 @@ img {
 	Mainbar Section
 ******************************************************************************/
 
-#mainbar {
+#mainbar
+{
 	border-right: 1px solid #83e05e;
 	float: left;
 	padding: 0 20px 0 20px;
@@ -382,7 +435,8 @@ img {
 	height: 500px;
 }
 
-#mainbar blockquote {
+#mainbar blockquote
+{
 	background-color: #585858;
 	border-bottom: 1px solid #999;
 	border-top: 1px solid #999;
@@ -393,35 +447,41 @@ img {
 	padding-right: 20px;
 }
 
-#mainbar p img.headshot {
+#mainbar p img.headshot
+{
 	border: 2px solid #686868;
 	float: left;
 	margin-right: 15px;
 }
 
-#mainbar div.photos {
+#mainbar div.photos
+{
 	margin: 0 21px;
 	text-align: center;
 }
 
-#mainbar div.photos p {
+#mainbar div.photos p
+{
 	float: left;
 	height: 125px;
 	margin: 0;
 	width: 125px;
 }
 
-#mainbar div.photos p img {
+#mainbar div.photos p img
+{
 	border: 2px solid #686868;
 }
 
 #mainbar fieldset,
 #mainbar li,
-#mainbar p {
+#mainbar p
+{
 	line-height: 1.75em;
 }
 
-#mainbar #processingNotification {
+#mainbar #processingNotification
+{
 	background: #85e15f url(../images/ajax_processing_notifier.gif) no-repeat 50% 70%;
 	border: 2px solid #222;
 	color: #222;
@@ -430,6 +490,10 @@ img {
     padding: 5px 10px 25px 10px;
     text-align: center;
     width: 150px;
+
+    /* invalid CSS */
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
 }
 
 
@@ -438,33 +502,40 @@ img {
 	Mainbar Section - Headings Subsection
 ******************************************************************************/
 
-#mainbar h1 {
+#mainbar h1
+{
 	background: #686868 url(../images/rounded_tr.gif) no-repeat right top;
 }
 
-#mainbar h1 span {
+#mainbar h1 span
+{
 	background: url(../images/rounded_br.gif) no-repeat right bottom;
 	display: block;
 	padding: 2px;
 }
 
-#mainbar h2 {
+#mainbar h2
+{
 	padding-left: 10px;
 }
 
-#mainbar h3 {
+#mainbar h3
+{
 	padding-left: 20px;
 }
 
-#mainbar h4 {
+#mainbar h4
+{
 	padding-left: 30px;
 }
 
-#mainbar h5 {
+#mainbar h5
+{
 	padding-left: 40px;
 }
 
-#mainbar h6 {
+#mainbar h6
+{
 	padding-left: 50px;
 }
 
@@ -472,7 +543,8 @@ img {
 #mainbar h3,
 #mainbar h4,
 #mainbar h5,
-#mainbar h6 {
+#mainbar h6
+{
 	background: url(../images/bg_subheading.gif) repeat-x left center;
 }
 
@@ -480,7 +552,8 @@ img {
 #mainbar h3 span,
 #mainbar h4 span,
 #mainbar h5 span,
-#mainbar h6 span {
+#mainbar h6 span
+{
 	background-color: #444;
 	display: block;
 }
@@ -491,38 +564,45 @@ img {
 	Mainbar Section - Forms Subsection
 ******************************************************************************/
 
-#mainbar input {
+#mainbar input
+{
 	width: 85%;
 }
 
-#mainbar input.button {
+#mainbar input.button
+{
 	cursor: pointer;
 	margin: 10px 0;
 	width: auto;
 }
 
-#mainbar label {
+#mainbar label
+{
 	display: block;
 }
 
-#mainbar label.formError {
+#mainbar label.formError
+{
 	color: #e00;
 	font-weight: bold;
 }
 
-#mainbar textarea {
+#mainbar textarea
+{
 	height: 130px;
 }
 
 #mainbar p.failureMessage,
-#mainbar p.successMessage {
+#mainbar p.successMessage
+{
 	margin-left: auto;
 	margin-right: auto;
 	width: 400px;
 }
 
 #mainbar select,
-#mainbar textarea {
+#mainbar textarea
+{
 	width: 95%;
 }
 
@@ -532,24 +612,28 @@ img {
 	Mainbar Section - Lists Subsection
 ******************************************************************************/
 
-#mainbar ul {
+#mainbar ul
+{
 	margin-left: 0;
 	margin-right: 0;
 	padding-left: 40px;
 	padding-right: 0;
 }
 
-#mainbar ul li {
+#mainbar ul li
+{
 	list-style-image: url(../images/li_bullet.gif);
 }
 
 #mainbar ul.long3 li.group2,
-#mainbar ul.long3 li.group2first {
+#mainbar ul.long3 li.group2first
+{
 	margin-left: 167px;
 }
 
 #mainbar ul.long3 li.group3, 
-#mainbar ul.long3 li.group3first {
+#mainbar ul.long3 li.group3first
+{
 	margin-left: 334px;
 }
 
@@ -559,7 +643,8 @@ img {
 	Footer Section
 ******************************************************************************/
 
-#footer {
+#footer
+{
 	border-top: 1px solid #83e05e;
 	clear: both;
 	color: #888;
@@ -567,23 +652,28 @@ img {
 	width: 768px;
 }
 
-#footer a {
+#footer a
+{
 	color: #888;
 }
 
-#footer a:hover {
+#footer a:hover
+{
 	color: #fff;
 }
 
-#footer h1 {
+#footer h1
+{
 	display: none;
 }
 
-#footer p {
+#footer p
+{
 	margin: 5px 0;
 }
 
-#footer #designer a {
+#footer #designer a
+{
 	background: url(../images/logo_fullahead.gif) no-repeat 0 0;
 	display: block;
 	height: 34px;
@@ -591,10 +681,12 @@ img {
 	width: 30px;
 }
 
-#footer #designer a:hover {
+#footer #designer a:hover
+{
 	background-position: -30px 0;
 }
 
-#footer #designer a span {
+#footer #designer a span
+{
 	display: none;
 }
