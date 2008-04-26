@@ -27,18 +27,12 @@
         <div id="innerHeader">
             <h1><span><a id="siteNameLink" href="" title="" runat="server"></a></span></h1>
             <h2><span>Main Menu</span></h2>
-            <asp:SiteMapDataSource ID="menuDataSource" ShowStartingNode="false" runat="server" />
-            <asp:Repeater ID="menuRepeater" DataSourceID="menuDataSource" OnItemDataBound="MenuRepeater_ItemDataBound" runat="server">
-                <HeaderTemplate>
-                    <ul>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <li><a id="menuLink" href="" title="" runat="server"><em>{0}</em>{1}</a></li>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </ul>
-                </FooterTemplate>
-            </asp:Repeater>
+            <ul>
+                <li><a id="aboutLink" href="~/about/" title="" runat="server"><em>{0}</em>{1}</a></li>
+                <li><a id="contactLink" href="~/contact/" title="" runat="server"><em>{0}</em>{1}</a></li>
+                <li><a id="photosLink" href="~/photos/" title="" runat="server"><em>{0}</em>{1}</a></li>
+                <li><a id="resumeLink" href="~/resume/" title="" runat="server"><em>{0}</em>{1}</a></li>
+            </ul>
         </div>
     </div>
     <div id="content">

@@ -30,7 +30,7 @@ public partial class about_default : Page
 
     private void SetLinks()
     {
-        SiteMapNode resumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(resumeLink.HRef);
+        SiteMapNode resumeNode = SiteMap.Provider.FindSiteMapNode(resumeLink.HRef);
 
         if (resumeNode == null)
         {

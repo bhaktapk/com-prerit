@@ -85,6 +85,8 @@ public partial class master_default : MasterPage
 
     protected void SetLinks()
     {
+        SetMenuLinks();
+
         siteNameLink.InnerText = WebsiteInfo.SiteName;
 
         validateCssLink.HRef = HttpUtility.HtmlEncode(W3OrgLink.GetCssValidatorUrl(Request.Url.AbsoluteUri));
@@ -95,6 +97,35 @@ public partial class master_default : MasterPage
     protected void SetLiterals()
     {
         copyrightLiteral.Text = string.Format(copyrightLiteral.Text, DateTime.Today.Year, WebsiteInfo.Author);
+    }
+
+    protected void SetMenuLink(HtmlAnchor menuLink)
+    {
+        SiteMapNode node = SiteMap.Provider.FindSiteMapNode(menuLink.HRef);
+
+        if (node == null)
+        {
+            throw new Exception(string.Format("No sitemap node exists for {0}.", ResolveUrl(menuLink.HRef)));
+        }
+
+        menuLink.Attributes[HtmlMarkup.AccessKey] = char.ToLowerInvariant(node.Title[0]).ToString();
+
+        menuLink.InnerHtml = string.Format(menuLink.InnerHtml, node.Title[0], node.Title.Substring(1));
+
+        menuLink.Title = node.Description;
+
+        if (SiteMap.CurrentNode.Url.ToLowerInvariant().StartsWith(node.Url.Substring(0, node.Url.LastIndexOf('/') + 1).ToLowerInvariant()))
+        {
+            menuLink.Attributes[HtmlMarkup.Class] = CssClassSelector.Active;
+        }
+    }
+
+    private void SetMenuLinks()
+    {
+        SetMenuLink(aboutLink);
+        SetMenuLink(contactLink);
+        SetMenuLink(photosLink);
+        SetMenuLink(resumeLink);
     }
 
     protected void SetMetaTags()
