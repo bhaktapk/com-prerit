@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="login.ascx.cs" Inherits="controls_login" %>
+<h2><span>Log In</span></h2>
+<p id="failureMessage" class="failureMessage" visible="false" runat="server">
+    Incorrect user name or password.
+</p>
+<asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
+    ForeColor="" ValidationGroup="login" runat="server" />
 <asp:Panel DefaultButton="loginButton" runat="server">
-    <h2><span>Log In</span></h2>
-    <p id="failureMessage" class="failureMessage" visible="false" runat="server">
-        Incorrect user name or password.
-    </p>
-    <asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
-        ForeColor="" ValidationGroup="login" runat="server" />
     <fieldset>
         <asp:Label ID="userNameLabel" AssociatedControlID="userNameInputText" runat="server">User Name:</asp:Label>
         <input id="userNameInputText" type="text" runat="server" />
