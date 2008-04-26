@@ -3,19 +3,19 @@
 <asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
-    <asp:Panel DefaultButton="sendMessageButton" runat="server">
-        <h1><span>Email</span></h1>
-        <p>
-            Emails will generally be read during normal business hours in the Central Time Zone. Please consider these times when anticipating
-            your reply.
-        </p>
-        <asp:UpdatePanel ID="updatePanel" runat="server">
-            <ContentTemplate>
-                <p id="successMessage" class="successMessage" visible="false" runat="server">
-                    Your message has been sent.
-                </p>
-                <asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
-                    ForeColor="" ValidationGroup="contact" runat="server" />
+    <h1><span>Email</span></h1>
+    <p>
+        Emails will generally be read during normal business hours in the Central Time Zone. Please consider these times when anticipating
+        your reply.
+    </p>
+    <asp:UpdatePanel ID="updatePanel" runat="server">
+        <ContentTemplate>
+            <p id="successMessage" class="successMessage" visible="false" runat="server">
+                Your message has been sent.
+            </p>
+            <asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
+                ForeColor="" ValidationGroup="contact" runat="server" />
+            <asp:Panel DefaultButton="sendMessageButton" runat="server">
                 <fieldset>
                     <asp:Label ID="nameLabel" AssociatedControlID="nameInputText" runat="server">Name:</asp:Label>
                     <input id="nameInputText" maxlength="40" size="40" type="text" runat="server" />
@@ -45,7 +45,7 @@
                     <asp:Button ID="sendMessageButton" CssClass="button" OnClick="SendMessageButton_Click" Text="Send Message" ValidationGroup="contact"
                         runat="server" />
                 </fieldset>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </asp:Panel>
+            </asp:Panel>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
