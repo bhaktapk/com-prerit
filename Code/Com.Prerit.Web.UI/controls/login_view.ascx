@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeFile="login.ascx.cs" Inherits="controls_login" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="login_view.ascx.cs" Inherits="controls_login_view" %>
 <asp:LoginView ID="loginView" runat="server">
     <AnonymousTemplate>
         <asp:Panel DefaultButton="loginButton" runat="server">
