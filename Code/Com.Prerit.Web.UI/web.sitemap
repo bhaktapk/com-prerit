@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
 
   <!-- Root Directory -->
-  <siteMapNode url="~/default.aspx"
+  <siteMapNode url="~/"
                title="Home"
                description="prerit.com"
                keywords="home"
@@ -11,7 +11,7 @@
                priority="0.5">
 
     <!-- About Directory -->
-    <siteMapNode url="~/about/default.aspx"
+    <siteMapNode url="~/about/"
                  title="About"
                  description="A brief description about prerit.com and it's author"
                  keywords="about, prerit.com, Prerit Bhakta"
@@ -20,7 +20,7 @@
                  priority="0.5" />
 
     <!-- Contact Directory -->
-    <siteMapNode url="~/contact/default.aspx"
+    <siteMapNode url="~/contact/"
                  title="Contact"
                  description="Contact me through a handy web form"
                  keywords="contact, Prerit Bhakta"
@@ -29,7 +29,7 @@
                  priority="0.5" />
 
     <!-- Photos Directory -->
-    <siteMapNode url="~/photos/default.aspx"
+    <siteMapNode url="~/photos/"
                  title="Photos"
                  description="Photos of Prerit Bhakta and his friends and family"
                  keywords="coming soon"
@@ -38,7 +38,7 @@
                  priority="0.5" />
 
     <!-- Resume Directory -->
-    <siteMapNode url="~/resume/default.aspx"
+    <siteMapNode url="~/resume/"
                  title="Resume"
                  description="Resume of Prerit Bhakta"
                  keywords="resume, Prerit Bhakta"

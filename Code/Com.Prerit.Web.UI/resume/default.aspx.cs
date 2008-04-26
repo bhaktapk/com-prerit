@@ -30,9 +30,9 @@ public partial class resume_default : Page
         const string wordNodeUrl = "~/resume/resume_of_prerit_bhakta.doc";
         const string xmlNodeUrl = "~/resume/resume_of_prerit_bhakta.xml";
 
-        SiteMapNode pdfResumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(pdfNodeUrl);
-        SiteMapNode wordResumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(wordNodeUrl);
-        SiteMapNode xmlResumeNode = SiteMap.Provider.FindSiteMapNodeFromKey(xmlNodeUrl);
+        SiteMapNode pdfResumeNode = SiteMap.Provider.FindSiteMapNode(pdfNodeUrl);
+        SiteMapNode wordResumeNode = SiteMap.Provider.FindSiteMapNode(wordNodeUrl);
+        SiteMapNode xmlResumeNode = SiteMap.Provider.FindSiteMapNode(xmlNodeUrl);
 
         if (pdfResumeNode == null)
         {
