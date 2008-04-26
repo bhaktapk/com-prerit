@@ -46,7 +46,7 @@
         <asp:ScriptManager runat="server" />
         <div id="sidebar">
             <asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
-            <ctrl:login ID="loginControl" runat="server" />
+            <ctrl:login_view ID="loginControl" runat="server" />
         </div>
         <div id="mainbar">
             <ctrl:ajax_processing_notification runat="server" />

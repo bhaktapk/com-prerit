@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 using Prerit.Com.Web;
 
-public partial class controls_login : UserControl
+public partial class controls_login_view : UserControl
 {
     #region Constants
 
