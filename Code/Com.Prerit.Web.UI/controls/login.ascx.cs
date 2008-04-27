@@ -12,7 +12,7 @@ public partial class controls_login : UserControl
 
     private bool IsLoginPage()
     {
-        return Request.Path.ToLowerInvariant().IndexOf("/security/login/") != -1;
+        return Request.Path.ToLowerInvariant().IndexOf("/account/login/") != -1;
     }
 
     private bool IsValidReturnUrl()
