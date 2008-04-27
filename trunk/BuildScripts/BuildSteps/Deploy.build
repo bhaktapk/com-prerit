@@ -9,6 +9,7 @@
     <call target="take-website-offline" />
     <call target="delete-previous-deployment" />
     <call target="copy-new-deployment" />
+    <call target="set-connection-strings" />
     <call target="bring-website-online" />
   </target>
 
@@ -32,6 +33,22 @@
         <exclude name="app_offline.htm" />
       </fileset>
     </delete>
+  </target>
+
+  <target name="set-connection-strings">
+    <copy file="${dir.deploy}\connection_strings.config.template"
+          tofile="${dir.deploy}\connection_strings.config"
+          overwrite="true">
+
+      <filterchain>
+        <replacetokens>
+          <token key="COM-PRERIT-DB"
+                 value="${database.com-prerit.conn-string}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+
+    <delete file="${dir.deploy}\connection_strings.config.template" />
   </target>
 
   <target name="take-website-offline">

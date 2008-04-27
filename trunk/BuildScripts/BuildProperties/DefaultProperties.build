@@ -54,6 +54,23 @@
 
 
 
+  <!-- DATABASE PROPERTIES -->
+
+  <property name="database.db-name"
+            value="com-prerit"
+            overwrite="false" />
+
+  <property name="database.server"
+            value="."
+            overwrite="false" />
+
+  <property name="database.com-prerit.conn-string"
+            value="Data Source=${database.server};Initial Catalog=${database.db-name};Integrated Security=SSPI;"
+            dynamic="true" 
+            overwrite="false" />
+
+
+
   <!-- VERSION CONTROL PROPERTIES -->
 
   <property name="version-control.revision"
