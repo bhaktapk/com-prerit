@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,6 +9,32 @@ using Prerit.Com.Web;
 public partial class controls_login : UserControl
 {
     #region Methods
+
+    private bool IsLoginPage()
+    {
+        return Request.Path.ToLowerInvariant().IndexOf("/security/login/") != -1;
+    }
+
+    private bool IsValidReturnUrl()
+    {
+        bool result = false;
+
+        string returnUrl = Request.QueryString["ReturnUrl"];
+
+        if (!string.IsNullOrEmpty(returnUrl))
+        {
+            if (VirtualPathUtility.IsAbsolute(returnUrl) || VirtualPathUtility.IsAppRelative(returnUrl))
+            {
+                result = true;
+            }
+            else
+            {
+                Trace.Write("information", string.Format("The ReturnUrl '{0}' is not a valid Uri. The referrer was {1}.", returnUrl, Request.UrlReferrer));
+            }
+        }
+
+        return result;
+    }
 
     protected void LoginButton_Click(object sender, EventArgs args)
     {
@@ -19,7 +46,18 @@ public partial class controls_login : UserControl
 
                 FormsAuthentication.SetAuthCookie(user.UserName, true);
 
-                Response.Redirect(Request.Url.PathAndQuery, false);
+                if (IsValidReturnUrl())
+                {
+                    FormsAuthentication.RedirectFromLoginPage(user.UserName, true);
+                }
+                else if (!IsLoginPage())
+                {
+                    Response.Redirect(Request.Url.PathAndQuery, false);
+                }
+                else
+                {
+                    Response.Redirect(FormsAuthentication.DefaultUrl, false);
+                }
             }
             else
             {
