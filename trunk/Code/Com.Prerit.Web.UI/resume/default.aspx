@@ -51,7 +51,7 @@
     <h1><span>Experience</span></h1>
     <h2><span><a href="http://www.perficient.com/" title="Website of the employer">Perficient</a> (04/2007 - present)</span></h2>
     <h3><span>Lead Developer of "Watershed" for <a href="http://www.msd.st-louis.mo.us/" title="Website of the client">Metropolitan
-    Sewer District </a></span></h3>
+    Sewer District</a></span></h3>
     <p>
         The Watershed project at Metropolitan Sewer District is a multi-decade water conservation project for the greater St. Louis
         area. Organization is a key component in ensuring that the hundreds of engineers and planners communicate effectively over
