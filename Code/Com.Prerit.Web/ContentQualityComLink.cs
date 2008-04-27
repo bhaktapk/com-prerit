@@ -1,6 +1,6 @@
 using System.Web;
 
-namespace Prerit.Com.Web
+namespace Com.Prerit.Web
 {
     public static class ContentQualityComLink
     {

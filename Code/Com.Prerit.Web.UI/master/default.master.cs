@@ -4,9 +4,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
-using Framework.Web;
+using Com.Prerit.Web;
 
-using Prerit.Com.Web;
+using Framework.Web;
 
 public partial class master_default : MasterPage
 {

@@ -1,4 +1,4 @@
-namespace Prerit.Com.Web
+namespace Com.Prerit.Web
 {
     public static class WebsiteInfo
     {
