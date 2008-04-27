@@ -49,7 +49,43 @@
         <li class="group3first">SQL Server</li>
     </ul>
     <h1><span>Experience</span></h1>
-    <h2><span><a href="http://www.tech-partners.com/" title="Website of the employer">Technology Partners</a> (08/2006 - present)</span></h2>
+    <h2><span><a href="http://www.perficient.com/" title="Website of the employer">Perficient</a> (04/2007 - present)</span></h2>
+    <h3><span>Lead Developer of "Watershed" for <a href="http://www.msd.st-louis.mo.us/" title="Website of the client">Metropolitan
+    Sewer District </a></span></h3>
+    <p>
+        The Watershed project at Metropolitan Sewer District is a multi-decade water conservation project for the greater St. Louis
+        area. Organization is a key component in ensuring that the hundreds of engineers and planners communicate effectively over
+        a long period of time. SharePoint 2007 was chosen as the most effective mechanism for this communication and as the lead
+        consultant of this SharePoint implementation, my accomplishments consisted of the following:
+    </p>
+    <ul>
+        <li>Architected and implemented site hierarchy which included Active Directory and SharePoint role based authentication for
+            various SharePoint sites and sub-sites</li>
+        <li>Facilitated in the migration of hundreds of gigabytes of data into various SharePoint document libraries</li>
+        <li>Created reusable site templates for consistency between similar sites and sub-sites</li>
+    </ul>
+    <p>
+        <strong>Environment:</strong> Active Directory, WSS 3.0
+    </p>
+    <h3><span>Lead UI Developer of "eNAC" for <a href="http://www.agedwards.com/" title="Website of the client">A.G. Edwards</a></span></h3>
+    <p>
+        Capturing customers' account information for a large financial company is a large undertaking. At A. G. Edwards, the goal
+        was to rewrite an electronic New Account Card (eNAC) application that tied into their existing infrastructure utilizing
+        SOA methodology. A large team of developers and testers were assembled to accomplish this task and as the lead consultant
+        of the user interface, my accomplishments in this application consisted of the following:
+    </p>
+    <ul>
+        <li>Lead a team of 4-5 developers to design and develop the user interface for a window application using the model view presenter
+            and adapter design patterns</li>
+        <li>Organized and delegated tasks during daily status update meetings and continually tracked progress to ensure milestones
+            where reached</li>
+        <li>Developed application wide error handling and validation of complex rules</li>
+        <li>Created example units tests for other team members to follow</li>
+    </ul>
+    <p>
+        <strong>Environment:</strong> C#, Design Patterns, OOP, Web Services, WinForms
+    </p>
+    <h2><span><a href="http://www.tech-partners.com/" title="Website of the employer">Technology Partners</a> (08/2006 - 04/2007)</span></h2>
     <h3><span>Developer of "Creo Framework" for <a href="http://www.maritz.com/" title="Website of the client">Maritz</a></span></h3>
     <p>
         To fulfill the training needs of Maritz Learning's clients, a scalable and robust architecture was needed as a foundation
