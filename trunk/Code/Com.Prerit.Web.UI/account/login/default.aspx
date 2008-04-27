@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="security_login_default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="account_login_default" %>
 
 <asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="Server">
 </asp:Content>

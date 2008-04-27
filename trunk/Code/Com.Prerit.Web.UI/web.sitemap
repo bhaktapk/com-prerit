@@ -19,6 +19,24 @@
                  changeFrequency="monthly"
                  priority="0.5" />
 
+    <!-- Account Directory -->
+    <siteMapNode url="~/account/"
+                 title="Available Account Options"
+                 description="List of account options"
+                 keywords="account list"
+                 lastModified="2008-04-26"
+                 changeFrequency="monthly"
+                 priority="0.1">
+
+      <siteMapNode url="~/account/login/"
+                   title="Login"
+                   description="Login to access the whole site"
+                   keywords="login"
+                   lastModified="2008-04-26"
+                   changeFrequency="monthly"
+                   priority="0.5" />
+    </siteMapNode>
+
     <!-- Contact Directory -->
     <siteMapNode url="~/contact/"
                  title="Contact"
@@ -70,24 +88,5 @@
                    changeFrequency="monthly"
                    priority="0.5" />
     </siteMapNode>
-
-    <!-- Security Directory -->
-    <siteMapNode url="~/security/"
-                 title="Available Security Options"
-                 description="List of security options"
-                 keywords="security list"
-                 lastModified="2008-04-26"
-                 changeFrequency="monthly"
-                 priority="0.1">
-
-      <siteMapNode url="~/security/login/"
-                   title="Login"
-                   description="Login to access the whole site"
-                   keywords="login"
-                   lastModified="2008-04-26"
-                   changeFrequency="monthly"
-                   priority="0.5" />
-    </siteMapNode>
-
   </siteMapNode>
 </siteMap>

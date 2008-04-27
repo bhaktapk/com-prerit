@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Web;
 using System.Web.UI;
 
-public partial class security_default : Page
+public partial class account_default : Page
 {
     #region Methods
 
