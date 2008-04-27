@@ -4,7 +4,7 @@
   <!-- Root Directory -->
   <siteMapNode url="~/"
                title="Home"
-               description="prerit.com"
+               description="Homepage of prerit.com"
                keywords="home"
                lastModified="2006-12-09"
                changeFrequency="monthly"
@@ -23,8 +23,8 @@
     <!-- Account Directory -->
     <siteMapNode url="~/account/"
                  title="Account"
-                 accessKey="o"
                  description="List of account options"
+                 accessKey="o"
                  keywords="account list"
                  lastModified="2008-04-26"
                  changeFrequency="monthly"
@@ -32,7 +32,7 @@
 
       <siteMapNode url="~/account/login/"
                    title="Login"
-                   description="Login to access the whole site"
+                   description="Login to access extra content"
                    keywords="login"
                    lastModified="2008-04-26"
                    changeFrequency="monthly"
@@ -42,7 +42,7 @@
     <!-- Contact Directory -->
     <siteMapNode url="~/contact/"
                  title="Contact"
-                 description="Contact me through a handy web form"
+                 description="Contact Prerit"
                  accessKey="C"
                  keywords="contact, Prerit Bhakta"
                  lastModified="2006-12-09"
@@ -52,9 +52,9 @@
     <!-- Photos Directory -->
     <siteMapNode url="~/photos/"
                  title="Photos"
-                 description="Photos of Prerit Bhakta and his friends and family"
+                 description="Photos of friends and family"
                  accessKey="P"
-                 keywords="coming soon"
+                 keywords="photos, friends, family"
                  lastModified="2006-12-09"
                  changeFrequency="weekly"
                  priority="0.5" />
