@@ -5,7 +5,6 @@
     <ul>
         <li><a id="pdfLink" href="" title="" runat="server">Adobe PDF</a></li>
         <li><a id="wordLink" href="" title="" runat="server">Microsoft Word</a></li>
-        <li><a id="xmlLink" href="" title="" runat="server">XML</a></li>
     </ul>
 </asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
