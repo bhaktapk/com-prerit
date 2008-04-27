@@ -36,17 +36,17 @@ public partial class resume_default : Page
 
         if (pdfResumeNode == null)
         {
-            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", pdfNodeUrl));
+            throw new Exception(string.Format("Can't find site map node '{0}'", pdfNodeUrl));
         }
 
         if (wordResumeNode == null)
         {
-            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", wordNodeUrl));
+            throw new Exception(string.Format("Can't find site map node '{0}'", wordNodeUrl));
         }
 
         if (xmlResumeNode == null)
         {
-            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", xmlNodeUrl));
+            throw new Exception(string.Format("Can't find site map node '{0}'", xmlNodeUrl));
         }
 
         pdfLink.HRef = pdfResumeNode.Url;

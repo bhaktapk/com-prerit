@@ -34,7 +34,7 @@ public partial class about_default : Page
 
         if (resumeNode == null)
         {
-            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", resumeLink.HRef));
+            throw new Exception(string.Format("Can't find site map node '{0}'", resumeLink.HRef));
         }
 
         resumeLink.Title = resumeNode.Description;

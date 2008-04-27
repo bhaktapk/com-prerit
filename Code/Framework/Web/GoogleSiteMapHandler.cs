@@ -28,7 +28,7 @@ namespace Framework.Web
         {
             if (SiteMap.RootNode == null)
             {
-                throw new ConfigurationErrorsException("A sitemap must be configured.");
+                throw new Exception("A sitemap must be configured.");
             }
 
             context.Response.ContentType = MediaTypeNames.Text.Xml;
