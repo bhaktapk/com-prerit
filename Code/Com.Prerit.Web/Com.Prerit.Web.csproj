@@ -37,11 +37,15 @@
     <Compile Include="CssClassSelector.cs" />
     <Compile Include="HtmlMarkup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="W3OrgLink.cs" />
     <Compile Include="WebsiteInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">
