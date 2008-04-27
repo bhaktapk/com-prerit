@@ -72,7 +72,14 @@
     </siteMapNode>
 
     <!-- Security Directory -->
-    <siteMapNode url="~/security/">
+    <siteMapNode url="~/security/"
+                 title="Available Security Options"
+                 description="List of security options"
+                 keywords="security list"
+                 lastModified="2008-04-26"
+                 changeFrequency="monthly"
+                 priority="0.1">
+
       <siteMapNode url="~/security/login/"
                    title="Login"
                    description="Login to access the whole site"
