@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,24 @@ using Framework.Web;
 public partial class master_default : MasterPage
 {
     #region Methods
+
+    private string BuildAccessKeyLinkText(HtmlAnchor menuLink, SiteMapNode node)
+    {
+        Debug.Assert(menuLink != null);
+        Debug.Assert(node != null);
+
+        int accessKeyIndex = node.Title.IndexOf(node["accessKey"]);
+
+        if (accessKeyIndex == -1)
+        {
+            throw new Exception(string.Format("Unable to find accesskey '{0}' for '{1}'", node["accessKey"], node.Url));
+        }
+
+        string preAccessKeyText = accessKeyIndex != 0 ? node.Title.Substring(0, accessKeyIndex) : null;
+        string postAccessKeyText = accessKeyIndex != node.Title.Length - 1 ? node.Title.Substring(accessKeyIndex + 1) : null;
+
+        return string.Format(menuLink.InnerHtml, preAccessKeyText, node["accessKey"], postAccessKeyText);
+    }
 
     protected override void OnInit(EventArgs args)
     {
@@ -50,6 +69,8 @@ public partial class master_default : MasterPage
 
     protected void SetMenuLink(HtmlAnchor menuLink)
     {
+        Debug.Assert(menuLink != null);
+
         SiteMapNode node = SiteMap.Provider.FindSiteMapNode(menuLink.HRef);
 
         if (node == null)
@@ -57,9 +78,9 @@ public partial class master_default : MasterPage
             throw new Exception(string.Format("No sitemap node exists for {0}.", ResolveUrl(menuLink.HRef)));
         }
 
-        menuLink.Attributes[HtmlMarkup.AccessKey] = char.ToLowerInvariant(node.Title[0]).ToString();
+        menuLink.Attributes[HtmlMarkup.AccessKey] = node["accessKey"];
 
-        menuLink.InnerHtml = string.Format(menuLink.InnerHtml, node.Title[0], node.Title.Substring(1));
+        menuLink.InnerHtml = BuildAccessKeyLinkText(menuLink, node);
 
         menuLink.Title = node.Description;
 
@@ -72,6 +93,7 @@ public partial class master_default : MasterPage
     private void SetMenuLinks()
     {
         SetMenuLink(aboutLink);
+        SetMenuLink(accountLink);
         SetMenuLink(contactLink);
         SetMenuLink(photosLink);
         SetMenuLink(resumeLink);
