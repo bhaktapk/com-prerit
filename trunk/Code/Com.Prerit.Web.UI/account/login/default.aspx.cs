@@ -18,7 +18,7 @@ public partial class account_login_default : Page
 
         if (contactLink == null)
         {
-            throw new ConfigurationErrorsException(string.Format("Can't find site map node '{0}'", contactLink.HRef));
+            throw new Exception(string.Format("Can't find site map node '{0}'", contactLink.HRef));
         }
 
         contactLink.Title = contactNode.Description;
