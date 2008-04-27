@@ -3,7 +3,7 @@ using System.Net.Mail;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using Prerit.Com.Web;
+using Com.Prerit.Web;
 
 public partial class contact_default : Page
 {

@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
-using Prerit.Com.Web;
+using Com.Prerit.Web;
 
 public partial class about_default : Page
 {
