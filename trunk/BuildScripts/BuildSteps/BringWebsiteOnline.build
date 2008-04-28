@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="BringWebsiteOnline"
+         default="bring-website-online"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="bring-website-online">
+    <delete file="${dir.deploy}\app_offline.htm" />
+  </target>
+</project>
