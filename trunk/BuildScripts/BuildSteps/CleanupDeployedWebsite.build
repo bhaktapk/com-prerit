@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="CleanupDeployedWebsite"
+         default="cleanup-deployed-website"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="cleanup-deployed-website">
+    <delete file="${dir.deploy}\connection_strings.config.template" />
+  </target>
+</project>

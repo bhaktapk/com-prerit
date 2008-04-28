@@ -23,6 +23,11 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.connection-string-config"
+            value="${dir.deploy}"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.deploy"
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\Com.Prerit.Web.UI"
             overwrite="true" />
@@ -66,12 +71,12 @@
 
   <property name="database.aspnet-regsql.conn-options"
             value="-S ${database.server} -E -d ${database.db-name}"
-            dynamic="true" 
+            dynamic="true"
             overwrite="false" />
 
   <property name="database.com-prerit.conn-string"
             value="Data Source=${database.server};Initial Catalog=${database.db-name};Integrated Security=SSPI;"
-            dynamic="true" 
+            dynamic="true"
             overwrite="false" />
 
 

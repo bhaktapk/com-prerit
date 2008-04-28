@@ -16,6 +16,17 @@
 
   <!-- PUBLIC TARGETS -->
 
+  <target name="setup-dev-environment">
+    <property name="database.db-name"
+              value="${database.db-name}-dev" />
+
+    <property name="dir.connection-string-config"
+              value="${dir.code}\Com.Prerit.Web.UI" />
+
+    <nant buildfile="BuildSteps\DeployDatabase.build" />
+    <nant buildfile="BuildSteps\SetConnectionStrings.build" />
+  </target>
+
   <target name="clean">
     <nant buildfile="BuildSteps\Clean.build" />
   </target>
@@ -79,6 +90,8 @@
 
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
+    <nant buildfile="BuildSteps\SetConnectionStrings.build" />
+    <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
 </project>
