@@ -12,6 +12,7 @@
       <call target="use-production-web-config" />
     </if>
 
+    <call target="delete-connection-string-config" />
     <call target="delete-production-web-config" />
   </target>
 
@@ -26,6 +27,10 @@
       <arg value="/p:OutputPath=&quot;${dir.build}\${project.name.com-prerit-web-ui}&quot;" />
       <arg value="/v:${msbuild.verbosity}" />
     </exec>
+  </target>
+
+  <target name="delete-connection-string-config">
+    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\connection_strings.config" />
   </target>
 
   <target name="delete-production-web-config">
