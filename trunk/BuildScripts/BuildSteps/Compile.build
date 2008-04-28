@@ -12,8 +12,7 @@
       <call target="use-production-web-config" />
     </if>
 
-    <call target="delete-connection-strings-config" />
-    <call target="delete-production-web-config" />
+    <call target="delete-unnecessary-files" />
   </target>
 
 
@@ -29,12 +28,14 @@
     </exec>
   </target>
 
-  <target name="delete-connection-strings-config">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\connection_strings.config" />
-  </target>
-
-  <target name="delete-production-web-config">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config" />
+  <target name="delete-unnecessary-files">
+    <delete>
+      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+        <include name="logs\*.log" />
+        <include name="connection_strings.config" />
+        <include name="production_web.config" />
+      </fileset>
+    </delete>
   </target>
 
   <target name="use-production-web-config">
