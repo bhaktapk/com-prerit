@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="DeployDatabase"
+         default="deploy-database"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="deploy-database">
+    <call target="create-database" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="create-database">
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v2.0.50727\aspnet_regsql.exe">
+      <arg line="${database.aspnet-regsql.conn-options}" />
+      <arg line="-A all" />
+    </exec>
+  </target>
+</project>

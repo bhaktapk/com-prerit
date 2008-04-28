@@ -1,25 +1,19 @@
 <?xml version="1.0"?>
-<project name="Deploy"
-         default="deploy"
+<project name="DeployWebsite"
+         default="deploy-website"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="deploy">
-    <call target="take-website-offline" />
+  <target name="deploy-website">
     <call target="delete-previous-deployment" />
     <call target="copy-new-deployment" />
     <call target="set-connection-strings" />
-    <call target="bring-website-online" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
-
-  <target name="bring-website-online">
-    <delete file="${dir.deploy}\app_offline.htm" />
-  </target>
 
   <target name="copy-new-deployment">
     <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
@@ -49,12 +43,5 @@
     </copy>
 
     <delete file="${dir.deploy}\connection_strings.config.template" />
-  </target>
-
-  <target name="take-website-offline">
-    <if test="${file::exists(dir.deploy + '\app_offline.aspx')}">
-      <move file="${dir.deploy}\app_offline.aspx"
-            tofile="${dir.deploy}\app_offline.htm" />
-    </if>
   </target>
 </project>

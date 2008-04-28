@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project name="TakeWebsiteOffline"
+         default="take-website-offline"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="take-website-offline">
+    <if test="${file::exists(dir.deploy + '\app_offline.aspx')}">
+      <copy file="${dir.deploy}\app_offline.aspx"
+            tofile="${dir.deploy}\app_offline.htm"
+            overwrite="true" />
+    </if>
+  </target>
+</project>

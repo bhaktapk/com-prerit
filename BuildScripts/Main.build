@@ -61,6 +61,37 @@
   <target name="deploy"
           depends="package">
 
-    <nant buildfile="BuildSteps\Deploy.build" />
+    <call target="deploy-database"
+          cascade="false" />
+
+    <property name="is-last-step"
+              value="true" />
+
+    <call target="deploy-website"
+          cascade="false" />
+  </target>
+
+  <target name="deploy-database">
+    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\DeployDatabase.build" />
+
+    <if test="${property::exists('is-last-step')}">
+      <if test="${is-last-step}">
+        <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+      </if>
+    </if>
+  </target>
+
+  <target name="deploy-website"
+          depends="package">
+
+    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\DeployWebsite.build" />
+
+    <if test="${property::exists('is-last-step')}">
+      <if test="${is-last-step}">
+        <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+      </if>
+    </if>
   </target>
 </project>
