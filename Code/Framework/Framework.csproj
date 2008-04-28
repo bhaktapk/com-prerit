@@ -41,7 +41,6 @@
     <Compile Include="Web\GoogleSiteMapMarkup.cs" />
     <Compile Include="Web\Management\BufferedTextFileWebEventProvider.cs" />
     <Compile Include="Web\Management\BufferedTextFileWebEventProviderMarkup.cs" />
-    <Compile Include="Web\VirtualPathUtilityLinq.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Framework.cd" />
