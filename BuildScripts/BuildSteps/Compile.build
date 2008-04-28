@@ -12,7 +12,7 @@
       <call target="use-production-web-config" />
     </if>
 
-    <call target="delete-connection-string-config" />
+    <call target="delete-connection-strings-config" />
     <call target="delete-production-web-config" />
   </target>
 
@@ -29,7 +29,7 @@
     </exec>
   </target>
 
-  <target name="delete-connection-string-config">
+  <target name="delete-connection-strings-config">
     <delete file="${dir.build}\${project.name.com-prerit-web-ui}\connection_strings.config" />
   </target>
 
