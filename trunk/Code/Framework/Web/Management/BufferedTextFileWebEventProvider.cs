@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Specialized;
 using System.Configuration.Provider;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Web;
 using System.Web.Hosting;
 using System.Web.Management;
 
@@ -62,7 +64,7 @@ namespace Framework.Web.Management
             {
                 string physicalPath;
 
-                if (VirtualPathUtilityLinq.IsPathVirtual(logDirectoryPathConfigValue))
+                if (IsPathVirtual(logDirectoryPathConfigValue))
                 {
                     physicalPath = HostingEnvironment.MapPath(logDirectoryPathConfigValue);
                 }
@@ -157,6 +159,27 @@ namespace Framework.Web.Management
             config.Remove(BufferedTextFileWebEventProviderMarkup.LogFileFormat);
 
             base.Initialize(name, config);
+        }
+
+        private static bool IsPathVirtual(string path)
+        {
+            bool result = false;
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                try
+                {
+                    //TODO: use regular expressions
+                    result = VirtualPathUtility.IsAppRelative(path) || VirtualPathUtility.IsAbsolute(path);
+                }
+                catch (Exception e)
+                {
+                    //swallow exception because an "Is" method should never throw an exception
+                    Trace.TraceInformation(e.ToString());
+                }
+            }
+
+            return result;
         }
 
         private void LogEntries(WebBaseEventCollection eventCollection)
