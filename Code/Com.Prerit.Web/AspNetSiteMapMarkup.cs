@@ -14,14 +14,7 @@ namespace Com.Prerit.Web
 
         #endregion
 
-        #region Constructors
-
-        protected AspNetSiteMapMarkup(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static AspNetSiteMapMarkup ChangeFrequency
         {
@@ -42,5 +35,16 @@ namespace Com.Prerit.Web
         {
             get { return _priority; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected AspNetSiteMapMarkup(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }

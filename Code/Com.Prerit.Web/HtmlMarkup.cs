@@ -12,14 +12,7 @@ namespace Com.Prerit.Web
 
         #endregion
 
-        #region Constructors
-
-        protected HtmlMarkup(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static HtmlMarkup AccessKey
         {
@@ -35,5 +28,16 @@ namespace Com.Prerit.Web
         {
             get { return _onClick; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected HtmlMarkup(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }

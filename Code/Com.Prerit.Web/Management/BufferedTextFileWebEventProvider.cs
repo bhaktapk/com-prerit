@@ -12,7 +12,7 @@ namespace Com.Prerit.Web.Management
 {
     public class BufferedTextFileWebEventProvider : BufferedWebEventProvider
     {
-        #region Fields
+        #region Properties
 
         private string LogDirectoryPath
         {

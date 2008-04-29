@@ -31,14 +31,7 @@ namespace Com.Prerit.Web
 
         #endregion
 
-        #region Constructors
-
-        protected GoogleSiteMapMarkup(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static GoogleSiteMapMarkup Changefreq
         {
@@ -99,5 +92,16 @@ namespace Com.Prerit.Web
         {
             get { return _xsiValue; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected GoogleSiteMapMarkup(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }
