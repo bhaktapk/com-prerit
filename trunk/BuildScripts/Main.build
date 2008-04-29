@@ -23,6 +23,7 @@
     <property name="dir.connection-string-config"
               value="${dir.code}\Com.Prerit.Web.UI" />
 
+    <nant buildfile="BuildSteps\VersionCode.build" />
     <nant buildfile="BuildSteps\DeployDatabase.build" />
     <nant buildfile="BuildSteps\SetConnectionStrings.build" />
   </target>
@@ -42,7 +43,8 @@
   </target>
 
   <target name="init">
-    <nant buildfile="BuildSteps\Init.build" />
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
+    <nant buildfile="BuildSteps\VersionCode.build" />
   </target>
 
   <target name="compile"

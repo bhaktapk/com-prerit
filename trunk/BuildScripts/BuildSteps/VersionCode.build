@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
-<project name="Init"
-         default="init"
+<project name="VersionCode"
+         default="version-code"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="init">
-    <call target="make-build-directory" />
-    <call target="make-packages-directory" />
+  <target name="version-code">
     <call target="get-revision" />
     <call target="set-version" />
   </target>
@@ -33,14 +31,6 @@
              property="version-control.revision" />
 
     <delete file="${file.svn-info}" />
-  </target>
-
-  <target name="make-build-directory">
-    <mkdir dir="${dir.build}" />
-  </target>
-
-  <target name="make-packages-directory">
-    <mkdir dir="${dir.packages}" />
   </target>
 
   <target name="set-version">
