@@ -1,26 +1,46 @@
 namespace Com.Prerit.Web
 {
-    public sealed class AspNetSiteMapMarkup : StringEnum<AspNetSiteMapMarkup>
+    public class AspNetSiteMapMarkup : StringEnum<AspNetSiteMapMarkup>
     {
         #region Fields
 
-        public static readonly AspNetSiteMapMarkup ChangeFrequency = new AspNetSiteMapMarkup("changeFrequency");
+        private static readonly AspNetSiteMapMarkup _changeFrequency = new AspNetSiteMapMarkup("changeFrequency");
 
-        public static readonly AspNetSiteMapMarkup Keywords = new AspNetSiteMapMarkup("keywords");
+        private static readonly AspNetSiteMapMarkup _keywords = new AspNetSiteMapMarkup("keywords");
 
-        public static readonly AspNetSiteMapMarkup LastModified = new AspNetSiteMapMarkup("lastModified");
+        private static readonly AspNetSiteMapMarkup _lastModified = new AspNetSiteMapMarkup("lastModified");
 
-        public static readonly AspNetSiteMapMarkup Priority = new AspNetSiteMapMarkup("priority");
+        private static readonly AspNetSiteMapMarkup _priority = new AspNetSiteMapMarkup("priority");
 
         #endregion
 
         #region Constructors
 
-        private AspNetSiteMapMarkup(string name)
+        protected AspNetSiteMapMarkup(string name)
             : base(name)
         {
         }
 
         #endregion
+
+        public static AspNetSiteMapMarkup ChangeFrequency
+        {
+            get { return _changeFrequency; }
+        }
+
+        public static AspNetSiteMapMarkup Keywords
+        {
+            get { return _keywords; }
+        }
+
+        public static AspNetSiteMapMarkup LastModified
+        {
+            get { return _lastModified; }
+        }
+
+        public static AspNetSiteMapMarkup Priority
+        {
+            get { return _priority; }
+        }
     }
 }

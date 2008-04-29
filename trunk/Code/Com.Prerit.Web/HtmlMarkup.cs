@@ -1,24 +1,39 @@
 namespace Com.Prerit.Web
 {
-    public sealed class HtmlMarkup : StringEnum<HtmlMarkup>
+    public class HtmlMarkup : StringEnum<HtmlMarkup>
     {
         #region Fields
 
-        public static readonly HtmlMarkup AccessKey = new HtmlMarkup("accesskey");
+        private static readonly HtmlMarkup _accessKey = new HtmlMarkup("accesskey");
 
-        public static readonly HtmlMarkup Class = new HtmlMarkup("class");
+        private static readonly HtmlMarkup _class = new HtmlMarkup("class");
 
-        public static readonly HtmlMarkup OnClick = new HtmlMarkup("onclick");
+        private static readonly HtmlMarkup _onClick = new HtmlMarkup("onclick");
 
         #endregion
 
         #region Constructors
 
-        private HtmlMarkup(string name)
+        protected HtmlMarkup(string name)
             : base(name)
         {
         }
 
         #endregion
+
+        public static HtmlMarkup AccessKey
+        {
+            get { return _accessKey; }
+        }
+
+        public static HtmlMarkup Class
+        {
+            get { return _class; }
+        }
+
+        public static HtmlMarkup OnClick
+        {
+            get { return _onClick; }
+        }
     }
 }

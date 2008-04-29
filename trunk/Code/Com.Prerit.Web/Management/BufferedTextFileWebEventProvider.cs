@@ -14,9 +14,17 @@ namespace Com.Prerit.Web.Management
     {
         #region Fields
 
-        private string logDirectoryPath;
+        private string LogDirectoryPath
+        {
+            get;
+            set;
+        }
 
-        private string logFileNameFormat;
+        private string LogFileNameFormat
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -29,7 +37,7 @@ namespace Com.Prerit.Web.Management
 
         private StreamWriter GetLogWriter()
         {
-            string filePath = Path.Combine(logDirectoryPath, GetFormattedFileName(logFileNameFormat));
+            string filePath = Path.Combine(LogDirectoryPath, GetFormattedFileName(LogFileNameFormat));
 
             StreamWriter writer = new StreamWriter(filePath, true, Encoding.UTF8);
 
@@ -124,7 +132,7 @@ namespace Com.Prerit.Web.Management
 
             try
             {
-                Path.GetFullPath(Path.Combine(logDirectoryPath, formattedFileName));
+                Path.GetFullPath(Path.Combine(LogDirectoryPath, formattedFileName));
             }
             catch (Exception e)
             {
@@ -150,9 +158,9 @@ namespace Com.Prerit.Web.Management
                 throw new ArgumentNullException("config");
             }
 
-            logDirectoryPath = GetValidatedLogDirectoryPath(name, config);
+            LogDirectoryPath = GetValidatedLogDirectoryPath(name, config);
 
-            logFileNameFormat = GetValidatedLogFileNameFormat(name, config);
+            LogFileNameFormat = GetValidatedLogFileNameFormat(name, config);
 
             config.Remove(BufferedTextFileWebEventProviderMarkup.LogDirectoryPath);
 

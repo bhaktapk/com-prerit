@@ -1,10 +1,7 @@
 using System;
-using System.Configuration;
 using System.Net.Mime;
 using System.Web;
 using System.Xml;
-
-using Com.Prerit.Web;
 
 namespace Com.Prerit.Web
 {
