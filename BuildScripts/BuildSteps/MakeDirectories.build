@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="MakeDirectories"
+         default="make-directories"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="make-directories">
+    <call target="make-build-directory" />
+    <call target="make-packages-directory" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="make-build-directory">
+    <mkdir dir="${dir.build}" />
+  </target>
+
+  <target name="make-packages-directory">
+    <mkdir dir="${dir.packages}" />
+  </target>
+</project>
