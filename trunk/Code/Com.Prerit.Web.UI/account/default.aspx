@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="account_default" %>
 
-<asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="Server">
-</asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="Server">
     <h1><span>Available Account Options</span></h1>
     <p>

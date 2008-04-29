@@ -1,7 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="about_default" %>
 
-<asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
-</asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
     <h1><span>About this Website</span></h1>
     <h2><span>Where am I?</span></h2>

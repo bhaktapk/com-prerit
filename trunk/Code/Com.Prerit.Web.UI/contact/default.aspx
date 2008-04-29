@@ -1,7 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="contact_default" %>
 
-<asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
-</asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
     <h1><span>Email</span></h1>
     <p>
