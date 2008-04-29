@@ -1,4 +1,4 @@
-namespace Framework.Web
+namespace Com.Prerit.Web
 {
     public sealed class GoogleSiteMapMarkup : StringEnum<GoogleSiteMapMarkup>
     {

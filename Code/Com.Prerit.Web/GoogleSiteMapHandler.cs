@@ -4,7 +4,9 @@ using System.Net.Mime;
 using System.Web;
 using System.Xml;
 
-namespace Framework.Web
+using Com.Prerit.Web;
+
+namespace Com.Prerit.Web
 {
     public class GoogleSiteMapHandler : IHttpHandler
     {

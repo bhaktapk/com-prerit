@@ -38,10 +38,6 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework\Framework.csproj">
-      <Project>{6AD34CE9-046F-4EB2-93F5-57836984D3E5}</Project>
-      <Name>Framework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Com.Prerit.Web\Com.Prerit.Web.csproj">
       <Project>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</Project>
       <Name>Com.Prerit.Web</Name>
