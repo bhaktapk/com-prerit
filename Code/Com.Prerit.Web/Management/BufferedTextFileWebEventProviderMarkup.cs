@@ -1,22 +1,32 @@
 namespace Com.Prerit.Web.Management
 {
-    public sealed class BufferedTextFileWebEventProviderMarkup : StringEnum<BufferedTextFileWebEventProviderMarkup>
+    public class BufferedTextFileWebEventProviderMarkup : StringEnum<BufferedTextFileWebEventProviderMarkup>
     {
         #region Fields
 
-        public static readonly BufferedTextFileWebEventProviderMarkup LogDirectoryPath = new BufferedTextFileWebEventProviderMarkup("logDirectoryPath");
+        private static readonly BufferedTextFileWebEventProviderMarkup _logDirectoryPath = new BufferedTextFileWebEventProviderMarkup("logDirectoryPath");
 
-        public static readonly BufferedTextFileWebEventProviderMarkup LogFileFormat = new BufferedTextFileWebEventProviderMarkup("logFileNameFormat");
+        private static readonly BufferedTextFileWebEventProviderMarkup _logFileFormat = new BufferedTextFileWebEventProviderMarkup("logFileNameFormat");
 
         #endregion
 
         #region Constructors
 
-        private BufferedTextFileWebEventProviderMarkup(string name)
+        protected BufferedTextFileWebEventProviderMarkup(string name)
             : base(name)
         {
         }
 
         #endregion
+
+        public static BufferedTextFileWebEventProviderMarkup LogDirectoryPath
+        {
+            get { return _logDirectoryPath; }
+        }
+
+        public static BufferedTextFileWebEventProviderMarkup LogFileFormat
+        {
+            get { return _logFileFormat; }
+        }
     }
 }

@@ -1,22 +1,32 @@
 namespace Com.Prerit.Web
 {
-    public sealed class CssClassSelector : StringEnum<CssClassSelector>
+    public class CssClassSelector : StringEnum<CssClassSelector>
     {
         #region Fields
 
-        public static readonly CssClassSelector Active = new CssClassSelector("active");
+        private static readonly CssClassSelector _active = new CssClassSelector("active");
 
-        public static readonly CssClassSelector FormError = new CssClassSelector("formError");
+        private static readonly CssClassSelector _formError = new CssClassSelector("formError");
 
         #endregion
 
         #region Constructors
 
-        private CssClassSelector(string name)
+        protected CssClassSelector(string name)
             : base(name)
         {
         }
 
         #endregion
+
+        public static CssClassSelector Active
+        {
+            get { return _active; }
+        }
+
+        public static CssClassSelector FormError
+        {
+            get { return _formError; }
+        }
     }
 }

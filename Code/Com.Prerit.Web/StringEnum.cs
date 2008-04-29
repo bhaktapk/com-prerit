@@ -4,17 +4,12 @@ namespace Com.Prerit.Web
 {
     public abstract class StringEnum<T> : IEquatable<T> where T : StringEnum<T>
     {
-        #region Fields
-
-        private readonly string value;
-
-        #endregion
-
         #region Properties
 
         public string Value
         {
-            get { return value; }
+            get;
+            private set;
         }
 
         #endregion
@@ -23,7 +18,7 @@ namespace Com.Prerit.Web
 
         protected StringEnum(string value)
         {
-            this.value = value;
+            Value = value;
         }
 
         #endregion
