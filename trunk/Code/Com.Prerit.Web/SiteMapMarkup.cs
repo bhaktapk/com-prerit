@@ -16,14 +16,7 @@
 
         #endregion
 
-        #region Constructors
-
-        protected SiteMapMarkup(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static SiteMapMarkup AccessKey
         {
@@ -49,5 +42,16 @@
         {
             get { return _priority; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected SiteMapMarkup(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }

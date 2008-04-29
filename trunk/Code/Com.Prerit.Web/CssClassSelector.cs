@@ -10,14 +10,7 @@ namespace Com.Prerit.Web
 
         #endregion
 
-        #region Constructors
-
-        protected CssClassSelector(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static CssClassSelector Active
         {
@@ -28,5 +21,16 @@ namespace Com.Prerit.Web
         {
             get { return _formError; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected CssClassSelector(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }

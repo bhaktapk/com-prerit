@@ -10,14 +10,7 @@ namespace Com.Prerit.Web.Management
 
         #endregion
 
-        #region Constructors
-
-        protected BufferedTextFileWebEventProviderMarkup(string name)
-            : base(name)
-        {
-        }
-
-        #endregion
+        #region Properties
 
         public static BufferedTextFileWebEventProviderMarkup LogDirectoryPath
         {
@@ -28,5 +21,16 @@ namespace Com.Prerit.Web.Management
         {
             get { return _logFileFormat; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        protected BufferedTextFileWebEventProviderMarkup(string name)
+            : base(name)
+        {
+        }
+
+        #endregion
     }
 }
