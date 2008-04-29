@@ -1,6 +1,4 @@
-﻿using Framework;
-
-namespace Com.Prerit.Web
+﻿namespace Com.Prerit.Web
 {
     public sealed class SiteMapMarkup : StringEnum<SiteMapMarkup>
     {

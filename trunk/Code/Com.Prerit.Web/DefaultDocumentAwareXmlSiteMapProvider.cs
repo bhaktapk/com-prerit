@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Framework.Web
+namespace Com.Prerit.Web
 {
     public class DefaultDocumentAwareXmlSiteMapProvider : XmlSiteMapProvider
     {

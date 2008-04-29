@@ -1,5 +1,3 @@
-using Framework;
-
 namespace Com.Prerit.Web
 {
     public sealed class HtmlMarkup : StringEnum<HtmlMarkup>

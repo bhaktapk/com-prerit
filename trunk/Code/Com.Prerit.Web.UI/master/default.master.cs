@@ -7,8 +7,6 @@ using System.Web.UI.HtmlControls;
 
 using Com.Prerit.Web;
 
-using Framework.Web;
-
 public partial class master_default : MasterPage
 {
     #region Methods
