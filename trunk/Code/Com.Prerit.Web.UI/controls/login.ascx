@@ -1,7 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="login.ascx.cs" Inherits="controls_login" %>
 <h2><span>Log In</span></h2>
 <p id="failureMessage" class="failureMessage" visible="false" runat="server">
-    Incorrect user name or password.
+    <asp:MultiView ID="failureMessageViews" runat="server">
+        <asp:View runat="server">
+            Your account has not been approved yet.
+        </asp:View>
+        <asp:View runat="server">
+            Your account has been locked out due to too many failed attempts.
+        </asp:View>
+        <asp:View runat="server">
+            Incorrect user name or password.
+        </asp:View>
+    </asp:MultiView>
 </p>
 <asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
     ForeColor="" ValidationGroup="login" runat="server" />

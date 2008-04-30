@@ -61,7 +61,22 @@ public partial class controls_login : UserControl
             }
             else
             {
+                MembershipUser user = Membership.GetUser(userNameInputText.Value);
+
                 failureMessage.Visible = true;
+
+                if (!user.IsApproved)
+                {
+                    failureMessageViews.ActiveViewIndex = (int) FailureMessageView.NotApproved;
+                }
+                else if (user.IsLockedOut)
+                {
+                    failureMessageViews.ActiveViewIndex = (int) FailureMessageView.LockedOut;
+                }
+                else
+                {
+                    failureMessageViews.ActiveViewIndex = (int) FailureMessageView.InvalidUserNameOrPassword;
+                }
             }
         }
     }
@@ -94,6 +109,17 @@ public partial class controls_login : UserControl
             userNameLabel.CssClass = CssClassSelector.FormError;
             userNameInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
         }
+    }
+
+    #endregion
+
+    #region Nested Type: FailureMessageView
+
+    protected enum FailureMessageView
+    {
+        NotApproved = 0,
+        LockedOut = 1,
+        InvalidUserNameOrPassword = 2
     }
 
     #endregion
