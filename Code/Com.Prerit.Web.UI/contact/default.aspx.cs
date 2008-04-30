@@ -58,6 +58,8 @@ public partial class contact_default : Page
     {
         if (IsValid)
         {
+            bool emailWasSent = false;
+
             SmtpClient smtpClient = new SmtpClient();
 
             smtpClient.Host = WebsiteInfo.SmtpHost;
@@ -71,12 +73,28 @@ public partial class contact_default : Page
             {
                 message.IsBodyHtml = false;
 
-                smtpClient.Send(message);
+                try
+                {
+                    smtpClient.Send(message);
+
+                    emailWasSent = true;
+                }
+                catch (Exception e)
+                {
+                    Trace.Warn("E-mail count be sent", e.ToString());
+                }
             }
 
-            successMessage.Visible = true;
+            if (emailWasSent)
+            {
+                successMessage.Visible = true;
 
-            ClearForm();
+                ClearForm();
+            }
+            else
+            {
+                failureMessage.Visible = true;
+            }
         }
     }
 
