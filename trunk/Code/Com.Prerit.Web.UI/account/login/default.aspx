@@ -8,9 +8,9 @@
     </p>
     <h1><span>But How?</span></h1>
     <p>
-        Look to your right! Almost every page on this site has that widget so you're never too far from it. If you are a friend
-        or family member, you should create an account but be warned, you'll need to prove that you know either me or my wife but
-        answering some easy questions. If for some reason you don't know the answer, it's not hard to <a id="contactLink" href="~/contact/" title=""
-        runat="server">get ahold of me</a>.
+        Look to your right! Every page on this site has that widget so you always have access to it. If you are a friend or family
+        member, you should <a id="createAccountLink" href="~/account/create/" title="" runat="server">create an account</a> but be warned, you'll
+        need to prove that you know either me or my wife but answering some easy questions. If for some reason you don't know the
+        answer, it's not hard to <a id="contactLink" href="~/contact/" title="" runat="server">get ahold of me</a>.
     </p>
 </asp:Content>
