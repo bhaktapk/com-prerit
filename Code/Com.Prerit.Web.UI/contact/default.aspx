@@ -22,7 +22,7 @@
                     <asp:CustomValidator ID="nameCustomValidator" ControlToValidate="nameInputText" Display="None" EnableClientScript="false"
                         OnServerValidate="NameCustomValidator_ServerValidate" ValidateEmptyText="True" ValidationGroup="contact" runat="server" />
                     <br />
-                    <asp:Label ID="emailLabel" AssociatedControlID="emailInputText" runat="server">E-Mail:</asp:Label>
+                    <asp:Label ID="emailLabel" AssociatedControlID="emailInputText" runat="server">E-mail:</asp:Label>
                     <input id="emailInputText" maxlength="40" size="40" type="text" runat="server" />
                     <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" ControlToValidate="emailInputText" Display="None" EnableClientScript="false"
                         ErrorMessage="E-mail is required" ValidationGroup="contact" runat="server" />

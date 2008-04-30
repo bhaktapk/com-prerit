@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="account_login_default" %>
 
-<asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="Server">
+<asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
     <h1><span>Login! Why?</span></h1>
     <p>
         For the photos! If you're a friend or family member of either of me or my wife, you'll definitely want to view the photos
