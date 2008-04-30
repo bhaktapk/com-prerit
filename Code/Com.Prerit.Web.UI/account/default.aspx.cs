@@ -15,13 +15,20 @@ public partial class account_default : Page
     private void SetLinks()
     {
         SiteMapNode loginNode = SiteMap.Provider.FindSiteMapNode(loginLink.HRef);
+        SiteMapNode createAccountNode = SiteMap.Provider.FindSiteMapNode(createAccountLink.HRef);
 
-        if (loginLink == null)
+        if (loginNode == null)
         {
             throw new Exception(string.Format("Can't find site map node '{0}'", loginLink.HRef));
         }
 
+        if (createAccountNode == null)
+        {
+            throw new Exception(string.Format("Can't find site map node '{0}'", createAccountLink.HRef));
+        }
+
         loginLink.Title = loginNode.Description;
+        createAccountLink.Title = createAccountNode.Description;
     }
 
     #endregion

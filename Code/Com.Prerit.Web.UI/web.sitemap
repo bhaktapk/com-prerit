@@ -30,6 +30,14 @@
                  changeFrequency="monthly"
                  priority="0.1">
 
+      <siteMapNode url="~/account/create/"
+                   title="Create an Account"
+                   description="Create an account to access extra content"
+                   keywords="create account"
+                   lastModified="2008-04-28"
+                   changeFrequency="monthly"
+                   priority="0.5" />
+
       <siteMapNode url="~/account/login/"
                    title="Login"
                    description="Login to access extra content"
