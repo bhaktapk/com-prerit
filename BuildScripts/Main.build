@@ -99,9 +99,9 @@
 
     <if test="${not target::has-executed('release')}">
       <nant buildfile="BuildSteps\SetAppSettings.build" />
+      <nant buildfile="BuildSteps\SetConnectionStrings.build" />
     </if>
-    
-    <nant buildfile="BuildSteps\SetConnectionStrings.build" />
+
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
