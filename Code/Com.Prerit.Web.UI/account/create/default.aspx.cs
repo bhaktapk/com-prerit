@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Web.Configuration;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,12 +11,19 @@ public partial class account_create_default : Page
 {
     #region Methods
 
-    private void ClearForm()
+    protected void AnswerQuestionButton_Click(object sender, EventArgs e)
     {
-        userNameInputText.Value = null;
-        passwordInputText.Value = null;
-        confirmPasswordInputText.Value = null;
-        emailInputText.Value = null;
+        if (IsValid)
+        {
+            if (IsAnswerCorrect())
+            {
+                createAccountViews.ActiveViewIndex++;
+            }
+            else
+            {
+                answerQuestionFailureMessage.Visible = true;
+            }
+        }
     }
 
     protected void ConfirmPasswordCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
@@ -43,37 +52,38 @@ public partial class account_create_default : Page
         {
             MembershipCreateStatus status;
 
-            Membership.CreateUser(userNameInputText.Value, passwordInputText.Value, emailInputText.Value, null, null, true, out status);
+            MembershipUser user = Membership.CreateUser(userNameInputText.Value, passwordInputText.Value, emailInputText.Value, null, null, true, out status);
 
             switch (status)
             {
                 case MembershipCreateStatus.Success:
-                    successMessage.Visible = true;
+                    FormsAuthentication.SetAuthCookie(user.UserName, true);
 
-                    ClearForm();
+                    createAccountViews.ActiveViewIndex++;
+
                     break;
                 default:
-                    failureMessage.Visible = true;
+                    createAccountFailureMessage.Visible = true;
 
                     switch (status)
                     {
                         case MembershipCreateStatus.DuplicateUserName:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.DuplicateUserName;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.DuplicateUserName;
                             break;
                         case MembershipCreateStatus.DuplicateEmail:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.DuplicateEmail;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.DuplicateEmail;
                             break;
                         case MembershipCreateStatus.InvalidPassword:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.InvalidPassword;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.InvalidPassword;
                             break;
                         case MembershipCreateStatus.InvalidEmail:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.InvalidEmail;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.InvalidEmail;
                             break;
                         case MembershipCreateStatus.InvalidUserName:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.InvalidUserName;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.InvalidUserName;
                             break;
                         default:
-                            failureMessageViews.ActiveViewIndex = (int) FailureMessageView.Unknown;
+                            createAccountFailureMessageViews.ActiveViewIndex = (int) CreateAccountFailureMessageView.Unknown;
                             Trace.Warn(string.Format("User could not be created due to the MembershipCreateStatus value of {0}", status));
                             break;
                     }
@@ -91,6 +101,18 @@ public partial class account_create_default : Page
             emailLabel.CssClass = CssClassSelector.FormError;
             emailInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
         }
+    }
+
+    private bool IsAnswerCorrect()
+    {
+        string wifesName = WebConfigurationManager.AppSettings["wifes-name"];
+
+        if (string.IsNullOrEmpty(wifesName))
+        {
+            throw new Exception("The app setting 'wifes-name' has not been configured");
+        }
+
+        return string.Compare(wifesName, wifesNameInputText.Value, true, CultureInfo.InvariantCulture) == 0;
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -119,11 +141,22 @@ public partial class account_create_default : Page
         }
     }
 
+    protected void WifesNameCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = wifesNameRequiredFieldValidator.IsValid;
+
+        if (!args.IsValid)
+        {
+            wifesNameLabel.CssClass = CssClassSelector.FormError;
+            wifesNameInputText.Attributes[HtmlMarkup.Class] = CssClassSelector.FormError;
+        }
+    }
+
     #endregion
 
-    #region Nested Type: FailureMessageView
+    #region Nested Type: CreateAccountFailureMessageView
 
-    protected enum FailureMessageView
+    protected enum CreateAccountFailureMessageView
     {
         DuplicateUserName = 0,
         DuplicateEmail = 1,
