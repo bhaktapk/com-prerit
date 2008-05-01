@@ -13,7 +13,7 @@
         </asp:View>
     </asp:MultiView>
 </p>
-<asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
+<asp:ValidationSummary CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
     ForeColor="" ValidationGroup="login" runat="server" />
 <asp:Panel DefaultButton="loginButton" runat="server">
     <fieldset>
