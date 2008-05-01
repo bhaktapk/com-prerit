@@ -7,5 +7,9 @@
 
   <target name="cleanup-deployed-website">
     <delete file="${dir.deploy}\connection_strings.config.template" />
+
+    <if test="${file::exists(dir.deploy + '\app_settings.config') and file::exists(dir.deploy + '\app_settings.config.template')}">
+      <delete file="${dir.deploy}\app_settings.config.template" />
+    </if>
   </target>
 </project>

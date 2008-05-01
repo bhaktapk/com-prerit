@@ -20,11 +20,15 @@
     <property name="database.db-name"
               value="${database.db-name}-dev" />
 
+    <property name="dir.app-settings-config"
+              value="${dir.code}\Com.Prerit.Web.UI" />
+
     <property name="dir.connection-string-config"
               value="${dir.code}\Com.Prerit.Web.UI" />
 
     <nant buildfile="BuildSteps\VersionCode.build" />
     <nant buildfile="BuildSteps\DeployDatabase.build" />
+    <nant buildfile="BuildSteps\SetAppSettings.build" />
     <nant buildfile="BuildSteps\SetConnectionStrings.build" />
   </target>
 
@@ -92,6 +96,11 @@
 
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
+
+    <if test="${not target::has-executed('release')}">
+      <nant buildfile="BuildSteps\SetAppSettings.build" />
+    </if>
+    
     <nant buildfile="BuildSteps\SetConnectionStrings.build" />
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />

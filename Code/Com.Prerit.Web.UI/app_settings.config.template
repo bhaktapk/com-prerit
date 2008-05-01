@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<appSettings>
+  <!-- TODO: before releasing, add value -->
+  <add key="wifes-name"
+       value="@WIFES_NAME@" />
+</appSettings>

@@ -23,6 +23,11 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.app-settings-config"
+            value="${dir.deploy}"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.connection-string-config"
             value="${dir.deploy}"
             dynamic="true"
@@ -55,6 +60,14 @@
   <property name="dir.tools.svn"
             value="${dir.tools}\SVN"
             dynamic="true"
+            overwrite="false" />
+
+
+
+  <!-- APP-SETTINGS PROPERTIES -->
+
+  <property name="app-setting.wifes-name"
+            value="STUB"
             overwrite="false" />
 
 
