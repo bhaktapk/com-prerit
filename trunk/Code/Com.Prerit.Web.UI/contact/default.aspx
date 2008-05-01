@@ -14,7 +14,7 @@
             <p id="failureMessage" class="failureMessage" visible="false" runat="server">
                 Your e-mail could not be sent.
             </p>
-            <asp:ValidationSummary ID="validationSummary" CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
+            <asp:ValidationSummary CssClass="validationSummary" EnableClientScript="false" HeaderText="Form Entry Errors"
                 ForeColor="" ValidationGroup="contact" runat="server" />
             <asp:Panel DefaultButton="sendMessageButton" runat="server">
                 <fieldset>
