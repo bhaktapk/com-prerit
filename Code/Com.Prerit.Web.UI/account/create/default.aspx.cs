@@ -59,6 +59,8 @@ public partial class account_create_default : Page
                 case MembershipCreateStatus.Success:
                     FormsAuthentication.SetAuthCookie(user.UserName, true);
 
+                    Master.UpdateLoginView();
+
                     createAccountViews.ActiveViewIndex++;
 
                     break;

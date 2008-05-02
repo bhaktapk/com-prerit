@@ -9,5 +9,10 @@ public partial class controls_login_view : UserControl
     {
     }
 
+    public void Update()
+    {
+        updatePanel.Update();
+    }
+
     #endregion
 }

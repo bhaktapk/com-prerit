@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="account_create_default" %>
+<%@ MasterType VirtualPath="~/master/default.master" %>
 
 <%-- TODO: add ajax functionality --%>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">

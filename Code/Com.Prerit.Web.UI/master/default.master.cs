@@ -130,5 +130,10 @@ public partial class master_default : MasterPage
         }
     }
 
+    public void UpdateLoginView()
+    {
+        loginView.Update();
+    }
+
     #endregion
 }
