@@ -21,6 +21,17 @@
     <meta id="keywordsMeta" name="keywords" content="" />
     <link rel="stylesheet" type="text/css" href="~/styles/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="~/styles/screen.css" media="projection, screen, tv" />
+
+    <script type="text/javascript">
+        function pageLoad()
+        {
+            if (typeof(contentPageLoad) == 'function')
+            {
+                contentPageLoad();
+            }
+        }
+    </script>
+
 </head>
 <body>
     <div id="header">
@@ -41,7 +52,7 @@
         <asp:ScriptManager runat="server" />
         <div id="sidebar">
             <asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
-            <ctrl:login_view runat="server" />
+            <ctrl:login_view ID="loginView" runat="server" />
         </div>
         <div id="mainbar">
             <ctrl:ajax_processing_notification runat="server" />
