@@ -13,12 +13,12 @@
 -->
 <head runat="server">
     <title></title>
-    <meta id="contentLanguageMeta" http-equiv="content-language" content="" />
-    <meta id="contentTypeMeta" http-equiv="content-type" content="{0}; charset={1}" />
-    <meta id="authorMeta" name="author" content="" />
-    <meta id="copyrightMeta" name="copyright" content="Copyright &#169; {0} {1}" />
-    <meta id="descriptionMeta" name="description" content="" />
-    <meta id="keywordsMeta" name="keywords" content="" />
+    <meta id="contentLanguageMeta" http-equiv="content-language" content="" runat="server" />
+    <meta id="contentTypeMeta" http-equiv="content-type" content="{0}; charset={1}" runat="server" />
+    <meta id="authorMeta" name="author" content="" runat="server" />
+    <meta id="copyrightMeta" name="copyright" content="Copyright &#169; {0} {1}" runat="server" />
+    <meta id="descriptionMeta" name="description" content="" runat="server" />
+    <meta id="keywordsMeta" name="keywords" content="" runat="server" />
     <link rel="stylesheet" type="text/css" href="~/styles/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="~/styles/screen.css" media="projection, screen, tv" />
 
