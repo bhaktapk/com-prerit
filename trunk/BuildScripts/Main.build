@@ -47,6 +47,18 @@
   </target>
 
   <target name="init">
+    <call target="init-database"
+          cascade="false" />
+
+    <call target="init-code"
+          cascade="false" />
+  </target>
+
+  <target name="init-database">
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
+  </target>
+
+  <target name="init-code">
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
   </target>
@@ -72,7 +84,23 @@
   <target name="package"
           depends="test document">
 
-    <nant buildfile="BuildSteps\Package.build" />
+    <call target="package-database"
+          cascade="false" />
+
+    <call target="package-website"
+          cascade="false" />
+  </target>
+
+  <target name="package-database"
+          depends="init-database">
+
+    <nant buildfile="BuildSteps\PackageDatabase.build" />
+  </target>
+
+  <target name="package-website"
+          depends="test document">
+
+    <nant buildfile="BuildSteps\PackageWebsite.build" />
   </target>
 
   <target name="deploy"
@@ -85,14 +113,16 @@
           cascade="false" />
   </target>
 
-  <target name="deploy-database">
+  <target name="deploy-database"
+          depends="package-database">
+
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployDatabase.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
 
   <target name="deploy-website"
-          depends="package">
+          depends="package-website">
 
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
