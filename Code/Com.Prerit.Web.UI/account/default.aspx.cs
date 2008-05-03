@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Web;
 using System.Web.UI;
 
@@ -16,6 +15,7 @@ public partial class account_default : Page
     {
         SiteMapNode loginNode = SiteMap.Provider.FindSiteMapNode(loginLink.HRef);
         SiteMapNode createAccountNode = SiteMap.Provider.FindSiteMapNode(createAccountLink.HRef);
+        SiteMapNode contactNode = SiteMap.Provider.FindSiteMapNode(contactLink.HRef);
 
         if (loginNode == null)
         {
@@ -27,8 +27,14 @@ public partial class account_default : Page
             throw new Exception(string.Format("Can't find site map node '{0}'", createAccountLink.HRef));
         }
 
+        if (contactNode == null)
+        {
+            throw new Exception(string.Format("Can't find site map node '{0}'", contactLink.HRef));
+        }
+
         loginLink.Title = loginNode.Description;
         createAccountLink.Title = createAccountNode.Description;
+        contactLink.Title = contactNode.Description;
     }
 
     #endregion

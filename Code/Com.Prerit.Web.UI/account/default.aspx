@@ -5,10 +5,7 @@
     <p>
         Currently, there are a couple of things you can do. You can <a id="loginLink" href="~/account/login/" title="" runat="server">
         login</a> if you have an account or you can <a id="createAccountLink" href="~/account/create/" title="" runat="server">create
-        an account</a> if you don't already have one. In the future, you'll be able to do the following:
+        an account</a> if you don't already have one. If you need to reset your password or cancel your account, you'll have to
+        <a id="contactLink" href="~/contact/" title="" runat="server">contact</a> me so I can do it for you.
     </p>
-    <ul>
-        <li>Change Your Password</li>
-        <li>Recover Your Password</li>
-    </ul>
 </asp:Content>
