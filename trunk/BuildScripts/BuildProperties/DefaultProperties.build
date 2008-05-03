@@ -129,6 +129,10 @@
 
   <!-- PROJECT PROPERTIES -->
 
+  <property name="project.name.com-prerit-database"
+            value="Com.Prerit.Database"
+            overwrite="false" />
+
   <property name="project.name.com-prerit-web-ui"
             value="Com.Prerit.Web.UI"
             overwrite="false" />
@@ -140,6 +144,10 @@
 
 
   <!-- PACKAGE PROPERTIES -->
+
+  <property name="package.name.com-prerit-database"
+            value="${project.name.com-prerit-database}.zip"
+            overwrite="false" />
 
   <property name="package.name.com-prerit-web-ui"
             value="${project.name.com-prerit-web-ui}-${msbuild.configuration}.zip"

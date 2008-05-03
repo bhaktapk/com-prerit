@@ -6,12 +6,24 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="package">
-    <call target="package-com-prerit-web-ui"/>
+    <call target="package-com-prerit-database" />
+    <call target="package-com-prerit-web-ui" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="package-com-prerit-database">
+    <zip zipfile="${dir.packages}\${package.name.com-prerit-database}">
+      <fileset basedir="${dir.code}\${project.name.com-prerit-database}"
+               failonempty="true">
+
+        <include name="**\*.sql" />
+        <include name="**\*.template" />
+      </fileset>
+    </zip>
+  </target>
 
   <target name="package-com-prerit-web-ui">
     <zip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
