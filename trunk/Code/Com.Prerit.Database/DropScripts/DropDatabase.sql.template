@@ -1,0 +1,3 @@
+﻿ /****** Object:  Database [@DATABASE_NAME@]    Script Date: 05/03/2008 17:31:14 ******/
+IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'@DATABASE_NAME@')
+DROP DATABASE [@DATABASE_NAME@] 
