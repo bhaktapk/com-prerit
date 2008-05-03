@@ -1,29 +1,17 @@
 <?xml version="1.0"?>
-<project name="Package"
-         default="package"
+<project name="PackageWebsite"
+         default="package-website"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="package">
-    <call target="package-com-prerit-database" />
+  <target name="package-website">
     <call target="package-com-prerit-web-ui" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
-
-  <target name="package-com-prerit-database">
-    <zip zipfile="${dir.packages}\${package.name.com-prerit-database}">
-      <fileset basedir="${dir.code}\${project.name.com-prerit-database}"
-               failonempty="true">
-
-        <include name="**\*.sql" />
-        <include name="**\*.template" />
-      </fileset>
-    </zip>
-  </target>
 
   <target name="package-com-prerit-web-ui">
     <zip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
