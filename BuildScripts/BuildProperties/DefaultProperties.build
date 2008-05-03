@@ -82,8 +82,12 @@
             value="."
             overwrite="false" />
 
+  <property name="database.aspnet-regsql.user-security"
+            value="-E"
+            overwrite="false" />
+
   <property name="database.aspnet-regsql.conn-options"
-            value="-S ${database.server} -E -d ${database.db-name}"
+            value="-S ${database.server} ${database.aspnet-regsql.user-security} -d ${database.db-name}"
             dynamic="true"
             overwrite="false" />
 
