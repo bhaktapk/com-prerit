@@ -9,6 +9,8 @@ using Com.Prerit.Web;
 
 public partial class account_create_default : Page
 {
+    protected const string Step3HeaderID = "step3Header";
+
     #region Methods
 
     protected void AnswerQuestionButton_Click(object sender, EventArgs e)
@@ -58,8 +60,6 @@ public partial class account_create_default : Page
             {
                 case MembershipCreateStatus.Success:
                     FormsAuthentication.SetAuthCookie(user.UserName, true);
-
-                    Master.UpdateLoginView();
 
                     createAccountViews.ActiveViewIndex++;
 
