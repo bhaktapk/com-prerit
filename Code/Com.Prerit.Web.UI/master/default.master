@@ -21,17 +21,6 @@
     <meta id="keywordsMeta" name="keywords" content="" runat="server" />
     <link rel="stylesheet" type="text/css" href="~/styles/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="~/styles/screen.css" media="projection, screen, tv" />
-
-    <script type="text/javascript">
-        function pageLoad()
-        {
-            if (typeof(contentPageLoad) == 'function')
-            {
-                contentPageLoad();
-            }
-        }
-    </script>
-
 </head>
 <body>
     <div id="header">
