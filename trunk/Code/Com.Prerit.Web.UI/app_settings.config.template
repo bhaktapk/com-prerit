@@ -2,7 +2,7 @@
 <appSettings>
   <clear />
 
-  <!-- TODO: before releasing, add value -->
+  <!-- NOTE: before releasing, add value -->
   <add key="wifes-name"
        value="@WIFES_NAME@" />
 </appSettings>
