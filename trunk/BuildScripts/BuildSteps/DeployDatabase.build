@@ -6,17 +6,84 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="deploy-database">
+    <call target="unzip-database-package" />
+    <call target="drop-database" />
     <call target="create-database" />
+    <call target="create-asp-net-schema" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
 
+  <target name="convert-template">
+    <copy file="${template.filepath}"
+          tofile="${string::replace(template.filepath, '.template', '')}"
+          overwrite="true">
+
+      <filterchain>
+        <replacetokens>
+          <token key="ASPNET_REGSQL_CONN_ARGS"
+                 value="${database.aspnet-regsql.conn-args}" />
+
+          <token key="DATABASE_FILEPATH"
+                 value="${database.filepath}" />
+
+          <token key="DATABASE_NAME"
+                 value="${database.db-name}" />
+
+          <token key="WIN_DIR"
+                 value="${environment::get-variable('windir')}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+
+  <target name="create-asp-net-schema">
+    <property name="template.filepath"
+              value="${dir.deployed-database-scripts}\CreateScripts\CreateAspNetSchema.cmd.template" />
+
+    <call target="convert-template" />
+
+    <exec program="${dir.deployed-database-scripts}\CreateScripts\CreateAspNetSchema.cmd" />
+  </target>
+
   <target name="create-database">
-    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v2.0.50727\aspnet_regsql.exe">
-      <arg line="${database.aspnet-regsql.conn-options}" />
-      <arg line="-A all" />
+    <property name="sqlcmd.input-file.filepath"
+              value="${dir.deployed-database-scripts}\CreateScripts\CreateDatabase.sql" />
+
+    <property name="sqlcmd.conn-args"
+              value="${database.sqlcmd.conn-args-for-server}" />
+
+    <call target="run-sqlcmd" />
+  </target>
+
+  <target name="drop-database">
+    <property name="sqlcmd.input-file.filepath"
+              value="${dir.deployed-database-scripts}\DropScripts\DropDatabase.sql" />
+
+    <property name="sqlcmd.conn-args"
+              value="${database.sqlcmd.conn-args-for-server}" />
+
+    <call target="run-sqlcmd" />
+  </target>
+
+  <target name="run-sqlcmd">
+    <property name="template.filepath"
+              value="${sqlcmd.input-file.filepath}.template" />
+
+    <call target="convert-template" />
+
+    <exec program="${dir.tools.sqlcmd}\SQLCMD.exe">
+      <arg line="${sqlcmd.conn-args}" />
+      <arg value="-b" />
+      <arg value="-i" />
+      <arg value="${sqlcmd.input-file.filepath}" />
     </exec>
+  </target>
+
+  <target name="unzip-database-package">
+    <unzip zipfile="${dir.packages}\${package.name.com-prerit-database}"
+           todir="${dir.deployed-database-scripts}" />
   </target>
 </project>
