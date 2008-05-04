@@ -157,8 +157,6 @@ img
 	content: " (" attr(href) ")";
 }
 
-#mainbar div.photo a:link:after,
-#mainbar div.photo a:visited:after,
 #mainbar div.photos a:link:after,
 #mainbar div.photos a:visited:after
 {
