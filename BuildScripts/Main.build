@@ -21,12 +21,14 @@
               value="${database.db-name}-dev" />
 
     <property name="dir.app-settings-config"
-              value="${dir.code}\Com.Prerit.Web.UI" />
+              value="${dir.code}\${project.name.com-prerit-web-ui}" />
 
     <property name="dir.connection-string-config"
-              value="${dir.code}\Com.Prerit.Web.UI" />
+              value="${dir.code}\${project.name.com-prerit-web-ui}" />
 
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
+    <nant buildfile="BuildSteps\PackageDatabase.build" />
     <nant buildfile="BuildSteps\DeployDatabase.build" />
     <nant buildfile="BuildSteps\SetAppSettings.build" />
     <nant buildfile="BuildSteps\SetConnectionStrings.build" />

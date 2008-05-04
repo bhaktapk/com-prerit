@@ -37,6 +37,11 @@
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\Com.Prerit.Web.UI"
             overwrite="true" />
 
+  <property name="dir.deployed-database-scripts"
+            value="${dir.base}\DeployedDatabaseScripts"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.packages"
             value="${dir.base}\Packages"
             dynamic="true"
@@ -54,6 +59,11 @@
 
   <property name="dir.tools.nantcontrib"
             value="${dir.tools}\NAntContrib"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.sqlcmd"
+            value="${dir.tools}\SQLCMD"
             dynamic="true"
             overwrite="false" />
 
@@ -78,16 +88,26 @@
             value="com-prerit"
             overwrite="false" />
 
+  <property name="database.filepath"
+            value="${environment::get-variable('ProgramFiles')}\Microsoft SQL Server\MSSQL.1\MSSQL\DATA"
+            overwrite="false" />
+
   <property name="database.server"
             value="."
             overwrite="false" />
 
-  <property name="database.aspnet-regsql.user-security"
-            value="-E"
+  <property name="database.aspnet-regsql.conn-args"
+            value="-S ${database.server} -E -d ${database.db-name}"
+            dynamic="true"
             overwrite="false" />
 
-  <property name="database.aspnet-regsql.conn-options"
-            value="-S ${database.server} ${database.aspnet-regsql.user-security} -d ${database.db-name}"
+  <property name="database.sqlcmd.conn-args-for-server"
+            value="-S ${database.server} -E"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="database.sqlcmd.conn-args-for-database"
+            value="${database.sqlcmd.conn-args-for-server} -d ${database.db-name}"
             dynamic="true"
             overwrite="false" />
 
