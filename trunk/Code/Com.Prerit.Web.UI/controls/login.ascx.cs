@@ -65,11 +65,11 @@ public partial class controls_login : UserControl
 
                 failureMessage.Visible = true;
 
-                if (!user.IsApproved)
+                if (user != null && !user.IsApproved)
                 {
                     failureMessageViews.ActiveViewIndex = (int) FailureMessageView.NotApproved;
                 }
-                else if (user.IsLockedOut)
+                else if (user != null && user.IsLockedOut)
                 {
                     failureMessageViews.ActiveViewIndex = (int) FailureMessageView.LockedOut;
                 }
