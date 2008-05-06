@@ -1,192 +1,192 @@
 /******************************************************************************
-	XHTML Tags
+    XHTML Tags
 ******************************************************************************/
 
 a
 {
-	color: #000;
-	text-decoration: none;
+    color: #000;
+    text-decoration: none;
 }
 
 body
 {
-	background-color: #fff;
-	color: #000;
-	font-family: "times new roman" , times, roman, serif;
-	font-size: 12pt;
-	margin: 0;
-	padding: 0;
+    background-color: #fff;
+    color: #000;
+    font-family: "times new roman" , times, roman, serif;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
 }
 
 form
 {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 img
 {
-	border: 0;
+    border: 0;
 }
 
 
 
 /******************************************************************************
-	Header Section
+    Header Section
 ******************************************************************************/
 
 #header h1
 {
-	border: 1pt solid #000;
-	font-family: garamond, "times new roman" , times, roman, serif;
-	font-size: 12pt;
-	margin-bottom: 40pt;
-	padding: 4pt;
-	text-align: center;
-	text-transform: uppercase;
+    border: 1pt solid #000;
+    font-family: garamond, "times new roman" , times, roman, serif;
+    font-size: 12pt;
+    margin-bottom: 40pt;
+    padding: 4pt;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 #header h2,
 #header ul
 {
-	display: none;
+    display: none;
 }
 
 
 
 /******************************************************************************
-	Content Section - Forms Subsection
+    Content Section - Forms Subsection
 ******************************************************************************/
 
 #content div.validationSummary
 {
-	display: none;
+    display: none;
 }
 
 #content fieldset
 {
-	border: 0;
-	margin: 12pt 0;
-	padding: 0;
+    border: 0;
+    margin: 12pt 0;
+    padding: 0;
 }
 
 #content legend
 {
-	display: none;
+    display: none;
 }
 
 #content p.failureMessage,
 #content p.successMessage
 {
-	border: 1pt dashed #000;
-	font-weight: bold;
-	text-align: center;
+    border: 1pt dashed #000;
+    font-weight: bold;
+    text-align: center;
 }
 
 #content input,
 #content select,
 #content textarea
 {
-	border: 1pt solid #000;
-	font-family: verdana, helvetica, arial, sans-serif;
-	font-size: 10pt;
+    border: 1pt solid #000;
+    font-family: verdana, helvetica, arial, sans-serif;
+    font-size: 10pt;
 }
 
 
 
 /******************************************************************************
-	Sidebar Section
+    Sidebar Section
 ******************************************************************************/
 
 #sidebar
 {
-	display: none;
+    display: none;
 }
 
 
 
 /******************************************************************************
-	Mainbar Section
+    Mainbar Section
 ******************************************************************************/
 
 #mainbar acronym:after
 {
-	/* Prints titles after the acronyms/titletips. Doesn't work in MSIE */
-	content: " (" attr(title) ")";
+    /* Prints titles after the acronyms/titletips. Doesn't work in MSIE */
+    content: " (" attr(title) ")";
 }
 
 #mainbar blockquote
 {
-	border-bottom: 1pt solid #000;
-	border-top: 1pt solid #000;
+    border-bottom: 1pt solid #000;
+    border-top: 1pt solid #000;
 }
 
 #mainbar div.albums
 {
-	text-align: center;
+    text-align: center;
 }
 
 #mainbar div.albums p img
 {
-	border: 2pt solid #686868;
+    border: 2pt solid #686868;
 }
 
 #mainbar legend
 {
-	display: none;
+    display: none;
 }
 
 #mainbar p img.headshot
 {
-	border: 2pt solid #686868;
-	float: left;
-	margin-right: 15pt;
+    border: 2pt solid #686868;
+    float: left;
+    margin-right: 15pt;
 }
 
 /* Prints the URL after a link in CSS2 supporting browsers */
 #mainbar a:link:after,
 #mainbar a:visited:after
 {
-	content: " (" attr(href) ")";
+    content: " (" attr(href) ")";
 }
 
 #mainbar div.albums a:link:after,
 #mainbar div.albums a:visited:after
 {
-	content: "";
+    content: "";
 }
 
 #mainbar fieldset,
 #mainbar li,
 #mainbar p
 {
-	line-height: 18pt;
+    line-height: 18pt;
 }
 
 #mainbar #processingNotification
 {
-	display: none;
+    display: none;
 }
 
 
 /******************************************************************************
-	Mainbar Section - Headings Subsection
+    Mainbar Section - Headings Subsection
 ******************************************************************************/
 
 #mainbar h1
 {
-	border-bottom: 1pt solid #000;
-	font-size: 16pt;
+    border-bottom: 1pt solid #000;
+    font-size: 16pt;
 }
 
 #mainbar h2
 {
-	font-size: 14pt;
+    font-size: 14pt;
 }
 
 #mainbar h3
 {
-	font-size: 12pt;
+    font-size: 12pt;
 }
 
 #mainbar h1,
@@ -196,98 +196,98 @@ img
 #mainbar h5,
 #mainbar h6
 {
-	clear: both;
-	font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
+    clear: both;
+    font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
 }
 
 #mainbar h4,
 #mainbar h5,
 #mainbar h6
 {
-	font-size: 10pt;
+    font-size: 10pt;
 }
 
 
 
 /******************************************************************************
-	Mainbar Section - Forms Subsection
+    Mainbar Section - Forms Subsection
 ******************************************************************************/
 
 #mainbar input
 {
-	width: 85%;
+    width: 85%;
 }
 
 #mainbar input.button
 {
-	margin: 10pt 0;
-	width: auto;
+    margin: 10pt 0;
+    width: auto;
 }
 
 #mainbar label
 {
-	display: block;
+    display: block;
 }
 
 #mainbar p.failureMessage
 #mainbar p.successMessage
 {
-	margin-left: auto;
-	margin-right: auto;
-	width: 400pt;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400pt;
 }
 
 #mainbar select,
 #mainbar textarea
 {
-	width: 95%;
+    width: 95%;
 }
 
 
 
 /******************************************************************************
-	Mainbar Section - Lists Subsection
+    Mainbar Section - Lists Subsection
 ******************************************************************************/
 
 #mainbar ul
 {
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 40pt;
-	padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40pt;
+    padding-right: 0;
 }
 
 #mainbar ul.long3 li.group2,
 #mainbar ul.long3 li.group2first
 {
-	margin-left: 167pt;
+    margin-left: 167pt;
 }
 
 #mainbar ul.long3 li.group3, 
 #mainbar ul.long3 li.group3first
 {
-	margin-left: 334pt;
+    margin-left: 334pt;
 }
 
 
 
 /******************************************************************************
-	Footer Section
+    Footer Section
 ******************************************************************************/
 
 #footer #copyright
 {
-	border-top: 1pt solid #000;
-	clear: both;
-	display: block;
-	font-family: garamond, "times new roman" , times, roman, serif;
-	margin: 40pt 0 0 0;
-	padding-top: 4pt;
-	text-align: right;
+    border-top: 1pt solid #000;
+    clear: both;
+    display: block;
+    font-family: garamond, "times new roman" , times, roman, serif;
+    margin: 40pt 0 0 0;
+    padding-top: 4pt;
+    text-align: right;
 }
 
 #footer h1,
 #footer p
 {
-	display: none;
+    display: none;
 }
