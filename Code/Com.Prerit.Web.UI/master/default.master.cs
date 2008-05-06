@@ -102,7 +102,7 @@ public partial class master_default : MasterPage
         SetMenuLink(aboutLink);
         SetMenuLink(accountLink);
         SetMenuLink(contactLink);
-        SetMenuLink(photosLink);
+        SetMenuLink(photoAlbumsLink);
         SetMenuLink(resumeLink);
     }
 

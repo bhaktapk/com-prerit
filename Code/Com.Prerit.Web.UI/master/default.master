@@ -31,7 +31,7 @@
                 <li><a id="aboutLink" href="~/about/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
                 <li><a id="accountLink" href="~/account/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
                 <li><a id="contactLink" href="~/contact/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
-                <li><a id="photosLink" href="~/photos/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
+                <li><a id="photoAlbumsLink" href="~/photo_albums/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
                 <li><a id="resumeLink" href="~/resume/" title="" runat="server">{0}<em>{1}</em>{2}</a></li>
             </ul>
         </div>
