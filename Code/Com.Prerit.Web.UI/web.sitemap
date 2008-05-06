@@ -60,12 +60,71 @@
     <!-- Photo Albums Directory -->
     <siteMapNode url="~/photo_albums/"
                  title="Photo Albums"
-                 description="Photo albums of friends and family"
+                 description="Photo albums"
                  accessKey="P"
-                 keywords="photo albums, friends, family"
-                 lastModified="2007-05-05"
+                 keywords="photo albums"
+                 lastModified="2008-05-05"
                  changeFrequency="monthly"
-                 priority="0.5" />
+                 priority="0.5">
+
+      <siteMapNode url="~/photo_albums/2006/"
+                   title="Photo Albums for the Year 2006"
+                   description="Photo albums for the year 2006"
+                   keywords="2006, photo albums"
+                   lastModified="2008-05-05"
+                   changeFrequency="monthly"
+                   priority="0.5">
+
+        <siteMapNode url="~/photo_albums/2006/christmas/"
+                     title="Photo Album of Christmas for the Year 2006"
+                     description="Photo album of Christmas 2006"
+                     keywords="Christmas, 2006, photo album"
+                     lastModified="2008-05-05"
+                     changeFrequency="monthly"
+                     priority="0.5" />
+
+        <siteMapNode url="~/photo_albums/2006/our_honeymoon/"
+                     title="Photo Album of Our Honeymoon"
+                     description="Photo album of our honeymoon"
+                     keywords="our honeymoon, 2006, photo album"
+                     lastModified="2008-05-05"
+                     changeFrequency="monthly"
+                     priority="0.5" />
+
+        <siteMapNode url="~/photo_albums/2006/our_wedding/"
+                     title="Photo Album of Our Wedding"
+                     description="Photo album of our wedding"
+                     keywords="our wedding, 2006, photo album"
+                     lastModified="2008-05-05"
+                     changeFrequency="monthly"
+                     priority="0.5" />
+
+        <siteMapNode url="~/photo_albums/2006/p's_pithi/"
+                     title="Photo Album of P's Pithi"
+                     description="Photo album of P's Pithi"
+                     keywords="P's Pithi, 2006, photo album"
+                     lastModified="2008-05-05"
+                     changeFrequency="monthly"
+                     priority="0.5" />
+      </siteMapNode>
+
+      <siteMapNode url="~/photo_albums/2007/"
+                   title="Photo Albums for the Year 2007"
+                   description="Photo albums for the year 2007"
+                   keywords="2007, photo albums"
+                   lastModified="2008-05-05"
+                   changeFrequency="monthly"
+                   priority="0.5">
+
+        <siteMapNode url="~/photo_albums/2007/our_first_house/"
+                     title="Photo Album of Our First House"
+                     description="Photo album of our first house"
+                     keywords="our first house, 2006, photo album"
+                     lastModified="2008-05-05"
+                     changeFrequency="monthly"
+                     priority="0.5" />
+      </siteMapNode>
+    </siteMapNode>
 
     <!-- Resume Directory -->
     <siteMapNode url="~/resume/"
