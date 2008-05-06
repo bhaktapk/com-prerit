@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Album.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
     <Compile Include="ContentQualityComLink.cs" />
     <Compile Include="CssClassSelector.cs" />
@@ -42,6 +43,7 @@
     <Compile Include="HtmlMarkup.cs" />
     <Compile Include="Management\BufferedTextFileWebEventProvider.cs" />
     <Compile Include="Management\BufferedTextFileWebEventProviderMarkup.cs" />
+    <Compile Include="Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="StringEnum.cs" />

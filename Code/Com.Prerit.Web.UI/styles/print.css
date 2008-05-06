@@ -121,19 +121,12 @@ img
 	border-top: 1pt solid #000;
 }
 
-#mainbar div.photos
+#mainbar div.albums
 {
-	margin: 0 10pt;
 	text-align: center;
 }
 
-#mainbar div.photos p
-{
-	display: inline;
-	margin: 0;
-}
-
-#mainbar div.photos p img
+#mainbar div.albums p img
 {
 	border: 2pt solid #686868;
 }
@@ -157,8 +150,8 @@ img
 	content: " (" attr(href) ")";
 }
 
-#mainbar div.photos a:link:after,
-#mainbar div.photos a:visited:after
+#mainbar div.albums a:link:after,
+#mainbar div.albums a:visited:after
 {
 	content: "";
 }
