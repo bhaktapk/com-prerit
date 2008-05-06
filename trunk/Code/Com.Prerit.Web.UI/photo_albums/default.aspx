@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="photos_default" %>
+<%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="photo_albums_default" %>
 <%@ Import namespace="Com.Prerit.Web"%>
 <%@ Import Namespace="System.Collections.Generic" %>
 

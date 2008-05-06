@@ -57,14 +57,14 @@
                  changeFrequency="monthly"
                  priority="0.5" />
 
-    <!-- Photos Directory -->
-    <siteMapNode url="~/photos/"
-                 title="Photos"
-                 description="Photos of friends and family"
+    <!-- Photo Albums Directory -->
+    <siteMapNode url="~/photo_albums/"
+                 title="Photo Albums"
+                 description="Photo albums of friends and family"
                  accessKey="P"
-                 keywords="photos, friends, family"
-                 lastModified="2006-12-09"
-                 changeFrequency="weekly"
+                 keywords="photo albums, friends, family"
+                 lastModified="2007-05-05"
+                 changeFrequency="monthly"
                  priority="0.5" />
 
     <!-- Resume Directory -->
