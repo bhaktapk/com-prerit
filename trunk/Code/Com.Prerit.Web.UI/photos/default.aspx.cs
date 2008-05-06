@@ -1,113 +1,39 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Web.UI;
+
+using Com.Prerit.Web;
 
 public partial class photos_default : Page
 {
-    #region Fields
-
-    private static readonly object syncRoot = new object();
-
-    #endregion
-
     #region Methods
 
-    private List<string> GetChristmasPhotoList()
+    private List<List<Album>> GetListsOfAlbumsOrderByAlbumYear()
     {
-        const string cacheKey = "christmasPhotoList";
-
-        string folderPath = "~/photos/christmas/";
-
-        return GetPhotoList(cacheKey, folderPath);
-    }
-
-    private List<string> GetHoneymoonPhotoList()
-    {
-        const string cacheKey = "honeymoonPhotoList";
-
-        string folderPath = "~/photos/honeymoon/";
-
-        return GetPhotoList(cacheKey, folderPath);
-    }
-
-    private List<string> GetPhotoList(string cacheKey, string folderPath)
-    {
-        if (Cache[cacheKey] == null)
+        List<List<Album>> albums = new List<List<Album>>()
         {
-            lock (syncRoot)
-            {
-                if (Cache[cacheKey] == null)
+            { new List<Album>
                 {
-                    List<string> photoList = new List<string>();
-
-                    foreach (string fileName in Directory.GetFiles(MapPath(folderPath)))
-                    {
-                        if (Path.GetExtension(fileName) == ".jpg" && !fileName.EndsWith("_thumb.jpg"))
-                        {
-                            string baseFileName = Path.GetFileNameWithoutExtension(fileName);
-
-                            photoList.Add(ResolveUrl(folderPath + Path.GetFileName(baseFileName)));
-                        }
-                    }
-
-                    Cache[cacheKey] = photoList;
+                    { new Album("Our First Home", 2007, "~/photos/albums/2007/our_first_house/", new Photo("example2.jpg", "~/photos/albums/2007/our_first_house/example2.jpg", 250, 187)) },
+                }
+            },
+            { new List<Album>
+                {
+                    { new Album("Christmas", 2006, "~/photos/albums/2006/christmas/", new Photo("example1.jpg", "~/photos/albums/2006/christmas/example1.jpg", 187, 250)) },
+                    { new Album("Our Honeymoon", 2006, "~/photos/albums/2006/our_honeymoon/", new Photo("example2.jpg", "~/photos/albums/2006/our_honeymoon/example2.jpg", 250, 187)) },
+                    { new Album("Our Wedding", 2006, "~/photos/albums/2006/our_wedding/", new Photo("example3.jpg", "~/photos/albums/2006/our_wedding/example3.jpg", 187, 250)) },
+                    { new Album("P's Pithi", 2006, "~/photos/albums/2006/p's_pithi/", new Photo("example1.jpg", "~/photos/albums/2006/p's_pithi/example1.jpg", 187, 250)) },
                 }
             }
-        }
+        };
 
-        return (List<string>) Cache[cacheKey];
-    }
-
-    private List<string> GetPithiPhotoList()
-    {
-        const string cacheKey = "pithiPhotoList";
-
-        string folderPath = "~/photos/pithi/";
-
-        return GetPhotoList(cacheKey, folderPath);
-    }
-
-    private List<string> GetWeddingPhotoList()
-    {
-        const string cacheKey = "weddingPhotoList";
-
-        string folderPath = "~/photos/wedding/";
-
-        return GetPhotoList(cacheKey, folderPath);
+        return albums;
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        int albumId;
-
-        List<string> photoList;
-
-        int.TryParse(Request.QueryString["albumid"], out albumId);
-
-        switch (albumId)
-        {
-            default:
-            case 0:
-                photoAlbumViewMultiView.ActiveViewIndex = 0;
-                photoList = GetPithiPhotoList();
-                break;
-            case 1:
-                photoAlbumViewMultiView.ActiveViewIndex = 1;
-                photoList = GetWeddingPhotoList();
-                break;
-            case 2:
-                photoAlbumViewMultiView.ActiveViewIndex = 2;
-                photoList = GetHoneymoonPhotoList();
-                break;
-            case 3:
-                photoAlbumViewMultiView.ActiveViewIndex = 3;
-                photoList = GetChristmasPhotoList();
-                break;
-        }
-
-        photoRepeater.DataSource = photoList;
-        photoRepeater.DataBind();
+        albumYearRepeater.DataSource = GetListsOfAlbumsOrderByAlbumYear();
+        albumYearRepeater.DataBind();
     }
 
     #endregion

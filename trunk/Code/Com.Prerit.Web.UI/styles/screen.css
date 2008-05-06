@@ -454,23 +454,41 @@ img
 	margin-right: 15px;
 }
 
-#mainbar div.photos
+#mainbar div.albums
 {
-	margin: 0 21px;
 	text-align: center;
 }
 
-#mainbar div.photos p
+#mainbar div.albums p
 {
+	color: #7bd32c;
 	float: left;
-	height: 125px;
-	margin: 0;
-	width: 125px;
+	font-weight: bold;
+	height: 250px;
+	margin: 0 10px 40px 10px;
+	text-transform: uppercase;
+	width: 250px;
 }
 
-#mainbar div.photos p img
+#mainbar div.albums p a
+{
+	display: block;
+	text-decoration: none;
+}
+
+#mainbar div.albums p br
+{
+	display: none;
+}
+
+#mainbar div.albums p img
 {
 	border: 2px solid #686868;
+}
+
+#mainbar div.albums p span
+{
+	display: block;
 }
 
 #mainbar fieldset,
