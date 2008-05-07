@@ -491,6 +491,34 @@ img
     display: block;
 }
 
+#mainbar div.photos
+{
+    text-align: center;
+}
+
+#mainbar div.photos p
+{
+    color: #7bd32c;
+    float: left;
+    font-weight: bold;
+    height: 160px;
+    line-height: 160px;
+    margin: 0 10px 40px 10px;
+    text-transform: uppercase;
+    width: 160px;
+}
+
+#mainbar div.photos p a
+{
+    text-decoration: none;
+}
+
+#mainbar div.photos p img
+{
+    border: 2px solid #686868;
+    vertical-align: middle;    
+}
+
 #mainbar fieldset,
 #mainbar li,
 #mainbar p
