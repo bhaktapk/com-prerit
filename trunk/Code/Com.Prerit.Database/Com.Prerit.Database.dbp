@@ -6,6 +6,7 @@ Begin DataProject = "Com.Prerit.Database"
    Begin Folder = "CreateScripts"
       Node = "CreateAspNetSchema.cmd.template"
       Node = "CreateDatabase.sql.template"
+      Node = "CreateSecurity.sql.template"
    End
    Begin DBRefFolder = "Database References"
    End

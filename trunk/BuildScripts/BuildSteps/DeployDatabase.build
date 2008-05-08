@@ -10,6 +10,7 @@
     <call target="drop-database" />
     <call target="create-database" />
     <call target="create-asp-net-schema" />
+    <call target="create-security" />
   </target>
 
 
@@ -31,6 +32,12 @@
 
           <token key="DATABASE_NAME"
                  value="${database.db-name}" />
+
+          <token key="USERNAME"
+                 value="${database.com-prerit.conn-string.username}" />
+
+          <token key="PASSWORD"
+                 value="${database.com-prerit.conn-string.password}" />
 
           <token key="WIN_DIR"
                  value="${environment::get-variable('windir')}" />
@@ -54,6 +61,16 @@
 
     <property name="sqlcmd.conn-args"
               value="${database.sqlcmd.conn-args-for-server}" />
+
+    <call target="run-sqlcmd" />
+  </target>
+
+  <target name="create-security">
+    <property name="sqlcmd.input-file.filepath"
+              value="${dir.deployed-database-scripts}\CreateScripts\CreateSecurity.sql" />
+
+    <property name="sqlcmd.conn-args"
+              value="${database.sqlcmd.conn-args-for-database}" />
 
     <call target="run-sqlcmd" />
   </target>
