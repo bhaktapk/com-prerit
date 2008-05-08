@@ -6,11 +6,11 @@ namespace Com.Prerit.Web.Services
     {
         #region Methods
 
-        List<Photo> GetListOfPhotosByAlbumName();
+        List<Photo> GetPhotosByAlbumName(string albumName);
 
-        List<List<Album>> GetListsOfAlbumsOrderByAlbumYear();
+        List<List<Album>> GetAlbumsGroupedByAlbumYear();
 
-        List<List<Album>> GetListsOfAlbumsOrderByAlbumYear(int value);
+        List<List<Album>> GetAlbumsByAlbumYearGroupedByAlbumYear(int albumYear);
 
         #endregion
     }
