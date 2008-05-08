@@ -34,7 +34,7 @@
             overwrite="false" />
 
   <property name="dir.deploy"
-            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\Com.Prerit.Web.UI"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\com-prerit"
             overwrite="true" />
 
   <property name="dir.deployed-database-scripts"
@@ -112,8 +112,16 @@
             overwrite="false" />
 
   <property name="database.com-prerit.conn-string"
-            value="Data Source=${database.server};Initial Catalog=${database.db-name};Integrated Security=SSPI;"
+            value="Data Source=${database.server};Initial Catalog=${database.db-name};User Id=${database.com-prerit.conn-string.username};Password=${database.com-prerit.conn-string.password};"
             dynamic="true"
+            overwrite="false" />
+
+  <property name="database.com-prerit.conn-string.username"
+            value="com-prerit"
+            overwrite="false" />
+
+  <property name="database.com-prerit.conn-string.password"
+            value="zaxscd!2#4"
             overwrite="false" />
 
 

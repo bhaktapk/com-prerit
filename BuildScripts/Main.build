@@ -20,6 +20,9 @@
     <property name="database.db-name"
               value="${database.db-name}-dev" />
 
+    <property name="database.com-prerit.conn-string.username"
+              value="${database.com-prerit.conn-string.username}-dev" />
+
     <property name="dir.app-settings-config"
               value="${dir.code}\${project.name.com-prerit-web-ui}" />
 
