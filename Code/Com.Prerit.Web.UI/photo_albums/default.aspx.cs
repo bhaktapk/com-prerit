@@ -103,14 +103,14 @@ public partial class photo_albums_default : Page
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = photoAlbumService.GetListsOfAlbumsOrderByAlbumYear();
+            albumYearRepeater.DataSource = photoAlbumService.GetAlbumsGroupedByAlbumYear();
             albumYearRepeater.DataBind();
         }
         else if ((AlbumYearQueryStringValue != null && AlbumNameQueryStringValue == null))
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = photoAlbumService.GetListsOfAlbumsOrderByAlbumYear((int) AlbumYearQueryStringValue);
+            albumYearRepeater.DataSource = photoAlbumService.GetAlbumsByAlbumYearGroupedByAlbumYear((int) AlbumYearQueryStringValue);
             albumYearRepeater.DataBind();
         }
         else
@@ -119,7 +119,7 @@ public partial class photo_albums_default : Page
 
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.PhotoView;
 
-            photoRepeater.DataSource = photoAlbumService.GetListOfPhotosByAlbumName();
+            photoRepeater.DataSource = photoAlbumService.GetPhotosByAlbumName(AlbumNameQueryStringValue);
             photoRepeater.DataBind();
         }
     }
