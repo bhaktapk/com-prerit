@@ -12,6 +12,8 @@ namespace Com.Prerit.Web.Services
     {
         #region Fields
 
+        private static readonly object _albumsGroupedByAlbumYearSyncRoot = new object();
+
         private readonly string _physicalPath;
 
         #endregion
@@ -60,14 +62,14 @@ namespace Com.Prerit.Web.Services
                 }
                 else
                 {
-                    Trace.TraceWarning(string.Format("Directory {0} contained no useable photos", albumDirectoryInfo));
+                    Trace.TraceWarning(string.Format("Directory {0} contained no useable photos", albumDirectoryInfo.FullName));
                 }
             }
 
             return result.ToArray();
         }
 
-        private SortedList<int, Album[]> GetAlbumsGroupByAlbumYears()
+        private SortedList<int, Album[]> GetAlbumsGroupedByAlbumYears()
         {
             SortedList<int, Album[]> result = new SortedList<int, Album[]>();
 
@@ -93,12 +95,12 @@ namespace Com.Prerit.Web.Services
                     else
                     {
                         Trace.TraceWarning(
-                            string.Format("Directory name {0} does not fall between {1} and {2}", albumYearDirectoryInfo.Name, minAlbumYear, maxAlbumYear));
+                            string.Format("Directory name {0} does not fall between {1} and {2}", albumYearDirectoryInfo.FullName, minAlbumYear, maxAlbumYear));
                     }
                 }
                 else
                 {
-                    Trace.TraceWarning(string.Format("Non-numeric directory name {0} was found in {1}", albumYearDirectoryInfo.Name, VirtualPath));
+                    Trace.TraceWarning(string.Format("Non-numeric directory name {0} was found in {1}", albumYearDirectoryInfo.FullName, VirtualPath));
                 }
             }
 
@@ -127,6 +129,7 @@ namespace Com.Prerit.Web.Services
                 }
                 catch (Exception e)
                 {
+                    Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
                     Trace.TraceError(e.ToString());
                 }
             }
@@ -136,7 +139,28 @@ namespace Com.Prerit.Web.Services
 
         public SortedList<int, Album[]> Load()
         {
-            return GetAlbumsGroupByAlbumYears();
+            SortedList<int, Album[]> result = TypedCache.AlbumsGroupedByAlbumYear;
+
+            if (result == null)
+            {
+                lock (_albumsGroupedByAlbumYearSyncRoot)
+                {
+                    result = TypedCache.AlbumsGroupedByAlbumYear;
+
+                    if (result == null)
+                    {
+                        result = GetAlbumsGroupedByAlbumYears();
+
+                        TypedCache.AlbumsGroupedByAlbumYear = result;
+                    }
+                    else
+                    {
+                        result = TypedCache.AlbumsGroupedByAlbumYear;
+                    }
+                }
+            }
+
+            return result;
         }
 
         #endregion
