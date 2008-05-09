@@ -44,17 +44,25 @@ namespace Com.Prerit.Web.Services
                 throw new ArgumentException("String cannot be empty", "albumName");
             }
 
-            return new List<Photo>()
+            Photo[] result = new Photo[0];
+
+            Album[] albums = _photoAlbumLoaderService.Load()[albumYear];
+
+            if (albums != null && albums.Length != 0)
             {
-                new Photo("example1.jpg", "~/photo_albums/2007/our_first_house/example1.jpg", 112, 150),
-                new Photo("example2.jpg", "~/photo_albums/2007/our_first_house/example2.jpg", 150, 112),
-                new Photo("example3.jpg", "~/photo_albums/2007/our_first_house/example3.jpg", 112, 150),
-                new Photo("example3.jpg", "~/photo_albums/2007/our_first_house/example3.jpg", 112, 150),
-                new Photo("example2.jpg", "~/photo_albums/2007/our_first_house/example2.jpg", 150, 112),
-                new Photo("example1.jpg", "~/photo_albums/2007/our_first_house/example1.jpg", 112, 150)
+                Album albumFindResult = Array.Find(albums,
+                                                   delegate(Album album)
+                                                       {
+                                                           return album.AlbumName == albumName;
+                                                       });
+
+                if (albumFindResult != null)
+                {
+                    result = albumFindResult.Photos;
+                }
             }
-            .
-            ToArray();
+
+            return result;
         }
 
         #endregion

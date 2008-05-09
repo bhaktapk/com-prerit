@@ -56,7 +56,7 @@ namespace Com.Prerit.Web.Services
 
                 if (photos.Length != 0)
                 {
-                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, photos[0]));
+                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, photos[0], photos));
                 }
                 else
                 {
