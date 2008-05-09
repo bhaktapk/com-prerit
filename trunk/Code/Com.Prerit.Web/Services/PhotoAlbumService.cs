@@ -5,76 +5,31 @@ namespace Com.Prerit.Web.Services
 {
     public class PhotoAlbumService : IPhotoAlbumService
     {
+        #region Fields
+
+        private readonly IPhotoAlbumLoaderService _photoAlbumLoaderService;
+
+        #endregion
+
+        #region Constructors
+
+        public PhotoAlbumService(IPhotoAlbumLoaderService photoAlbumLoaderService)
+        {
+            _photoAlbumLoaderService = photoAlbumLoaderService;
+        }
+
+        #endregion
+
         #region Methods
 
         public SortedList<int, Album[]> GetAlbumsByAlbumYearGroupedByAlbumYear(int albumYear)
         {
-            return new SortedList<int, Album[]>()
-            {
-                {
-                    2007,
-                    new List<Album>
-                    {
-                        new Album("Our First House",
-                                  2007,
-                                  "~/photo_albums/2007/our_first_house/",
-                                  new Photo("example2.jpg", "~/photo_albums/2007/our_first_house/example2.jpg", 224, 168))
-                    }
-                    .
-                    ToArray()
-                }
-            }
-            ;
+            return _photoAlbumLoaderService.Load();
         }
 
         public SortedList<int, Album[]> GetAlbumsGroupedByAlbumYear()
         {
-            return new SortedList<int, Album[]>()
-            {
-                {
-                    2006,
-                    new List<Album>
-                    {
-                        new Album("Christmas",
-                                  2006,
-                                  "~/photo_albums/2006/christmas/",
-                                  new Photo("example1.jpg", "~/photo_albums/2006/christmas/example1.jpg", 168, 224))
-                        ,
-                        new Album("Our Honeymoon",
-                                  2006,
-                                  "~/photo_albums/2006/our_honeymoon/",
-                                  new Photo("example2.jpg", "~/photo_albums/2006/our_honeymoon/example2.jpg", 224, 168))
-                        ,
-                        new Album("Our Wedding",
-                                  2006,
-                                  "~/photo_albums/2006/our_wedding/",
-                                  new Photo("example3.jpg", "~/photo_albums/2006/our_wedding/example3.jpg", 168, 224))
-                        ,
-                        new Album("P's Pithi",
-                                  2006,
-                                  "~/photo_albums/2006/p's_pithi/",
-                                  new Photo("example1.jpg", "~/photo_albums/2006/p's_pithi/example1.jpg", 168, 224))
-                        ,
-                    }
-                    .
-                    ToArray()
-                }
-            ,
-                {
-                    2007,
-                    new List<Album>
-                    {
-                        new Album("Our First House",
-                                  2007,
-                                  "~/photo_albums/2007/our_first_house/",
-                                  new Photo("example2.jpg", "~/photo_albums/2007/our_first_house/example2.jpg", 224, 168))
-                        ,
-                    }
-                    .
-                    ToArray()
-                }
-            }
-            ;
+            return _photoAlbumLoaderService.Load();
         }
 
         public Photo[] GetPhotosByAlbumYearAndAlbumName(int albumYear, string albumName)
