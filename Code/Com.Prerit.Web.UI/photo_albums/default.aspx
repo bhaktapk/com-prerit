@@ -8,9 +8,9 @@
             <asp:Repeater ID="albumYearRepeater" runat="server">
                 <ItemTemplate>
                     <h1><span>
-                        <%# ((List<Album>) Container.DataItem)[0].AlbumYear %>
+                        <%# ((KeyValuePair<int, Album[]>) Container.DataItem).Key %>
                         Albums</span></h1>
-                    <asp:Repeater ID="albumRepeater" DataSource="<%# Container.DataItem %>" runat="server">
+                    <asp:Repeater ID="albumRepeater" DataSource="<%# ((KeyValuePair<int, Album[]>) Container.DataItem).Value %>" runat="server">
                         <HeaderTemplate>
                             <div class="albums">
                         </HeaderTemplate>

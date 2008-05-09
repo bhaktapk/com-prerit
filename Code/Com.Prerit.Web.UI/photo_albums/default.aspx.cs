@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
+using Com.Prerit.Web;
 using Com.Prerit.Web.Services;
 
 public partial class photo_albums_default : Page
@@ -90,9 +93,33 @@ public partial class photo_albums_default : Page
         return albumNameAsTitle;
     }
 
+    private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
+    {
+        return MakeSortedListReverseChronological(photoAlbumService.GetAlbumsByAlbumYearGroupedByAlbumYear(albumYear));
+    }
+
+    private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(IPhotoAlbumService photoAlbumService)
+    {
+        SortedList<int, Album[]> albumsSortedByYear = photoAlbumService.GetAlbumsGroupedByAlbumYear();
+
+        IEnumerable<KeyValuePair<int, Album[]>> albumsSortedInChronologicalOrder = MakeSortedListReverseChronological(albumsSortedByYear);
+
+        return albumsSortedInChronologicalOrder;
+    }
+
     protected string GetLightboxIdentifier()
     {
         return string.Format("lightbox[{0}]", AlbumNameQueryStringValue);
+    }
+
+    private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumService photoAlbumService)
+    {
+        return photoAlbumService.GetPhotosByAlbumYearAndAlbumName(albumYear, albumName);
+    }
+
+    private IEnumerable<KeyValuePair<int, Album[]>> MakeSortedListReverseChronological(SortedList<int, Album[]> source)
+    {
+        return source.Reverse();
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -103,14 +130,14 @@ public partial class photo_albums_default : Page
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = photoAlbumService.GetAlbumsGroupedByAlbumYear();
+            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(photoAlbumService);
             albumYearRepeater.DataBind();
         }
         else if ((AlbumYearQueryStringValue != null && AlbumNameQueryStringValue == null))
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = photoAlbumService.GetAlbumsByAlbumYearGroupedByAlbumYear((int) AlbumYearQueryStringValue);
+            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource((int) AlbumYearQueryStringValue, photoAlbumService);
             albumYearRepeater.DataBind();
         }
         else
@@ -119,7 +146,7 @@ public partial class photo_albums_default : Page
 
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.PhotoView;
 
-            photoRepeater.DataSource = photoAlbumService.GetPhotosByAlbumName(AlbumNameQueryStringValue);
+            photoRepeater.DataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
             photoRepeater.DataBind();
         }
     }
