@@ -142,9 +142,9 @@ public partial class photo_albums_default : Page
         }
         else
         {
-            EnablePhotoAnimations();
-
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.PhotoView;
+
+            EnablePhotoAnimations();
 
             photoRepeater.DataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
             photoRepeater.DataBind();
