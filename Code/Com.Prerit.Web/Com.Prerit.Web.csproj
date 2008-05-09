@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Album.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
+    <Compile Include="CacheKey.cs" />
     <Compile Include="ContentQualityComLink.cs" />
     <Compile Include="CssClassSelector.cs" />
     <Compile Include="DefaultDocumentAwareXmlSiteMapProvider.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Services\IPhotoAlbumService.cs" />
     <Compile Include="Services\PhotoAlbumLoaderService.cs" />
     <Compile Include="Services\PhotoAlbumService.cs" />
+    <Compile Include="TypedCache.cs" />
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="StringEnum.cs" />
     <Compile Include="W3OrgLink.cs" />
