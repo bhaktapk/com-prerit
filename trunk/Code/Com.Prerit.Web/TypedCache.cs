@@ -11,18 +11,8 @@ namespace Com.Prerit.Web
 
         public static SortedList<int, Album[]> AlbumsGroupedByAlbumYear
         {
-            get
-            {
-                HttpContext context = GetContext();
-
-                return GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear);
-            }
-            set
-            {
-                HttpContext context = GetContext();
-
-                context.Cache[CacheKey.AlbumsGroupedByAlbumYear] = value;
-            }
+            get { return GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear); }
+            set { SetCacheItem(value); }
         }
 
         #endregion
@@ -68,6 +58,20 @@ namespace Com.Prerit.Web
             }
 
             return context;
+        }
+
+        private static void SetCacheItem<T>(T cacheItem) where T : class
+        {
+            HttpContext context = GetContext();
+
+            if (cacheItem != null)
+            {
+                context.Cache[CacheKey.AlbumsGroupedByAlbumYear] = cacheItem;
+            }
+            else
+            {
+                context.Cache.Remove(CacheKey.AlbumsGroupedByAlbumYear);
+            }
         }
 
         #endregion
