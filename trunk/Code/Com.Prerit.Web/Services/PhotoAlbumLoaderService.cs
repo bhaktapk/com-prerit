@@ -46,6 +46,37 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
+        private WebImage GetAlbumCover(string albumVirtualPath, Photo[] photos)
+        {
+            WebImage result;
+
+            // TODO: make albumCoverFileName configurable
+            const string albumCoverFileName = "album_cover.jpg";
+
+            string albumCoverPhysicalPath = Path.Combine(HostingEnvironment.MapPath(albumVirtualPath), albumCoverFileName);
+
+            if (File.Exists(albumCoverPhysicalPath))
+            {
+                using (FileStream albumCoverFileStream = File.OpenRead(albumCoverPhysicalPath))
+                {
+                    using (Image image = Image.FromStream(albumCoverFileStream))
+                    {
+                        // TODO: check size and resize and log if necessary
+
+                        result = new WebImage(albumCoverFileName, VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName), image.Height, image.Width);
+                    }
+                }
+            }
+            else
+            {
+                // TODO: create cover album from first photo
+
+                result = new WebImage(photos[0].Caption, photos[0].VirtualPath, photos[0].Height, photos[0].Width);
+            }
+
+            return result;
+        }
+
         private Album[] GetAlbums(DirectoryInfo albumYearDirectoryInfo, int albumYear, string albumYearVirtualPath)
         {
             List<Album> result = new List<Album>();
@@ -58,7 +89,9 @@ namespace Com.Prerit.Web.Services
 
                 if (photos.Length != 0)
                 {
-                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, photos[0], photos));
+                    WebImage albumCover = GetAlbumCover(albumVirtualPath, photos);
+
+                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, albumCover, photos));
                 }
                 else
                 {
