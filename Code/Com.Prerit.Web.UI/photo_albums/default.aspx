@@ -41,8 +41,8 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <p>
-                        <a href="<%# ((Photo) Container.DataItem).VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="<%# ((Photo) Container.DataItem).PhotoName %>"
-                        runat="server"><img alt="<%# ((Photo) Container.DataItem).PhotoName %>" height="<%# ((Photo) Container.DataItem).Height %>"
+                        <a href="<%# ((Photo) Container.DataItem).VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="<%# ((Photo) Container.DataItem).Caption %>"
+                        runat="server"><img alt="<%# ((Photo) Container.DataItem).Caption %>" height="<%# ((Photo) Container.DataItem).Height %>"
                         width="<%# ((Photo) Container.DataItem).Width %>" src="<%# ((Photo) Container.DataItem).VirtualPath %>" runat="server" /></a>
                     </p>
                 </ItemTemplate>
