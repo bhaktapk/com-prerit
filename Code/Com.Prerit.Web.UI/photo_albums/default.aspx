@@ -17,8 +17,8 @@
                         <ItemTemplate>
                             <p>
                                 <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ((Album) Container.DataItem).AlbumName %>"
-                                runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumName %>" height="<%# ((Album) Container.DataItem).CoverPhoto.Height %>"
-                                width="<%# ((Album) Container.DataItem).CoverPhoto.Width %>" src="<%# ((Album) Container.DataItem).CoverPhoto.VirtualPath %>"
+                                runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumName %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
+                                width="<%# ((Album) Container.DataItem).AlbumCover.Width %>" src="<%# ((Album) Container.DataItem).AlbumCover.VirtualPath %>"
                                 runat="server" />
                                 <br />
                                 <span>
