@@ -56,6 +56,7 @@
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="StringEnum.cs" />
     <Compile Include="W3OrgLink.cs" />
+    <Compile Include="WebImage.cs" />
     <Compile Include="WebsiteInfo.cs" />
   </ItemGroup>
   <ItemGroup>
