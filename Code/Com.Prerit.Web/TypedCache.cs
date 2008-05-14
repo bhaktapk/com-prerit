@@ -12,7 +12,13 @@ namespace Com.Prerit.Web
         public static SortedList<int, Album[]> AlbumsGroupedByAlbumYear
         {
             get { return GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear); }
-            set { SetCacheItem(CacheKey.AlbumsGroupedByAlbumYear, value); }
+            set
+            {
+                if (TypedAppSettings.CacheAlbumPhotos)
+                {
+                    SetCacheItem(CacheKey.AlbumsGroupedByAlbumYear, value);
+                }
+            }
         }
 
         #endregion

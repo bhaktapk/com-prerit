@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Album.cs" />
+    <Compile Include="AppSettingKey.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
     <Compile Include="CacheKey.cs" />
     <Compile Include="ContentQualityComLink.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Services\IPhotoAlbumService.cs" />
     <Compile Include="Services\PhotoAlbumLoaderService.cs" />
     <Compile Include="Services\PhotoAlbumService.cs" />
+    <Compile Include="TypedAppSettings.cs" />
     <Compile Include="TypedCache.cs" />
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="StringEnum.cs" />
