@@ -1,11 +1,16 @@
 using System;
-using System.Diagnostics;
 
 namespace Com.Prerit.Web
 {
     public class Album
     {
         #region Properties
+
+        public WebImage AlbumCover
+        {
+            get;
+            private set;
+        }
 
         public string AlbumName
         {
@@ -14,12 +19,6 @@ namespace Com.Prerit.Web
         }
 
         public int AlbumYear
-        {
-            get;
-            private set;
-        }
-
-        public Photo CoverPhoto
         {
             get;
             private set;
@@ -41,7 +40,7 @@ namespace Com.Prerit.Web
 
         #region Constructors
 
-        public Album(string albumName, int albumYear, string virtualPath, Photo coverPhoto, Photo[] photos)
+        public Album(string albumName, int albumYear, string virtualPath, WebImage albumCover, Photo[] photos)
         {
             if (albumName == null)
             {
@@ -53,9 +52,9 @@ namespace Com.Prerit.Web
                 throw new ArgumentNullException("virtualPath");
             }
 
-            if (coverPhoto == null)
+            if (albumCover == null)
             {
-                throw new ArgumentNullException("coverPhoto");
+                throw new ArgumentNullException("albumCover");
             }
 
             if (photos == null)
@@ -68,36 +67,11 @@ namespace Com.Prerit.Web
                 throw new ArgumentException("Parameter cannot be empty", "photos");
             }
 
-            if (!IsCoverPhotoInAlbumPhotos(coverPhoto, photos))
-            {
-                throw new ArgumentException("The cover photo must belong to the album's photos", "coverPhoto");
-            }
-
             AlbumName = albumName;
             AlbumYear = albumYear;
             VirtualPath = virtualPath;
-            CoverPhoto = coverPhoto;
+            AlbumCover = albumCover;
             Photos = photos;
-        }
-
-        #endregion
-
-        #region Methods
-
-        private bool IsCoverPhotoInAlbumPhotos(Photo photo, Photo[] albumPhotos)
-        {
-            Debug.Assert(photo != null);
-            Debug.Assert(albumPhotos != null);
-            Debug.Assert(albumPhotos.Length != 0);
-
-            // TODO: use lamba expression once Resharper recognizes C# 3.0 syntax
-            Photo photoFindResult = Array.Find(albumPhotos,
-                                               delegate(Photo obj)
-                                                   {
-                                                       return obj == photo;
-                                                   });
-
-            return photoFindResult != null;
         }
 
         #endregion
