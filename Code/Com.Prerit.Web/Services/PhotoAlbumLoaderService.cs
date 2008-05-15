@@ -13,11 +13,11 @@ namespace Com.Prerit.Web.Services
     {
         #region Constants
 
-        // TODO: make _albumCoverFileName configurable
         private const string _albumCoverFileName = "album_cover.jpg";
 
-        // TODO: make _allowablePhotoExtension configurable
         private const string _allowablePhotoExtension = "*.jpg";
+
+        private const int _maxAlbumCoverDimension = 240;
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
-        private WebImage CreateAlbumCover(string albumVirtualPath, string albumCoverFileName, string albumCoverPhysicalPath, Photo photo)
+        private WebImage CreateAlbumCover(string albumVirtualPath, string albumCoverPhysicalPath, Photo photo)
         {
             WebImage result;
 
@@ -65,46 +65,37 @@ namespace Com.Prerit.Web.Services
             {
                 using (Image photoImage = Image.FromStream(photoFileStream))
                 {
-                    Image albumCoverImage;
-
-                    const int maxAlbumCoverDimension = 240;
-
                     int height;
                     int width;
 
-                    string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName);
+                    DisallowUsageOfEmbeddedThumbnail(photoImage);
 
-                    ResizeHeightAndWidth(photoImage, maxAlbumCoverDimension, out height, out width);
+                    ResizeHeightAndWidth(photoImage, _maxAlbumCoverDimension, out height, out width);
 
-                    try
+                    using (Image albumCoverImage = photoImage.GetThumbnailImage(width,
+                                                                                height,
+                                                                                delegate
+                                                                                    {
+                                                                                        return false;
+                                                                                    },
+                                                                                IntPtr.Zero))
                     {
-                        albumCoverImage = photoImage.GetThumbnailImage(width,
-                                                                       height,
-                                                                       delegate
-                                                                       {
-                                                                           return false;
-                                                                       },
-                                                                       IntPtr.Zero);
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Album cover could not be created for photo {0}", albumCoverPhysicalPath), e);
-                    }
+                        string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
 
-                    try
-                    {
                         albumCoverImage.Save(albumCoverPhysicalPath, ImageFormat.Jpeg);
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Album cover could not be saved for photo {0}", albumCoverPhysicalPath), e);
-                    }
 
-                    result = new WebImage(photo.Caption, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
+                        result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
+                    }
                 }
             }
 
             return result;
+        }
+
+        private void DisallowUsageOfEmbeddedThumbnail(Image image)
+        {
+            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
         }
 
         private WebImage GetAlbumCover(string albumVirtualPath, Photo photo)
@@ -113,25 +104,13 @@ namespace Com.Prerit.Web.Services
 
             string albumCoverPhysicalPath = Path.Combine(HostingEnvironment.MapPath(albumVirtualPath), _albumCoverFileName);
 
-            if (File.Exists(albumCoverPhysicalPath))
+            if (!File.Exists(albumCoverPhysicalPath))
             {
-                using (FileStream albumCoverFileStream = File.OpenRead(albumCoverPhysicalPath))
-                {
-                    using (Image albumCoverImage = Image.FromStream(albumCoverFileStream))
-                    {
-                        // TODO: check size and resize and log if necessary
-
-                        result =
-                            new WebImage(_albumCoverFileName,
-                                         VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName),
-                                         albumCoverImage.Height,
-                                         albumCoverImage.Width);
-                    }
-                }
+                result = CreateAlbumCover(albumVirtualPath, albumCoverPhysicalPath, photo);
             }
             else
             {
-                result = CreateAlbumCover(albumVirtualPath, _albumCoverFileName, albumCoverPhysicalPath, photo);
+                result = UpdateAlbumCover(albumVirtualPath, albumCoverPhysicalPath);
             }
 
             return result;
@@ -303,6 +282,12 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
+        private void OverwriteFile(string albumCoverPhysicalPath, string tempPhysicalPath)
+        {
+            File.Delete(albumCoverPhysicalPath);
+            File.Move(tempPhysicalPath, albumCoverPhysicalPath);
+        }
+
         private void ResizeHeightAndWidth(Image photoImage, int maxDimension, out int height, out int width)
         {
             if (IsPortrait(photoImage))
@@ -319,6 +304,47 @@ namespace Com.Prerit.Web.Services
                 height = Convert.ToInt32(resizeFactor * (float) photoImage.Height);
                 width = maxDimension;
             }
+        }
+
+        private WebImage UpdateAlbumCover(string albumVirtualPath, string albumCoverPhysicalPath)
+        {
+            string tempFileName = Path.GetRandomFileName();
+            string tempVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, tempFileName);
+            string tempPhysicalPath = HostingEnvironment.MapPath(tempVirtualPath);
+
+            WebImage result;
+
+            using (FileStream albumCoverFileStream = File.OpenRead(albumCoverPhysicalPath))
+            {
+                using (Image albumCoverImage = Image.FromStream(albumCoverFileStream))
+                {
+                    int height;
+                    int width;
+
+                    DisallowUsageOfEmbeddedThumbnail(albumCoverImage);
+
+                    ResizeHeightAndWidth(albumCoverImage, _maxAlbumCoverDimension, out height, out width);
+
+                    using (Image newAlbumCoverImage = albumCoverImage.GetThumbnailImage(width,
+                                                                                        height,
+                                                                                        delegate
+                                                                                            {
+                                                                                                return false;
+                                                                                            },
+                                                                                        IntPtr.Zero))
+                    {
+                        string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
+
+                        newAlbumCoverImage.Save(tempPhysicalPath, ImageFormat.Jpeg);
+
+                        result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, newAlbumCoverImage.Height, newAlbumCoverImage.Width);
+                    }
+                }
+            }
+
+            OverwriteFile(albumCoverPhysicalPath, tempPhysicalPath);
+
+            return result;
         }
 
         #endregion
