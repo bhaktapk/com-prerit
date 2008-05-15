@@ -17,7 +17,7 @@
                         <ItemTemplate>
                             <p>
                                 <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ((Album) Container.DataItem).AlbumName %>"
-                                runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumName %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
+                                runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumCover.Caption %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
                                 width="<%# ((Album) Container.DataItem).AlbumCover.Width %>" src="<%# ((Album) Container.DataItem).AlbumCover.VirtualPath %>"
                                 runat="server" />
                                 <br />
@@ -42,8 +42,8 @@
                 <ItemTemplate>
                     <p>
                         <a href="<%# ((Photo) Container.DataItem).VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="<%# ((Photo) Container.DataItem).Caption %>"
-                        runat="server"><img alt="<%# ((Photo) Container.DataItem).Caption %>" height="<%# ((Photo) Container.DataItem).Height %>"
-                        width="<%# ((Photo) Container.DataItem).Width %>" src="<%# ((Photo) Container.DataItem).VirtualPath %>" runat="server" /></a>
+                        runat="server"><img alt="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Height %>"
+                        width="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Width %>" src="<%# ((Photo) Container.DataItem).AssociatedThumbnail.VirtualPath %>" runat="server" /></a>
                     </p>
                 </ItemTemplate>
                 <FooterTemplate>

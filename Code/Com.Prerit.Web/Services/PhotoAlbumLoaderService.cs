@@ -59,11 +59,11 @@ namespace Com.Prerit.Web.Services
             {
                 using (FileStream albumCoverFileStream = File.OpenRead(albumCoverPhysicalPath))
                 {
-                    using (Image image = Image.FromStream(albumCoverFileStream))
+                    using (Image albumCoverImage = Image.FromStream(albumCoverFileStream))
                     {
                         // TODO: check size and resize and log if necessary
 
-                        result = new WebImage(albumCoverFileName, VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName), image.Height, image.Width);
+                        result = new WebImage(albumCoverFileName, VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName), albumCoverImage.Height, albumCoverImage.Width);
                     }
                 }
             }
@@ -71,7 +71,7 @@ namespace Com.Prerit.Web.Services
             {
                 // TODO: create cover album from first photo
 
-                result = new WebImage(photos[0].Caption, photos[0].VirtualPath, photos[0].Height, photos[0].Width);
+                result = new WebImage(photos[0].Caption, photos[0].VirtualPath, photos[0].Height / 2, photos[0].Width / 2);
             }
 
             return result;
@@ -153,10 +153,14 @@ namespace Com.Prerit.Web.Services
                 {
                     using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
                     {
-                        using (Image image = Image.FromStream(photoFileStream))
+                        using (Image photoImage = Image.FromStream(photoFileStream))
                         {
+                            string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
+
+                            WebImage associatedThumbnail = GetAssociatedThumbnail(photoFileInfo, photoVirtualPath, photoImage);
+
                             result.Add(
-                                new Photo(photoFileInfo.Name, VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name), image.Height, image.Width));
+                                new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, associatedThumbnail));
                         }
                     }
                 }
@@ -168,6 +172,15 @@ namespace Com.Prerit.Web.Services
             }
 
             return result.ToArray();
+        }
+
+        private WebImage GetAssociatedThumbnail(FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
+        {
+            WebImage result;
+
+            result = new WebImage(photoFileInfo.Name, photoVirtualPath, photoImage.Height / 4, photoImage.Width / 4);
+
+            return result;
         }
 
         public SortedList<int, Album[]> Load()
