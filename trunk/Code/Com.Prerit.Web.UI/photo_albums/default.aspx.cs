@@ -61,13 +61,13 @@ public partial class photo_albums_default : Page
         RegisterLightboxClientScriptIncludes();
     }
 
-    public string GetAlbumNameAsTitle()
+    public string ConvertNameToTitle(string name)
     {
         string albumNameAsTitle = null;
 
-        if (Request.QueryString[albumNameQueryStringKey] != null)
+        if (name != null)
         {
-            string[] words = Request.QueryString[albumNameQueryStringKey].Split('_');
+            string[] words = name.Split('_');
 
             for (int i = 0; i < words.Length; i++)
             {
