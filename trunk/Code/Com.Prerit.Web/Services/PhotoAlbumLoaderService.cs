@@ -89,9 +89,11 @@ namespace Com.Prerit.Web.Services
 
                 if (photos.Length != 0)
                 {
+                    string albumName = ConvertFileSystemNameToTitle(albumDirectoryInfo.Name);
+
                     WebImage albumCover = GetAlbumCover(albumVirtualPath, photos);
 
-                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, albumCover, photos));
+                    result.Add(new Album(albumName, albumYear, albumVirtualPath, albumCover, photos));
                 }
                 else
                 {
@@ -101,6 +103,36 @@ namespace Com.Prerit.Web.Services
 
             return result.ToArray();
         }
+
+        private string ConvertFileSystemNameToTitle(string albumName)
+        {
+            string result;
+
+            string[] words = albumName.Split('_');
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                string word = words[i];
+
+                bool isEmptyString = word.Length == 0;
+
+                if (!isEmptyString)
+                {
+                    char[] letters = word.ToCharArray();
+
+                    letters[0] = char.ToUpper(letters[0]);
+
+                    word = new string(letters);
+
+                    words[i] = word;
+                }
+            }
+
+            result = string.Join(" ", words);
+
+            return result;
+        }
+
 
         private SortedList<int, Album[]> GetAlbumsGroupedByAlbumYears()
         {
