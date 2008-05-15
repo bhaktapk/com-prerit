@@ -53,7 +53,7 @@ namespace Com.Prerit.Web.Services
                 Album albumFindResult = Array.Find(albums,
                                                    delegate(Album album)
                                                        {
-                                                           return album.AlbumName == albumName;
+                                                           return string.Compare(album.AlbumName, albumName, true) == 0;
                                                        });
 
                 if (albumFindResult != null)
