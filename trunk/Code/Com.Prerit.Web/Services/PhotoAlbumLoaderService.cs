@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
 using System.Web.Hosting;
@@ -10,6 +11,16 @@ namespace Com.Prerit.Web.Services
 {
     public class PhotoAlbumLoaderService : IPhotoAlbumLoaderService
     {
+        #region Constants
+
+        // TODO: make _albumCoverFileName configurable
+        private const string _albumCoverFileName = "album_cover.jpg";
+
+        // TODO: make _allowablePhotoExtension configurable
+        private const string _allowablePhotoExtension = "*.jpg";
+
+        #endregion
+
         #region Fields
 
         private static readonly object _albumsGroupedByAlbumYearSyncRoot = new object();
@@ -46,14 +57,61 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
-        private WebImage GetAlbumCover(string albumVirtualPath, Photo[] photos)
+        private WebImage CreateAlbumCover(string albumVirtualPath, string albumCoverFileName, string albumCoverPhysicalPath, Photo photo)
         {
             WebImage result;
 
-            // TODO: make albumCoverFileName configurable
-            const string albumCoverFileName = "album_cover.jpg";
+            using (FileStream photoFileStream = File.OpenRead(HostingEnvironment.MapPath(photo.VirtualPath)))
+            {
+                using (Image photoImage = Image.FromStream(photoFileStream))
+                {
+                    Image albumCoverImage;
 
-            string albumCoverPhysicalPath = Path.Combine(HostingEnvironment.MapPath(albumVirtualPath), albumCoverFileName);
+                    const int maxAlbumCoverDimension = 240;
+
+                    int height;
+                    int width;
+
+                    string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName);
+
+                    ResizeHeightAndWidth(photoImage, maxAlbumCoverDimension, out height, out width);
+
+                    try
+                    {
+                        albumCoverImage = photoImage.GetThumbnailImage(width,
+                                                                       height,
+                                                                       delegate
+                                                                       {
+                                                                           return false;
+                                                                       },
+                                                                       IntPtr.Zero);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Album cover could not be created for photo {0}", albumCoverPhysicalPath), e);
+                    }
+
+                    try
+                    {
+                        albumCoverImage.Save(albumCoverPhysicalPath, ImageFormat.Jpeg);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(string.Format("Album cover could not be saved for photo {0}", albumCoverPhysicalPath), e);
+                    }
+
+                    result = new WebImage(photo.Caption, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
+                }
+            }
+
+            return result;
+        }
+
+        private WebImage GetAlbumCover(string albumVirtualPath, Photo photo)
+        {
+            WebImage result;
+
+            string albumCoverPhysicalPath = Path.Combine(HostingEnvironment.MapPath(albumVirtualPath), _albumCoverFileName);
 
             if (File.Exists(albumCoverPhysicalPath))
             {
@@ -63,7 +121,11 @@ namespace Com.Prerit.Web.Services
                     {
                         // TODO: check size and resize and log if necessary
 
-                        result = new WebImage(albumCoverFileName, VirtualPathUtility.Combine(albumVirtualPath, albumCoverFileName), albumCoverImage.Height, albumCoverImage.Width);
+                        result =
+                            new WebImage(_albumCoverFileName,
+                                         VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName),
+                                         albumCoverImage.Height,
+                                         albumCoverImage.Width);
                     }
                 }
             }
@@ -71,7 +133,7 @@ namespace Com.Prerit.Web.Services
             {
                 // TODO: create cover album from first photo
 
-                result = new WebImage(photos[0].Caption, photos[0].VirtualPath, photos[0].Height / 2, photos[0].Width / 2);
+                result = CreateAlbumCover(albumVirtualPath, _albumCoverFileName, albumCoverPhysicalPath, photo);
             }
 
             return result;
@@ -89,7 +151,7 @@ namespace Com.Prerit.Web.Services
 
                 if (photos.Length != 0)
                 {
-                    WebImage albumCover = GetAlbumCover(albumVirtualPath, photos);
+                    WebImage albumCover = GetAlbumCover(albumVirtualPath, photos[0]);
 
                     result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, albumCover, photos));
                 }
@@ -140,47 +202,81 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
+        private WebImage GetAssociatedThumbnail(DirectoryInfo albumDirectoryInfo, FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
+        {
+            WebImage result;
+
+            // TODO: make thumbnailIdentifier configurable
+            const string thumbnailIdentifier = "_thumbnail";
+
+            string fileName = Path.GetFileNameWithoutExtension(photoFileInfo.Name);
+            string extension = Path.GetExtension(photoFileInfo.Name);
+            string thumbnailFileName = string.Format("{0}{1}{2}", fileName, thumbnailIdentifier, extension);
+            string thumbnailPhysicalPath = Path.Combine(albumDirectoryInfo.FullName, thumbnailFileName);
+
+            if (File.Exists(thumbnailPhysicalPath))
+            {
+                using (FileStream thumbnailFileStream = File.OpenRead(thumbnailPhysicalPath))
+                {
+                    using (Image thumbnailImage = Image.FromStream(thumbnailFileStream))
+                    {
+                        // TODO: check size and resize and log if necessary
+
+                        result = new WebImage(thumbnailFileName, photoVirtualPath, thumbnailImage.Height, thumbnailImage.Width);
+                    }
+                }
+            }
+            else
+            {
+                // TODO: create thumbnail from first photo
+
+                result = new WebImage(thumbnailFileName, photoVirtualPath, photoImage.Height / 4, photoImage.Width / 4);
+            }
+
+            return result;
+        }
+
         private Photo[] GetPhotos(DirectoryInfo albumDirectoryInfo, string albumVirtualPath)
         {
             List<Photo> result = new List<Photo>();
 
-            // TODO: make allowablePhotoExtension configurable
-            const string allowablePhotoExtension = "*.jpg";
-
-            foreach (FileInfo photoFileInfo in albumDirectoryInfo.GetFiles(allowablePhotoExtension))
+            foreach (FileInfo photoFileInfo in albumDirectoryInfo.GetFiles(_allowablePhotoExtension))
             {
-                try
+                if (!IsAlbumCover(photoFileInfo.Name))
                 {
-                    using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
+                    try
                     {
-                        using (Image photoImage = Image.FromStream(photoFileStream))
+                        using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
                         {
-                            string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
+                            using (Image photoImage = Image.FromStream(photoFileStream))
+                            {
+                                string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
 
-                            WebImage associatedThumbnail = GetAssociatedThumbnail(photoFileInfo, photoVirtualPath, photoImage);
+                                WebImage associatedThumbnail = GetAssociatedThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
 
-                            result.Add(
-                                new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, associatedThumbnail));
+                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, associatedThumbnail));
+                            }
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
-                    Trace.TraceError(e.ToString());
+                    catch (Exception e)
+                    {
+                        Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
+                        Trace.TraceError(e.ToString());
+                    }
                 }
             }
 
             return result.ToArray();
         }
 
-        private WebImage GetAssociatedThumbnail(FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
+        private bool IsAlbumCover(string fileName)
         {
-            WebImage result;
+            return string.Compare(fileName, _albumCoverFileName, true) == 0;
+        }
 
-            result = new WebImage(photoFileInfo.Name, photoVirtualPath, photoImage.Height / 4, photoImage.Width / 4);
-
-            return result;
+        private bool IsPortrait(Image image)
+        {
+            return image.Height > image.Width;
         }
 
         public SortedList<int, Album[]> Load()
@@ -207,6 +303,24 @@ namespace Com.Prerit.Web.Services
             }
 
             return result;
+        }
+
+        private void ResizeHeightAndWidth(Image photoImage, int maxDimension, out int height, out int width)
+        {
+            if (IsPortrait(photoImage))
+            {
+                float resizeFactor = (float) maxDimension / (float) photoImage.Height;
+
+                height = maxDimension;
+                width = Convert.ToInt32(resizeFactor * (float) photoImage.Width);
+            }
+            else
+            {
+                float resizeFactor = (float) maxDimension / (float) photoImage.Width;
+
+                height = Convert.ToInt32(resizeFactor * (float) photoImage.Height);
+                width = maxDimension;
+            }
         }
 
         #endregion
