@@ -131,8 +131,6 @@ namespace Com.Prerit.Web.Services
             }
             else
             {
-                // TODO: create cover album from first photo
-
                 result = CreateAlbumCover(albumVirtualPath, _albumCoverFileName, albumCoverPhysicalPath, photo);
             }
 
