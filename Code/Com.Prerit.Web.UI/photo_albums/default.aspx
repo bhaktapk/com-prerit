@@ -16,13 +16,13 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                             <p>
-                                <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ((Album) Container.DataItem).AlbumName %>"
+                                <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %>"
                                 runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumCover.Caption %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
                                 width="<%# ((Album) Container.DataItem).AlbumCover.Width %>" src="<%# ((Album) Container.DataItem).AlbumCover.VirtualPath %>"
                                 runat="server" />
                                 <br />
                                 <span>
-                                    <%# ((Album) Container.DataItem).AlbumName %></span></a>
+                                    <%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %></span></a>
                             </p>
                         </ItemTemplate>
                         <FooterTemplate>
@@ -36,7 +36,7 @@
             <asp:Repeater ID="photoRepeater" runat="server">
                 <HeaderTemplate>
                     <h1><span>Photo Album of
-                        <%# GetAlbumNameAsTitle() %></span></h1>
+                        <%# ConvertNameToTitle(AlbumNameQueryStringValue) %></span></h1>
                     <div class="photos">
                 </HeaderTemplate>
                 <ItemTemplate>
