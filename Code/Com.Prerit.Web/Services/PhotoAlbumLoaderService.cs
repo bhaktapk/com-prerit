@@ -21,6 +21,8 @@ namespace Com.Prerit.Web.Services
 
         private const int _maxThumbnailDimension = 150;
 
+        private const int _minAlbumYear = 1979;
+
         private const string _thumbnailIdentifier = "_thumbnail";
 
         #endregion
@@ -186,11 +188,9 @@ namespace Com.Prerit.Web.Services
 
                 if (int.TryParse(albumYearDirectoryInfo.Name, out parsedAlbumYear))
                 {
-                    // TODO: make minAlbumYear configurable
-                    const int minAlbumYear = 1979;
                     int maxAlbumYear = DateTime.Today.Year;
 
-                    if (parsedAlbumYear >= minAlbumYear && parsedAlbumYear <= maxAlbumYear)
+                    if (parsedAlbumYear >= _minAlbumYear && parsedAlbumYear <= maxAlbumYear)
                     {
                         string albumYearVirtualPath =
                             VirtualPathUtility.AppendTrailingSlash(VirtualPathUtility.Combine(VirtualPath, albumYearDirectoryInfo.Name));
@@ -200,7 +200,7 @@ namespace Com.Prerit.Web.Services
                     else
                     {
                         Trace.TraceWarning(
-                            string.Format("Directory name {0} does not fall between {1} and {2}", albumYearDirectoryInfo.FullName, minAlbumYear, maxAlbumYear));
+                            string.Format("Directory name {0} does not fall between {1} and {2}", albumYearDirectoryInfo.FullName, _minAlbumYear, maxAlbumYear));
                     }
                 }
                 else
