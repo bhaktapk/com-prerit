@@ -19,6 +19,10 @@ namespace Com.Prerit.Web.Services
 
         private const int _maxAlbumCoverDimension = 240;
 
+        private const int _maxThumbnailDimension = 150;
+
+        private const string _thumbnailIdentifier = "_thumbnail";
+
         #endregion
 
         #region Fields
@@ -87,6 +91,35 @@ namespace Com.Prerit.Web.Services
                         result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
                     }
                 }
+            }
+
+            return result;
+        }
+
+        private WebImage CreateThumbnail(string thumbnailFileName, string photoVirtualPath, string thumbnailPhysicalPath, Image photoImage)
+        {
+            WebImage result;
+
+            int height;
+            int width;
+
+            DisallowUsageOfEmbeddedThumbnail(photoImage);
+
+            ResizeHeightAndWidth(photoImage, _maxThumbnailDimension, out height, out width);
+
+            using (Image thumbnailImage = photoImage.GetThumbnailImage(width,
+                                                                       height,
+                                                                       delegate
+                                                                           {
+                                                                               return false;
+                                                                           },
+                                                                       IntPtr.Zero))
+            {
+                string thumbnailVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, thumbnailFileName);
+
+                thumbnailImage.Save(thumbnailPhysicalPath, ImageFormat.Jpeg);
+
+                result = new WebImage(thumbnailFileName, thumbnailVirtualPath, thumbnailImage.Height, thumbnailImage.Width);
             }
 
             return result;
@@ -183,32 +216,17 @@ namespace Com.Prerit.Web.Services
         {
             WebImage result;
 
-            // TODO: make thumbnailIdentifier configurable
-            const string thumbnailIdentifier = "_thumbnail";
-
-            string fileName = Path.GetFileNameWithoutExtension(photoFileInfo.Name);
-            string extension = Path.GetExtension(photoFileInfo.Name);
-            string thumbnailFileName = string.Format("{0}{1}{2}", fileName, thumbnailIdentifier, extension);
+            string photoFileNameWithoutExtension = Path.GetFileNameWithoutExtension(photoFileInfo.Name);
+            string photoExtension = Path.GetExtension(photoFileInfo.Name);
+            string thumbnailFileName = photoFileNameWithoutExtension + _thumbnailIdentifier + photoExtension;
             string thumbnailPhysicalPath = Path.Combine(albumDirectoryInfo.FullName, thumbnailFileName);
 
             if (File.Exists(thumbnailPhysicalPath))
             {
-                using (FileStream thumbnailFileStream = File.OpenRead(thumbnailPhysicalPath))
-                {
-                    using (Image thumbnailImage = Image.FromStream(thumbnailFileStream))
-                    {
-                        // TODO: check size and resize and log if necessary
-
-                        result = new WebImage(thumbnailFileName, photoVirtualPath, thumbnailImage.Height, thumbnailImage.Width);
-                    }
-                }
+                File.Delete(thumbnailPhysicalPath);
             }
-            else
-            {
-                // TODO: create thumbnail from first photo
 
-                result = new WebImage(thumbnailFileName, photoVirtualPath, photoImage.Height / 4, photoImage.Width / 4);
-            }
+            result = CreateThumbnail(thumbnailFileName, photoVirtualPath, thumbnailPhysicalPath, photoImage);
 
             return result;
         }
@@ -219,7 +237,7 @@ namespace Com.Prerit.Web.Services
 
             foreach (FileInfo photoFileInfo in albumDirectoryInfo.GetFiles(_allowablePhotoExtension))
             {
-                if (!IsAlbumCover(photoFileInfo.Name))
+                if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name))
                 {
                     try
                     {
@@ -254,6 +272,11 @@ namespace Com.Prerit.Web.Services
         private bool IsPortrait(Image image)
         {
             return image.Height > image.Width;
+        }
+
+        private bool IsThumbnail(string fileName)
+        {
+            return Path.GetFileNameWithoutExtension(fileName).EndsWith(_thumbnailIdentifier);
         }
 
         public SortedList<int, Album[]> Load()
