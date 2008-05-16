@@ -91,7 +91,6 @@ public partial class master_default : MasterPage
     private void SetMenuLinks()
     {
         SetMenuLink(aboutLink);
-        SetMenuLink(accountLink);
         SetMenuLink(contactLink);
         SetMenuLink(photoAlbumsLink);
         SetMenuLink(resumeLink);
