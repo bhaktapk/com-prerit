@@ -19,9 +19,13 @@ namespace Com.Prerit.Web.Services
 
         private const int _maxAlbumCoverDimension = 240;
 
+        private const int _maxResizedImageDimension = 480;
+
         private const int _maxThumbnailDimension = 150;
 
         private const int _minAlbumYear = 1979;
+
+        private const string _resizedImageIdentifier = "_resized";
 
         private const string _thumbnailIdentifier = "_thumbnail";
 
@@ -93,6 +97,35 @@ namespace Com.Prerit.Web.Services
                         result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
                     }
                 }
+            }
+
+            return result;
+        }
+
+        private WebImage CreateResizedImage(string resizedImageFileName, string photoVirtualPath, string resizedImagePhysicalPath, Image photoImage)
+        {
+            WebImage result;
+
+            int height;
+            int width;
+
+            DisallowUsageOfEmbeddedThumbnail(photoImage);
+
+            ResizeHeightAndWidth(photoImage, _maxResizedImageDimension, out height, out width);
+
+            using (Image resizedImage = photoImage.GetThumbnailImage(width,
+                                                                     height,
+                                                                     delegate
+                                                                         {
+                                                                             return false;
+                                                                         },
+                                                                     IntPtr.Zero))
+            {
+                string resizedImageVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, resizedImageFileName);
+
+                resizedImage.Save(resizedImagePhysicalPath, ImageFormat.Jpeg);
+
+                result = new WebImage(resizedImageFileName, resizedImageVirtualPath, resizedImage.Height, resizedImage.Width);
             }
 
             return result;
@@ -212,6 +245,59 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
+        private Photo[] GetPhotos(DirectoryInfo albumDirectoryInfo, string albumVirtualPath)
+        {
+            List<Photo> result = new List<Photo>();
+
+            foreach (FileInfo photoFileInfo in albumDirectoryInfo.GetFiles(_allowablePhotoExtension))
+            {
+                if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name) && !IsResizedImage(photoFileInfo.Name))
+                {
+                    try
+                    {
+                        using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
+                        {
+                            using (Image photoImage = Image.FromStream(photoFileStream))
+                            {
+                                string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
+
+                                WebImage thumbnail = GetThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
+                                WebImage resizedImage = GetResizedImage(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
+
+                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
+                        Trace.TraceError(e.ToString());
+                    }
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private WebImage GetResizedImage(DirectoryInfo albumDirectoryInfo, FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
+        {
+            WebImage result;
+
+            string photoFileNameWithoutExtension = Path.GetFileNameWithoutExtension(photoFileInfo.Name);
+            string photoExtension = Path.GetExtension(photoFileInfo.Name);
+            string resizedImageFileName = photoFileNameWithoutExtension + _resizedImageIdentifier + photoExtension;
+            string resizedImagePhysicalPath = Path.Combine(albumDirectoryInfo.FullName, resizedImageFileName);
+
+            if (File.Exists(resizedImagePhysicalPath))
+            {
+                File.Delete(resizedImagePhysicalPath);
+            }
+
+            result = CreateResizedImage(resizedImageFileName, photoVirtualPath, resizedImagePhysicalPath, photoImage);
+
+            return result;
+        }
+
         private WebImage GetThumbnail(DirectoryInfo albumDirectoryInfo, FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
         {
             WebImage result;
@@ -231,39 +317,6 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
-        private Photo[] GetPhotos(DirectoryInfo albumDirectoryInfo, string albumVirtualPath)
-        {
-            List<Photo> result = new List<Photo>();
-
-            foreach (FileInfo photoFileInfo in albumDirectoryInfo.GetFiles(_allowablePhotoExtension))
-            {
-                if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name))
-                {
-                    try
-                    {
-                        using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
-                        {
-                            using (Image photoImage = Image.FromStream(photoFileStream))
-                            {
-                                string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
-
-                                WebImage thumbnail = GetThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
-
-                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail));
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
-                        Trace.TraceError(e.ToString());
-                    }
-                }
-            }
-
-            return result.ToArray();
-        }
-
         private bool IsAlbumCover(string fileName)
         {
             return string.Compare(fileName, _albumCoverFileName, true) == 0;
@@ -272,6 +325,11 @@ namespace Com.Prerit.Web.Services
         private bool IsPortrait(Image image)
         {
             return image.Height > image.Width;
+        }
+
+        private bool IsResizedImage(string fileName)
+        {
+            return Path.GetFileNameWithoutExtension(fileName).EndsWith(_resizedImageIdentifier);
         }
 
         private bool IsThumbnail(string fileName)

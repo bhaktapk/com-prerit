@@ -12,7 +12,14 @@ namespace Com.Prerit.Web
             private set;
         }
 
-        public Photo(string caption, string virtualPath, int height, int width, WebImage thumbnail)
+
+        public WebImage ResizedImage
+        {
+            get;
+            private set;
+        }
+
+        public Photo(string caption, string virtualPath, int height, int width, WebImage thumbnail, WebImage resizedImage)
             : base(caption, virtualPath, height, width)
         {
             if (thumbnail == null)
@@ -20,7 +27,13 @@ namespace Com.Prerit.Web
                 throw new ArgumentNullException("thumbnail");
             }
 
+            if (resizedImage == null)
+            {
+                throw new ArgumentNullException("resizedImage");
+            }
+
             Thumbnail = thumbnail;
+            ResizedImage = resizedImage;
         }
 
         #endregion
