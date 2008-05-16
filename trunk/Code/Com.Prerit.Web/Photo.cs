@@ -6,21 +6,21 @@ namespace Com.Prerit.Web
     {
         #region Constructors
 
-        public WebImage AssociatedThumbnail
+        public WebImage Thumbnail
         {
             get;
             private set;
         }
 
-        public Photo(string caption, string virtualPath, int height, int width, WebImage associatedThumbnail)
+        public Photo(string caption, string virtualPath, int height, int width, WebImage thumbnail)
             : base(caption, virtualPath, height, width)
         {
-            if (associatedThumbnail == null)
+            if (thumbnail == null)
             {
-                throw new ArgumentNullException("associatedThumbnail");
+                throw new ArgumentNullException("thumbnail");
             }
 
-            AssociatedThumbnail = associatedThumbnail;
+            Thumbnail = thumbnail;
         }
 
         #endregion

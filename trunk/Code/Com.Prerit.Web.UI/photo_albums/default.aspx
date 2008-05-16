@@ -42,8 +42,8 @@
                 <ItemTemplate>
                     <p>
                         <a href="<%# ((Photo) Container.DataItem).VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="<%# ((Photo) Container.DataItem).Caption %>"
-                        runat="server"><img alt="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Height %>"
-                        width="<%# ((Photo) Container.DataItem).AssociatedThumbnail.Width %>" src="<%# ((Photo) Container.DataItem).AssociatedThumbnail.VirtualPath %>" runat="server" /></a>
+                        runat="server"><img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
+                        width="<%# ((Photo) Container.DataItem).Thumbnail.Width %>" src="<%# ((Photo) Container.DataItem).Thumbnail.VirtualPath %>" runat="server" /></a>
                     </p>
                 </ItemTemplate>
                 <FooterTemplate>
