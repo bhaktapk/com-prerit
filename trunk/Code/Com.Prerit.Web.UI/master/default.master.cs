@@ -9,15 +9,6 @@ using Com.Prerit.Web;
 
 public partial class master_default : MasterPage
 {
-    #region Properties
-
-    public string LoginViewUpdatePanelClientID
-    {
-        get { return loginView.UpdatePanelClientID; }
-    }
-
-    #endregion
-
     #region Methods
 
     private string BuildAccessKeyLinkText(HtmlAnchor menuLink, SiteMapNode node)
@@ -137,11 +128,6 @@ public partial class master_default : MasterPage
         {
             Page.Title = SiteMap.CurrentNode.Title;
         }
-    }
-
-    public void UpdateLoginView()
-    {
-        loginView.Update();
     }
 
     #endregion
