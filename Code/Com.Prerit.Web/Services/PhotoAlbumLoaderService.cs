@@ -212,7 +212,7 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
-        private WebImage GetAssociatedThumbnail(DirectoryInfo albumDirectoryInfo, FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
+        private WebImage GetThumbnail(DirectoryInfo albumDirectoryInfo, FileInfo photoFileInfo, string photoVirtualPath, Image photoImage)
         {
             WebImage result;
 
@@ -247,9 +247,9 @@ namespace Com.Prerit.Web.Services
                             {
                                 string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
 
-                                WebImage associatedThumbnail = GetAssociatedThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
+                                WebImage thumbnail = GetThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
 
-                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, associatedThumbnail));
+                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail));
                             }
                         }
                     }
