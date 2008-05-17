@@ -41,7 +41,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <p>
-                        <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" runat="server">
+                        <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="Download" runat="server">
                         <img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
                         width="<%# ((Photo) Container.DataItem).Thumbnail.Width %>" src="<%# ((Photo) Container.DataItem).Thumbnail.VirtualPath %>"
                         runat="server" /></a>
