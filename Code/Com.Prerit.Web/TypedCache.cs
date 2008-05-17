@@ -13,11 +13,14 @@ namespace Com.Prerit.Web
         {
             get
             {
-                SortedList<int, Album[]> originalCacheItem = GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear);
+                SortedList<int, Album[]> result = GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear);
 
-                SortedList<int, Album[]> clonedCacheItem = new SortedList<int, Album[]>(originalCacheItem);
+                if (result != null)
+                {
+                    result = new SortedList<int, Album[]>(result);
+                }
 
-                return clonedCacheItem;
+                return result;
             }
             set
             {
