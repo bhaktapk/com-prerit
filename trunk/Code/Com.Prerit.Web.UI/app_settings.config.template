@@ -4,8 +4,4 @@
 
   <add key="cache-album-photos"
        value="true" />
-
-  <!-- NOTE: before releasing, add value -->
-  <add key="wifes-name"
-       value="@WIFES_NAME@" />
 </appSettings>
