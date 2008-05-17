@@ -16,15 +16,15 @@ namespace Com.Prerit.Web
 
                 if (context != null)
                 {
-                    string urlPath = context.Request.Path.ToLowerInvariant();
+                    rawUrl = rawUrl.ToLowerInvariant();
 
-                    int defaultDocumentIndex = urlPath.IndexOf("/default.aspx");
+                    int defaultDocumentIndex = rawUrl.IndexOf("/default.aspx");
 
                     if (defaultDocumentIndex != -1)
                     {
                         IncrementToIncludeTrailingSlash(ref defaultDocumentIndex);
 
-                        node = base.FindSiteMapNode(urlPath.Substring(0, defaultDocumentIndex));
+                        node = base.FindSiteMapNode(rawUrl.Substring(0, defaultDocumentIndex));
 
                         if (node != null && !node.IsAccessibleToUser(context))
                         {
