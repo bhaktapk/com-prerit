@@ -24,7 +24,13 @@ namespace Com.Prerit.Web.Services
 
         public SortedList<int, Album[]> GetAlbumsByAlbumYearGroupedByAlbumYear(int albumYear)
         {
-            return _photoAlbumLoaderService.Load();
+            SortedList<int, Album[]> result = new SortedList<int, Album[]>();
+
+            Album[] albums = _photoAlbumLoaderService.Load()[albumYear];
+
+            result.Add(albumYear, albums);
+
+            return result;
         }
 
         public SortedList<int, Album[]> GetAlbumsGroupedByAlbumYear()
