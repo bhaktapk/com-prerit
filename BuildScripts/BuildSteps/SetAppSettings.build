@@ -10,12 +10,12 @@
           tofile="${dir.app-settings-config}\app_settings.config"
           overwrite="true">
 
-      <filterchain>
+      <!--<filterchain>
         <replacetokens>
-          <token key="WIFES_NAME"
-                 value="${app-setting.wifes-name}" />
+          <token key=""
+                 value="" />
         </replacetokens>
-      </filterchain>
+      </filterchain>-->
     </copy>
   </target>
 </project>
