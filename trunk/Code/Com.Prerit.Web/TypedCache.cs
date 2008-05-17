@@ -11,7 +11,14 @@ namespace Com.Prerit.Web
 
         public static SortedList<int, Album[]> AlbumsGroupedByAlbumYear
         {
-            get { return GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear); }
+            get
+            {
+                SortedList<int, Album[]> originalCacheItem = GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear);
+
+                SortedList<int, Album[]> clonedCacheItem = new SortedList<int, Album[]>(originalCacheItem);
+
+                return clonedCacheItem;
+            }
             set
             {
                 if (TypedAppSettings.CacheAlbumPhotos)
