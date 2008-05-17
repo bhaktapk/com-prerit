@@ -6,7 +6,9 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="package-database">
-    <call target="package-com-prerit-database" />
+    <echo message="${target::get-current-target()} has been disabled" />
+
+    <!--<call target="package-com-prerit-database" />-->
   </target>
 
 

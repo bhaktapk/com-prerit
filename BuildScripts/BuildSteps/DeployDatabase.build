@@ -6,11 +6,13 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="deploy-database">
-    <call target="unzip-database-package" />
+    <echo message="${target::get-current-target()} has been disabled" />
+
+    <!--<call target="unzip-database-package" />
     <call target="drop-database" />
     <call target="create-database" />
     <call target="create-asp-net-schema" />
-    <call target="create-security" />
+    <call target="create-security" />-->
   </target>
 
 
