@@ -6,8 +6,8 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="take-website-offline">
-    <if test="${file::exists(dir.deploy + '\app_offline.aspx')}">
-      <copy file="${dir.deploy}\app_offline.aspx"
+    <if test="${file::exists(dir.deploy + '\errors\app_offline.htm')}">
+      <copy file="${dir.deploy}\errors\app_offline.htm"
             tofile="${dir.deploy}\app_offline.htm"
             overwrite="true" />
     </if>
