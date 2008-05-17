@@ -175,9 +175,11 @@
 
   <property name="package.name.com-prerit-database"
             value="${project.name.com-prerit-database}.zip"
+            dynamic="true"
             overwrite="false" />
 
   <property name="package.name.com-prerit-web-ui"
             value="${project.name.com-prerit-web-ui}-${msbuild.configuration}.zip"
+            dynamic="true"
             overwrite="false" />
 </project>
