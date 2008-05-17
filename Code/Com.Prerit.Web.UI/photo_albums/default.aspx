@@ -2,6 +2,14 @@
 
 <%@ Import Namespace="Com.Prerit.Web" %>
 <%@ Import Namespace="System.Collections.Generic" %>
+<asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
+    <h2><span>Photo Viewing Tips</span></h2>
+    <ul>
+        <li>Roll over the image</li>
+        <li>Press the right arrow key</li>
+        <li>Press Esc to close</li>
+    </ul>
+</asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
     <asp:MultiView ID="photoAlbumViews" ActiveViewIndex="0" runat="server">
         <asp:View ID="albumView" runat="server">
@@ -41,8 +49,8 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <p>
-                        <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="Download" runat="server">
-                        <img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
+                        <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxIdentifier() %>" title="Download"
+                        runat="server"><img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
                         width="<%# ((Photo) Container.DataItem).Thumbnail.Width %>" src="<%# ((Photo) Container.DataItem).Thumbnail.VirtualPath %>"
                         runat="server" /></a>
                     </p>
