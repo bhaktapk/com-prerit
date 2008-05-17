@@ -401,7 +401,6 @@ img
     border-top: 1px solid #888;
     list-style-type: none;
     margin-top: -1px;
-    text-align: right;
 }
 
 #sidebar ul li a
@@ -409,6 +408,7 @@ img
     display: block;
     padding: 2px 0;
     text-decoration: none;
+    text-align: right;
 }
 
 #sidebar ul li a:hover
