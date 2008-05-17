@@ -81,19 +81,19 @@
                      priority="0.5" />
       </siteMapNode>
 
-      <siteMapNode url="~/photo_albums/2007/"
-                   title="Photo Albums for the Year 2007"
-                   description="Photo albums for the year 2007"
-                   keywords="2007, photo albums"
-                   lastModified="2008-05-05"
+      <siteMapNode url="~/photo_albums/2008/"
+                   title="Photo Albums for the Year 2008"
+                   description="Photo albums for the year 2008"
+                   keywords="2008, photo albums"
+                   lastModified="2008-05-17"
                    changeFrequency="monthly"
                    priority="0.5">
 
-        <siteMapNode url="~/photo_albums/2007/our_first_house/"
-                     title="Photo Album of Our First House"
-                     description="Photo album of our first house"
-                     keywords="our first house, 2006, photo album"
-                     lastModified="2008-05-05"
+        <siteMapNode url="~/photo_albums/2008/amita's_wedding/"
+                     title="Photo Album of Amita's Wedding"
+                     description="Photo album of Amita's wedding"
+                     keywords="Amita's wedding, 2008, photo album"
+                     lastModified="2008-05-17"
                      changeFrequency="monthly"
                      priority="0.5" />
       </siteMapNode>
