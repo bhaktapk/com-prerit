@@ -114,7 +114,7 @@ Lightbox.prototype = {
         //      <div id="imageDataContainer">
         //          <div id="imageData">
         //              <div id="imageDetails">
-        //                  <span id="caption"></span>
+        //                  <a href="#" id="caption"></a>
         //                  <span id="numberDisplay"></span>
         //              </div>
         //              <div id="bottomNav">
@@ -149,7 +149,7 @@ Lightbox.prototype = {
             Builder.node('div', {id:'imageDataContainer'},
                 Builder.node('div',{id:'imageData'}, [
                     Builder.node('div',{id:'imageDetails'}, [
-                        Builder.node('span',{id:'caption'}),
+                        Builder.node('a',{id:'caption', href: '#' }),
                         Builder.node('span',{id:'numberDisplay'})
                     ]),
                     Builder.node('div',{id:'bottomNav'},
@@ -329,6 +329,14 @@ Lightbox.prototype = {
         // if caption is not null
         if (this.imageArray[this.activeImage][1] != ""){
             this.caption.update(this.imageArray[this.activeImage][1]).show();
+            
+            var matches = this.imageArray[this.activeImage][0].match(new RegExp(LightboxOptions.resizedImagePattern));
+            
+            if (matches != null) {
+                this.caption.href = this.imageArray[this.activeImage][0].replace(matches, LightboxOptions.resizedImageExtension);
+            } else {
+                this.caption.href = this.imageArray[this.activeImage][0];
+            }
         }
         
         // if image is part of set display 'Image x of x' 
