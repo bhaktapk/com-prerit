@@ -55,12 +55,6 @@ public partial class photo_albums_default : Page
         Header.Controls.Add(link);
     }
 
-    private void EnablePhotoAnimations()
-    {
-        AddLightboxCss();
-        RegisterLightboxClientScriptIncludes();
-    }
-
     public string ConvertNameToTitle(string name)
     {
         string albumNameAsTitle = null;
@@ -93,6 +87,12 @@ public partial class photo_albums_default : Page
         return albumNameAsTitle;
     }
 
+    private void EnablePhotoAnimations()
+    {
+        AddLightboxCss();
+        RegisterLightboxClientScriptIncludes();
+    }
+
     private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
     {
         return MakeSortedListReverseChronological(photoAlbumService.GetAlbumsByAlbumYearGroupedByAlbumYear(albumYear));
@@ -107,9 +107,9 @@ public partial class photo_albums_default : Page
         return albumsSortedInChronologicalOrder;
     }
 
-    protected string GetLightboxIdentifier()
+    protected string GetLightboxImageSetIdentifier()
     {
-        return string.Format("lightbox[{0}]", AlbumNameQueryStringValue);
+        return PreventLightboxImageSetIdentifierBug(AlbumNameQueryStringValue);
     }
 
     private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumService photoAlbumService)
@@ -150,6 +150,11 @@ public partial class photo_albums_default : Page
             photoRepeater.DataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
             photoRepeater.DataBind();
         }
+    }
+
+    private string PreventLightboxImageSetIdentifierBug(string identifier)
+    {
+        return identifier.Replace('\'', '_');
     }
 
     private void RegisterLightboxClientScriptIncludes()
