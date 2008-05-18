@@ -228,12 +228,6 @@ img
     display: none;
 }
 
-#content p.failureMessage
-{
-    border: 1px dashed #b00;
-    color: #b00;
-}
-
 #content p.successMessage
 {
     border: 1px dashed #83e05e;
@@ -286,7 +280,6 @@ img
     color: #fff;
 }
 
-#content p.failureMessage,
 #content p.successMessage
 {
     font-weight: bold;
@@ -638,7 +631,6 @@ img
     height: 130px;
 }
 
-#mainbar p.failureMessage,
 #mainbar p.successMessage
 {
     margin-left: auto;
