@@ -85,9 +85,9 @@ namespace Com.Prerit.Web.Services
                     using (Image albumCoverImage = photoImage.GetThumbnailImage(width,
                                                                                 height,
                                                                                 delegate
-                                                                                    {
-                                                                                        return false;
-                                                                                    },
+                                                                                {
+                                                                                    return false;
+                                                                                },
                                                                                 IntPtr.Zero))
                     {
                         string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
@@ -116,9 +116,9 @@ namespace Com.Prerit.Web.Services
             using (Image resizedImage = photoImage.GetThumbnailImage(width,
                                                                      height,
                                                                      delegate
-                                                                         {
-                                                                             return false;
-                                                                         },
+                                                                     {
+                                                                         return false;
+                                                                     },
                                                                      IntPtr.Zero))
             {
                 string resizedImageVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, resizedImageFileName);
@@ -145,9 +145,9 @@ namespace Com.Prerit.Web.Services
             using (Image thumbnailImage = photoImage.GetThumbnailImage(width,
                                                                        height,
                                                                        delegate
-                                                                           {
-                                                                               return false;
-                                                                           },
+                                                                       {
+                                                                           return false;
+                                                                       },
                                                                        IntPtr.Zero))
             {
                 string thumbnailVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, thumbnailFileName);
@@ -253,25 +253,17 @@ namespace Com.Prerit.Web.Services
             {
                 if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name) && !IsResizedImage(photoFileInfo.Name))
                 {
-                    try
+                    using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
                     {
-                        using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
+                        using (Image photoImage = Image.FromStream(photoFileStream))
                         {
-                            using (Image photoImage = Image.FromStream(photoFileStream))
-                            {
-                                string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
+                            string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
 
-                                WebImage thumbnail = GetThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
-                                WebImage resizedImage = GetResizedImage(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
+                            WebImage thumbnail = GetThumbnail(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
+                            WebImage resizedImage = GetResizedImage(albumDirectoryInfo, photoFileInfo, photoVirtualPath, photoImage);
 
-                                result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
-                            }
+                            result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Trace.TraceWarning(string.Format("Photo {0} is not a valid image file", photoFileInfo.FullName));
-                        Trace.TraceError(e.ToString());
                     }
                 }
             }
@@ -409,9 +401,9 @@ namespace Com.Prerit.Web.Services
                     using (Image newAlbumCoverImage = albumCoverImage.GetThumbnailImage(width,
                                                                                         height,
                                                                                         delegate
-                                                                                            {
-                                                                                                return false;
-                                                                                            },
+                                                                                        {
+                                                                                            return false;
+                                                                                        },
                                                                                         IntPtr.Zero))
                     {
                         string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
