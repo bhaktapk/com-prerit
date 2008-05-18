@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Web;
+using System.Web.Caching;
+using System.Web.Hosting;
 
 namespace Com.Prerit.Web
 {
@@ -13,20 +16,17 @@ namespace Com.Prerit.Web
         {
             get
             {
-                SortedList<int, Album[]> result = GetCacheItem<SortedList<int, Album[]>>(CacheKey.AlbumsGroupedByAlbumYear);
+                CacheKey cacheKey = CacheKey.AlbumsGroupedByAlbumYear;
 
-                if (result != null)
-                {
-                    result = new SortedList<int, Album[]>(result);
-                }
+                Trace.TraceInformation("Getting {0} from cache", cacheKey);
 
-                return result;
+                return GetCopy(GetCacheItem<SortedList<int, Album[]>>(cacheKey));
             }
             set
             {
                 if (TypedAppSettings.CacheAlbumPhotos)
                 {
-                    SetCacheItem(CacheKey.AlbumsGroupedByAlbumYear, value);
+                    SetCacheItem(CacheKey.AlbumsGroupedByAlbumYear, value, GetAlbumsGroupedByAlbumYearDependency(value));
                 }
             }
         }
@@ -34,6 +34,39 @@ namespace Com.Prerit.Web
         #endregion
 
         #region Methods
+
+        private static CacheDependency GetAlbumsGroupedByAlbumYearDependency(SortedList<int, Album[]> albumsGroupedByAlbumYear)
+        {
+            CacheDependency result = null;
+
+            if (albumsGroupedByAlbumYear != null)
+            {
+                List<string> folderDependencyList = new List<string>();
+
+                const string photoAlbumsPhysicalPath = "~/photo_albums/";
+
+                folderDependencyList.Add(HostingEnvironment.MapPath(photoAlbumsPhysicalPath));
+
+                foreach (KeyValuePair<int, Album[]> keyValuePair in albumsGroupedByAlbumYear)
+                {
+                    string albumYearPhysicalPath = Path.Combine(photoAlbumsPhysicalPath, keyValuePair.Key.ToString());
+
+                    folderDependencyList.Add(albumYearPhysicalPath);
+
+                    if (keyValuePair.Value != null)
+                    {
+                        foreach (Album album in keyValuePair.Value)
+                        {
+                            folderDependencyList.Add(HostingEnvironment.MapPath(album.VirtualPath));
+                        }
+                    }
+                }
+
+                result = new CacheDependency(folderDependencyList.ToArray());
+            }
+
+            return result;
+        }
 
         private static T GetCacheItem<T>(CacheKey cacheKey) where T : class
         {
@@ -76,7 +109,17 @@ namespace Com.Prerit.Web
             return context;
         }
 
-        private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem) where T : class
+        private static SortedList<int, Album[]> GetCopy(SortedList<int, Album[]> result)
+        {
+            if (result != null)
+            {
+                result = new SortedList<int, Album[]>(result);
+            }
+
+            return result;
+        }
+
+        private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
         {
             Debug.Assert(cacheKey != null);
 
@@ -84,7 +127,14 @@ namespace Com.Prerit.Web
 
             if (cacheItem != null)
             {
-                context.Cache[cacheKey] = cacheItem;
+                if (dependency == null)
+                {
+                    context.Cache.Insert(cacheKey, cacheItem);
+                }
+                else
+                {
+                    context.Cache.Insert(cacheKey, cacheItem, dependency);
+                }
             }
             else
             {
