@@ -62,11 +62,6 @@ namespace Com.Prerit.Web
                 throw new ArgumentNullException("photos");
             }
 
-            if (photos.Length == 0)
-            {
-                throw new ArgumentException("Parameter cannot be empty", "photos");
-            }
-
             AlbumName = albumName;
             AlbumYear = albumYear;
             VirtualPath = virtualPath;

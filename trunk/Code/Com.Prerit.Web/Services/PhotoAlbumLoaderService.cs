@@ -166,6 +166,15 @@ namespace Com.Prerit.Web.Services
             image.RotateFlip(RotateFlipType.Rotate180FlipNone);
         }
 
+        private WebImage GetDefaultAlbumCover()
+        {
+            WebImage result;
+
+            result = new WebImage("Default album cover", "~/images/default_album_cover.jpg", 180, 240);
+
+            return result;
+        }
+
         private WebImage GetAlbumCover(string albumVirtualPath, Photo photo)
         {
             WebImage result;
@@ -188,22 +197,26 @@ namespace Com.Prerit.Web.Services
         {
             List<Album> result = new List<Album>();
 
-            foreach (DirectoryInfo albumDirectoryInfo in albumYearDirectoryInfo.GetDirectories())
+            foreach (DirectoryInfo albumDirectoryInfo in GetNonHiddenSubDirectories(albumYearDirectoryInfo))
             {
                 string albumVirtualPath = VirtualPathUtility.AppendTrailingSlash(VirtualPathUtility.Combine(albumYearVirtualPath, albumDirectoryInfo.Name));
 
                 Photo[] photos = GetPhotos(albumDirectoryInfo, albumVirtualPath);
 
+                WebImage albumCover;
+
                 if (photos.Length != 0)
                 {
-                    WebImage albumCover = GetAlbumCover(albumVirtualPath, photos[0]);
-
-                    result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, albumCover, photos));
+                    albumCover = GetAlbumCover(albumVirtualPath, photos[0]);
                 }
                 else
                 {
+                    albumCover = GetDefaultAlbumCover();
+
                     Trace.TraceWarning(string.Format("Directory {0} contained no useable photos", albumDirectoryInfo.FullName));
                 }
+
+                result.Add(new Album(albumDirectoryInfo.Name, albumYear, albumVirtualPath, albumCover, photos));
             }
 
             return result.ToArray();
@@ -213,9 +226,9 @@ namespace Com.Prerit.Web.Services
         {
             SortedList<int, Album[]> result = new SortedList<int, Album[]>();
 
-            DirectoryInfo parentDirectoryInfo = new DirectoryInfo(_physicalPath);
+            DirectoryInfo photoAlbumsDirectoryInfo = new DirectoryInfo(_physicalPath);
 
-            foreach (DirectoryInfo albumYearDirectoryInfo in parentDirectoryInfo.GetDirectories())
+            foreach (DirectoryInfo albumYearDirectoryInfo in GetNonHiddenSubDirectories(photoAlbumsDirectoryInfo))
             {
                 int parsedAlbumYear;
 
@@ -243,6 +256,21 @@ namespace Com.Prerit.Web.Services
             }
 
             return result;
+        }
+
+        private DirectoryInfo[] GetNonHiddenSubDirectories(DirectoryInfo directoryInfo)
+        {
+            List<DirectoryInfo> result = new List<DirectoryInfo>();
+
+            foreach (DirectoryInfo subDirectoryInfo in directoryInfo.GetDirectories())
+            {
+                if ((subDirectoryInfo.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
+                {
+                    result.Add(subDirectoryInfo);
+                }
+            }
+
+            return result.ToArray();
         }
 
         private Photo[] GetPhotos(DirectoryInfo albumDirectoryInfo, string albumVirtualPath)
