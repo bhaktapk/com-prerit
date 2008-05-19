@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 using Com.Prerit.Web;
 using Com.Prerit.Web.Services;
@@ -53,6 +55,24 @@ public partial class photo_albums_default : Page
         link.Attributes.Add("media", "screen");
 
         Header.Controls.Add(link);
+    }
+
+    protected void AlbumYearRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        switch (e.Item.ItemType)
+        {
+            case ListItemType.AlternatingItem:
+            case ListItemType.Item:
+                KeyValuePair<int, Album[]> albumYear = (KeyValuePair<int, Album[]>) e.Item.DataItem;
+
+                Debug.Assert(albumYear.Value != null);
+
+                if (albumYear.Value.Length == 0)
+                {
+                    HideAlbumYearPlaceHolder(e);
+                }
+                break;
+        }
     }
 
     public string ConvertNameToTitle(string name)
@@ -117,6 +137,17 @@ public partial class photo_albums_default : Page
         return photoAlbumService.GetPhotosByAlbumYearAndAlbumName(albumYear, albumName);
     }
 
+    private void HideAlbumYearPlaceHolder(RepeaterItemEventArgs e)
+    {
+        Debug.Assert(e != null);
+
+        PlaceHolder albumYearPlaceHolder = (PlaceHolder) e.Item.FindControl("albumYearPlaceHolder");
+
+        Debug.Assert(albumYearPlaceHolder != null);
+
+        albumYearPlaceHolder.Visible = false;
+    }
+
     private IEnumerable<KeyValuePair<int, Album[]>> MakeSortedListReverseChronological(SortedList<int, Album[]> source)
     {
         return source.Reverse();
@@ -147,8 +178,19 @@ public partial class photo_albums_default : Page
 
             EnablePhotoAnimations();
 
-            photoRepeater.DataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
-            photoRepeater.DataBind();
+            Photo[] dataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
+
+            if (dataSource.Length == 0)
+            {
+                photoViews.ActiveViewIndex = (int) PhotoView.NoPhotosView;
+            }
+            else
+            {
+                photoViews.ActiveViewIndex = (int) PhotoView.SomePhotosView;
+
+                photoRepeater.DataSource = dataSource;
+                photoRepeater.DataBind();
+            }
         }
     }
 
@@ -174,6 +216,16 @@ public partial class photo_albums_default : Page
     {
         AlbumView = 0,
         PhotoView = 1
+    }
+
+    #endregion
+
+    #region Nested Type: PhotoView
+
+    protected enum PhotoView
+    {
+        NoPhotosView = 0,
+        SomePhotosView = 1
     }
 
     #endregion
