@@ -43,22 +43,23 @@ namespace Com.Prerit.Web
             {
                 List<string> folderDependencyList = new List<string>();
 
-                const string photoAlbumsPhysicalPath = "~/photo_albums/";
+                const string photoAlbumsVirtualPath = "~/photo_albums/";
 
-                folderDependencyList.Add(HostingEnvironment.MapPath(photoAlbumsPhysicalPath));
+                string photoAlbumsPhysicalPath = HostingEnvironment.MapPath(photoAlbumsVirtualPath);
+
+                folderDependencyList.Add(photoAlbumsPhysicalPath);
 
                 foreach (KeyValuePair<int, Album[]> keyValuePair in albumsGroupedByAlbumYear)
                 {
-                    string albumYearPhysicalPath = Path.Combine(photoAlbumsPhysicalPath, keyValuePair.Key.ToString());
+                    string albumYearPhysicalPath = HostingEnvironment.MapPath(Path.Combine(photoAlbumsVirtualPath, keyValuePair.Key.ToString()));
 
                     folderDependencyList.Add(albumYearPhysicalPath);
 
-                    if (keyValuePair.Value != null)
+                    Debug.Assert(keyValuePair.Value != null);
+
+                    foreach (Album album in keyValuePair.Value)
                     {
-                        foreach (Album album in keyValuePair.Value)
-                        {
-                            folderDependencyList.Add(HostingEnvironment.MapPath(album.VirtualPath));
-                        }
+                        folderDependencyList.Add(HostingEnvironment.MapPath(album.VirtualPath));
                     }
                 }
 
