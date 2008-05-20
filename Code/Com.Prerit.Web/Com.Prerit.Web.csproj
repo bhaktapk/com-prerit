@@ -47,6 +47,8 @@
     <Compile Include="Management\BufferedTextFileWebEventProviderMarkup.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IImageEditorService.cs" />
+    <Compile Include="Services\ImageEditorService.cs" />
     <Compile Include="Services\IPhotoAlbumLoaderService.cs" />
     <Compile Include="Services\IPhotoAlbumService.cs" />
     <Compile Include="Services\PhotoAlbumLoaderService.cs" />
