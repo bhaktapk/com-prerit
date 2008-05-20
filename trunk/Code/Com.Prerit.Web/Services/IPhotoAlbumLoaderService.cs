@@ -6,6 +6,8 @@ namespace Com.Prerit.Web.Services
     {
         #region Properties
 
+        string PhysicalPath { get; }
+
         string VirtualPath { get; }
 
         #endregion
