@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
 using System.Web.Hosting;
@@ -35,6 +34,8 @@ namespace Com.Prerit.Web.Services
 
         private static readonly object _albumsGroupedByAlbumYearSyncRoot = new object();
 
+        private readonly IImageEditorService _imageEditorService;
+
         #endregion
 
         #region Properties
@@ -55,15 +56,21 @@ namespace Com.Prerit.Web.Services
 
         #region Constructors
 
-        public PhotoAlbumLoaderService(string virtualPath)
+        public PhotoAlbumLoaderService(string virtualPath, IImageEditorService imageEditorService)
         {
             if (!VirtualPathUtility.IsAbsolute(virtualPath) && !VirtualPathUtility.IsAppRelative(virtualPath))
             {
                 throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "virtualPath");
             }
 
+            if (imageEditorService == null)
+            {
+                throw new ArgumentNullException("imageEditorService");
+            }
+
             PhysicalPath = HostingEnvironment.MapPath(virtualPath);
             VirtualPath = virtualPath;
+            _imageEditorService = imageEditorService;
         }
 
         #endregion
@@ -74,32 +81,13 @@ namespace Com.Prerit.Web.Services
         {
             WebImage result;
 
-            using (FileStream photoFileStream = File.OpenRead(HostingEnvironment.MapPath(photo.VirtualPath)))
+            string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
+
+            string photoPhysicalPath = HostingEnvironment.MapPath(photo.VirtualPath);
+
+            using (Image albumCoverImage = _imageEditorService.ScaleAndSaveImage(_maxAlbumCoverDimension, albumCoverPhysicalPath, photoPhysicalPath))
             {
-                using (Image photoImage = Image.FromStream(photoFileStream))
-                {
-                    int height;
-                    int width;
-
-                    DisallowUsageOfEmbeddedThumbnail(photoImage);
-
-                    ResizeHeightAndWidth(photoImage, _maxAlbumCoverDimension, out height, out width);
-
-                    using (Image albumCoverImage = photoImage.GetThumbnailImage(width,
-                                                                                height,
-                                                                                delegate
-                                                                                    {
-                                                                                        return false;
-                                                                                    },
-                                                                                IntPtr.Zero))
-                    {
-                        string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
-
-                        albumCoverImage.Save(albumCoverPhysicalPath, ImageFormat.Jpeg);
-
-                        result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
-                    }
-                }
+                result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, albumCoverImage.Height, albumCoverImage.Width);
             }
 
             return result;
@@ -109,25 +97,10 @@ namespace Com.Prerit.Web.Services
         {
             WebImage result;
 
-            int height;
-            int width;
+            string resizedImageVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, resizedImageFileName);
 
-            DisallowUsageOfEmbeddedThumbnail(photoImage);
-
-            ResizeHeightAndWidth(photoImage, _maxResizedImageDimension, out height, out width);
-
-            using (Image resizedImage = photoImage.GetThumbnailImage(width,
-                                                                     height,
-                                                                     delegate
-                                                                         {
-                                                                             return false;
-                                                                         },
-                                                                     IntPtr.Zero))
+            using (Image resizedImage = _imageEditorService.ScaleAndSaveImage(_maxResizedImageDimension, resizedImagePhysicalPath, photoImage))
             {
-                string resizedImageVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, resizedImageFileName);
-
-                resizedImage.Save(resizedImagePhysicalPath, ImageFormat.Jpeg);
-
                 result = new WebImage(resizedImageFileName, resizedImageVirtualPath, resizedImage.Height, resizedImage.Width);
             }
 
@@ -138,35 +111,14 @@ namespace Com.Prerit.Web.Services
         {
             WebImage result;
 
-            int height;
-            int width;
+            string thumbnailVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, thumbnailFileName);
 
-            DisallowUsageOfEmbeddedThumbnail(photoImage);
-
-            ResizeHeightAndWidth(photoImage, _maxThumbnailDimension, out height, out width);
-
-            using (Image thumbnailImage = photoImage.GetThumbnailImage(width,
-                                                                       height,
-                                                                       delegate
-                                                                           {
-                                                                               return false;
-                                                                           },
-                                                                       IntPtr.Zero))
+            using (Image thumbnailImage = _imageEditorService.ScaleAndSaveImage(_maxThumbnailDimension, thumbnailPhysicalPath, photoImage))
             {
-                string thumbnailVirtualPath = VirtualPathUtility.Combine(photoVirtualPath, thumbnailFileName);
-
-                thumbnailImage.Save(thumbnailPhysicalPath, ImageFormat.Jpeg);
-
                 result = new WebImage(thumbnailFileName, thumbnailVirtualPath, thumbnailImage.Height, thumbnailImage.Width);
             }
 
             return result;
-        }
-
-        private void DisallowUsageOfEmbeddedThumbnail(Image image)
-        {
-            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
         }
 
         private WebImage GetAlbumCover(string albumVirtualPath, Photo photo)
@@ -345,11 +297,6 @@ namespace Com.Prerit.Web.Services
             return string.Compare(fileName, _albumCoverFileName, true) == 0;
         }
 
-        private bool IsPortrait(Image image)
-        {
-            return image.Height > image.Width;
-        }
-
         private bool IsResizedImage(string fileName)
         {
             return Path.GetFileNameWithoutExtension(fileName).EndsWith(_resizedImageIdentifier);
@@ -392,24 +339,6 @@ namespace Com.Prerit.Web.Services
             File.Move(tempPhysicalPath, albumCoverPhysicalPath);
         }
 
-        private void ResizeHeightAndWidth(Image photoImage, int maxDimension, out int height, out int width)
-        {
-            if (IsPortrait(photoImage))
-            {
-                float resizeFactor = (float) maxDimension / (float) photoImage.Height;
-
-                height = maxDimension;
-                width = Convert.ToInt32(resizeFactor * (float) photoImage.Width);
-            }
-            else
-            {
-                float resizeFactor = (float) maxDimension / (float) photoImage.Width;
-
-                height = Convert.ToInt32(resizeFactor * (float) photoImage.Height);
-                width = maxDimension;
-            }
-        }
-
         private WebImage UpdateAlbumCover(string albumVirtualPath, string albumCoverPhysicalPath)
         {
             string tempFileName = Path.GetRandomFileName();
@@ -418,32 +347,11 @@ namespace Com.Prerit.Web.Services
 
             WebImage result;
 
-            using (FileStream albumCoverFileStream = File.OpenRead(albumCoverPhysicalPath))
+            string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
+
+            using (Image newAlbumCoverImage = _imageEditorService.ScaleAndSaveImage(_maxAlbumCoverDimension, tempPhysicalPath, albumCoverPhysicalPath))
             {
-                using (Image albumCoverImage = Image.FromStream(albumCoverFileStream))
-                {
-                    int height;
-                    int width;
-
-                    DisallowUsageOfEmbeddedThumbnail(albumCoverImage);
-
-                    ResizeHeightAndWidth(albumCoverImage, _maxAlbumCoverDimension, out height, out width);
-
-                    using (Image newAlbumCoverImage = albumCoverImage.GetThumbnailImage(width,
-                                                                                        height,
-                                                                                        delegate
-                                                                                            {
-                                                                                                return false;
-                                                                                            },
-                                                                                        IntPtr.Zero))
-                    {
-                        string albumCoverVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, _albumCoverFileName);
-
-                        newAlbumCoverImage.Save(tempPhysicalPath, ImageFormat.Jpeg);
-
-                        result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, newAlbumCoverImage.Height, newAlbumCoverImage.Width);
-                    }
-                }
+                result = new WebImage(_albumCoverFileName, albumCoverVirtualPath, newAlbumCoverImage.Height, newAlbumCoverImage.Width);
             }
 
             OverwriteFile(albumCoverPhysicalPath, tempPhysicalPath);
