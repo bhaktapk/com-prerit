@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 
 namespace Com.Prerit.Web.Services
 {
@@ -62,12 +61,9 @@ namespace Com.Prerit.Web.Services
         {
             Image result;
 
-            using (FileStream originalFileStream = File.OpenRead(originalImagePhysicalPath))
+            using (Image originalImage = Image.FromFile(originalImagePhysicalPath))
             {
-                using (Image originalImage = Image.FromStream(originalFileStream))
-                {
-                    result = ScaleAndSaveImage(maxDimension, scaledImagePhysicalPath, originalImage);
-                }
+                result = ScaleAndSaveImage(maxDimension, scaledImagePhysicalPath, originalImage);
             }
 
             return result;
