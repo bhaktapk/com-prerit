@@ -22,7 +22,7 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
-        public SortedList<int, Album[]> GetAlbumsByAlbumYearGroupedByAlbumYear(int albumYear)
+        public SortedList<int, Album[]> FindAlbums(int albumYear)
         {
             SortedList<int, Album[]> result = new SortedList<int, Album[]>();
 
@@ -33,12 +33,12 @@ namespace Com.Prerit.Web.Services
             return result;
         }
 
-        public SortedList<int, Album[]> GetAlbumsGroupedByAlbumYear()
+        public SortedList<int, Album[]> FindAlbums()
         {
             return _photoAlbumLoaderService.Load();
         }
 
-        public Photo[] GetPhotosByAlbumYearAndAlbumName(int albumYear, string albumName)
+        public Photo[] FindPhotos(int albumYear, string albumName)
         {
             if (albumName == null)
             {

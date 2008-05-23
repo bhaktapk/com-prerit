@@ -115,12 +115,12 @@ public partial class photo_albums_default : Page
 
     private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
     {
-        return MakeSortedListReverseChronological(photoAlbumService.GetAlbumsByAlbumYearGroupedByAlbumYear(albumYear));
+        return MakeSortedListReverseChronological(photoAlbumService.FindAlbums(albumYear));
     }
 
     private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(IPhotoAlbumService photoAlbumService)
     {
-        SortedList<int, Album[]> albumsSortedByYear = photoAlbumService.GetAlbumsGroupedByAlbumYear();
+        SortedList<int, Album[]> albumsSortedByYear = photoAlbumService.FindAlbums();
 
         IEnumerable<KeyValuePair<int, Album[]>> albumsSortedInChronologicalOrder = MakeSortedListReverseChronological(albumsSortedByYear);
 
@@ -134,7 +134,7 @@ public partial class photo_albums_default : Page
 
     private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumService photoAlbumService)
     {
-        return photoAlbumService.GetPhotosByAlbumYearAndAlbumName(albumYear, albumName);
+        return photoAlbumService.FindPhotos(albumYear, albumName);
     }
 
     private void HideAlbumYearPlaceHolder(RepeaterItemEventArgs e)
