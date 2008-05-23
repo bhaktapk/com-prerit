@@ -22,20 +22,27 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
-        public SortedList<int, Album[]> FindAlbums(int albumYear)
+        public AlbumYear FindAlbumYear(int year)
         {
-            SortedList<int, Album[]> result = new SortedList<int, Album[]>();
+            AlbumYear result;
 
-            Album[] albums = _photoAlbumLoaderService.Load()[albumYear];
+            Album[] albums = _photoAlbumLoaderService.Load()[year];
 
-            result.Add(albumYear, albums);
+            result = new AlbumYear(year, albums);
 
             return result;
         }
 
-        public SortedList<int, Album[]> FindAlbums()
+        public AlbumYear[] FindAlbumYears()
         {
-            return _photoAlbumLoaderService.Load();
+            List<AlbumYear> result = new List<AlbumYear>();
+
+            foreach (KeyValuePair<int, Album[]> keyValuePair in _photoAlbumLoaderService.Load())
+            {
+                result.Add(new AlbumYear(keyValuePair.Key, keyValuePair.Value));
+            }
+
+            return result.ToArray();
         }
 
         public Photo[] FindPhotos(int albumYear, string albumName)

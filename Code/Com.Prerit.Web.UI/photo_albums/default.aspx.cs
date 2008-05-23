@@ -23,7 +23,10 @@ public partial class photo_albums_default : Page
 
     public string AlbumNameQueryStringValue
     {
-        get { return Request.QueryString[albumNameQueryStringKey]; }
+        get
+        {
+            return Request.QueryString[albumNameQueryStringKey];
+        }
     }
 
     public int? AlbumYearQueryStringValue
@@ -63,11 +66,11 @@ public partial class photo_albums_default : Page
         {
             case ListItemType.AlternatingItem:
             case ListItemType.Item:
-                KeyValuePair<int, Album[]> albumYear = (KeyValuePair<int, Album[]>) e.Item.DataItem;
+                AlbumYear albumYear = (AlbumYear) e.Item.DataItem;
 
-                Debug.Assert(albumYear.Value != null);
+                Debug.Assert(albumYear.Albums != null);
 
-                if (albumYear.Value.Length == 0)
+                if (albumYear.Albums.Length == 0)
                 {
                     HideAlbumYearPlaceHolder(e);
                 }
@@ -113,18 +116,14 @@ public partial class photo_albums_default : Page
         RegisterLightboxClientScriptIncludes();
     }
 
-    private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
+    private AlbumYear GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
     {
-        return MakeSortedListReverseChronological(photoAlbumService.FindAlbums(albumYear));
+        return photoAlbumService.FindAlbumYear(albumYear);
     }
 
-    private IEnumerable<KeyValuePair<int, Album[]>> GetAlbumYearRepeaterDataSource(IPhotoAlbumService photoAlbumService)
+    private IEnumerable<AlbumYear> GetAlbumYearRepeaterDataSource(IPhotoAlbumService photoAlbumService)
     {
-        SortedList<int, Album[]> albumsSortedByYear = photoAlbumService.FindAlbums();
-
-        IEnumerable<KeyValuePair<int, Album[]>> albumsSortedInChronologicalOrder = MakeSortedListReverseChronological(albumsSortedByYear);
-
-        return albumsSortedInChronologicalOrder;
+        return OrderChronologically(photoAlbumService.FindAlbumYears());
     }
 
     protected string GetLightboxImageSetIdentifier()
@@ -148,9 +147,11 @@ public partial class photo_albums_default : Page
         albumYearPlaceHolder.Visible = false;
     }
 
-    private IEnumerable<KeyValuePair<int, Album[]>> MakeSortedListReverseChronological(SortedList<int, Album[]> source)
+    private IEnumerable<AlbumYear> OrderChronologically(AlbumYear[] source)
     {
-        return source.Reverse();
+        return from albumYear in source
+               orderby albumYear.Year descending
+               select albumYear;
     }
 
     protected void Page_Load(object sender, EventArgs e)
