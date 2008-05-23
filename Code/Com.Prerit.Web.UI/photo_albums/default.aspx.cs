@@ -23,10 +23,7 @@ public partial class photo_albums_default : Page
 
     public string AlbumNameQueryStringValue
     {
-        get
-        {
-            return Request.QueryString[albumNameQueryStringKey];
-        }
+        get { return Request.QueryString[albumNameQueryStringKey]; }
     }
 
     public int? AlbumYearQueryStringValue

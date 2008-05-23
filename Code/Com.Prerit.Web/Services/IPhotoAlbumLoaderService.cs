@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Com.Prerit.Web.Services
+﻿namespace Com.Prerit.Web.Services
 {
     public interface IPhotoAlbumLoaderService
     {
@@ -14,7 +12,7 @@ namespace Com.Prerit.Web.Services
 
         #region Methods
 
-        SortedList<int, Album[]> Load();
+        AlbumYear[] Load();
 
         #endregion
     }

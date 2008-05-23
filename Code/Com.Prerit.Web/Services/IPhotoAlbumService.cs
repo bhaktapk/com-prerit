@@ -8,7 +8,7 @@ namespace Com.Prerit.Web.Services
 
         AlbumYear[] FindAlbumYears();
 
-        Photo[] FindPhotos(int albumYear, string albumName);
+        Photo[] FindPhotos(int year, string albumName);
 
         #endregion
     }

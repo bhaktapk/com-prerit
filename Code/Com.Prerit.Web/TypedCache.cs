@@ -12,7 +12,7 @@ namespace Com.Prerit.Web
     {
         #region Properties
 
-        public static SortedList<int, Album[]> AlbumsGroupedByAlbumYear
+        public static AlbumYear[] AlbumsGroupedByAlbumYear
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Com.Prerit.Web
 
                 Trace.TraceInformation("Getting {0} from cache", cacheKey);
 
-                return GetCopy(GetCacheItem<SortedList<int, Album[]>>(cacheKey));
+                return GetClone(GetCacheItem<AlbumYear[]>(cacheKey));
             }
             set
             {
@@ -35,7 +35,7 @@ namespace Com.Prerit.Web
 
         #region Methods
 
-        private static CacheDependency GetAlbumsGroupedByAlbumYearDependency(SortedList<int, Album[]> albumsGroupedByAlbumYear)
+        private static CacheDependency GetAlbumsGroupedByAlbumYearDependency(AlbumYear[] albumsGroupedByAlbumYear)
         {
             CacheDependency result = null;
 
@@ -49,15 +49,15 @@ namespace Com.Prerit.Web
 
                 folderDependencyList.Add(photoAlbumsPhysicalPath);
 
-                foreach (KeyValuePair<int, Album[]> keyValuePair in albumsGroupedByAlbumYear)
+                foreach (AlbumYear albumYear in albumsGroupedByAlbumYear)
                 {
-                    string albumYearPhysicalPath = HostingEnvironment.MapPath(Path.Combine(photoAlbumsVirtualPath, keyValuePair.Key.ToString()));
+                    string albumYearPhysicalPath = HostingEnvironment.MapPath(Path.Combine(photoAlbumsVirtualPath, albumYear.Year.ToString()));
 
                     folderDependencyList.Add(albumYearPhysicalPath);
 
-                    Debug.Assert(keyValuePair.Value != null);
+                    Debug.Assert(albumYear.Albums != null);
 
-                    foreach (Album album in keyValuePair.Value)
+                    foreach (Album album in albumYear.Albums)
                     {
                         folderDependencyList.Add(HostingEnvironment.MapPath(album.VirtualPath));
                     }
@@ -98,6 +98,18 @@ namespace Com.Prerit.Web
             return result;
         }
 
+        private static T GetClone<T>(T original) where T : class, ICloneable
+        {
+            T result = null;
+
+            if (original != null)
+            {
+                result = (T) original.Clone();
+            }
+
+            return result;
+        }
+
         private static HttpContext GetContext()
         {
             HttpContext context = HttpContext.Current;
@@ -108,16 +120,6 @@ namespace Com.Prerit.Web
             }
 
             return context;
-        }
-
-        private static SortedList<int, Album[]> GetCopy(SortedList<int, Album[]> result)
-        {
-            if (result != null)
-            {
-                result = new SortedList<int, Album[]>(result);
-            }
-
-            return result;
         }
 
         private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
