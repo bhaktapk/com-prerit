@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
 namespace Com.Prerit.Web.Services
@@ -7,6 +8,20 @@ namespace Com.Prerit.Web.Services
     public class ImageEditorService : IImageEditorService
     {
         #region Methods
+
+        public Image CreateScaledImage(int width, int height, Image originalImage)
+        {
+            Image result = new Bitmap(width, height);
+
+            using (Graphics graphics = Graphics.FromImage(result))
+            {
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.FillRectangle(Brushes.White, 0, 0, width, height);
+                graphics.DrawImage(originalImage, 0, 0, width, height);
+            }
+
+            return result;
+        }
 
         public void DisallowUsageOfEmbeddedThumbnail(Image image)
         {
@@ -17,6 +32,25 @@ namespace Com.Prerit.Web.Services
 
             image.RotateFlip(RotateFlipType.Rotate180FlipNone);
             image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+        }
+
+        public EncoderParameters GetEncoderParams()
+        {
+            long[] quality = new long[] { 75 };
+            EncoderParameters encoderParams = new EncoderParameters();
+
+            encoderParams.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+
+            return encoderParams;
+        }
+
+        public ImageCodecInfo GetJpegCodecInfo()
+        {
+            ImageCodecInfo result;
+
+            result = Array.Find(ImageCodecInfo.GetImageEncoders(), codecInfo => string.Compare(codecInfo.FormatDescription, "JPEG", true) == 0);
+
+            return result;
         }
 
         public void GetScaledHeightAndWidth(int maxDimension, Image image, out int height, out int width)
@@ -95,9 +129,9 @@ namespace Com.Prerit.Web.Services
 
             GetScaledHeightAndWidth(maxDimension, originalImage, out height, out width);
 
-            result = originalImage.GetThumbnailImage(width, height, () => false, IntPtr.Zero);
+            result = CreateScaledImage(width, height, originalImage);
 
-            result.Save(scaledImagePhysicalPath, ImageFormat.Jpeg);
+            result.Save(scaledImagePhysicalPath, GetJpegCodecInfo(), GetEncoderParams());
 
             return result;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Com.Prerit.Web.Services
 {
@@ -6,7 +7,13 @@ namespace Com.Prerit.Web.Services
     {
         #region Methods
 
+        Image CreateScaledImage(int width, int height, Image originalImage);
+
         void DisallowUsageOfEmbeddedThumbnail(Image image);
+
+        EncoderParameters GetEncoderParams();
+
+        ImageCodecInfo GetJpegCodecInfo();
 
         void GetScaledHeightAndWidth(int maxDimension, Image image, out int height, out int width);
 
