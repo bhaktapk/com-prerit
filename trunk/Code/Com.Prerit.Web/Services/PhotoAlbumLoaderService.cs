@@ -32,7 +32,7 @@ namespace Com.Prerit.Web.Services
 
         #region Fields
 
-        private static readonly object _albumsGroupedByAlbumYearSyncRoot = new object();
+        private static readonly object _albumYearsSyncRoot = new object();
 
         private readonly IImageEditorService _imageEditorService;
 
@@ -159,7 +159,7 @@ namespace Com.Prerit.Web.Services
             return result.ToArray();
         }
 
-        private AlbumYear[] GetAlbumsGroupedByAlbumYears()
+        private AlbumYear[] GetAlbumYears()
         {
             List<AlbumYear> result = new List<AlbumYear>();
 
@@ -307,23 +307,23 @@ namespace Com.Prerit.Web.Services
 
         public AlbumYear[] Load()
         {
-            AlbumYear[] result = TypedCache.AlbumsGroupedByAlbumYear;
+            AlbumYear[] result = TypedCache.AlbumYears;
 
             if (result == null)
             {
-                lock (_albumsGroupedByAlbumYearSyncRoot)
+                lock (_albumYearsSyncRoot)
                 {
-                    result = TypedCache.AlbumsGroupedByAlbumYear;
+                    result = TypedCache.AlbumYears;
 
                     if (result == null)
                     {
-                        result = GetAlbumsGroupedByAlbumYears();
+                        result = GetAlbumYears();
 
-                        TypedCache.AlbumsGroupedByAlbumYear = result;
+                        TypedCache.AlbumYears = result;
                     }
                     else
                     {
-                        result = TypedCache.AlbumsGroupedByAlbumYear;
+                        result = TypedCache.AlbumYears;
                     }
                 }
             }

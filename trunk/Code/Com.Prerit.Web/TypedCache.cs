@@ -12,11 +12,11 @@ namespace Com.Prerit.Web
     {
         #region Properties
 
-        public static AlbumYear[] AlbumsGroupedByAlbumYear
+        public static AlbumYear[] AlbumYears
         {
             get
             {
-                CacheKey cacheKey = CacheKey.AlbumsGroupedByAlbumYear;
+                CacheKey cacheKey = CacheKey.AlbumYears;
 
                 Trace.TraceInformation("Getting {0} from cache", cacheKey);
 
@@ -26,7 +26,7 @@ namespace Com.Prerit.Web
             {
                 if (TypedAppSettings.CacheAlbumPhotos)
                 {
-                    SetCacheItem(CacheKey.AlbumsGroupedByAlbumYear, value, GetAlbumsGroupedByAlbumYearDependency(value));
+                    SetCacheItem(CacheKey.AlbumYears, value, GetAlbumYearsDependency(value));
                 }
             }
         }
@@ -35,11 +35,11 @@ namespace Com.Prerit.Web
 
         #region Methods
 
-        private static CacheDependency GetAlbumsGroupedByAlbumYearDependency(AlbumYear[] albumsGroupedByAlbumYear)
+        private static CacheDependency GetAlbumYearsDependency(AlbumYear[] albumYears)
         {
             CacheDependency result = null;
 
-            if (albumsGroupedByAlbumYear != null)
+            if (albumYears != null)
             {
                 List<string> folderDependencyList = new List<string>();
 
@@ -49,7 +49,7 @@ namespace Com.Prerit.Web
 
                 folderDependencyList.Add(photoAlbumsPhysicalPath);
 
-                foreach (AlbumYear albumYear in albumsGroupedByAlbumYear)
+                foreach (AlbumYear albumYear in albumYears)
                 {
                     string albumYearPhysicalPath = HostingEnvironment.MapPath(Path.Combine(photoAlbumsVirtualPath, albumYear.Year.ToString()));
 
@@ -75,7 +75,7 @@ namespace Com.Prerit.Web
 
             HttpContext context = GetContext();
 
-            object untypedCacheItem = context.Cache[CacheKey.AlbumsGroupedByAlbumYear];
+            object untypedCacheItem = context.Cache[CacheKey.AlbumYears];
 
             if (untypedCacheItem != null)
             {

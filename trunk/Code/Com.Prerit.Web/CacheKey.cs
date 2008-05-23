@@ -4,15 +4,15 @@ namespace Com.Prerit.Web
     {
         #region Fields
 
-        private static readonly CacheKey _albumsGroupedByAlbumYear = new CacheKey("AlbumsGroupedByAlbumYear");
+        private static readonly CacheKey _albumYears = new CacheKey("AlbumYears");
 
         #endregion
 
         #region Properties
 
-        public static CacheKey AlbumsGroupedByAlbumYear
+        public static CacheKey AlbumYears
         {
-            get { return _albumsGroupedByAlbumYear; }
+            get { return _albumYears; }
         }
 
         #endregion
