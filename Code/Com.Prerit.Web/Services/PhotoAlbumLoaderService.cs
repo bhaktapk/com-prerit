@@ -215,12 +215,9 @@ namespace Com.Prerit.Web.Services
         {
             WebImage result;
 
-            using (FileStream imageFileStream = File.OpenRead(imagePhysicalPath))
+            using (Image image = Image.FromFile(imagePhysicalPath))
             {
-                using (Image image = Image.FromStream(imageFileStream))
-                {
-                    result = new WebImage(imageFileName, imageVirtualPath, image.Height, image.Width);
-                }
+                result = new WebImage(imageFileName, imageVirtualPath, image.Height, image.Width);
             }
 
             return result;
@@ -249,18 +246,14 @@ namespace Com.Prerit.Web.Services
             {
                 if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name) && !IsResizedImage(photoFileInfo.Name))
                 {
-                    using (FileStream photoFileStream = File.OpenRead(photoFileInfo.FullName))
+                    using (Image photoImage = Image.FromFile(photoFileInfo.FullName))
                     {
-                        using (Image photoImage = Image.FromStream(photoFileStream))
-                        {
-                            string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
+                        string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
 
-                            WebImage thumbnail = GetScaledImage(_maxThumbnailDimension, _thumbnailIdentifier, photoVirtualPath, photoFileInfo, photoImage);
-                            WebImage resizedImage =
-                                GetScaledImage(_maxResizedImageDimension, _resizedImageIdentifier, photoVirtualPath, photoFileInfo, photoImage);
+                        WebImage thumbnail = GetScaledImage(_maxThumbnailDimension, _thumbnailIdentifier, photoVirtualPath, photoFileInfo, photoImage);
+                        WebImage resizedImage = GetScaledImage(_maxResizedImageDimension, _resizedImageIdentifier, photoVirtualPath, photoFileInfo, photoImage);
 
-                            result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
-                        }
+                        result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
                     }
                 }
             }
