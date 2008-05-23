@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Album.cs" />
+    <Compile Include="AlbumYear.cs" />
     <Compile Include="AppSettingKey.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
     <Compile Include="CacheKey.cs" />

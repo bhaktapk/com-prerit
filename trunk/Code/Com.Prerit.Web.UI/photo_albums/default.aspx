@@ -17,9 +17,9 @@
                 <ItemTemplate>
                     <asp:PlaceHolder ID="albumYearPlaceHolder" runat="server">
                         <h1><span>
-                            <%# ((KeyValuePair<int, Album[]>) Container.DataItem).Key %>
+                            <%# ((AlbumYear) Container.DataItem).Year %>
                             Albums</span></h1>
-                        <asp:Repeater ID="albumRepeater" DataSource="<%# ((KeyValuePair<int, Album[]>) Container.DataItem).Value %>" runat="server">
+                        <asp:Repeater ID="albumRepeater" DataSource="<%# ((AlbumYear) Container.DataItem).Albums %>" runat="server">
                             <HeaderTemplate>
                                 <div class="albums">
                             </HeaderTemplate>
@@ -49,7 +49,8 @@
             <asp:MultiView ID="photoViews" ActiveViewIndex="0" runat="server">
                 <asp:View ID="noPhotosView" runat="server">
                     <p>
-                        There are no photos for this album.</p>
+                        There are no photos for this album.
+                    </p>
                 </asp:View>
                 <asp:View ID="somePhotosView" runat="server">
                     <asp:Repeater ID="photoRepeater" runat="server">

@@ -1,14 +1,12 @@
-using System.Collections.Generic;
-
 namespace Com.Prerit.Web.Services
 {
     public interface IPhotoAlbumService
     {
         #region Methods
 
-        SortedList<int, Album[]> FindAlbums();
+        AlbumYear FindAlbumYear(int year);
 
-        SortedList<int, Album[]> FindAlbums(int albumYear);
+        AlbumYear[] FindAlbumYears();
 
         Photo[] FindPhotos(int albumYear, string albumName);
 
