@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Com.Prerit.Web.Services
 {
@@ -26,26 +25,21 @@ namespace Com.Prerit.Web.Services
         {
             AlbumYear result;
 
-            Album[] albums = _photoAlbumLoaderService.Load()[year];
-
-            result = new AlbumYear(year, albums);
+            result = Array.Find(_photoAlbumLoaderService.Load(), albumYear => albumYear.Year == year);
 
             return result;
         }
 
         public AlbumYear[] FindAlbumYears()
         {
-            List<AlbumYear> result = new List<AlbumYear>();
+            AlbumYear[] result;
 
-            foreach (KeyValuePair<int, Album[]> keyValuePair in _photoAlbumLoaderService.Load())
-            {
-                result.Add(new AlbumYear(keyValuePair.Key, keyValuePair.Value));
-            }
+            result = _photoAlbumLoaderService.Load();
 
-            return result.ToArray();
+            return result;
         }
 
-        public Photo[] FindPhotos(int albumYear, string albumName)
+        public Photo[] FindPhotos(int year, string albumName)
         {
             if (albumName == null)
             {
@@ -59,19 +53,20 @@ namespace Com.Prerit.Web.Services
 
             Photo[] result = new Photo[0];
 
-            Album[] albums = _photoAlbumLoaderService.Load()[albumYear];
+            AlbumYear[] albumYears = _photoAlbumLoaderService.Load();
 
-            if (albums != null && albums.Length != 0)
+            if (albumYears.Length != 0)
             {
-                Album albumFindResult = Array.Find(albums,
-                                                   delegate(Album album)
-                                                       {
-                                                           return string.Compare(album.AlbumName, albumName, true) == 0;
-                                                       });
+                AlbumYear albumYearFindResult = Array.Find(albumYears, albumYear => albumYear.Year == year);
 
-                if (albumFindResult != null)
+                if (albumYearFindResult != null)
                 {
-                    result = albumFindResult.Photos;
+                    Album albumFindResult = Array.Find(albumYearFindResult.Albums, album => string.Compare(album.AlbumName, albumName, true) == 0);
+
+                    if (albumFindResult != null)
+                    {
+                        result = albumFindResult.Photos;
+                    }
                 }
             }
 

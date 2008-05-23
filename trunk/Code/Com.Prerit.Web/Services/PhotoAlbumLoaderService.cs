@@ -159,9 +159,9 @@ namespace Com.Prerit.Web.Services
             return result.ToArray();
         }
 
-        private SortedList<int, Album[]> GetAlbumsGroupedByAlbumYears()
+        private AlbumYear[] GetAlbumsGroupedByAlbumYears()
         {
-            SortedList<int, Album[]> result = new SortedList<int, Album[]>();
+            List<AlbumYear> result = new List<AlbumYear>();
 
             DirectoryInfo photoAlbumsDirectoryInfo = new DirectoryInfo(PhysicalPath);
 
@@ -178,7 +178,9 @@ namespace Com.Prerit.Web.Services
                         string albumYearVirtualPath =
                             VirtualPathUtility.AppendTrailingSlash(VirtualPathUtility.Combine(VirtualPath, albumYearDirectoryInfo.Name));
 
-                        result[parsedAlbumYear] = GetAlbums(parsedAlbumYear, albumYearVirtualPath, albumYearDirectoryInfo);
+                        Album[] albums = GetAlbums(parsedAlbumYear, albumYearVirtualPath, albumYearDirectoryInfo);
+
+                        result.Add(new AlbumYear(parsedAlbumYear, albums));
                     }
                     else
                     {
@@ -192,7 +194,7 @@ namespace Com.Prerit.Web.Services
                 }
             }
 
-            return result;
+            return result.ToArray();
         }
 
         private WebImage GetDefaultAlbumCover()
@@ -303,9 +305,9 @@ namespace Com.Prerit.Web.Services
             return Path.GetFileNameWithoutExtension(fileName).EndsWith(_thumbnailIdentifier);
         }
 
-        public SortedList<int, Album[]> Load()
+        public AlbumYear[] Load()
         {
-            SortedList<int, Album[]> result = TypedCache.AlbumsGroupedByAlbumYear;
+            AlbumYear[] result = TypedCache.AlbumsGroupedByAlbumYear;
 
             if (result == null)
             {
