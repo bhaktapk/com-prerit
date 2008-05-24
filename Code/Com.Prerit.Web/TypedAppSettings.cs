@@ -12,7 +12,7 @@ namespace Com.Prerit.Web
             {
                 bool result;
 
-                if (!bool.TryParse(ConfigurationManager.AppSettings[AppSettingKey.CacheAlbumPhotos], out result))
+                if (!bool.TryParse(ConfigurationManager.AppSettings[AppSettingKey.CachePhotoAlbums], out result))
                 {
                     const bool cacheAlbumPhotosDefaultValue = true;
 
