@@ -2,7 +2,7 @@
 
 namespace Com.Prerit.Web.Services
 {
-    public class PhotoAlbumService : IPhotoAlbumService
+    public class PhotoAlbumFinderService : IPhotoAlbumFinderService
     {
         #region Fields
 
@@ -12,7 +12,7 @@ namespace Com.Prerit.Web.Services
 
         #region Constructors
 
-        public PhotoAlbumService(IPhotoAlbumLoaderService photoAlbumLoaderService)
+        public PhotoAlbumFinderService(IPhotoAlbumLoaderService photoAlbumLoaderService)
         {
             _photoAlbumLoaderService = photoAlbumLoaderService;
         }

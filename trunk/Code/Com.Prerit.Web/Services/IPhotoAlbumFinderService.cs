@@ -1,6 +1,6 @@
 namespace Com.Prerit.Web.Services
 {
-    public interface IPhotoAlbumService
+    public interface IPhotoAlbumFinderService
     {
         #region Methods
 

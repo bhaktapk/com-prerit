@@ -113,14 +113,14 @@ public partial class photo_albums_default : Page
         RegisterLightboxClientScriptIncludes();
     }
 
-    private AlbumYear GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumService photoAlbumService)
+    private AlbumYear GetAlbumYearRepeaterDataSource(int albumYear, IPhotoAlbumFinderService photoAlbumFinderService)
     {
-        return photoAlbumService.FindAlbumYear(albumYear);
+        return photoAlbumFinderService.FindAlbumYear(albumYear);
     }
 
-    private IEnumerable<AlbumYear> GetAlbumYearRepeaterDataSource(IPhotoAlbumService photoAlbumService)
+    private IEnumerable<AlbumYear> GetAlbumYearRepeaterDataSource(IPhotoAlbumFinderService photoAlbumFinderService)
     {
-        return OrderChronologically(photoAlbumService.FindAlbumYears());
+        return OrderChronologically(photoAlbumFinderService.FindAlbumYears());
     }
 
     protected string GetLightboxImageSetIdentifier()
@@ -128,9 +128,9 @@ public partial class photo_albums_default : Page
         return PreventLightboxImageSetIdentifierBug(AlbumNameQueryStringValue);
     }
 
-    private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumService photoAlbumService)
+    private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumFinderService photoAlbumFinderService)
     {
-        return photoAlbumService.FindPhotos(albumYear, albumName);
+        return photoAlbumFinderService.FindPhotos(albumYear, albumName);
     }
 
     private void HideAlbumYearPlaceHolder(RepeaterItemEventArgs e)
@@ -155,20 +155,20 @@ public partial class photo_albums_default : Page
     {
         IImageEditorService imageEditorService = new ImageEditorService();
         IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService("~/photo_albums/", imageEditorService);
-        IPhotoAlbumService photoAlbumService = new PhotoAlbumService(photoAlbumLoaderService);
+        IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(photoAlbumLoaderService);
 
         if (AlbumYearQueryStringValue == null && AlbumNameQueryStringValue == null)
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(photoAlbumService);
+            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(photoAlbumFinderService);
             albumYearRepeater.DataBind();
         }
         else if ((AlbumYearQueryStringValue != null && AlbumNameQueryStringValue == null))
         {
             photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource((int) AlbumYearQueryStringValue, photoAlbumService);
+            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource((int) AlbumYearQueryStringValue, photoAlbumFinderService);
             albumYearRepeater.DataBind();
         }
         else
@@ -177,7 +177,7 @@ public partial class photo_albums_default : Page
 
             EnablePhotoAnimations();
 
-            Photo[] dataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumService);
+            Photo[] dataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumFinderService);
 
             if (dataSource.Length == 0)
             {
