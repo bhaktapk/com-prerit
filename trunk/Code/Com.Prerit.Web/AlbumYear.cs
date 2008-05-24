@@ -50,6 +50,7 @@ namespace Com.Prerit.Web
             });
 
             Year = year;
+            VirtualPath = virtualPath;
             Albums = albums;
         }
 
