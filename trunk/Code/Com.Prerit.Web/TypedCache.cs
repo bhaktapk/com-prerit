@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Web;
 using System.Web.Caching;
-using System.Web.Hosting;
 
 namespace Com.Prerit.Web
 {
@@ -16,17 +13,21 @@ namespace Com.Prerit.Web
         {
             get
             {
-                CacheKey cacheKey = CacheKey.AlbumYears;
-
-                Trace.TraceInformation("Getting {0} from cache", cacheKey);
-
-                return GetClone(GetCacheItem<AlbumYear[]>(cacheKey));
+                return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears));
             }
             set
             {
                 if (TypedAppSettings.CacheAlbumPhotos)
                 {
-                    SetCacheItem(CacheKey.AlbumYears, value, GetAlbumYearsDependency(value));
+                    CacheDependency cacheDependency = null;
+
+                    if (value != null)
+                    {
+                        // TODO: make "~/photo_albums/" an app setting or const
+                        cacheDependency = CacheItemDependency.GetAlbumYearsDependency(value, "~/photo_albums/");
+                    }
+
+                    SetCacheItem(CacheKey.AlbumYears, value, cacheDependency);
                 }
             }
         }
@@ -34,38 +35,6 @@ namespace Com.Prerit.Web
         #endregion
 
         #region Methods
-
-        private static CacheDependency GetAlbumYearsDependency(AlbumYear[] albumYears)
-        {
-            CacheDependency result = null;
-
-            if (albumYears != null)
-            {
-                List<string> folderDependencyList = new List<string>();
-
-                const string photoAlbumsVirtualPath = "~/photo_albums/";
-
-                string photoAlbumsPhysicalPath = HostingEnvironment.MapPath(photoAlbumsVirtualPath);
-
-                folderDependencyList.Add(photoAlbumsPhysicalPath);
-
-                foreach (AlbumYear albumYear in albumYears)
-                {
-                    folderDependencyList.Add(HostingEnvironment.MapPath(albumYear.VirtualPath));
-
-                    Debug.Assert(albumYear.Albums != null);
-
-                    foreach (Album album in albumYear.Albums)
-                    {
-                        folderDependencyList.Add(HostingEnvironment.MapPath(album.VirtualPath));
-                    }
-                }
-
-                result = new CacheDependency(folderDependencyList.ToArray());
-            }
-
-            return result;
-        }
 
         private static T GetCacheItem<T>(CacheKey cacheKey) where T : class
         {
@@ -79,16 +48,24 @@ namespace Com.Prerit.Web
 
                 if (typedCacheItem != null)
                 {
+                    Trace.TraceInformation("Getting {0} from cache (cache item was not null)", cacheKey);
+
                     result = typedCacheItem;
                 }
                 else
                 {
                     Trace.TraceWarning(
-                        string.Format("Cache key {0} contains an incorrect type {1} instead of {2}",
+                        string.Format("Removing {0} from cache because it contains the type {1} instead of {2}",
                                       cacheKey,
                                       untypedCacheItem.GetType().FullName,
                                       typeof(T).FullName));
+
+                    HttpRuntime.Cache.Remove(cacheKey);
                 }
+            }
+            else
+            {
+                Trace.TraceInformation("Getting {0} from cache (cache item was null)", cacheKey);    
             }
 
             return result;
@@ -109,20 +86,27 @@ namespace Com.Prerit.Web
         private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
         {
             Debug.Assert(cacheKey != null);
+            Debug.Assert(!(cacheItem == null && dependency != null));
 
             if (cacheItem != null)
             {
                 if (dependency == null)
                 {
+                    Trace.TraceInformation("Inserting {0} into cache", cacheKey);
+
                     HttpRuntime.Cache.Insert(cacheKey, cacheItem);
                 }
                 else
                 {
+                    Trace.TraceInformation("Inserting {0} into cache with a dependency", cacheKey);
+
                     HttpRuntime.Cache.Insert(cacheKey, cacheItem, dependency);
                 }
             }
             else
             {
+                Trace.TraceInformation("Removing {0} from cache", cacheKey);
+
                 HttpRuntime.Cache.Remove(cacheKey);
             }
         }
