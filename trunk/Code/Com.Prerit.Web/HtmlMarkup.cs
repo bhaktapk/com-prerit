@@ -1,3 +1,5 @@
+using Com.Prerit.Core;
+
 namespace Com.Prerit.Web
 {
     public class HtmlMarkup : StringEnum<HtmlMarkup>

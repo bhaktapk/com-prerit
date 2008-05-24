@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-using Com.Prerit.Web;
-using Com.Prerit.Web.Services;
+using Com.Prerit.Domain;
+using Com.Prerit.Services;
 
 public partial class photo_albums_default : Page
 {

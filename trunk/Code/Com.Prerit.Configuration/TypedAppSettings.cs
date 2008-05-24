@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Configuration
 {
     public static class TypedAppSettings
     {

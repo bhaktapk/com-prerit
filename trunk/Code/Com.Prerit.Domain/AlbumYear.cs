@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Domain
 {
     public class AlbumYear
     {

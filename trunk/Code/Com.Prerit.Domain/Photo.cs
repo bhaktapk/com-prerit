@@ -1,6 +1,6 @@
 using System;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Domain
 {
     public class Photo : WebImage
     {

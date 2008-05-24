@@ -1,3 +1,5 @@
+using Com.Prerit.Core;
+
 namespace Com.Prerit.Web.Management
 {
     public class BufferedTextFileWebEventProviderMarkup : StringEnum<BufferedTextFileWebEventProviderMarkup>

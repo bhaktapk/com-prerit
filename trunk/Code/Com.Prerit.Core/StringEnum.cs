@@ -1,6 +1,6 @@
 using System;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Core
 {
     public abstract class StringEnum<T> : IEquatable<T> where T : StringEnum<T>
     {

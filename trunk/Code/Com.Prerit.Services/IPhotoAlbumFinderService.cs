@@ -1,4 +1,6 @@
-namespace Com.Prerit.Web.Services
+using Com.Prerit.Domain;
+
+namespace Com.Prerit.Services
 {
     public interface IPhotoAlbumFinderService
     {

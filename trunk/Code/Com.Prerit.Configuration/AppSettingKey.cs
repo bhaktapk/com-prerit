@@ -1,4 +1,6 @@
-namespace Com.Prerit.Web
+using Com.Prerit.Core;
+
+namespace Com.Prerit.Configuration
 {
     public class AppSettingKey : StringEnum<AppSettingKey>
     {
