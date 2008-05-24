@@ -18,12 +18,23 @@ namespace Com.Prerit.Web
             private set;
         }
 
+        public string VirtualPath
+        {
+            get;
+            private set;
+        }
+
         #endregion
 
         #region Constructors
 
-        public AlbumYear(int year, Album[] albums)
+        public AlbumYear(int year, string virtualPath, Album[] albums)
         {
+            if (virtualPath == null)
+            {
+                throw new ArgumentNullException("virtualPath");
+            }
+
             if (albums == null)
             {
                 throw new ArgumentNullException("albums");
