@@ -51,7 +51,7 @@ namespace Com.Prerit.Web
 
                 foreach (AlbumYear albumYear in albumYears)
                 {
-                    folderDependencyList.Add(albumYear.VirtualPath);
+                    folderDependencyList.Add(HostingEnvironment.MapPath(albumYear.VirtualPath));
 
                     Debug.Assert(albumYear.Albums != null);
 
