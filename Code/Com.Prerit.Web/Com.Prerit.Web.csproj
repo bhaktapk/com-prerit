@@ -37,6 +37,7 @@
     <Compile Include="AlbumYear.cs" />
     <Compile Include="AppSettingKey.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
+    <Compile Include="CacheItemDependency.cs" />
     <Compile Include="CacheKey.cs" />
     <Compile Include="ContentQualityComLink.cs" />
     <Compile Include="CssClassSelector.cs" />
