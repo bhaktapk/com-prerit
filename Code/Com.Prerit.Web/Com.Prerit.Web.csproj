@@ -51,9 +51,9 @@
     <Compile Include="Services\IImageEditorService.cs" />
     <Compile Include="Services\ImageEditorService.cs" />
     <Compile Include="Services\IPhotoAlbumLoaderService.cs" />
-    <Compile Include="Services\IPhotoAlbumService.cs" />
+    <Compile Include="Services\IPhotoAlbumFinderService.cs" />
     <Compile Include="Services\PhotoAlbumLoaderService.cs" />
-    <Compile Include="Services\PhotoAlbumService.cs" />
+    <Compile Include="Services\PhotoAlbumFinderService.cs" />
     <Compile Include="TypedAppSettings.cs" />
     <Compile Include="TypedCache.cs" />
     <Compile Include="SiteMapMarkup.cs" />
