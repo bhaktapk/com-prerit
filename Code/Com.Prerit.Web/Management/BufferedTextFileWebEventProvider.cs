@@ -41,7 +41,7 @@ namespace Com.Prerit.Web.Management
 
             StreamWriter writer = new StreamWriter(filePath, true, Encoding.UTF8);
 
-            writer.NewLine = "\r\n";
+            writer.NewLine = Environment.NewLine;
 
             return writer;
         }
@@ -236,7 +236,7 @@ namespace Com.Prerit.Web.Management
 
         private string ScrubLog(string log)
         {
-            return log.Trim().Replace("\n", "\r\n").Replace("\r\r\n", "\r\n");
+            return log.Trim().Replace("\n", Environment.NewLine).Replace("\r\r\n", Environment.NewLine);
         }
 
         public override void Shutdown()
