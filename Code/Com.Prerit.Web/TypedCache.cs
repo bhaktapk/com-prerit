@@ -73,9 +73,7 @@ namespace Com.Prerit.Web
         {
             T result = null;
 
-            HttpContext context = GetContext();
-
-            object untypedCacheItem = context.Cache[CacheKey.AlbumYears];
+            object untypedCacheItem = HttpRuntime.Cache[CacheKey.AlbumYears];
 
             if (untypedCacheItem != null)
             {
@@ -110,38 +108,24 @@ namespace Com.Prerit.Web
             return result;
         }
 
-        private static HttpContext GetContext()
-        {
-            HttpContext context = HttpContext.Current;
-
-            if (context == null)
-            {
-                throw new Exception("Unable to obtain the Cache object because an HttpContext does not exist");
-            }
-
-            return context;
-        }
-
         private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
         {
             Debug.Assert(cacheKey != null);
-
-            HttpContext context = GetContext();
 
             if (cacheItem != null)
             {
                 if (dependency == null)
                 {
-                    context.Cache.Insert(cacheKey, cacheItem);
+                    HttpRuntime.Cache.Insert(cacheKey, cacheItem);
                 }
                 else
                 {
-                    context.Cache.Insert(cacheKey, cacheItem, dependency);
+                    HttpRuntime.Cache.Insert(cacheKey, cacheItem, dependency);
                 }
             }
             else
             {
-                context.Cache.Remove(cacheKey);
+                HttpRuntime.Cache.Remove(cacheKey);
             }
         }
 
