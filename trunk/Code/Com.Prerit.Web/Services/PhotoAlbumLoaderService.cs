@@ -180,7 +180,7 @@ namespace Com.Prerit.Web.Services
 
                         Album[] albums = GetAlbums(parsedAlbumYear, albumYearVirtualPath, albumYearDirectoryInfo);
 
-                        result.Add(new AlbumYear(parsedAlbumYear, albums));
+                        result.Add(new AlbumYear(parsedAlbumYear, albumYearVirtualPath, albums));
                     }
                     else
                     {
