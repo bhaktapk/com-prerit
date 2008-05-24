@@ -2,6 +2,6 @@
 <appSettings>
   <clear />
 
-  <add key="cache-album-photos"
+  <add key="cache-photo-albums"
        value="true" />
 </appSettings>

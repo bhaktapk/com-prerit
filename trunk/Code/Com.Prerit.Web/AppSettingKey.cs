@@ -4,15 +4,15 @@ namespace Com.Prerit.Web
     {
         #region Fields
 
-        private static readonly AppSettingKey _cacheAlbumPhotos = new AppSettingKey("cache-album-photos");
+        private static readonly AppSettingKey _cachePhotoAlbums = new AppSettingKey("cache-photo-albums");
 
         #endregion
 
         #region Properties
 
-        public static AppSettingKey CacheAlbumPhotos
+        public static AppSettingKey CachePhotoAlbums
         {
-            get { return _cacheAlbumPhotos; }
+            get { return _cachePhotoAlbums; }
         }
 
         #endregion
