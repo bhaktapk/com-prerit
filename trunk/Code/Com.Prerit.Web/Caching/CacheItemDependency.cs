@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Hosting;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Web.Caching
 {
     public static class CacheItemDependency
     {
