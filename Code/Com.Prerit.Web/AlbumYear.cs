@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace Com.Prerit.Web
 {
@@ -33,6 +34,11 @@ namespace Com.Prerit.Web
             if (virtualPath == null)
             {
                 throw new ArgumentNullException("virtualPath");
+            }
+
+            if (!VirtualPathUtility.IsAbsolute(virtualPath) && !VirtualPathUtility.IsAppRelative(virtualPath))
+            {
+                throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "virtualPath");
             }
 
             if (albums == null)
