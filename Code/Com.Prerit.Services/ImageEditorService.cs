@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace Com.Prerit.Web.Services
+namespace Com.Prerit.Services
 {
     public class ImageEditorService : IImageEditorService
     {

@@ -1,4 +1,6 @@
-namespace Com.Prerit.Web.Caching
+using Com.Prerit.Core;
+
+namespace Com.Prerit.Services.Caching
 {
     public class CacheKey : StringEnum<CacheKey>
     {

@@ -1,7 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/master/default.master" AutoEventWireup="true" CodeFile="default.aspx.cs" Inherits="photo_albums_default" %>
 
-<%@ Import Namespace="Com.Prerit.Web" %>
-<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="Com.Prerit.Domain" %>
 <asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
     <h2><span>Photo Viewing Tips</span></h2>
     <ul>

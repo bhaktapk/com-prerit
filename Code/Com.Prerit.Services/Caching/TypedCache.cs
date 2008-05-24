@@ -3,7 +3,10 @@ using System.Diagnostics;
 using System.Web;
 using System.Web.Caching;
 
-namespace Com.Prerit.Web.Caching
+using Com.Prerit.Configuration;
+using Com.Prerit.Domain;
+
+namespace Com.Prerit.Services.Caching
 {
     public static class TypedCache
     {

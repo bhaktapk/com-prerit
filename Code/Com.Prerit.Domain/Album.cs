@@ -1,19 +1,31 @@
 using System;
 using System.Web;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Domain
 {
-    public class WebImage
+    public class Album
     {
         #region Properties
 
-        public string Caption
+        public WebImage AlbumCover
         {
             get;
             private set;
         }
 
-        public int Height
+        public string AlbumName
+        {
+            get;
+            private set;
+        }
+
+        public int AlbumYear
+        {
+            get;
+            private set;
+        }
+
+        public Photo[] Photos
         {
             get;
             private set;
@@ -25,21 +37,15 @@ namespace Com.Prerit.Web
             private set;
         }
 
-        public int Width
-        {
-            get;
-            private set;
-        }
-
         #endregion
 
         #region Constructors
 
-        public WebImage(string caption, string virtualPath, int height, int width)
+        public Album(string albumName, int albumYear, string virtualPath, WebImage albumCover, Photo[] photos)
         {
-            if (caption == null)
+            if (albumName == null)
             {
-                throw new ArgumentNullException("caption");
+                throw new ArgumentNullException("albumName");
             }
 
             if (virtualPath == null)
@@ -52,10 +58,21 @@ namespace Com.Prerit.Web
                 throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "virtualPath");
             }
 
-            Caption = caption;
+            if (albumCover == null)
+            {
+                throw new ArgumentNullException("albumCover");
+            }
+
+            if (photos == null)
+            {
+                throw new ArgumentNullException("photos");
+            }
+
+            AlbumName = albumName;
+            AlbumYear = albumYear;
             VirtualPath = virtualPath;
-            Height = height;
-            Width = width;
+            AlbumCover = albumCover;
+            Photos = photos;
         }
 
         #endregion

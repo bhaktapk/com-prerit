@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</ProjectGuid>
+    <ProjectGuid>{CE05BC84-482F-402F-A967-65859255C83C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Com.Prerit.Web</RootNamespace>
-    <AssemblyName>Com.Prerit.Web</AssemblyName>
+    <RootNamespace>Com.Prerit.Core</RootNamespace>
+    <AssemblyName>Com.Prerit.Core</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
@@ -33,42 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AspNetSiteMapMarkup.cs" />
-    <Compile Include="ContentQualityComLink.cs" />
-    <Compile Include="CssClassSelector.cs" />
-    <Compile Include="DefaultDocumentAwareXmlSiteMapProvider.cs" />
-    <Compile Include="GoogleSiteMapHandler.cs" />
-    <Compile Include="GoogleSiteMapMarkup.cs" />
-    <Compile Include="HtmlMarkup.cs" />
-    <Compile Include="Management\BufferedTextFileWebEventProvider.cs" />
-    <Compile Include="Management\BufferedTextFileWebEventProviderMarkup.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiteMapMarkup.cs" />
-    <Compile Include="W3OrgLink.cs" />
-    <Compile Include="WebsiteInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
-      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
-      <Name>Com.Prerit.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
-      <Project>{CE05BC84-482F-402F-A967-65859255C83C}</Project>
-      <Name>Com.Prerit.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Domain\Com.Prerit.Domain.csproj">
-      <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
-      <Name>Com.Prerit.Domain</Name>
-    </ProjectReference>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

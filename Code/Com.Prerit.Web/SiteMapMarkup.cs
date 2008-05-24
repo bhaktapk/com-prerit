@@ -1,4 +1,6 @@
-﻿namespace Com.Prerit.Web
+﻿using Com.Prerit.Core;
+
+namespace Com.Prerit.Web
 {
     public class SiteMapMarkup : StringEnum<SiteMapMarkup>
     {
