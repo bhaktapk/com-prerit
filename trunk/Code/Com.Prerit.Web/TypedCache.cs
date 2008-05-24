@@ -51,9 +51,7 @@ namespace Com.Prerit.Web
 
                 foreach (AlbumYear albumYear in albumYears)
                 {
-                    string albumYearPhysicalPath = HostingEnvironment.MapPath(Path.Combine(photoAlbumsVirtualPath, albumYear.Year.ToString()));
-
-                    folderDependencyList.Add(albumYearPhysicalPath);
+                    folderDependencyList.Add(albumYear.VirtualPath);
 
                     Debug.Assert(albumYear.Albums != null);
 
