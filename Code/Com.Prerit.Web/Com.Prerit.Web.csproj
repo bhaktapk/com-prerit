@@ -37,8 +37,8 @@
     <Compile Include="AlbumYear.cs" />
     <Compile Include="AppSettingKey.cs" />
     <Compile Include="AspNetSiteMapMarkup.cs" />
-    <Compile Include="CacheItemDependency.cs" />
-    <Compile Include="CacheKey.cs" />
+    <Compile Include="Caching\CacheItemDependency.cs" />
+    <Compile Include="Caching\CacheKey.cs" />
     <Compile Include="ContentQualityComLink.cs" />
     <Compile Include="CssClassSelector.cs" />
     <Compile Include="DefaultDocumentAwareXmlSiteMapProvider.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="Services\PhotoAlbumLoaderService.cs" />
     <Compile Include="Services\PhotoAlbumFinderService.cs" />
     <Compile Include="TypedAppSettings.cs" />
-    <Compile Include="TypedCache.cs" />
+    <Compile Include="Caching\TypedCache.cs" />
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="StringEnum.cs" />
     <Compile Include="W3OrgLink.cs" />

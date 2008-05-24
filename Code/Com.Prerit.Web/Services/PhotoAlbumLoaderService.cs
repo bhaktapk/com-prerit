@@ -6,6 +6,8 @@ using System.IO;
 using System.Web;
 using System.Web.Hosting;
 
+using Com.Prerit.Web.Caching;
+
 namespace Com.Prerit.Web.Services
 {
     public class PhotoAlbumLoaderService : IPhotoAlbumLoaderService
