@@ -65,7 +65,7 @@ namespace Com.Prerit.Web
             }
             else
             {
-                Trace.TraceInformation("Getting {0} from cache (cache item was null)", cacheKey);    
+                Trace.TraceInformation("Getting {0} from cache (cache item was null)", cacheKey);
             }
 
             return result;
