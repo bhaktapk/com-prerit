@@ -22,11 +22,6 @@ namespace Com.Prerit.Services
             }
         }
 
-        public bool IsLoading()
-        {
-            throw new NotImplementedException();
-        }
-
         public IAsyncResult LoadAsync<T>(ILoaderService<T> loaderService, Action<T> cacheItemSetter)
         {
             if (loaderService == null)
