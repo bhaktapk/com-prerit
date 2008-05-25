@@ -40,12 +40,6 @@ namespace Com.Prerit.Services
 
         #region Properties
 
-        public string PhysicalPath
-        {
-            get;
-            private set;
-        }
-
         public string VirtualPath
         {
             get;
@@ -73,7 +67,6 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("imageEditorService");
             }
 
-            PhysicalPath = HostingEnvironment.MapPath(virtualPath);
             VirtualPath = virtualPath;
             _imageEditorService = imageEditorService;
         }
@@ -269,7 +262,7 @@ namespace Com.Prerit.Services
         {
             List<AlbumYear> result = new List<AlbumYear>();
 
-            DirectoryInfo photoAlbumsDirectoryInfo = new DirectoryInfo(PhysicalPath);
+            DirectoryInfo photoAlbumsDirectoryInfo = new DirectoryInfo(HostingEnvironment.MapPath(VirtualPath));
 
             foreach (DirectoryInfo albumYearDirectoryInfo in GetNonHiddenSubDirectories(photoAlbumsDirectoryInfo))
             {
