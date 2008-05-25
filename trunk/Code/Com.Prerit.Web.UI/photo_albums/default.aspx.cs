@@ -92,7 +92,7 @@ public partial class photo_albums_default : Page
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
         IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
-        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
+        ILoaderAsyncService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
         return photoAlbumLoaderService.IsLoading();
     }
@@ -178,7 +178,7 @@ public partial class photo_albums_default : Page
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
         IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
-        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
+        ILoaderAsyncService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
         AlbumYear[] albumYears = photoAlbumLoaderService.GetLoadedObject();
 
