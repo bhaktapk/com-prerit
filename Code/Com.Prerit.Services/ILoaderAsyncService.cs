@@ -1,6 +1,4 @@
-﻿using Com.Prerit.Domain;
-
-namespace Com.Prerit.Services
+﻿namespace Com.Prerit.Services
 {
     public interface ILoaderAsyncService<T>
     {
