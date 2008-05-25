@@ -154,7 +154,8 @@ public partial class photo_albums_default : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IImageEditorService imageEditorService = new ImageEditorService();
-        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService("~/photo_albums/", imageEditorService);
+        IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
+        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService);
         IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(photoAlbumLoaderService);
 
         if (AlbumYearQueryStringValue == null && AlbumNameQueryStringValue == null)
