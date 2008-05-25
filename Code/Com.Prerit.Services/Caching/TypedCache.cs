@@ -96,15 +96,13 @@ namespace Com.Prerit.Services.Caching
                 if (dependency == null)
                 {
                     Trace.TraceInformation("Inserting {0} into cache", cacheKey);
-
-                    HttpRuntime.Cache.Insert(cacheKey, cacheItem);
                 }
                 else
                 {
                     Trace.TraceInformation("Inserting {0} into cache with a dependency", cacheKey);
-
-                    HttpRuntime.Cache.Insert(cacheKey, cacheItem, dependency);
                 }
+
+                HttpRuntime.Cache.Insert(cacheKey, cacheItem, dependency, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, ItemRemovedCallback);
             }
             else
             {
@@ -112,6 +110,11 @@ namespace Com.Prerit.Services.Caching
 
                 HttpRuntime.Cache.Remove(cacheKey);
             }
+        }
+
+        private static void ItemRemovedCallback(string key, object value, CacheItemRemovedReason reason)
+        {
+            Trace.TraceInformation(string.Format("Cache item {0} was removed for the following reason: {1}", key, reason));
         }
 
         #endregion
