@@ -58,6 +58,11 @@ namespace Com.Prerit.Services
 
         public AlbumYearLoaderService(string virtualPath, IImageEditorService imageEditorService)
         {
+            if (virtualPath == null)
+            {
+                throw new ArgumentNullException("virtualPath");
+            }
+
             if (!VirtualPathUtility.IsAbsolute(virtualPath) && !VirtualPathUtility.IsAppRelative(virtualPath))
             {
                 throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "virtualPath");
