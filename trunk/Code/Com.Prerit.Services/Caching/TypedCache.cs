@@ -17,7 +17,7 @@ namespace Com.Prerit.Services.Caching
             return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears));
         }
 
-        private static T GetCacheItem<T>(CacheKey cacheKey) where T : class
+        public static T GetCacheItem<T>(CacheKey cacheKey) where T : class
         {
             T result = null;
 
@@ -93,7 +93,7 @@ namespace Com.Prerit.Services.Caching
             }
         }
 
-        private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
+        public static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
         {
             Debug.Assert(cacheKey != null);
             Debug.Assert(!(cacheItem == null && dependency != null));
