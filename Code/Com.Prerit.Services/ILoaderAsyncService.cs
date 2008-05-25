@@ -2,11 +2,11 @@
 
 namespace Com.Prerit.Services
 {
-    public interface IPhotoAlbumLoaderService
+    public interface ILoaderAsyncService<T>
     {
         #region Methods
 
-        AlbumYear[] GetLoadedObject();
+        T GetLoadedObject();
 
         bool IsLoading();
 
