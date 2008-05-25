@@ -2,6 +2,15 @@
 
 <%@ Import Namespace="Com.Prerit.Domain" %>
 <asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
+    <asp:PlaceHolder ID="progressIndicator" Visible="false" runat="server">
+        <h2><span>Loading Status</span></h2>
+        <p id="inProgressIndicator">
+            <img src="~/photo_albums/processing_notifier.gif" alt="In Progress Indicator" height="16" width="16" runat="server" />
+        </p>
+        <p id="completedIndicator">
+            <a href="" title="Refresh the page">Ready to View</a>
+        </p>
+    </asp:PlaceHolder>
     <h2><span>Photo Viewing Tips</span></h2>
     <ul>
         <li>Roll over the image</li>
@@ -15,8 +24,9 @@
             <h1><span>Loading Photo Albums</span></h1>
             <p>
                 This site is currently creating all of the thumbnails, web optimized images and album covers on the fly for each photo album.
-                Since there are potentially many images, it may take a few minutes of processing. This page will automatically be refreshed
-                for you every 10 seconds.
+                Since there are potentially many images, it may take a few minutes of processing. This page will automatically notify you
+                when the processing has been completed by updating the "Loading Status" located to the right. Once completed, you can either
+                refresh the page or click on the "Ready to View" link in "Loading Status".
             </p>
         </asp:View>
         <asp:View ID="albumView" runat="server">
