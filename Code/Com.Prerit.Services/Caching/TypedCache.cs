@@ -14,10 +14,7 @@ namespace Com.Prerit.Services.Caching
 
         public static AlbumYear[] AlbumYears
         {
-            get
-            {
-                return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears));
-            }
+            get { return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears)); }
             set
             {
                 if (TypedAppSettings.CacheAlbumPhotos)
@@ -47,7 +44,7 @@ namespace Com.Prerit.Services.Caching
 
             if (untypedCacheItem != null)
             {
-                T typedCacheItem = untypedCacheItem as T;
+                var typedCacheItem = untypedCacheItem as T;
 
                 if (typedCacheItem != null)
                 {
@@ -57,11 +54,10 @@ namespace Com.Prerit.Services.Caching
                 }
                 else
                 {
-                    Trace.TraceWarning(
-                        string.Format("Removing {0} from cache because it contains the type {1} instead of {2}",
-                                      cacheKey,
-                                      untypedCacheItem.GetType().FullName,
-                                      typeof(T).FullName));
+                    Trace.TraceWarning(string.Format("Removing {0} from cache because it contains the type {1} instead of {2}",
+                                                     cacheKey,
+                                                     untypedCacheItem.GetType().FullName,
+                                                     typeof(T).FullName));
 
                     HttpRuntime.Cache.Remove(cacheKey);
                 }
@@ -86,6 +82,11 @@ namespace Com.Prerit.Services.Caching
             return result;
         }
 
+        private static void ItemRemovedCallback(string key, object value, CacheItemRemovedReason reason)
+        {
+            Trace.TraceInformation(string.Format("Cache item {0} was removed for the following reason: {1}", key, reason));
+        }
+
         private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
         {
             Debug.Assert(cacheKey != null);
@@ -102,7 +103,13 @@ namespace Com.Prerit.Services.Caching
                     Trace.TraceInformation("Inserting {0} into cache with a dependency", cacheKey);
                 }
 
-                HttpRuntime.Cache.Insert(cacheKey, cacheItem, dependency, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, ItemRemovedCallback);
+                HttpRuntime.Cache.Insert(cacheKey,
+                                         cacheItem,
+                                         dependency,
+                                         Cache.NoAbsoluteExpiration,
+                                         Cache.NoSlidingExpiration,
+                                         CacheItemPriority.Default,
+                                         ItemRemovedCallback);
             }
             else
             {
@@ -110,11 +117,6 @@ namespace Com.Prerit.Services.Caching
 
                 HttpRuntime.Cache.Remove(cacheKey);
             }
-        }
-
-        private static void ItemRemovedCallback(string key, object value, CacheItemRemovedReason reason)
-        {
-            Trace.TraceInformation(string.Format("Cache item {0} was removed for the following reason: {1}", key, reason));
         }
 
         #endregion
