@@ -2,7 +2,7 @@
 
 namespace Com.Prerit.Services
 {
-    public interface IPhotoAlbumLoaderService
+    public interface IAlbumYearsCacheItemLoaderService
     {
         #region Methods
 

@@ -5,7 +5,7 @@ using Com.Prerit.Services.Caching;
 
 namespace Com.Prerit.Services
 {
-    public class PhotoAlbumLoaderService : IPhotoAlbumLoaderService
+    public class AlbumYearsCacheItemLoaderService : IAlbumYearsCacheItemLoaderService
     {
         #region Fields
 
@@ -17,7 +17,7 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public PhotoAlbumLoaderService(IAlbumYearLoaderService albumYearLoaderService)
+        public AlbumYearsCacheItemLoaderService(IAlbumYearLoaderService albumYearLoaderService)
         {
             if (albumYearLoaderService == null)
             {
