@@ -155,8 +155,8 @@ public partial class photo_albums_default : Page
     {
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
-        IAlbumYearsCacheItemLoaderService albumYearsCacheItemLoaderService = new AlbumYearsCacheItemLoaderService(albumYearLoaderService);
-        IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(albumYearsCacheItemLoaderService);
+        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService);
+        IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(photoAlbumLoaderService);
 
         if (AlbumYearQueryStringValue == null && AlbumNameQueryStringValue == null)
         {
