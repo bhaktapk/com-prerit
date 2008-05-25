@@ -20,6 +20,11 @@ namespace Com.Prerit.Services.Caching
                 throw new ArgumentNullException("albumYears");
             }
 
+            if (albumYearsVirtualPath == null)
+            {
+                throw new ArgumentNullException("albumYearsVirtualPath");
+            }
+
             if (!VirtualPathUtility.IsAbsolute(albumYearsVirtualPath) && !VirtualPathUtility.IsAppRelative(albumYearsVirtualPath))
             {
                 throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "albumYearsVirtualPath");
