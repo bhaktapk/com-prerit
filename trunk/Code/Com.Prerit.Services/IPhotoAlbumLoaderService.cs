@@ -6,7 +6,11 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        AlbumYear[] Load();
+        AlbumYear[] GetLoadedObject();
+
+        bool IsLoading();
+
+        void LoadAsync();
 
         #endregion
     }

@@ -6,17 +6,18 @@ namespace Com.Prerit.Services
 {
     public class PhotoAlbumFinderService : IPhotoAlbumFinderService
     {
-        #region Fields
-
-        private readonly IPhotoAlbumLoaderService _photoAlbumLoaderService;
-
-        #endregion
+        private readonly AlbumYear[] _albumYears;
 
         #region Constructors
 
-        public PhotoAlbumFinderService(IPhotoAlbumLoaderService photoAlbumLoaderService)
+        public PhotoAlbumFinderService(AlbumYear[] albumYears)
         {
-            _photoAlbumLoaderService = photoAlbumLoaderService;
+            if (albumYears == null)
+            {
+                throw new ArgumentNullException("albumYears");
+            }
+
+            _albumYears = albumYears;
         }
 
         #endregion
@@ -27,16 +28,7 @@ namespace Com.Prerit.Services
         {
             AlbumYear result;
 
-            result = Array.Find(_photoAlbumLoaderService.Load(), albumYear => albumYear.Year == year);
-
-            return result;
-        }
-
-        public AlbumYear[] FindAlbumYears()
-        {
-            AlbumYear[] result;
-
-            result = _photoAlbumLoaderService.Load();
+            result = Array.Find(_albumYears, albumYear => albumYear.Year == year);
 
             return result;
         }
@@ -55,20 +47,15 @@ namespace Com.Prerit.Services
 
             Photo[] result = new Photo[0];
 
-            AlbumYear[] albumYears = _photoAlbumLoaderService.Load();
+            AlbumYear albumYearFindResult = Array.Find(_albumYears, albumYear => albumYear.Year == year);
 
-            if (albumYears.Length != 0)
+            if (albumYearFindResult != null)
             {
-                AlbumYear albumYearFindResult = Array.Find(albumYears, albumYear => albumYear.Year == year);
+                Album albumFindResult = Array.Find(albumYearFindResult.Albums, album => string.Compare(album.AlbumName, albumName, true) == 0);
 
-                if (albumYearFindResult != null)
+                if (albumFindResult != null)
                 {
-                    Album albumFindResult = Array.Find(albumYearFindResult.Albums, album => string.Compare(album.AlbumName, albumName, true) == 0);
-
-                    if (albumFindResult != null)
-                    {
-                        result = albumFindResult.Photos;
-                    }
+                    result = albumFindResult.Photos;
                 }
             }
 
