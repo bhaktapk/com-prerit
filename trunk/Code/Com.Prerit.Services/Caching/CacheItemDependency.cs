@@ -13,23 +13,23 @@ namespace Com.Prerit.Services.Caching
     {
         #region Methods
 
-        public static CacheDependency GetAlbumYearsDependency(AlbumYear[] albumYears, string photoAlbumsVirtualPath)
+        public static CacheDependency GetAlbumYearsDependency(AlbumYear[] albumYears, string albumYearsVirtualPath)
         {
             if (albumYears == null)
             {
                 throw new ArgumentNullException("albumYears");
             }
 
-            if (!VirtualPathUtility.IsAbsolute(photoAlbumsVirtualPath) && !VirtualPathUtility.IsAppRelative(photoAlbumsVirtualPath))
+            if (!VirtualPathUtility.IsAbsolute(albumYearsVirtualPath) && !VirtualPathUtility.IsAppRelative(albumYearsVirtualPath))
             {
-                throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "photoAlbumsVirtualPath");
+                throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "albumYearsVirtualPath");
             }
 
             CacheDependency result;
 
             List<string> folderDependencyList = new List<string>();
 
-            folderDependencyList.Add(HostingEnvironment.MapPath(photoAlbumsVirtualPath));
+            folderDependencyList.Add(HostingEnvironment.MapPath(albumYearsVirtualPath));
 
             foreach (AlbumYear albumYear in albumYears)
             {
