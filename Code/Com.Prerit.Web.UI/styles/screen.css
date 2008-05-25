@@ -321,6 +321,17 @@ img
     line-height: 1.5em;
 }
 
+#sidebar #completedIndicator
+{
+    display: none;
+}
+
+#sidebar #completedIndicator,
+#sidebar #inProgressIndicator
+{
+    text-align: center;
+}
+
 
 
 /******************************************************************************

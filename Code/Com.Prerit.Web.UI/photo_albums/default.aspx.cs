@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -67,18 +68,6 @@ public partial class photo_albums_default : Page
         Header.Controls.Add(htmlMeta);
     }
 
-    private void AddRefreshContentMetaTag()
-    {
-        HtmlMeta htmlMeta = new HtmlMeta();
-
-        htmlMeta.HttpEquiv = "refresh";
-
-        // TODO: make the refresh content interval an app setting
-        htmlMeta.Content = "10";
-
-        Header.Controls.Add(htmlMeta);
-    }
-
     protected void AlbumYearRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         switch (e.Item.ItemType)
@@ -95,6 +84,17 @@ public partial class photo_albums_default : Page
                 }
                 break;
         }
+    }
+
+    [WebMethod]
+    public static bool ArePhotoAlbumsLoading()
+    {
+        IImageEditorService imageEditorService = new ImageEditorService();
+        IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
+        IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
+        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
+
+        return photoAlbumLoaderService.IsLoading();
     }
 
     public string ConvertNameToTitle(string name)
@@ -188,8 +188,11 @@ public partial class photo_albums_default : Page
 
             photoAlbumLoaderService.LoadAsync();
 
-            AddRefreshContentMetaTag();
             AddNoCacheMetaTag();
+
+            RegisterLoadingViewClientScriptIncludes();
+
+            ShowProgressIndicator();
         }
         else
         {
@@ -247,6 +250,16 @@ public partial class photo_albums_default : Page
                                                  ResolveUrl("~/lightbox/js/scriptaculous.js?load=effects,builder"));
         ClientScript.RegisterClientScriptInclude("~/lightbox/js/lightbox.js", ResolveUrl("~/lightbox/js/lightbox.js"));
         ClientScript.RegisterClientScriptInclude("~/lightbox/js/lightbox_config.js", ResolveUrl("~/lightbox/js/lightbox_config.js"));
+    }
+
+    private void RegisterLoadingViewClientScriptIncludes()
+    {
+        ClientScript.RegisterClientScriptInclude("~/photo_albums/default.aspx.js", ResolveUrl("~/photo_albums/default.aspx.js"));
+    }
+
+    private void ShowProgressIndicator()
+    {
+        progressIndicator.Visible = true;
     }
 
     #endregion
