@@ -13,9 +13,9 @@ public partial class photo_albums_default : Page
 {
     #region Constants
 
-    private const string albumNameQueryStringKey = "album_name";
+    private const string _albumNameQueryStringKey = "album_name";
 
-    private const string albumYearQueryStringKey = "album_year";
+    private const string _albumYearQueryStringKey = "album_year";
 
     #endregion
 
@@ -23,7 +23,7 @@ public partial class photo_albums_default : Page
 
     public string AlbumNameQueryStringValue
     {
-        get { return Request.QueryString[albumNameQueryStringKey]; }
+        get { return Request.QueryString[_albumNameQueryStringKey]; }
     }
 
     public int? AlbumYearQueryStringValue
@@ -32,7 +32,7 @@ public partial class photo_albums_default : Page
         {
             int parsedAlbumYear;
 
-            if (int.TryParse(Request.QueryString[albumYearQueryStringKey], out parsedAlbumYear))
+            if (int.TryParse(Request.QueryString[_albumYearQueryStringKey], out parsedAlbumYear))
             {
                 return parsedAlbumYear;
             }
@@ -55,6 +55,28 @@ public partial class photo_albums_default : Page
         link.Attributes.Add("media", "screen");
 
         Header.Controls.Add(link);
+    }
+
+    private void AddNoCacheMetaTag()
+    {
+        HtmlMeta htmlMeta = new HtmlMeta();
+
+        htmlMeta.HttpEquiv = "pragma";
+        htmlMeta.Content = "no-cache";
+
+        Header.Controls.Add(htmlMeta);
+    }
+
+    private void AddRefreshContentMetaTag()
+    {
+        HtmlMeta htmlMeta = new HtmlMeta();
+
+        htmlMeta.HttpEquiv = "refresh";
+
+        // TODO: make the refresh content interval an app setting
+        htmlMeta.Content = "10";
+
+        Header.Controls.Add(htmlMeta);
     }
 
     protected void AlbumYearRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -118,9 +140,9 @@ public partial class photo_albums_default : Page
         return photoAlbumFinderService.FindAlbumYear(albumYear);
     }
 
-    private IEnumerable<AlbumYear> GetAlbumYearRepeaterDataSource(IPhotoAlbumFinderService photoAlbumFinderService)
+    private IEnumerable<AlbumYear> GetAlbumYearRepeaterDataSource(AlbumYear[] albumYears)
     {
-        return OrderChronologically(photoAlbumFinderService.FindAlbumYears());
+        return OrderChronologically(albumYears);
     }
 
     protected string GetLightboxImageSetIdentifier()
@@ -155,41 +177,60 @@ public partial class photo_albums_default : Page
     {
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
-        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService);
-        IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(photoAlbumLoaderService);
+        IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
+        IPhotoAlbumLoaderService photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
-        if (AlbumYearQueryStringValue == null && AlbumNameQueryStringValue == null)
+        AlbumYear[] albumYears = photoAlbumLoaderService.GetLoadedObject();
+
+        if (albumYears == null)
         {
-            photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
+            photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.LoadingView;
 
-            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(photoAlbumFinderService);
-            albumYearRepeater.DataBind();
-        }
-        else if ((AlbumYearQueryStringValue != null && AlbumNameQueryStringValue == null))
-        {
-            photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
+            photoAlbumLoaderService.LoadAsync();
 
-            albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource((int) AlbumYearQueryStringValue, photoAlbumFinderService);
-            albumYearRepeater.DataBind();
+            AddRefreshContentMetaTag();
+            AddNoCacheMetaTag();
         }
         else
         {
-            photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.PhotoView;
-
-            EnablePhotoAnimations();
-
-            Photo[] dataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumFinderService);
-
-            if (dataSource.Length == 0)
+            if (AlbumYearQueryStringValue == null && AlbumNameQueryStringValue == null)
             {
-                photoViews.ActiveViewIndex = (int) PhotoView.NoPhotosView;
+                photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
+
+                albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(albumYears);
+                albumYearRepeater.DataBind();
             }
             else
             {
-                photoViews.ActiveViewIndex = (int) PhotoView.SomePhotosView;
+                IPhotoAlbumFinderService photoAlbumFinderService = new PhotoAlbumFinderService(albumYears);
 
-                photoRepeater.DataSource = dataSource;
-                photoRepeater.DataBind();
+                if ((AlbumYearQueryStringValue != null && AlbumNameQueryStringValue == null))
+                {
+                    photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
+
+                    albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource((int) AlbumYearQueryStringValue, photoAlbumFinderService);
+                    albumYearRepeater.DataBind();
+                }
+                else
+                {
+                    photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.PhotoView;
+
+                    EnablePhotoAnimations();
+
+                    Photo[] dataSource = GetPhotoRepeaterDataSource((int) AlbumYearQueryStringValue, AlbumNameQueryStringValue, photoAlbumFinderService);
+
+                    if (dataSource.Length == 0)
+                    {
+                        photoViews.ActiveViewIndex = (int) PhotoView.NoPhotosView;
+                    }
+                    else
+                    {
+                        photoViews.ActiveViewIndex = (int) PhotoView.SomePhotosView;
+
+                        photoRepeater.DataSource = dataSource;
+                        photoRepeater.DataBind();
+                    }
+                }
             }
         }
     }
@@ -214,8 +255,9 @@ public partial class photo_albums_default : Page
 
     protected enum PhotoAlbumView
     {
-        AlbumView = 0,
-        PhotoView = 1
+        LoadingView = 0,
+        AlbumView = 1,
+        PhotoView = 2
     }
 
     #endregion

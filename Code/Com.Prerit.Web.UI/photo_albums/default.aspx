@@ -11,6 +11,14 @@
 </asp:Content>
 <asp:Content ID="mainbar" ContentPlaceHolderID="mainbarPlaceHolder" runat="server">
     <asp:MultiView ID="photoAlbumViews" ActiveViewIndex="0" runat="server">
+        <asp:View ID="loadingView" runat="server">
+            <h1><span>Loading Photo Albums</span></h1>
+            <p>
+                This site is currently creating all of the thumbnails, web optimized images and album covers on the fly for each photo album.
+                Since there are potentially many images, it may take a few minutes of processing. This page will automatically be refreshed
+                for you every 10 seconds.
+            </p>
+        </asp:View>
         <asp:View ID="albumView" runat="server">
             <asp:Repeater ID="albumYearRepeater" OnItemDataBound="AlbumYearRepeater_ItemDataBound" runat="server">
                 <ItemTemplate>
