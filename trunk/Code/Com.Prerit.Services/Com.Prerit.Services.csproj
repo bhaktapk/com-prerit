@@ -46,9 +46,9 @@
     <Compile Include="IImageEditorService.cs" />
     <Compile Include="ImageEditorService.cs" />
     <Compile Include="IPhotoAlbumFinderService.cs" />
-    <Compile Include="IAlbumYearsCacheItemLoaderService.cs" />
+    <Compile Include="IPhotoAlbumLoaderService.cs" />
     <Compile Include="PhotoAlbumFinderService.cs" />
-    <Compile Include="AlbumYearsCacheItemLoaderService.cs" />
+    <Compile Include="PhotoAlbumLoaderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
