@@ -38,9 +38,11 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumYearLoaderService.cs" />
     <Compile Include="Caching\CacheItemDependency.cs" />
     <Compile Include="Caching\CacheKey.cs" />
     <Compile Include="Caching\TypedCache.cs" />
+    <Compile Include="IAlbumYearLoaderService.cs" />
     <Compile Include="IImageEditorService.cs" />
     <Compile Include="ImageEditorService.cs" />
     <Compile Include="IPhotoAlbumFinderService.cs" />
