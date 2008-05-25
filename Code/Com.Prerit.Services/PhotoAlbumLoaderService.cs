@@ -19,15 +19,6 @@ namespace Com.Prerit.Services
 
         #endregion
 
-        #region Properties
-
-        public AlbumYear[] GetLoadedObject()
-        {
-            return TypedCache.AlbumYears;
-        }
-
-        #endregion
-
         #region Constructors
 
         public PhotoAlbumLoaderService(IAlbumYearLoaderService albumYearLoaderService, IAsyncCacheItemLoaderService asyncCacheItemLoaderService)
@@ -50,6 +41,11 @@ namespace Com.Prerit.Services
 
         #region Methods
 
+        public AlbumYear[] GetLoadedObject()
+        {
+            return TypedCache.GetAlbumYearsCacheItem();
+        }
+
         public bool IsLoading()
         {
             bool result = false;
@@ -64,21 +60,22 @@ namespace Com.Prerit.Services
 
         public void LoadAsync()
         {
-            AlbumYear[] cacheItem = TypedCache.AlbumYears;
+            AlbumYear[] cacheItem = TypedCache.GetAlbumYearsCacheItem();
 
             if (cacheItem == null && !IsLoading())
             {
                 lock (_loadingSyncRoot)
                 {
-                    cacheItem = TypedCache.AlbumYears;
+                    cacheItem = TypedCache.GetAlbumYearsCacheItem();
 
                     if (cacheItem == null && !IsLoading())
                     {
-                        _asyncResult = _asyncCacheItemLoaderService.LoadAsync(_albumYearLoaderService, albumYears => TypedCache.AlbumYears = albumYears);
+                        _asyncResult = _asyncCacheItemLoaderService.LoadAsync(_albumYearLoaderService,
+                                                                              albumYears => TypedCache.SetAlbumYearsCacheItem(albumYears, _albumYearLoaderService.VirtualPath));
                     }
                     else
                     {
-                        cacheItem = TypedCache.AlbumYears;
+                        cacheItem = TypedCache.GetAlbumYearsCacheItem();
                     }
                 }
             }

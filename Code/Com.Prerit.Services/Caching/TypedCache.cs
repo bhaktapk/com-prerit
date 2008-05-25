@@ -10,31 +10,12 @@ namespace Com.Prerit.Services.Caching
 {
     public static class TypedCache
     {
-        #region Properties
-
-        public static AlbumYear[] AlbumYears
-        {
-            get { return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears)); }
-            set
-            {
-                if (TypedAppSettings.CacheAlbumPhotos)
-                {
-                    CacheDependency cacheDependency = null;
-
-                    if (value != null)
-                    {
-                        // TODO: make "~/photo_albums/" an app setting or const
-                        cacheDependency = CacheItemDependency.GetAlbumYearsDependency(value, "~/photo_albums/");
-                    }
-
-                    SetCacheItem(CacheKey.AlbumYears, value, cacheDependency);
-                }
-            }
-        }
-
-        #endregion
-
         #region Methods
+
+        public static AlbumYear[] GetAlbumYearsCacheItem()
+        {
+            return GetClone(GetCacheItem<AlbumYear[]>(CacheKey.AlbumYears));
+        }
 
         private static T GetCacheItem<T>(CacheKey cacheKey) where T : class
         {
@@ -85,6 +66,31 @@ namespace Com.Prerit.Services.Caching
         private static void ItemRemovedCallback(string key, object value, CacheItemRemovedReason reason)
         {
             Trace.TraceInformation(string.Format("Cache item {0} was removed for the following reason: {1}", key, reason));
+        }
+
+        public static void SetAlbumYearsCacheItem(AlbumYear[] albumYears, string albumYearsVirtualPath)
+        {
+            if (TypedAppSettings.CacheAlbumPhotos)
+            {
+                CacheDependency cacheDependency = null;
+
+                if (albumYears != null)
+                {
+                    if (albumYearsVirtualPath == null)
+                    {
+                        throw new ArgumentNullException("albumYearsVirtualPath");
+                    }
+
+                    if (!VirtualPathUtility.IsAbsolute(albumYearsVirtualPath) && !VirtualPathUtility.IsAppRelative(albumYearsVirtualPath))
+                    {
+                        throw new ArgumentException("Path must either be an absolute virtual path or app relative virtual path", "albumYearsVirtualPath");
+                    }
+
+                    cacheDependency = CacheItemDependency.GetAlbumYearsDependency(albumYears, albumYearsVirtualPath);
+                }
+
+                SetCacheItem(CacheKey.AlbumYears, albumYears, cacheDependency);
+            }
         }
 
         private static void SetCacheItem<T>(CacheKey cacheKey, T cacheItem, CacheDependency dependency) where T : class
