@@ -8,15 +8,15 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
-        private readonly IPhotoAlbumLoaderService _photoAlbumLoaderService;
+        private readonly IAlbumYearsCacheItemLoaderService _albumYearsCacheItemLoaderService;
 
         #endregion
 
         #region Constructors
 
-        public PhotoAlbumFinderService(IPhotoAlbumLoaderService photoAlbumLoaderService)
+        public PhotoAlbumFinderService(IAlbumYearsCacheItemLoaderService albumYearsCacheItemLoaderService)
         {
-            _photoAlbumLoaderService = photoAlbumLoaderService;
+            _albumYearsCacheItemLoaderService = albumYearsCacheItemLoaderService;
         }
 
         #endregion
@@ -27,7 +27,7 @@ namespace Com.Prerit.Services
         {
             AlbumYear result;
 
-            result = Array.Find(_photoAlbumLoaderService.Load(), albumYear => albumYear.Year == year);
+            result = Array.Find(_albumYearsCacheItemLoaderService.Load(), albumYear => albumYear.Year == year);
 
             return result;
         }
@@ -36,7 +36,7 @@ namespace Com.Prerit.Services
         {
             AlbumYear[] result;
 
-            result = _photoAlbumLoaderService.Load();
+            result = _albumYearsCacheItemLoaderService.Load();
 
             return result;
         }
@@ -55,7 +55,7 @@ namespace Com.Prerit.Services
 
             Photo[] result = new Photo[0];
 
-            AlbumYear[] albumYears = _photoAlbumLoaderService.Load();
+            AlbumYear[] albumYears = _albumYearsCacheItemLoaderService.Load();
 
             if (albumYears.Length != 0)
             {
