@@ -38,6 +38,14 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
+      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
+      <Name>Com.Prerit.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
+      <Project>{CE05BC84-482F-402F-A967-65859255C83C}</Project>
+      <Name>Com.Prerit.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Prerit.Domain\Com.Prerit.Domain.csproj">
       <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
       <Name>Com.Prerit.Domain</Name>
