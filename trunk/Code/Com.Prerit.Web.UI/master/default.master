@@ -37,7 +37,7 @@
     </div>
     <div id="content">
         <form id="form" runat="server">
-        <asp:ScriptManager runat="server" />
+        <asp:ScriptManager EnablePageMethods="true" runat="server" />
         <div id="sidebar">
             <asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
         </div>
