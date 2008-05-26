@@ -46,6 +46,18 @@ namespace Com.Prerit.Services
             return TypedCache.GetAlbumYearsCacheItem();
         }
 
+        public bool IsFailedLoad()
+        {
+            bool result = false;
+
+            if (_asyncResult != null && !IsLoading() && TypedCache.GetAlbumYearsCacheItem() == null)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         public bool IsLoading()
         {
             bool result = false;

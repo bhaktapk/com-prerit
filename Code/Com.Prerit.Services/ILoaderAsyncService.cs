@@ -6,6 +6,8 @@
 
         T GetLoadedObject();
 
+        bool IsFailedLoad();
+
         bool IsLoading();
 
         void LoadAsync();
