@@ -87,14 +87,24 @@ public partial class photo_albums_default : Page
     }
 
     [WebMethod]
-    public static bool ArePhotoAlbumsLoading()
+    public static int GetLoaderServiceState()
     {
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
         IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
         ILoaderAsyncService<AlbumYear[]> photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
-        return photoAlbumLoaderService.IsLoading();
+        if (photoAlbumLoaderService.IsLoading())
+        {
+            return 1;
+        }
+
+        if (photoAlbumLoaderService.IsFailedLoad())
+        {
+            return 2;
+        }
+
+        return 3;
     }
 
     public string ConvertNameToTitle(string name)

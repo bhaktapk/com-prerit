@@ -321,12 +321,14 @@ img
     line-height: 1.5em;
 }
 
-#sidebar #completedIndicator
+#sidebar #completedIndicator,
+#sidebar #failedLoadIndicator
 {
     display: none;
 }
 
 #sidebar #completedIndicator,
+#sidebar #failedLoadIndicator,
 #sidebar #inProgressIndicator
 {
     text-align: center;
