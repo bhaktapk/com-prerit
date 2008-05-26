@@ -36,7 +36,7 @@ namespace Com.Prerit.Services
 
             Action<ILoaderService<T>, Action<T>> loadoadAndSetCacheItem = LoadAndSetCacheItem;
 
-            return loadoadAndSetCacheItem.BeginInvoke(loaderService, cacheItemSetter, asyncResult => loadoadAndSetCacheItem.EndInvoke(asyncResult), null);
+            return loadoadAndSetCacheItem.BeginInvoke(loaderService, cacheItemSetter, loadoadAndSetCacheItem.EndInvoke, null);
         }
 
         #endregion
