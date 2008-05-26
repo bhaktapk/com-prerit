@@ -31,73 +31,7 @@
                  priority="0.5" />
 
     <!-- Photo Albums Directory -->
-    <siteMapNode url="~/photo_albums/"
-                 title="Photo Albums"
-                 description="Photo albums"
-                 accessKey="P"
-                 keywords="photo albums"
-                 lastModified="2008-05-05"
-                 changeFrequency="monthly"
-                 priority="0.5">
-
-      <siteMapNode url="~/photo_albums/2006/"
-                   title="Photo Albums for the Year 2006"
-                   description="Photo albums for the year 2006"
-                   keywords="2006, photo albums"
-                   lastModified="2008-05-05"
-                   changeFrequency="monthly"
-                   priority="0.5">
-
-        <siteMapNode url="~/photo_albums/2006/christmas/"
-                     title="Photo Album of Christmas for the Year 2006"
-                     description="Photo album of Christmas 2006"
-                     keywords="Christmas, 2006, photo album"
-                     lastModified="2008-05-05"
-                     changeFrequency="monthly"
-                     priority="0.5" />
-
-        <siteMapNode url="~/photo_albums/2006/our_honeymoon/"
-                     title="Photo Album of Our Honeymoon"
-                     description="Photo album of our honeymoon"
-                     keywords="our honeymoon, 2006, photo album"
-                     lastModified="2008-05-05"
-                     changeFrequency="monthly"
-                     priority="0.5" />
-
-        <siteMapNode url="~/photo_albums/2006/our_wedding/"
-                     title="Photo Album of Our Wedding"
-                     description="Photo album of our wedding"
-                     keywords="our wedding, 2006, photo album"
-                     lastModified="2008-05-05"
-                     changeFrequency="monthly"
-                     priority="0.5" />
-
-        <siteMapNode url="~/photo_albums/2006/p's_pithi/"
-                     title="Photo Album of P's Pithi"
-                     description="Photo album of P's Pithi"
-                     keywords="P's Pithi, 2006, photo album"
-                     lastModified="2008-05-05"
-                     changeFrequency="monthly"
-                     priority="0.5" />
-      </siteMapNode>
-
-      <siteMapNode url="~/photo_albums/2008/"
-                   title="Photo Albums for the Year 2008"
-                   description="Photo albums for the year 2008"
-                   keywords="2008, photo albums"
-                   lastModified="2008-05-17"
-                   changeFrequency="monthly"
-                   priority="0.5">
-
-        <siteMapNode url="~/photo_albums/2008/amita's_wedding/"
-                     title="Photo Album of Amita's Wedding"
-                     description="Photo album of Amita's wedding"
-                     keywords="Amita's wedding, 2008, photo album"
-                     lastModified="2008-05-17"
-                     changeFrequency="monthly"
-                     priority="0.5" />
-      </siteMapNode>
-    </siteMapNode>
+    <siteMapNode siteMapFile="~/photo_albums/web.sitemap" />
 
     <!-- Resume Directory -->
     <siteMapNode url="~/resume/"

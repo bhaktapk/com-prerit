@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+
+  <!-- Photo Albums Directory -->
+  <siteMapNode url="~/photo_albums/"
+               title="Photo Albums"
+               description="Photo albums"
+               accessKey="P"
+               keywords="photo albums"
+               lastModified="2008-05-05"
+               changeFrequency="monthly"
+               priority="0.5" />
+</siteMap>
