@@ -57,7 +57,7 @@
     <Compile Include="ILoaderService.cs" />
     <Compile Include="ImageEditorService.cs" />
     <Compile Include="IPhotoAlbumFinderService.cs" />
-    <Compile Include="ILoaderAsyncService.cs" />
+    <Compile Include="IAsyncLoaderService.cs" />
     <Compile Include="LoaderAsyncServiceStatus.cs" />
     <Compile Include="PhotoAlbumFinderService.cs" />
     <Compile Include="PhotoAlbumLoaderService.cs" />
