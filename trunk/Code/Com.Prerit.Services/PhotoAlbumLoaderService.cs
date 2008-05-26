@@ -85,10 +85,6 @@ namespace Com.Prerit.Services
                         _asyncResult = _asyncCacheItemLoaderService.LoadAsync(_albumYearLoaderService,
                                                                               albumYears => TypedCache.SetAlbumYearsCacheItem(albumYears, _albumYearLoaderService.VirtualPath));
                     }
-                    else
-                    {
-                        cacheItem = TypedCache.GetAlbumYearsCacheItem();
-                    }
                 }
             }
         }
