@@ -468,8 +468,8 @@ img
     color: #7bd32c;
     float: left;
     font-weight: bold;
-    height: 250px;
-    margin: 0 10px 40px 10px;
+    height: 270px;
+    margin: 0 10px 20px 10px;
     text-transform: uppercase;
     width: 250px;
 }
@@ -502,13 +502,10 @@ img
 
 #mainbar div.photos p
 {
-    color: #7bd32c;
     float: left;
-    font-weight: bold;
     height: 160px;
     line-height: 160px;
     margin: 0 10px 40px 10px;
-    text-transform: uppercase;
     width: 160px;
 }
 
