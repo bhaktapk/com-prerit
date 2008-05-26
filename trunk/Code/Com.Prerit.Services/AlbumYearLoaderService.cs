@@ -287,12 +287,6 @@ namespace Com.Prerit.Services
             return result.ToArray();
         }
 
-        private void OverwriteFile(string oldFilePhysicalPath, string newFilePhysicalPath)
-        {
-            File.Delete(oldFilePhysicalPath);
-            File.Move(newFilePhysicalPath, oldFilePhysicalPath);
-        }
-
         private WebImage UpdateAlbumCover(string albumVirtualPath, string albumCoverVirtualPath, string albumCoverPhysicalPath)
         {
             WebImage result;
@@ -301,12 +295,14 @@ namespace Com.Prerit.Services
             string tempVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, tempFileName);
             string tempPhysicalPath = HostingEnvironment.MapPath(tempVirtualPath);
 
-            using (Image albumCoverImage = Image.FromFile(albumCoverPhysicalPath))
+            File.Move(albumCoverPhysicalPath, tempPhysicalPath);
+
+            using (Image tempImage = Image.FromFile(tempPhysicalPath))
             {
-                result = CreateScaledImage(_maxAlbumCoverDimension, _albumCoverFileName, albumCoverVirtualPath, tempPhysicalPath, albumCoverImage);
+                result = CreateScaledImage(_maxAlbumCoverDimension, _albumCoverFileName, albumCoverVirtualPath, albumCoverPhysicalPath, tempImage);
             }
 
-            OverwriteFile(albumCoverPhysicalPath, tempPhysicalPath);
+            File.Delete(tempPhysicalPath);
 
             return result;
         }
