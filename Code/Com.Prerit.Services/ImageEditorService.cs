@@ -13,15 +13,30 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        public Image CreateScaledImage(int width, int height, Image originalImage)
+        public Image CreateScaledImage(int width, int height, Image image)
         {
+            if (width < 0)
+            {
+                throw new ArgumentOutOfRangeException("width", width, "Cannot be less than zero");
+            }
+
+            if (height < 0)
+            {
+                throw new ArgumentOutOfRangeException("height", height, "Cannot be less than zero");
+            }
+
+            if (image == null)
+            {
+                throw new ArgumentNullException("image");
+            }
+
             Image result = new Bitmap(width, height);
 
             using (Graphics graphics = Graphics.FromImage(result))
             {
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.FillRectangle(Brushes.White, 0, 0, width, height);
-                graphics.DrawImage(originalImage, 0, 0, width, height);
+                graphics.DrawImage(image, 0, 0, width, height);
             }
 
             return result;
