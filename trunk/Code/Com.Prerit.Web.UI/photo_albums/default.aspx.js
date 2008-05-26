@@ -1,12 +1,12 @@
 ﻿var interval = 5000;
-var intervalId = setInterval('PageMethods.GetLoaderServiceState(updateProgressIndicator);', interval);
-var LoadingStatus = { InProgress : 1, FailedLoad : 2, Completed : 3 };
+var intervalId = setInterval('PageMethods.GetLoaderAsyncServiceStatus(updateProgressIndicator);', interval);
+var LoaderAsyncServiceStatus = { Idle : 0, Loading : 1, FailedLoad : 2, Completed : 3 };
 
-function updateProgressIndicator(loadingStatus)
+function updateProgressIndicator(loaderAsyncServiceStatus)
 {
-    switch (loadingStatus)
+    switch (loaderAsyncServiceStatus)
     {
-        case LoadingStatus.Completed:
+        case LoaderAsyncServiceStatus.Completed:
             clearInterval(intervalId);
 
             $get('inProgressIndicator').style.display = 'none';
@@ -14,7 +14,7 @@ function updateProgressIndicator(loadingStatus)
             $get('failedLoadIndicator').style.display = 'none';
 
             break;
-        case LoadingStatus.FailedLoad:
+        case LoaderAsyncServiceStatus.FailedLoad:
             clearInterval(intervalId);
 
             $get('inProgressIndicator').style.display = 'none';
