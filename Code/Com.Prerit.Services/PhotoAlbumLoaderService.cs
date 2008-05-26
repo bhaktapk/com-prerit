@@ -5,7 +5,7 @@ using Com.Prerit.Services.Caching;
 
 namespace Com.Prerit.Services
 {
-    public class PhotoAlbumLoaderService : ILoaderAsyncService<AlbumYear[]>
+    public class PhotoAlbumLoaderService : IAsyncLoaderService<AlbumYear[]>
     {
         #region Fields
 

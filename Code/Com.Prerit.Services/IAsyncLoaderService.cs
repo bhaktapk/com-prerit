@@ -1,6 +1,6 @@
 ﻿namespace Com.Prerit.Services
 {
-    public interface ILoaderAsyncService<T>
+    public interface IAsyncLoaderService<T>
     {
         #region Properties
 
