@@ -19,8 +19,6 @@ namespace Com.Prerit.Services
 
         bool IsPortrait(Image image);
 
-        Image ScaleAndSaveImage(int maxDimension, string scaledImagePhysicalPath, string originalImagePhysicalPath);
-
         Image ScaleAndSaveImage(int maxDimension, string scaledImagePhysicalPath, Image originalImage);
 
         #endregion

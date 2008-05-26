@@ -81,18 +81,9 @@ namespace Com.Prerit.Services
 
             string photoPhysicalPath = HostingEnvironment.MapPath(photo.VirtualPath);
 
-            result = CreateScaledImage(maxDimension, fileName, virtualPath, physicalPath, photoPhysicalPath);
-
-            return result;
-        }
-
-        private WebImage CreateScaledImage(int maxDimension, string fileName, string virtualPath, string physicalPath, string originalImagePhysicalPath)
-        {
-            WebImage result;
-
-            using (Image scaledImage = _imageEditorService.ScaleAndSaveImage(maxDimension, physicalPath, originalImagePhysicalPath))
+            using (Image photoImage = Image.FromFile(photoPhysicalPath))
             {
-                result = new WebImage(fileName, virtualPath, scaledImage.Height, scaledImage.Width);
+                result = CreateScaledImage(maxDimension, fileName, virtualPath, physicalPath, photoImage);
             }
 
             return result;
@@ -310,7 +301,10 @@ namespace Com.Prerit.Services
             string tempVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, tempFileName);
             string tempPhysicalPath = HostingEnvironment.MapPath(tempVirtualPath);
 
-            result = CreateScaledImage(_maxAlbumCoverDimension, _albumCoverFileName, albumCoverVirtualPath, tempPhysicalPath, albumCoverPhysicalPath);
+            using (Image albumCoverImage = Image.FromFile(albumCoverPhysicalPath))
+            {
+                result = CreateScaledImage(_maxAlbumCoverDimension, _albumCoverFileName, albumCoverVirtualPath, tempPhysicalPath, albumCoverImage);
+            }
 
             OverwriteFile(albumCoverPhysicalPath, tempPhysicalPath);
 

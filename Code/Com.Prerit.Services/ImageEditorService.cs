@@ -91,18 +91,6 @@ namespace Com.Prerit.Services
             return image.Height > image.Width;
         }
 
-        public Image ScaleAndSaveImage(int maxDimension, string scaledImagePhysicalPath, string originalImagePhysicalPath)
-        {
-            Image result;
-
-            using (Image originalImage = Image.FromFile(originalImagePhysicalPath))
-            {
-                result = ScaleAndSaveImage(maxDimension, scaledImagePhysicalPath, originalImage);
-            }
-
-            return result;
-        }
-
         public Image ScaleAndSaveImage(int maxDimension, string scaledImagePhysicalPath, Image originalImage)
         {
             if (maxDimension < 0)
