@@ -34,9 +34,9 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("cacheItemSetter");
             }
 
-            Action<ILoaderService<T>, Action<T>> loadoadAndSetCacheItem = LoadAndSetCacheItem;
+            Action<ILoaderService<T>, Action<T>> loadAndSetCacheItem = LoadAndSetCacheItem;
 
-            return loadoadAndSetCacheItem.BeginInvoke(loaderService, cacheItemSetter, loadoadAndSetCacheItem.EndInvoke, null);
+            return loadAndSetCacheItem.BeginInvoke(loaderService, cacheItemSetter, loadAndSetCacheItem.EndInvoke, null);
         }
 
         #endregion
