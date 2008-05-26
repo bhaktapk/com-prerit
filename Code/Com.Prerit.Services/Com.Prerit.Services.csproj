@@ -58,6 +58,7 @@
     <Compile Include="ImageEditorService.cs" />
     <Compile Include="IPhotoAlbumFinderService.cs" />
     <Compile Include="ILoaderAsyncService.cs" />
+    <Compile Include="LoaderAsyncServiceStatus.cs" />
     <Compile Include="PhotoAlbumFinderService.cs" />
     <Compile Include="PhotoAlbumLoaderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

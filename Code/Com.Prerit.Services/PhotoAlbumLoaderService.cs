@@ -19,6 +19,48 @@ namespace Com.Prerit.Services
 
         #endregion
 
+        #region Properties
+
+        public AlbumYear[] LoadedObject
+        {
+            get { return TypedCache.GetAlbumYearsCacheItem(); }
+        }
+
+        public LoaderAsyncServiceStatus Status
+        {
+            get
+            {
+                LoaderAsyncServiceStatus result;
+
+                if (_asyncResult == null)
+                {
+                    result = LoaderAsyncServiceStatus.Idle;
+                }
+                else
+                {
+                    if (!_asyncResult.IsCompleted)
+                    {
+                        result = LoaderAsyncServiceStatus.Loading;
+                    }
+                    else
+                    {
+                        if (TypedCache.GetAlbumYearsCacheItem() == null)
+                        {
+                            result = LoaderAsyncServiceStatus.FailedLoad;
+                        }
+                        else
+                        {
+                            result = LoaderAsyncServiceStatus.Completed;
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        #endregion
+
         #region Constructors
 
         public PhotoAlbumLoaderService(IAlbumYearLoaderService albumYearLoaderService, IAsyncCacheItemLoaderService asyncCacheItemLoaderService)
@@ -41,46 +83,13 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public AlbumYear[] GetLoadedObject()
-        {
-            return TypedCache.GetAlbumYearsCacheItem();
-        }
-
-        public bool IsFailedLoad()
-        {
-            bool result = false;
-
-            if (_asyncResult != null && !IsLoading() && TypedCache.GetAlbumYearsCacheItem() == null)
-            {
-                result = true;
-            }
-
-            return result;
-        }
-
-        public bool IsLoading()
-        {
-            bool result = false;
-
-            if (_asyncResult != null && !_asyncResult.IsCompleted)
-            {
-                result = true;
-            }
-
-            return result;
-        }
-
         public void LoadAsync()
         {
-            AlbumYear[] cacheItem = TypedCache.GetAlbumYearsCacheItem();
-
-            if (cacheItem == null && !IsLoading())
+            if (LoadedObject == null && Status != LoaderAsyncServiceStatus.Loading)
             {
                 lock (_loadingSyncRoot)
                 {
-                    cacheItem = TypedCache.GetAlbumYearsCacheItem();
-
-                    if (cacheItem == null && !IsLoading())
+                    if (LoadedObject == null && Status != LoaderAsyncServiceStatus.Loading)
                     {
                         _asyncResult = _asyncCacheItemLoaderService.LoadAsync(_albumYearLoaderService,
                                                                               albumYears => TypedCache.SetAlbumYearsCacheItem(albumYears, _albumYearLoaderService.VirtualPath));

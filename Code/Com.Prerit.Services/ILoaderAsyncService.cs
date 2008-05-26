@@ -2,13 +2,15 @@
 {
     public interface ILoaderAsyncService<T>
     {
+        #region Properties
+
+        T LoadedObject { get; }
+
+        LoaderAsyncServiceStatus Status { get; }
+
+        #endregion
+
         #region Methods
-
-        T GetLoadedObject();
-
-        bool IsFailedLoad();
-
-        bool IsLoading();
 
         void LoadAsync();
 

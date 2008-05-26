@@ -140,24 +140,18 @@ public partial class photo_albums_default : Page
     }
 
     [WebMethod]
-    public static int GetLoaderServiceState()
+    public static LoaderAsyncServiceStatus GetLoaderAsyncServiceStatus()
     {
+        LoaderAsyncServiceStatus result;
+
         IImageEditorService imageEditorService = new ImageEditorService();
         IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
         IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
         ILoaderAsyncService<AlbumYear[]> photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
-        if (photoAlbumLoaderService.IsLoading())
-        {
-            return 1;
-        }
+        result = photoAlbumLoaderService.Status;
 
-        if (photoAlbumLoaderService.IsFailedLoad())
-        {
-            return 2;
-        }
-
-        return 3;
+        return result;
     }
 
     private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumFinderService photoAlbumFinderService)
@@ -190,7 +184,7 @@ public partial class photo_albums_default : Page
         IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
         ILoaderAsyncService<AlbumYear[]> photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
 
-        AlbumYear[] albumYears = photoAlbumLoaderService.GetLoadedObject();
+        AlbumYear[] albumYears = photoAlbumLoaderService.LoadedObject;
 
         if (albumYears == null)
         {
