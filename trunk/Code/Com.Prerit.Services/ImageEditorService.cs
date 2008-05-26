@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Com.Prerit.Services
 {
@@ -42,6 +46,35 @@ namespace Com.Prerit.Services
             encoderParams.Param[0] = new EncoderParameter(Encoder.Quality, quality);
 
             return encoderParams;
+        }
+
+        public void GetImageMetadata(string imagePhysicalPath, out int height, out int width)
+        {
+            if (imagePhysicalPath == null)
+            {
+                throw new ArgumentNullException("imagePhysicalPath");
+            }
+
+            string imageMetadataXmlPhysicalPath = GetAssociatedImageMetadataPhysicalPath(imagePhysicalPath);
+
+            if (!File.Exists(imageMetadataXmlPhysicalPath))
+            {
+                using (Image image = Image.FromFile(imagePhysicalPath))
+                {
+                    SaveImageMetadata(imagePhysicalPath, image);
+                }
+            }
+
+            XDocument doc = XDocument.Load(imageMetadataXmlPhysicalPath);
+
+            IEnumerable<XElement> heightResult = from imageMetadata in doc.Descendants("imageMetadata")
+                                                 select imageMetadata.Element("height");
+
+            IEnumerable<XElement> widthResult = from imageMetadata in doc.Descendants("imageMetadata")
+                                                select imageMetadata.Element("width");
+
+            height = int.Parse(heightResult.First().Value);
+            width = int.Parse(widthResult.First().Value);
         }
 
         public ImageCodecInfo GetJpegCodecInfo()
@@ -91,6 +124,26 @@ namespace Com.Prerit.Services
             return image.Height > image.Width;
         }
 
+        public void SaveImageMetadata(string imagePhysicalPath, Image image)
+        {
+            if (imagePhysicalPath == null)
+            {
+                throw new ArgumentNullException("imagePhysicalPath");
+            }
+
+            string imageMetadataXmlPhysicalPath = GetAssociatedImageMetadataPhysicalPath(imagePhysicalPath);
+
+            XDocument doc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
+                                    new XElement("imageMetadata", new XElement("height", image.Height), new XElement("width", image.Width)));
+
+            doc.Save(imageMetadataXmlPhysicalPath);
+        }
+
+        private string GetAssociatedImageMetadataPhysicalPath(string imagePhysicalPath)
+        {
+            return Path.ChangeExtension(imagePhysicalPath, ".xml");
+        }
+
         public Image ScaleAndSaveImage(int maxDimension, string scaledImagePhysicalPath, Image originalImage)
         {
             if (maxDimension < 0)
@@ -116,6 +169,8 @@ namespace Com.Prerit.Services
             DisallowUsageOfEmbeddedThumbnail(originalImage);
 
             GetScaledHeightAndWidth(maxDimension, originalImage, out height, out width);
+
+            SaveImageMetadata(scaledImagePhysicalPath, originalImage);
 
             result = CreateScaledImage(width, height, originalImage);
 

@@ -18,6 +18,10 @@ namespace Com.Prerit.Services
 
         private const string _allowablePhotoExtension = "*.jpg";
 
+        private const string _defaultAlbumCoverFileName = "default_album_cover.jpg";
+
+        private const string _defaultAlbumCoverVirtualPath = "~/photo_albums/" + _defaultAlbumCoverFileName;
+
         private const int _maxAlbumCoverDimension = 240;
 
         private const int _maxResizedImageDimension = 480;
@@ -152,12 +156,9 @@ namespace Com.Prerit.Services
         {
             WebImage result;
 
-            const string fileName = "default_album_cover.jpg";
-            const string virtualPath = "~/images/" + fileName;
+            string physicalPath = HostingEnvironment.MapPath(_defaultAlbumCoverVirtualPath);
 
-            string physicalPath = HostingEnvironment.MapPath(virtualPath);
-
-            result = GetExistingScaledImage(fileName, virtualPath, physicalPath);
+            result = GetExistingScaledImage(_defaultAlbumCoverFileName, _defaultAlbumCoverVirtualPath, physicalPath);
 
             return result;
         }
@@ -166,10 +167,12 @@ namespace Com.Prerit.Services
         {
             WebImage result;
 
-            using (Image image = Image.FromFile(imagePhysicalPath))
-            {
-                result = new WebImage(imageFileName, imageVirtualPath, image.Height, image.Width);
-            }
+            int height;
+            int width;
+
+            _imageEditorService.GetImageMetadata(imagePhysicalPath, out height, out width);
+
+            result = new WebImage(imageFileName, imageVirtualPath, height, width);
 
             return result;
         }
