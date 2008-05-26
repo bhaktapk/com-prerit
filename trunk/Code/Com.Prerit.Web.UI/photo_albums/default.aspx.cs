@@ -86,27 +86,6 @@ public partial class photo_albums_default : Page
         }
     }
 
-    [WebMethod]
-    public static int GetLoaderServiceState()
-    {
-        IImageEditorService imageEditorService = new ImageEditorService();
-        IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
-        IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
-        ILoaderAsyncService<AlbumYear[]> photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
-
-        if (photoAlbumLoaderService.IsLoading())
-        {
-            return 1;
-        }
-
-        if (photoAlbumLoaderService.IsFailedLoad())
-        {
-            return 2;
-        }
-
-        return 3;
-    }
-
     public string ConvertNameToTitle(string name)
     {
         string albumNameAsTitle = null;
@@ -158,6 +137,27 @@ public partial class photo_albums_default : Page
     protected string GetLightboxImageSetIdentifier()
     {
         return PreventLightboxImageSetIdentifierBug(AlbumNameQueryStringValue);
+    }
+
+    [WebMethod]
+    public static int GetLoaderServiceState()
+    {
+        IImageEditorService imageEditorService = new ImageEditorService();
+        IAlbumYearLoaderService albumYearLoaderService = new AlbumYearLoaderService("~/photo_albums/", imageEditorService);
+        IAsyncCacheItemLoaderService asyncCacheItemLoaderService = new AsyncCacheItemLoaderService();
+        ILoaderAsyncService<AlbumYear[]> photoAlbumLoaderService = new PhotoAlbumLoaderService(albumYearLoaderService, asyncCacheItemLoaderService);
+
+        if (photoAlbumLoaderService.IsLoading())
+        {
+            return 1;
+        }
+
+        if (photoAlbumLoaderService.IsFailedLoad())
+        {
+            return 2;
+        }
+
+        return 3;
     }
 
     private Photo[] GetPhotoRepeaterDataSource(int albumYear, string albumName, IPhotoAlbumFinderService photoAlbumFinderService)
