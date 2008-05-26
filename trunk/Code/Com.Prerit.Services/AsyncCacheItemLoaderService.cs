@@ -9,11 +9,11 @@ namespace Com.Prerit.Services
 
         private void Callback(IAsyncResult asyncResult)
         {
-            Action loadAndSetCacheItem = (Action) asyncResult.AsyncState;
+            AsyncState asyncState = (AsyncState) asyncResult.AsyncState;
 
             try
             {
-                loadAndSetCacheItem.EndInvoke(asyncResult);
+                asyncState.LoadAndSetCacheItem.EndInvoke(asyncResult);
             }
             catch (Exception e)
             {
@@ -35,7 +35,29 @@ namespace Com.Prerit.Services
 
             Action loadAndSetCacheItem = () => cacheItemSetter(loaderService.Load());
 
-            return loadAndSetCacheItem.BeginInvoke(Callback, loadAndSetCacheItem);
+            return loadAndSetCacheItem.BeginInvoke(Callback, new AsyncState(loadAndSetCacheItem));
+        }
+
+        #endregion
+
+        #region Nested Type: AsyncState
+
+        private class AsyncState
+        {
+            #region Properties
+
+            public Action LoadAndSetCacheItem { get; private set; }
+
+            #endregion
+
+            #region Constructors
+
+            public AsyncState(Action loadAndSetCacheItem)
+            {
+                LoadAndSetCacheItem = loadAndSetCacheItem;
+            }
+
+            #endregion
         }
 
         #endregion
