@@ -7,7 +7,7 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        Image CreateScaledImage(int width, int height, Image originalImage);
+        Image CreateScaledImage(int width, int height, Image image);
 
         void DisallowUsageOfEmbeddedThumbnail(Image image);
 
