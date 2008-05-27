@@ -199,14 +199,33 @@ namespace Com.Prerit.Services
             {
                 if (!IsAlbumCover(photoFileInfo.Name) && !IsThumbnail(photoFileInfo.Name) && !IsResizedImage(photoFileInfo.Name))
                 {
-                    using (Image photoImage = Image.FromFile(photoFileInfo.FullName))
+                    Image photoImage = null;
+
+                    try
                     {
+                        int height;
+                        int width;
+
                         string photoVirtualPath = VirtualPathUtility.Combine(albumVirtualPath, photoFileInfo.Name);
 
-                        WebImage thumbnail = GetScaledImage(_maxThumbnailDimension, _thumbnailIdentifier, photoVirtualPath, photoFileInfo, photoImage);
-                        WebImage resizedImage = GetScaledImage(_maxResizedImageDimension, _resizedImageIdentifier, photoVirtualPath, photoFileInfo, photoImage);
+                        WebImage thumbnail = GetScaledImage(_maxThumbnailDimension, _thumbnailIdentifier, photoVirtualPath, photoFileInfo.Name, ref photoImage);
+                        WebImage resizedImage = GetScaledImage(_maxResizedImageDimension, _resizedImageIdentifier, photoVirtualPath, photoFileInfo.Name, ref photoImage);
 
-                        result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, photoImage.Height, photoImage.Width, thumbnail, resizedImage));
+                        if (photoImage != null)
+                        {
+                            _imageEditorService.SaveImageMetadata(photoFileInfo.FullName, photoImage);
+                        }
+
+                        _imageEditorService.GetImageMetadata(photoFileInfo.FullName, out height, out width);
+
+                        result.Add(new Photo(photoFileInfo.Name, photoVirtualPath, height, width, thumbnail, resizedImage));
+                    }
+                    finally
+                    {
+                        if (photoImage != null)
+                        {
+                            photoImage.Dispose();
+                        }
                     }
                 }
             }
@@ -214,12 +233,12 @@ namespace Com.Prerit.Services
             return result.ToArray();
         }
 
-        private WebImage GetScaledImage(int maxDimension, string scaledImageIdentifier, string photoVirtualPath, FileInfo photoFileInfo, Image photoImage)
+        private WebImage GetScaledImage(int maxDimension, string scaledImageIdentifier, string photoVirtualPath, string photoFileName, ref Image photoImage)
         {
             WebImage result;
 
-            string photoFileNameWithoutExtension = Path.GetFileNameWithoutExtension(photoFileInfo.Name);
-            string photoExtension = Path.GetExtension(photoFileInfo.Name);
+            string photoFileNameWithoutExtension = Path.GetFileNameWithoutExtension(photoFileName);
+            string photoExtension = Path.GetExtension(photoFileName);
             string fileName = photoFileNameWithoutExtension + scaledImageIdentifier + photoExtension;
             string virtualPath = VirtualPathUtility.Combine(photoVirtualPath, fileName);
             string physicalPath = HostingEnvironment.MapPath(virtualPath);
@@ -230,6 +249,13 @@ namespace Com.Prerit.Services
             }
             else
             {
+                if (photoImage == null)
+                {
+                    string photoPhysicalPath = HostingEnvironment.MapPath(photoVirtualPath);
+
+                    photoImage = Image.FromFile(photoPhysicalPath);
+                }
+
                 result = CreateScaledImage(maxDimension, fileName, virtualPath, physicalPath, photoImage);
             }
 
