@@ -204,8 +204,17 @@ public partial class photo_albums_default : Page
             {
                 photoAlbumViews.ActiveViewIndex = (int) PhotoAlbumView.AlbumView;
 
-                albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(albumYears);
-                albumYearRepeater.DataBind();
+                if (albumYears.Length == 0 || albumYears[0].Albums.Length == 0)
+                {
+                    albumViews.ActiveViewIndex = (int) AlbumView.NoAlbumsView;
+                }
+                else
+                {
+                    albumViews.ActiveViewIndex = (int) AlbumView.SomeAlbumsView;
+
+                    albumYearRepeater.DataSource = GetAlbumYearRepeaterDataSource(albumYears);
+                    albumYearRepeater.DataBind();
+                }
             }
             else
             {
@@ -264,6 +273,16 @@ public partial class photo_albums_default : Page
     private void ShowProgressIndicator()
     {
         progressIndicator.Visible = true;
+    }
+
+    #endregion
+
+    #region Nested Type: AlbumView
+
+    protected enum AlbumView
+    {
+        NoAlbumsView = 0,
+        SomeAlbumsView = 1
     }
 
     #endregion
