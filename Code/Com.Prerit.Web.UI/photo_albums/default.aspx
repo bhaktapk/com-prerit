@@ -33,35 +33,45 @@
             </p>
         </asp:View>
         <asp:View ID="albumView" runat="server">
-            <asp:Repeater ID="albumYearRepeater" OnItemDataBound="AlbumYearRepeater_ItemDataBound" runat="server">
-                <ItemTemplate>
-                    <asp:PlaceHolder ID="albumYearPlaceHolder" runat="server">
-                        <h1><span>
-                            <%# ((AlbumYear) Container.DataItem).Year %>
-                            Albums</span></h1>
-                        <asp:Repeater ID="albumRepeater" DataSource="<%# ((AlbumYear) Container.DataItem).Albums %>" runat="server">
-                            <HeaderTemplate>
-                                <div class="albums">
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <p>
-                                    <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %>"
-                                    runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumCover.Caption %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
-                                    width="<%# ((Album) Container.DataItem).AlbumCover.Width %>" src="<%# ((Album) Container.DataItem).AlbumCover.VirtualPath %>"
-                                    runat="server" />
-                                    <br />
-                                    <span>
-                                        <%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %>
-                                        (<%# ((Album) Container.DataItem).Photos.Length %>)</span></a>
-                                </p>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                </div>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </asp:PlaceHolder>
-                </ItemTemplate>
-            </asp:Repeater>
+            <asp:MultiView ID="albumViews" ActiveViewIndex="0" runat="server">
+                <asp:View ID="noAlbumsView" runat="server">
+                    <h1><span>No Photo Albums</span></h1>
+                    <p>
+                        There are no albums at this time.
+                    </p>
+                </asp:View>
+                <asp:View ID="someAlbumsView" runat="server">
+                    <asp:Repeater ID="albumYearRepeater" OnItemDataBound="AlbumYearRepeater_ItemDataBound" runat="server">
+                        <ItemTemplate>
+                            <asp:PlaceHolder ID="albumYearPlaceHolder" runat="server">
+                                <h1><span>
+                                    <%# ((AlbumYear) Container.DataItem).Year %>
+                                    Albums</span></h1>
+                                <asp:Repeater ID="albumRepeater" DataSource="<%# ((AlbumYear) Container.DataItem).Albums %>" runat="server">
+                                    <HeaderTemplate>
+                                        <div class="albums">
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <p>
+                                            <a id="albumLink" href="<%# ((Album) Container.DataItem).VirtualPath %>" title="<%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %>"
+                                            runat="server"><img id="coverImage" alt="<%# ((Album) Container.DataItem).AlbumCover.Caption %>" height="<%# ((Album) Container.DataItem).AlbumCover.Height %>"
+                                            width="<%# ((Album) Container.DataItem).AlbumCover.Width %>" src="<%# ((Album) Container.DataItem).AlbumCover.VirtualPath %>"
+                                            runat="server" />
+                                            <br />
+                                            <span>
+                                                <%# ConvertNameToTitle(((Album) Container.DataItem).AlbumName) %>
+                                                (<%# ((Album) Container.DataItem).Photos.Length %>)</span></a>
+                                        </p>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </div>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </asp:PlaceHolder>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </asp:View>
+            </asp:MultiView>
         </asp:View>
         <asp:View ID="photoAlbumView" runat="server">
             <h1><span>Photo Album of
