@@ -136,7 +136,9 @@ public partial class photo_albums_default : Page
 
     protected string GetLightboxImageSetIdentifier()
     {
-        return PreventLightboxImageSetIdentifierBug(AlbumNameQueryStringValue);
+        const string format = "lightbox[{0}]";
+
+        return string.Format(format, PreventLightboxImageSetIdentifierBug(AlbumNameQueryStringValue));
     }
 
     [WebMethod]
