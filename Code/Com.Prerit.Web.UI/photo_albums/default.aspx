@@ -4,15 +4,21 @@
 <asp:Content ID="sidebar" ContentPlaceHolderID="sidebarPlaceHolder" runat="server">
     <asp:PlaceHolder ID="progressIndicator" Visible="false" runat="server">
         <h2><span>Loading Status</span></h2>
-        <p id="inProgressIndicator">
-            <img src="~/photo_albums/processing_notifier.gif" alt="In Progress Indicator" height="16" width="16" runat="server" />
-        </p>
-        <p id="completedIndicator">
-            <a href="" title="Refresh the page">Ready to View</a>
-        </p>
-        <p id="failedLoadIndicator">
-            <a href="" title="An error occurred. You can either try again or contact me to let me know it failed.">Error! Try Again!</a>
-        </p>
+        <div id="inProgressIndicator">
+            <p>
+                <img src="~/photo_albums/processing_notifier.gif" alt="In Progress Indicator" height="16" width="16" runat="server" />
+            </p>
+        </div>
+        <div id="completedIndicator">
+            <p>
+                <a href="" title="Refresh the page">Ready to View</a>
+            </p>
+        </div>
+        <div id="failedLoadIndicator">
+            <p>
+                <a href="" title="An error occurred. You can either try again or contact me to let me know it failed.">Error! Try Again!</a>
+            </p>
+        </div>
     </asp:PlaceHolder>
     <h2><span>Photo Viewing Tips</span></h2>
     <ul>
@@ -89,8 +95,8 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                             <p>
-                                <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxImageSetIdentifier() %>"
-                                title="Download" runat="server"><img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
+                                <a href="<%# ((Photo) Container.DataItem).ResizedImage.VirtualPath %>" rel="<%# GetLightboxImageSetIdentifier() %>" title="Download"
+                                runat="server"><img alt="<%# ((Photo) Container.DataItem).Thumbnail.Caption %>" height="<%# ((Photo) Container.DataItem).Thumbnail.Height %>"
                                 width="<%# ((Photo) Container.DataItem).Thumbnail.Width %>" src="<%# ((Photo) Container.DataItem).Thumbnail.VirtualPath %>"
                                 runat="server" /></a>
                             </p>

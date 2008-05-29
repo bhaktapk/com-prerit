@@ -304,12 +304,7 @@ img
     text-align: justify;
 }
 
-#sidebar div.photo p
-{
-    text-align: center;
-}
-
-#sidebar div.photo p img
+#sidebar div.randomPhoto p img
 {
     border: 1px solid #eee;
 }
@@ -327,9 +322,9 @@ img
     display: none;
 }
 
-#sidebar #completedIndicator,
-#sidebar #failedLoadIndicator,
-#sidebar #inProgressIndicator
+#sidebar #completedIndicator p,
+#sidebar #failedLoadIndicator p,
+#sidebar #inProgressIndicator p
 {
     text-align: center;
 }
