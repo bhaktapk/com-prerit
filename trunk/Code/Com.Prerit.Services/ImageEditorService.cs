@@ -185,11 +185,11 @@ namespace Com.Prerit.Services
 
             GetScaledHeightAndWidth(maxDimension, originalImage, out height, out width);
 
-            SaveImageMetadata(scaledImagePhysicalPath, originalImage);
-
             result = CreateScaledImage(width, height, originalImage);
 
             result.Save(scaledImagePhysicalPath, GetJpegCodecInfo(), GetEncoderParams());
+
+            SaveImageMetadata(scaledImagePhysicalPath, result);
 
             return result;
         }
