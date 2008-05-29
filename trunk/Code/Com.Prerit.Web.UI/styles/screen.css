@@ -311,7 +311,7 @@ img
 
 #sidebar div.photo p img
 {
-    border: 2px solid #686868;
+    border: 1px solid #eee;
 }
 
 #sidebar fieldset,
@@ -455,7 +455,7 @@ img
 
 #mainbar p img.headshot
 {
-    border: 2px solid #686868;
+    border: 1px solid #eee;
     float: left;
     margin-right: 15px;
 }
@@ -489,7 +489,7 @@ img
 
 #mainbar div.albums p img
 {
-    border: 2px solid #686868;
+    border: 1px solid #eee;
 }
 
 #mainbar div.albums p span
@@ -518,7 +518,7 @@ img
 
 #mainbar div.photos p img
 {
-    border: 2px solid #686868;
+    border: 1px solid #eee;
     vertical-align: middle;    
 }
 
