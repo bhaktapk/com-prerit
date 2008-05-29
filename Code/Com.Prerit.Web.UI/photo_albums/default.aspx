@@ -81,7 +81,8 @@
         </asp:View>
         <asp:View ID="photoAlbumView" runat="server">
             <h1><span>Photo Album of
-                <%= ConvertNameToTitle(AlbumNameQueryStringValue) %></span></h1>
+                <%= ConvertNameToTitle(AlbumNameQueryStringValue) %>
+                (<%= AlbumYearQueryStringValue %>)</span></h1>
             <asp:MultiView ID="photoViews" ActiveViewIndex="0" runat="server">
                 <asp:View ID="noPhotosView" runat="server">
                     <p>
