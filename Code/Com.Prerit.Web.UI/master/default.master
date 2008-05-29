@@ -39,7 +39,9 @@
         <form id="form" runat="server">
         <asp:ScriptManager EnablePageMethods="true" runat="server" />
         <div id="sidebar">
-            <asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server" />
+            <asp:ContentPlaceHolder ID="sidebarPlaceHolder" runat="server">
+                <ctrl:random_photo runat="server" />
+            </asp:ContentPlaceHolder>
         </div>
         <div id="mainbar">
             <ctrl:ajax_processing_notification runat="server" />

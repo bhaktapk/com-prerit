@@ -304,7 +304,12 @@ img
     text-align: justify;
 }
 
-#sidebar div.randomPhoto p img
+#sidebar #randomPhoto p
+{
+    text-align: center;
+}
+
+#sidebar #randomPhoto p img
 {
     border: 1px solid #eee;
 }
