@@ -60,10 +60,13 @@ public partial class controls_random_photo : UserControl
                         {
                             Photo photo = GetRandomPhoto(album.Photos, random);
 
-                            photoAlbumLink.HRef = album.VirtualPath;
-                            photoAlbumLink.Title = string.Format(photoAlbumLink.Title, album.AlbumName, albumYear.Year);
-                            photoImage.Alt = string.Format(photoImage.Alt, album.AlbumName, albumYear.Year);
-                            photoImage.Src = photo.Thumbnail.VirtualPath;
+                            albumLink.HRef = album.VirtualPath;
+                            albumLink.Title = string.Format(albumLink.Title, album.AlbumName, albumYear.Year);
+
+                            thumbnailImage.Alt = string.Format(thumbnailImage.Alt, album.AlbumName, albumYear.Year);
+                            thumbnailImage.Height = ResizeDimension(photo.Thumbnail.Height, photo.Thumbnail);
+                            thumbnailImage.Src = photo.Thumbnail.VirtualPath;
+                            thumbnailImage.Width = ResizeDimension(photo.Thumbnail.Width, photo.Thumbnail);
 
                             Visible = true;
                         }
@@ -73,6 +76,15 @@ public partial class controls_random_photo : UserControl
             default:
                 throw new ArgumentOutOfRangeException(string.Format("Unknown LoaderAsyncServiceStatus {0}", status));
         }
+    }
+
+    private int ResizeDimension(int dimension, WebImage thumbnail)
+    {
+        const double maxDimension = 120d;
+
+        double porportion = maxDimension / Math.Max(thumbnail.Height, thumbnail.Width);
+
+        return (int) Math.Round(dimension * porportion);
     }
 
     #endregion
