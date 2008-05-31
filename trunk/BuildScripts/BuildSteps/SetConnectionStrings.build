@@ -6,7 +6,9 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="set-connection-strings">
-    <copy file="${dir.connection-string-config}\connection_strings.config.template"
+    <echo message="${target::get-current-target()} has been disabled" />
+
+    <!--<copy file="${dir.connection-string-config}\connection_strings.config.template"
           tofile="${dir.connection-string-config}\connection_strings.config"
           overwrite="true">
 
@@ -16,6 +18,6 @@
                  value="${database.com-prerit.conn-string}" />
         </replacetokens>
       </filterchain>
-    </copy>
+    </copy>-->
   </target>
 </project>
