@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<connectionStrings>
-  <clear />
-
-  <!-- NOTE: before releasing, add connection string -->
-  <add name="com-prerit-db"
-       connectionString="@COM-PRERIT-DB@" />
-</connectionStrings>
