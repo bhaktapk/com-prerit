@@ -8,7 +8,6 @@
   <target name="clean">
     <call target="clean-solution" />
     <call target="delete-build-directory" />
-    <call target="delete-deployed-database-scripts-directory" />
     <call target="delete-packages-directory" />
   </target>
 
@@ -26,10 +25,6 @@
 
   <target name="delete-build-directory">
     <delete dir="${dir.build-base}" />
-  </target>
-
-  <target name="delete-deployed-database-scripts-directory">
-    <delete dir="${dir.deployed-database-scripts}" />
   </target>
 
   <target name="delete-packages-directory">

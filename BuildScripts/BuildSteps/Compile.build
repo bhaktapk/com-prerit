@@ -33,7 +33,6 @@
       <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
         <include name="logs\*.log" />
         <include name="app_settings.config" />
-        <include name="connection_strings.config" />
         <include name="production_web.config" />
       </fileset>
     </delete>
