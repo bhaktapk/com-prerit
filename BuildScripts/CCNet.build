@@ -8,7 +8,7 @@
   <target name="all"
           depends="init">
 
-    <nant buildfile="Main.build"
+    <nant buildfile="Default.build"
           target="clean deploy" />
   </target>
 
