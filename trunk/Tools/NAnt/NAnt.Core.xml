@@ -2890,293 +2890,6 @@
             </returns>
             <see cref="T:NAnt.Core.Functions.VersionFunctions"/>
         </member>
-        <member name="M:NAnt.Core.Functions.Int32ConversionFunctions.Parse(System.String)">
-            <summary>
-            Converts the specified string representation of a number to its 
-            32-bit signed integer equivalent.
-            </summary>
-            <param name="s">A string containing a number to convert.</param>
-            <returns>
-            A 32-bit signed integer equivalent to the number contained in 
-            <paramref name="s"/>.
-            </returns>
-            <exception cref="T:System.FormatException"><paramref name="s"/> is not of the correct format.</exception>
-            <exception cref="T:System.OverflowException"><paramref name="s"/> represents a number less than <see cref="F:System.Int32.MinValue"/> or greater than <see cref="F:System.Int32.MaxValue"/>.</exception>
-            <remarks>
-            The <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture is 
-            used to supply formatting information about <paramref name="s"/>.
-            </remarks>
-        </member>
-        <member name="M:NAnt.Core.Functions.Int32ConversionFunctions.ToString(System.Int32)">
-            <summary>
-            Converts the specified <see cref="T:System.Int32"/> to its equivalent string
-            representation.
-            </summary>
-            <param name="value">A <see cref="T:System.Int32"/> to convert.</param>
-            <returns>
-            The string representation of <paramref name="value"/>, consisting 
-            of a negative sign if the value is negative, and a sequence of 
-            digits ranging from 0 to 9 with no leading zeroes.
-            </returns>
-            <remarks>
-            <paramref name="value"/> is formatted with the 
-            <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture.
-            </remarks>
-        </member>
-        <member name="M:NAnt.Core.Functions.Int64ConversionFunctions.Parse(System.String)">
-            <summary>
-            Converts the specified string representation of a number to its 
-            64-bit signed integer equivalent.
-            </summary>
-            <param name="s">A string containing a number to convert.</param>
-            <returns>
-            A 64-bit signed integer equivalent to the number contained in 
-            <paramref name="s"/>.
-            </returns>
-            <exception cref="T:System.FormatException"><paramref name="s"/> is not of the correct format.</exception>
-            <exception cref="T:System.OverflowException"><paramref name="s"/> represents a number less than <see cref="F:System.Int64.MinValue"/> or greater than <see cref="F:System.Int64.MaxValue"/>.</exception>
-            <remarks>
-            The <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture is 
-            used to supply formatting information about <paramref name="s"/>.
-            </remarks>
-        </member>
-        <member name="M:NAnt.Core.Functions.Int64ConversionFunctions.ToString(System.Int64)">
-            <summary>
-            Converts the specified <see cref="T:System.Int64"/> to its equivalent string
-            representation.
-            </summary>
-            <param name="value">A <see cref="T:System.Int64"/> to convert.</param>
-            <returns>
-            The string representation of <paramref name="value"/>, consisting 
-            of a negative sign if the value is negative, and a sequence of 
-            digits ranging from 0 to 9 with no leading zeroes.
-            </returns>
-            <remarks>
-            <paramref name="value"/> is formatted with the 
-            <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture.
-            </remarks>
-        </member>
-        <member name="M:NAnt.Core.Functions.MathFunctions.Round(System.Double)">
-            <summary>
-            Rounds the value to the nearest whole number
-            </summary>
-            <param name="value">Number to be rounded, can be anything convertible to a double.</param>
-            <returns>
-            Rounded value.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.MathFunctions.Floor(System.Double)">
-            <summary>
-            Returns the largest whole number less than or equal to the specified 
-            number.
-            </summary>
-            <param name="value">value to be , can be anything convertible to a double</param>
-            <returns>
-            The largest whole number less than or equal to the specified number.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.MathFunctions.Ceiling(System.Double)">
-            <summary>
-            Returns the smallest whole number greater than or equal to the specified number
-            </summary>
-            <param name="value">value</param>
-            <returns>
-            The smallest whole number greater than or equal to the specified number.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.MathFunctions.Abs(System.Double)">
-            <summary>
-            Returns the absolute value of the specified number
-            </summary>
-            <param name="value">value to take the absolute value from</param>
-            <returns>
-            <paramref name="value" /> when <paramref name="value" /> is greater 
-            than or equal to zero; otherwise, -<paramref name="value" />.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.NAntFunctions.GetBaseDirectory">
-            <summary>
-            Gets the base directory of the appdomain in which NAnt is running.
-            </summary>
-            <returns>
-            The base directory of the appdomain in which NAnt is running.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.NAntFunctions.GetAssembly">
-            <summary>
-            Gets the NAnt assembly.
-            </summary>
-            <returns>
-            The NAnt assembly.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetName">
-            <summary>
-            Gets the name of the current project.
-            </summary>
-            <returns>
-            The name of the current project, or an empty <see cref="T:System.String"/>
-            if no name is specified in the build file.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBuildFileUri">
-            <summary>
-            Gets the <see cref="T:System.Uri"/> form of the build file.
-            </summary>
-            <returns>
-            The <see cref="T:System.Uri"/> form of the build file, or 
-            an empty <see cref="T:System.String"/> if the project is not file backed.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBuildFilePath">
-            <summary>
-            Gets the local path to the build file.
-            </summary>
-            <returns>
-            The local path of the build file, or an empty <see cref="T:System.String"/>
-            if the project is not file backed.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetDefaultTarget">
-            <summary>
-            Gets the name of the target that will be executed when no other 
-            build targets are specified.
-            </summary>
-            <returns>
-            The name of the target that will be executed when no other build
-            targets are specified, or an empty <see cref="T:System.String"/> if no
-            default target is defined for the project.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBaseDirectory">
-            <summary>
-            Gets the base directory of the current project.
-            </summary>
-            <returns>
-            The base directory of the current project.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.TargetFunctions.Exists(System.String)">
-            <summary>
-            Checks whether the specified target exists.
-            </summary>
-            <param name="name">The target to test.</param>
-            <returns>
-            <see langword="true" /> if the specified target exists; otherwise,
-            <see langword="false" />.
-            </returns>
-            <example>
-              <para>
-              Execute target &quot;clean&quot;, if it exists.
-              </para>
-              <code>
-                <![CDATA[
-            <if test="${target::exists('clean')}">
-                <call target="clean" />
-            </if>
-                ]]>
-              </code>
-            </example>
-        </member>
-        <member name="M:NAnt.Core.Functions.TargetFunctions.GetCurrentTarget">
-            <summary>
-            Gets the name of the target being executed.
-            </summary>
-            <returns>
-            A <see cref="T:System.String"/> that contains the name of the target
-            being executed.
-            </returns>
-            <exception cref="T:System.InvalidOperationException">No target is being executed.</exception>
-        </member>
-        <member name="M:NAnt.Core.Functions.TargetFunctions.HasExecuted(System.String)">
-            <summary>
-            Checks whether the specified target has already been executed.
-            </summary>
-            <param name="name">The target to test.</param>
-            <returns>
-            <see langword="true"/> if the specified target has already been 
-            executed; otherwise, <see langword="false"/>.
-            </returns>
-            <exception cref="T:System.ArgumentException">Target <paramref name="name"/> does not exist.</exception>
-        </member>
-        <member name="M:NAnt.Core.Functions.TaskFunctions.Exists(System.String)">
-            <summary>
-            Checks whether the specified task exists.
-            </summary>
-            <param name="name">The task to test.</param>
-            <returns>
-            <see langword="true" /> if the specified task exists; otherwise,
-            <see langword="false" />.
-            </returns>
-        </member>
-        <member name="M:NAnt.Core.Functions.TaskFunctions.GetAssembly(System.String)">
-            <summary>
-            Returns the <see cref="T:System.Reflection.Assembly"/> from which the specified task
-            was loaded.
-            </summary>
-            <param name="name">The name of the task to get the <see cref="T:System.Reflection.Assembly"/> of.</param>
-            <returns>
-            The <see cref="T:System.Reflection.Assembly"/> from which the specified task was loaded.
-            </returns>
-            <exception cref="T:System.ArgumentException">Task <paramref name="name"/> is not available.</exception>
-        </member>
-        <member name="M:NAnt.Core.Functions.PropertyFunctions.Exists(System.String)">
-            <summary>
-            Checks whether the specified property exists.
-            </summary>
-            <param name="name">The property to test.</param>
-            <returns>
-            <see langword="true" /> if the specified property exists; otherwise,
-            <see langword="false" />.
-            </returns>
-            <example>
-              <para>
-              Execute a set of tasks if the &quot;build.debug&quot; property
-              exists.
-              </para>
-              <code>
-                <![CDATA[
-            <if test="${property::exists('build.debug')}">
-                <echo message="Starting debug build" />
-                <call target="init-debug" />
-                <call target="build" />
-            </if>
-                ]]>
-              </code>
-            </example>
-        </member>
-        <member name="M:NAnt.Core.Functions.PropertyFunctions.IsReadOnly(System.String)">
-            <summary>
-            Checks whether the specified property is read-only.
-            </summary>
-            <param name="name">The property to test.</param>
-            <returns>
-            <see langword="true"/> if the specified property is read-only; 
-            otherwise, <see langword="false"/>.
-            </returns>
-            <example>
-              <para>Check whether the "debug" property is read-only.</para>
-              <code>property::is-readonly('debug')</code>
-            </example>
-            <exception cref="T:System.ArgumentException">Property <paramref name="name"/> has not been set.</exception>
-        </member>
-        <member name="M:NAnt.Core.Functions.PropertyFunctions.IsDynamic(System.String)">
-            <summary>
-            Checks whether the specified property is a dynamic property.
-            </summary>
-            <param name="name">The property to test.</param>
-            <returns>
-            <see langword="true"/> if the specified property is a dynamic
-            property; otherwise, <see langword="false"/>.
-            </returns>
-            <exception cref="T:System.ArgumentException">Property <paramref name="name"/> has not been set.</exception>
-            <example>
-              <para>
-              Check whether the "debug" property is a dynamic property.
-              </para>
-              <code>property::is-dynamic('debug')</code>
-            </example>
-        </member>
         <member name="M:NAnt.Core.Functions.FrameworkFunctions.Exists(System.String)">
             <summary>
             Checks whether the specified framework exists, and is valid.
@@ -3347,12 +3060,372 @@
             <seealso cref="M:NAnt.Core.Functions.FrameworkFunctions.GetRuntimeFramework"/>
             <seealso cref="M:NAnt.Core.Functions.FrameworkFunctions.GetTargetFramework"/>
         </member>
+        <member name="M:NAnt.Core.Functions.FrameworkFunctions.GetFrameworks(NAnt.Core.FrameworkTypes)">
+            <summary>
+            Gets a comma-separated list of frameworks filtered by the specified
+            <see cref="T:NAnt.Core.FrameworkTypes"/>.
+            </summary>
+            <param name="types">A bitwise combination of <see cref="T:NAnt.Core.FrameworkTypes"/> values that filter the frameworks to retrieve.</param>
+            <returns>
+            A comma-separated list of frameworks filtered by the specified
+            <see cref="T:NAnt.Core.FrameworkTypes"/>, sorted on name.
+            </returns>
+            <example>
+              <para>
+              Define a <b>build-all</b> target that executes the <b>build</b>
+              target once for each installed framework targeting compact
+              devices.
+              </para>
+              <code>
+                <![CDATA[
+            <target name="build-all">
+                <foreach item="String" in="${framework::get-frameworks('installed compact')}" delim="," property="framework">
+                    <property name="nant.settings.currentframework" value="${framework}" />
+                    <call target="build" />
+                </foreach>
+            </target>
+            
+            <target name="build">
+                ...
+            </target>
+                ]]>
+              </code>
+            </example>
+        </member>
         <member name="M:NAnt.Core.Functions.FrameworkFunctions.GetFramework(System.String)">
             <summary>
             Checks whether the specified framework is valid.
             </summary>
             <param name="framework">The framework to check.</param>
             <exception cref="T:System.ArgumentException"><paramref name="framework"/> is not a valid framework identifier.</exception>
+        </member>
+        <member name="M:NAnt.Core.Functions.Int32ConversionFunctions.Parse(System.String)">
+            <summary>
+            Converts the specified string representation of a number to its 
+            32-bit signed integer equivalent.
+            </summary>
+            <param name="s">A string containing a number to convert.</param>
+            <returns>
+            A 32-bit signed integer equivalent to the number contained in 
+            <paramref name="s"/>.
+            </returns>
+            <exception cref="T:System.FormatException"><paramref name="s"/> is not of the correct format.</exception>
+            <exception cref="T:System.OverflowException"><paramref name="s"/> represents a number less than <see cref="F:System.Int32.MinValue"/> or greater than <see cref="F:System.Int32.MaxValue"/>.</exception>
+            <remarks>
+            The <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture is 
+            used to supply formatting information about <paramref name="s"/>.
+            </remarks>
+        </member>
+        <member name="M:NAnt.Core.Functions.Int32ConversionFunctions.ToString(System.Int32)">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> to its equivalent string
+            representation.
+            </summary>
+            <param name="value">A <see cref="T:System.Int32"/> to convert.</param>
+            <returns>
+            The string representation of <paramref name="value"/>, consisting 
+            of a negative sign if the value is negative, and a sequence of 
+            digits ranging from 0 to 9 with no leading zeroes.
+            </returns>
+            <remarks>
+            <paramref name="value"/> is formatted with the 
+            <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture.
+            </remarks>
+        </member>
+        <member name="M:NAnt.Core.Functions.Int64ConversionFunctions.Parse(System.String)">
+            <summary>
+            Converts the specified string representation of a number to its 
+            64-bit signed integer equivalent.
+            </summary>
+            <param name="s">A string containing a number to convert.</param>
+            <returns>
+            A 64-bit signed integer equivalent to the number contained in 
+            <paramref name="s"/>.
+            </returns>
+            <exception cref="T:System.FormatException"><paramref name="s"/> is not of the correct format.</exception>
+            <exception cref="T:System.OverflowException"><paramref name="s"/> represents a number less than <see cref="F:System.Int64.MinValue"/> or greater than <see cref="F:System.Int64.MaxValue"/>.</exception>
+            <remarks>
+            The <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture is 
+            used to supply formatting information about <paramref name="s"/>.
+            </remarks>
+        </member>
+        <member name="M:NAnt.Core.Functions.Int64ConversionFunctions.ToString(System.Int64)">
+            <summary>
+            Converts the specified <see cref="T:System.Int64"/> to its equivalent string
+            representation.
+            </summary>
+            <param name="value">A <see cref="T:System.Int64"/> to convert.</param>
+            <returns>
+            The string representation of <paramref name="value"/>, consisting 
+            of a negative sign if the value is negative, and a sequence of 
+            digits ranging from 0 to 9 with no leading zeroes.
+            </returns>
+            <remarks>
+            <paramref name="value"/> is formatted with the 
+            <see cref="T:System.Globalization.NumberFormatInfo"/> for the invariant culture.
+            </remarks>
+        </member>
+        <member name="M:NAnt.Core.Functions.MathFunctions.Round(System.Double)">
+            <summary>
+            Rounds the value to the nearest whole number
+            </summary>
+            <param name="value">Number to be rounded, can be anything convertible to a double.</param>
+            <returns>
+            Rounded value.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.MathFunctions.Floor(System.Double)">
+            <summary>
+            Returns the largest whole number less than or equal to the specified 
+            number.
+            </summary>
+            <param name="value">value to be , can be anything convertible to a double</param>
+            <returns>
+            The largest whole number less than or equal to the specified number.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.MathFunctions.Ceiling(System.Double)">
+            <summary>
+            Returns the smallest whole number greater than or equal to the specified number
+            </summary>
+            <param name="value">value</param>
+            <returns>
+            The smallest whole number greater than or equal to the specified number.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.MathFunctions.Abs(System.Double)">
+            <summary>
+            Returns the absolute value of the specified number
+            </summary>
+            <param name="value">value to take the absolute value from</param>
+            <returns>
+            <paramref name="value" /> when <paramref name="value" /> is greater 
+            than or equal to zero; otherwise, -<paramref name="value" />.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.NAntFunctions.GetBaseDirectory">
+            <summary>
+            Gets the base directory of the appdomain in which NAnt is running.
+            </summary>
+            <returns>
+            The base directory of the appdomain in which NAnt is running.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.NAntFunctions.GetAssembly">
+            <summary>
+            Gets the NAnt assembly.
+            </summary>
+            <returns>
+            The NAnt assembly.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.NAntFunctions.ScanProbingPaths(System.String)">
+            <summary>
+            Searches the probing paths of the current target framework for the
+            specified file.
+            </summary>
+            <param name="fileName">The name of the file to search for.</param>
+            <returns>
+            The absolute path to <paramref name="fileName"/> if found in one of the
+            configured probing; otherwise, an error is reported.
+            </returns>
+            <exception cref="T:System.IO.FileNotFoundException"><paramref name="fileName"/> could not be found in the configured probing paths.</exception>
+            <remarks>
+              <para>
+              The configured probing paths are scanned recursively in the order
+              in which they are defined in the framework configuration.
+              </para>
+              <para>
+              The file name to search should include the extension.
+              </para>
+            </remarks>
+            <example>
+              <para>
+              Compile an assembly referencing the <c>nunit.framework</c> assembly
+              for the current target framework that is shipped as part of the
+              NAnt distribution.
+              </para>
+              <code>
+                <![CDATA[
+            <csc target="library" output="NAnt.Core.Tests.dll">
+                <sources basedir="NAnt.Core">
+                    <include name="**/*.cs" />
+                </sources>
+                <references>
+                    <include name="NAnt.Core.dll" />
+                    <include name="${framework::get-lib-path('nunit.framework.dll')}" />
+                </references>
+            </csc>
+                ]]>
+              </code>
+            </example>
+        </member>
+        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetName">
+            <summary>
+            Gets the name of the current project.
+            </summary>
+            <returns>
+            The name of the current project, or an empty <see cref="T:System.String"/>
+            if no name is specified in the build file.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBuildFileUri">
+            <summary>
+            Gets the <see cref="T:System.Uri"/> form of the build file.
+            </summary>
+            <returns>
+            The <see cref="T:System.Uri"/> form of the build file, or 
+            an empty <see cref="T:System.String"/> if the project is not file backed.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBuildFilePath">
+            <summary>
+            Gets the local path to the build file.
+            </summary>
+            <returns>
+            The local path of the build file, or an empty <see cref="T:System.String"/>
+            if the project is not file backed.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetDefaultTarget">
+            <summary>
+            Gets the name of the target that will be executed when no other 
+            build targets are specified.
+            </summary>
+            <returns>
+            The name of the target that will be executed when no other build
+            targets are specified, or an empty <see cref="T:System.String"/> if no
+            default target is defined for the project.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.ProjectFunctions.GetBaseDirectory">
+            <summary>
+            Gets the base directory of the current project.
+            </summary>
+            <returns>
+            The base directory of the current project.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.TargetFunctions.Exists(System.String)">
+            <summary>
+            Checks whether the specified target exists.
+            </summary>
+            <param name="name">The target to test.</param>
+            <returns>
+            <see langword="true" /> if the specified target exists; otherwise,
+            <see langword="false" />.
+            </returns>
+            <example>
+              <para>
+              Execute target &quot;clean&quot;, if it exists.
+              </para>
+              <code>
+                <![CDATA[
+            <if test="${target::exists('clean')}">
+                <call target="clean" />
+            </if>
+                ]]>
+              </code>
+            </example>
+        </member>
+        <member name="M:NAnt.Core.Functions.TargetFunctions.GetCurrentTarget">
+            <summary>
+            Gets the name of the target being executed.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that contains the name of the target
+            being executed.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">No target is being executed.</exception>
+        </member>
+        <member name="M:NAnt.Core.Functions.TargetFunctions.HasExecuted(System.String)">
+            <summary>
+            Checks whether the specified target has already been executed.
+            </summary>
+            <param name="name">The target to test.</param>
+            <returns>
+            <see langword="true"/> if the specified target has already been 
+            executed; otherwise, <see langword="false"/>.
+            </returns>
+            <exception cref="T:System.ArgumentException">Target <paramref name="name"/> does not exist.</exception>
+        </member>
+        <member name="M:NAnt.Core.Functions.TaskFunctions.Exists(System.String)">
+            <summary>
+            Checks whether the specified task exists.
+            </summary>
+            <param name="name">The task to test.</param>
+            <returns>
+            <see langword="true" /> if the specified task exists; otherwise,
+            <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Functions.TaskFunctions.GetAssembly(System.String)">
+            <summary>
+            Returns the <see cref="T:System.Reflection.Assembly"/> from which the specified task
+            was loaded.
+            </summary>
+            <param name="name">The name of the task to get the <see cref="T:System.Reflection.Assembly"/> of.</param>
+            <returns>
+            The <see cref="T:System.Reflection.Assembly"/> from which the specified task was loaded.
+            </returns>
+            <exception cref="T:System.ArgumentException">Task <paramref name="name"/> is not available.</exception>
+        </member>
+        <member name="M:NAnt.Core.Functions.PropertyFunctions.Exists(System.String)">
+            <summary>
+            Checks whether the specified property exists.
+            </summary>
+            <param name="name">The property to test.</param>
+            <returns>
+            <see langword="true" /> if the specified property exists; otherwise,
+            <see langword="false" />.
+            </returns>
+            <example>
+              <para>
+              Execute a set of tasks if the &quot;build.debug&quot; property
+              exists.
+              </para>
+              <code>
+                <![CDATA[
+            <if test="${property::exists('build.debug')}">
+                <echo message="Starting debug build" />
+                <call target="init-debug" />
+                <call target="build" />
+            </if>
+                ]]>
+              </code>
+            </example>
+        </member>
+        <member name="M:NAnt.Core.Functions.PropertyFunctions.IsReadOnly(System.String)">
+            <summary>
+            Checks whether the specified property is read-only.
+            </summary>
+            <param name="name">The property to test.</param>
+            <returns>
+            <see langword="true"/> if the specified property is read-only; 
+            otherwise, <see langword="false"/>.
+            </returns>
+            <example>
+              <para>Check whether the "debug" property is read-only.</para>
+              <code>property::is-readonly('debug')</code>
+            </example>
+            <exception cref="T:System.ArgumentException">Property <paramref name="name"/> has not been set.</exception>
+        </member>
+        <member name="M:NAnt.Core.Functions.PropertyFunctions.IsDynamic(System.String)">
+            <summary>
+            Checks whether the specified property is a dynamic property.
+            </summary>
+            <param name="name">The property to test.</param>
+            <returns>
+            <see langword="true"/> if the specified property is a dynamic
+            property; otherwise, <see langword="false"/>.
+            </returns>
+            <exception cref="T:System.ArgumentException">Property <paramref name="name"/> has not been set.</exception>
+            <example>
+              <para>
+              Check whether the "debug" property is a dynamic property.
+              </para>
+              <code>property::is-dynamic('debug')</code>
+            </example>
         </member>
         <member name="M:NAnt.Core.Functions.PlatformFunctions.GetName">
             <summary>
@@ -7392,7 +7465,18 @@
             <param name="name"></param>
             <param name="value"></param>
             <param name="overwrite"></param>
-            <returns></returns>
+            <returns>
+            <c>0</c> if the execution is successful; otherwise, <c>-1</c>.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Tasks.SetEnvTask.unsetenv(System.String)">
+            <summary>
+            Deletes all instances of the variable name.
+            </summary>
+            <param name="name">The variable to unset.</param>
+            <returns>
+            <c>0</c> if the execution is successful; otherwise, <c>-1</c>.
+            </returns>
         </member>
         <member name="M:NAnt.Core.Tasks.SetEnvTask.Initialize">
             <summary>
@@ -8966,13 +9050,13 @@
         </member>
         <member name="P:NAnt.Core.Types.FileSet.IncludesFiles">
             <summary>
-            The files from which a list of patterns or files to include should 
+            The files from which a list of patterns or files to include should
             be obtained.
             </summary>
         </member>
         <member name="P:NAnt.Core.Types.FileSet.ExcludesFiles">
             <summary>
-            The files from which a list of patterns or files to exclude should 
+            The files from which a list of patterns or files to exclude should
             be obtained.
             </summary>
         </member>
@@ -10047,6 +10131,19 @@
               the patternset is defined. Each line of this file is taken to be a
               pattern.
               </para>
+              <para>
+              The number sign (#) as the first non-blank character in a line denotes
+              that all text following it is a comment:
+              </para>
+              <code>
+                <![CDATA[
+                   EventLog.cs
+                   # requires Mono.Posix
+                   SysLogEventLogImpl.cs
+                   # uses the win32 eventlog API
+                   Win32EventLogImpl.cs
+                ]]>
+              </code>
               <para>
               Patterns can be grouped to sets, and later be referenced by their
               <see cref="P:NAnt.Core.DataTypeBase.ID"/>.
@@ -11581,11 +11678,23 @@
             <summary>
             Moves a file filtering its content through the filter chain.
             </summary>
-            <param name="sourceFileName">The file to move</param>
-            <param name="destFileName">The file to move move to</param>
+            <param name="sourceFileName">The file to move.</param>
+            <param name="destFileName">The file to move move to.</param>
             <param name="filterChain">Chain of filters to apply when moving, or <see langword="null" /> is no filters should be applied.</param>
             <param name="inputEncoding">The encoding used to read the soure file.</param>
             <param name="outputEncoding">The encoding used to write the destination file.</param>
+        </member>
+        <member name="M:NAnt.Core.Util.FileUtils.ReadFile(System.String,NAnt.Core.Filters.FilterChain,System.Text.Encoding)">
+            <summary>
+            Reads a file filtering its content through the filter chain.
+            </summary>
+            <param name="fileName">The file to read.</param>
+            <param name="filterChain">Chain of filters to apply when reading, or <see langword="null" /> is no filters should be applied.</param>
+            <param name="inputEncoding">The encoding used to read the file.</param>
+            <remarks>
+            If <paramref name="inputEncoding" /> is <see langword="null" />,
+            then the system's ANSI code page will be used to read the file.
+            </remarks>
         </member>
         <member name="M:NAnt.Core.Util.FileUtils.GetTempDirectory">
             <summary>
@@ -11634,6 +11743,21 @@
             </summary>
             <returns>
             The home directory of the current user.
+            </returns>
+        </member>
+        <member name="M:NAnt.Core.Util.FileUtils.ResolveFile(System.String[],System.String,System.Boolean)">
+            <summary>
+            Scans a list of directories for the specified filename.
+            </summary>
+            <param name="directories">The list of directories to search.</param>
+            <param name="fileName">The name of the file to look for.</param>
+            <param name="recursive">Specifies whether the directory should be searched recursively.</param>
+            <remarks>
+            The directories are scanned in the order in which they are defined.
+            </remarks>
+            <returns>
+            The absolute path to the specified file, or null if the file was
+            not found.
             </returns>
         </member>
         <member name="T:NAnt.Core.Util.GacCache">
@@ -12934,6 +13058,15 @@
             framework is not considered valid.
             </remarks>
         </member>
+        <member name="P:NAnt.Core.FrameworkInfo.ClrType">
+            <summary>
+            Gets the CLR type of the framework.
+            </summary>
+            <value>
+            The CLR type of the framework.
+            </value>
+            <exception cref="T:System.ArgumentException">The framework is not valid.</exception>
+        </member>
         <member name="P:NAnt.Core.FrameworkInfo.VisualStudioVersion">
             <summary>
             Gets the Visual Studio version that corresponds with this
@@ -13054,6 +13187,69 @@
             <summary>
             Initializes a new instance of the <see cref="T:NAnt.Core.FrameworkInfoDictionary"/> class
             with the specified capacity.
+            </summary>
+        </member>
+        <member name="T:NAnt.Core.FrameworkTypes">
+            <summary>
+            Defines the types of frameworks.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.NotInstalled">
+            <summary>
+            Frameworks that are supported on the current platform, but are not
+            installed.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.Installed">
+            <summary>
+            Frameworks that are installed on the current system.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.InstallStateMask">
+            <summary>
+            Retrieves installation state attributes.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.Desktop">
+            <summary>
+            Frameworks that typically target full desktop devices.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.Compact">
+            <summary>
+            Frameworks that target compact devices.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.Browser">
+            <summary>
+            Frameworks that run in a browser.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.DeviceMask">
+            <summary>
+            Retrieves device attributes.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.Mono">
+            <summary>
+            Frameworks released as part of the open-source <see href="http://www.mono-project.com">Mono</see>
+            project.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.MS">
+            <summary>
+            Frameworks released by Microsoft.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.VendorMask">
+            <summary>
+            Retrieves vendor attributes.
+            </summary>
+        </member>
+        <member name="F:NAnt.Core.FrameworkTypes.All">
+            <summary>
+            All frameworks supported on the current platform, regarless of their
+            installation state, target device or vendor.
             </summary>
         </member>
         <member name="T:NAnt.Core.Location">
@@ -14150,6 +14346,18 @@
             Optimized for framework initialization projects, by skipping automatic
             discovery of extension assemblies and framework configuration.
             </remarks>
+        </member>
+        <member name="M:NAnt.Core.Project.GetFrameworks(NAnt.Core.FrameworkTypes)">
+            <summary>
+            Gets the list of supported frameworks filtered by the specified
+            <see cref="T:NAnt.Core.FrameworkTypes"/> parameter.
+            </summary>
+            <param name="types">A bitwise combination of <see cref="T:NAnt.Core.FrameworkTypes"/> values that filter the frameworks to retrieve.</param>
+            <returns>
+            An array of type <see cref="T:NAnt.Core.FrameworkInfo"/> that contains the
+            frameworks specified by the <paramref name="types"/> parameter,
+            sorted on name.
+            </returns>
         </member>
         <member name="M:NAnt.Core.Project.OnBuildStarted(System.Object,NAnt.Core.BuildEventArgs)">
             <summary>
