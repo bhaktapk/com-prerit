@@ -17,24 +17,12 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="setup-dev-environment">
-    <property name="database.db-name"
-              value="${database.db-name}-dev" />
-
-    <property name="database.com-prerit.conn-string.username"
-              value="${database.com-prerit.conn-string.username}-dev" />
-
     <property name="dir.app-settings-config"
-              value="${dir.code}\${project.name.com-prerit-web-ui}" />
-
-    <property name="dir.connection-string-config"
               value="${dir.code}\${project.name.com-prerit-web-ui}" />
 
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\PackageDatabase.build" />
-    <nant buildfile="BuildSteps\DeployDatabase.build" />
     <nant buildfile="BuildSteps\SetAppSettings.build" />
-    <nant buildfile="BuildSteps\SetConnectionStrings.build" />
   </target>
 
   <target name="clean">
@@ -52,15 +40,8 @@
   </target>
 
   <target name="init">
-    <call target="init-database"
-          cascade="false" />
-
     <call target="init-code"
           cascade="false" />
-  </target>
-
-  <target name="init-database">
-    <nant buildfile="BuildSteps\MakeDirectories.build" />
   </target>
 
   <target name="init-code">
@@ -89,17 +70,8 @@
   <target name="package"
           depends="test document">
 
-    <call target="package-database"
-          cascade="false" />
-
     <call target="package-website"
           cascade="false" />
-  </target>
-
-  <target name="package-database"
-          depends="init-database">
-
-    <nant buildfile="BuildSteps\PackageDatabase.build" />
   </target>
 
   <target name="package-website"
@@ -111,19 +83,8 @@
   <target name="deploy"
           depends="package">
 
-    <call target="deploy-database"
-          cascade="false" />
-
     <call target="deploy-website"
           cascade="false" />
-  </target>
-
-  <target name="deploy-database"
-          depends="package-database">
-
-    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
-    <nant buildfile="BuildSteps\DeployDatabase.build" />
-    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
 
   <target name="deploy-website"
@@ -134,7 +95,6 @@
 
     <if test="${not target::has-executed('release')}">
       <nant buildfile="BuildSteps\SetAppSettings.build" />
-      <nant buildfile="BuildSteps\SetConnectionStrings.build" />
     </if>
 
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
