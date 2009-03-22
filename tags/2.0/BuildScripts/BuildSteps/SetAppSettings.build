@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project name="SetAppSettings"
+         default="set-app-settings"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="set-app-settings">
+    <copy file="${dir.app-settings-config}\app_settings.config.template"
+          tofile="${dir.app-settings-config}\app_settings.config"
+          overwrite="true">
+
+      <!--<filterchain>
+        <replacetokens>
+          <token key=""
+                 value="" />
+        </replacetokens>
+      </filterchain>-->
+    </copy>
+  </target>
+</project>

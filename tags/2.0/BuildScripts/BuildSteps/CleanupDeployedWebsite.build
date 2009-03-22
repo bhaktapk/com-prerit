@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<project name="CleanupDeployedWebsite"
+         default="cleanup-deployed-website"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="cleanup-deployed-website">
+    <if test="${file::exists(dir.deploy + '\app_settings.config') and file::exists(dir.deploy + '\app_settings.config.template')}">
+      <delete file="${dir.deploy}\app_settings.config.template" />
+    </if>
+  </target>
+</project>

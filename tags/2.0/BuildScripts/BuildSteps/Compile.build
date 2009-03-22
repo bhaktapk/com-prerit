@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="Compile"
+         default="compile"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="compile">
+    <call target="compile-source-code" />
+
+    <if test="${string::to-lower(msbuild.configuration) == string::to-lower('Release')}">
+      <call target="use-production-web-config" />
+    </if>
+
+    <call target="delete-unnecessary-files" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="compile-source-code">
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
+      <arg value="${dir.code}\${project.name.com-prerit-web-ui-deployment}\${project.name.com-prerit-web-ui-deployment}.wdproj" />
+      <arg value="/p:Configuration=${msbuild.configuration}" />
+      <arg value="/p:OutputPath=&quot;${dir.build}\${project.name.com-prerit-web-ui}&quot;" />
+      <arg value="/v:${msbuild.verbosity}" />
+    </exec>
+  </target>
+
+  <target name="delete-unnecessary-files">
+    <delete>
+      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+        <include name="logs\*.log" />
+        <include name="app_settings.config" />
+        <include name="production_web.config" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="use-production-web-config">
+    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config"
+          tofile="${dir.build}\${project.name.com-prerit-web-ui}\web.config"
+          overwrite="true" />
+  </target>
+</project>

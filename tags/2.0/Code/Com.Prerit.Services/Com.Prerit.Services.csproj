@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Prerit.Services</RootNamespace>
+    <AssemblyName>Com.Prerit.Services</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Com.Prerit.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlbumYearLoaderService.cs" />
+    <Compile Include="AsyncCacheItemLoaderService.cs" />
+    <Compile Include="Caching\CacheItemDependency.cs" />
+    <Compile Include="Caching\CacheKey.cs" />
+    <Compile Include="Caching\TypedCache.cs" />
+    <Compile Include="IAlbumYearLoaderService.cs" />
+    <Compile Include="IAsyncCacheItemLoaderService.cs" />
+    <Compile Include="IImageEditorService.cs" />
+    <Compile Include="ILoaderService.cs" />
+    <Compile Include="ImageEditorService.cs" />
+    <Compile Include="IPhotoAlbumFinderService.cs" />
+    <Compile Include="IAsyncLoaderService.cs" />
+    <Compile Include="LoaderAsyncServiceStatus.cs" />
+    <Compile Include="PhotoAlbumFinderService.cs" />
+    <Compile Include="PhotoAlbumLoaderService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
+      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
+      <Name>Com.Prerit.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
+      <Project>{CE05BC84-482F-402F-A967-65859255C83C}</Project>
+      <Name>Com.Prerit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Domain\Com.Prerit.Domain.csproj">
+      <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
+      <Name>Com.Prerit.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

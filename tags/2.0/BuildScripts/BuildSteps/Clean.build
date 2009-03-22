@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project name="Clean"
+         default="clean"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="clean">
+    <call target="clean-solution" />
+    <call target="delete-build-directory" />
+    <call target="delete-packages-directory" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="clean-solution">
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
+      <arg value="${dir.code}\Com.Prerit.sln" />
+      <arg value="/t:Clean" />
+      <arg value="/v:${msbuild.verbosity}" />
+    </exec>
+  </target>
+
+  <target name="delete-build-directory">
+    <delete dir="${dir.build-base}" />
+  </target>
+
+  <target name="delete-packages-directory">
+    <delete dir="${dir.packages}" />
+  </target>
+</project>

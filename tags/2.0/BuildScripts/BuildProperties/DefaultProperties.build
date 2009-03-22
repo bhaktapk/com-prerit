@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<project name="DefaultProperties"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- DIRECTORIES -->
+
+  <property name="dir.base"
+            value="${path::get-full-path('..')}"
+            overwrite="false" />
+
+  <property name="dir.build-base"
+            value="${dir.base}\Build"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.build"
+            value="${dir.build-base}\${msbuild.configuration}"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.code"
+            value="${dir.base}\Code"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.app-settings-config"
+            value="${dir.deploy}"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.deploy"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\test.prerit.com"
+            overwrite="false" />
+
+  <property name="dir.packages"
+            value="${dir.base}\Packages"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools"
+            value="${dir.base}\Tools"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.nant"
+            value="${dir.tools}\NAnt"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.nantcontrib"
+            value="${dir.tools}\NAntContrib"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.sqlcmd"
+            value="${dir.tools}\SQLCMD"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.svn"
+            value="${dir.tools}\SVN"
+            dynamic="true"
+            overwrite="false" />
+
+
+
+  <!-- VERSION CONTROL PROPERTIES -->
+
+  <property name="version-control.revision"
+            value="0"
+            overwrite="false" />
+
+
+
+  <!-- ASSEMBLY PROPERTIES -->
+
+  <property name="assembly.version"
+            value="2.0.0.${version-control.revision}"
+            dynamic="true"
+            overwrite="false" />
+
+
+
+  <!-- MSBUILD PROPERTIES -->
+
+  <property name="msbuild.configuration"
+            value="Debug"
+            overwrite="false" />
+
+  <property name="msbuild.verbosity"
+            value="minimal"
+            overwrite="false" />
+
+
+
+  <!-- PROJECT PROPERTIES -->
+
+  <property name="project.name.com-prerit-web-ui"
+            value="Com.Prerit.Web.UI"
+            overwrite="false" />
+
+  <property name="project.name.com-prerit-web-ui-deployment"
+            value="Com.Prerit.Web.UI.Deployment"
+            overwrite="false" />
+
+
+
+  <!-- PACKAGE PROPERTIES -->
+
+  <property name="package.name.com-prerit-web-ui"
+            value="${project.name.com-prerit-web-ui}-${msbuild.configuration}.zip"
+            dynamic="true"
+            overwrite="false" />
+</project>

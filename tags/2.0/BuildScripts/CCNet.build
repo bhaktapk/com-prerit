@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="CCNet"
+         default="all"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="all"
+          depends="init">
+
+    <nant buildfile="Default.build"
+          target="clean deploy" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="init">
+    <if test="${not property::exists('CCNetLabel')}">
+      <fail message="This build file is for use with CruiseControl.NET." />
+    </if>
+
+  <property name="dir.deploy"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\staging.prerit.com"
+            overwrite="true" />
+  </target>
+</project>

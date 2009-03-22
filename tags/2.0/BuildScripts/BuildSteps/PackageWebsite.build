@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project name="PackageWebsite"
+         default="package-website"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="package-website">
+    <call target="package-com-prerit-web-ui" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="package-com-prerit-web-ui">
+    <zip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
+      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}"
+               failonempty="true">
+
+        <include name="**" />
+      </fileset>
+    </zip>
+  </target>
+</project>

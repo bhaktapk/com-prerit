@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<project name="Main"
+         default="deploy"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- INCLUDES -->
+
+  <include buildfile="BuildProperties\DefaultProperties.build" />
+
+  <if test="${file::exists('BuildProperties\LocalProperties.build')}">
+    <echo message="Loading BuildProperties\LocalProperties.build" />
+    <include buildfile="BuildProperties\LocalProperties.build" />
+  </if>
+
+
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="setup-dev-environment">
+    <property name="dir.app-settings-config"
+              value="${dir.code}\${project.name.com-prerit-web-ui}" />
+
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
+    <nant buildfile="BuildSteps\VersionCode.build" />
+    <nant buildfile="BuildSteps\SetAppSettings.build" />
+  </target>
+
+  <target name="clean">
+    <nant buildfile="BuildSteps\Clean.build" />
+  </target>
+
+  <target name="debug">
+    <property name="msbuild.configuration"
+              value="Debug" />
+  </target>
+
+  <target name="release">
+    <property name="msbuild.configuration"
+              value="Release" />
+  </target>
+
+  <target name="init">
+    <call target="init-code"
+          cascade="false" />
+  </target>
+
+  <target name="init-code">
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
+    <nant buildfile="BuildSteps\VersionCode.build" />
+  </target>
+
+  <target name="compile"
+          depends="init">
+
+    <nant buildfile="BuildSteps\Compile.build" />
+  </target>
+
+  <target name="test"
+          depends="compile">
+
+    <nant buildfile="BuildSteps\Test.build" />
+  </target>
+
+  <target name="document"
+          depends="compile">
+
+    <nant buildfile="BuildSteps\Document.build" />
+  </target>
+
+  <target name="package"
+          depends="test document">
+
+    <call target="package-website"
+          cascade="false" />
+  </target>
+
+  <target name="package-website"
+          depends="test document">
+
+    <nant buildfile="BuildSteps\PackageWebsite.build" />
+  </target>
+
+  <target name="deploy"
+          depends="package">
+
+    <call target="deploy-website"
+          cascade="false" />
+  </target>
+
+  <target name="deploy-website"
+          depends="package-website">
+
+    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\DeployWebsite.build" />
+
+    <if test="${not target::has-executed('release')}">
+      <nant buildfile="BuildSteps\SetAppSettings.build" />
+    </if>
+
+    <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
+    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+  </target>
+</project>

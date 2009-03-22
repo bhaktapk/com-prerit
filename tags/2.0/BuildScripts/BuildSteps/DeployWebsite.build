@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project name="DeployWebsite"
+         default="deploy-website"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="deploy-website">
+    <call target="delete-previous-deployment" />
+    <call target="copy-new-deployment" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="copy-new-deployment">
+    <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
+           todir="${dir.deploy}" />
+  </target>
+
+  <target name="delete-previous-deployment">
+    <delete>
+      <fileset basedir="${dir.deploy}">
+        <include name="**" />
+        <exclude name="app_offline.htm" />
+      </fileset>
+    </delete>
+  </target>
+</project>
