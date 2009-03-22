@@ -75,7 +75,7 @@
   <!-- ASSEMBLY PROPERTIES -->
 
   <property name="assembly.version"
-            value="2.0.0.${version-control.revision}"
+            value="2.5.0.${version-control.revision}"
             dynamic="true"
             overwrite="false" />
 
