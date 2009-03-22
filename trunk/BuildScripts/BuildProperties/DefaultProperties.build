@@ -30,7 +30,7 @@
 
   <property name="dir.deploy"
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\com-prerit"
-            overwrite="true" />
+            overwrite="false" />
 
   <property name="dir.packages"
             value="${dir.base}\Packages"
