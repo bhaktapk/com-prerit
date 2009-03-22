@@ -15,3 +15,4 @@ Development Machine
 
 TortoiseSVN
 Visual Studio 2008 (C#)
+Web Deployment Project 2008
