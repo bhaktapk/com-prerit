@@ -20,5 +20,9 @@
     <if test="${not property::exists('CCNetLabel')}">
       <fail message="This build file is for use with CruiseControl.NET." />
     </if>
+
+  <property name="dir.deploy"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\prerit.com (staging)"
+            overwrite="true" />
   </target>
 </project>
