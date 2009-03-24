@@ -52,45 +52,52 @@
   <target name="compile"
           depends="init">
 
-    <nant buildfile="BuildSteps\Compile.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\Compile.build" />-->
   </target>
 
   <target name="test"
           depends="compile">
 
-    <nant buildfile="BuildSteps\Test.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\Test.build" />-->
   </target>
 
   <target name="document"
           depends="compile">
 
-    <nant buildfile="BuildSteps\Document.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\Document.build" />-->
   </target>
 
   <target name="package"
           depends="test document">
 
-    <call target="package-website"
-          cascade="false" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<call target="package-website"
+          cascade="false" />-->
   </target>
 
   <target name="package-website"
           depends="test document">
 
-    <nant buildfile="BuildSteps\PackageWebsite.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\PackageWebsite.build" />-->
   </target>
 
   <target name="deploy"
           depends="package">
 
-    <call target="deploy-website"
-          cascade="false" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<call target="deploy-website"
+          cascade="false" />-->
   </target>
 
   <target name="deploy-website"
           depends="package-website">
 
-    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
 
     <if test="${not target::has-executed('release')}">
@@ -98,6 +105,6 @@
     </if>
 
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
-    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />-->
   </target>
 </project>
