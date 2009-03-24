@@ -3,32 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Prerit.Web", "Com.Prerit.Web\Com.Prerit.Web.csproj", "{6E00A3AB-6238-47E6-8765-707327A7B4EA}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Com.Prerit.Web.UI", "Com.Prerit.Web.UI\", "{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "3.5"
-		ProjectReferences = "{6E00A3AB-6238-47E6-8765-707327A7B4EA}|Com.Prerit.Web.dll;{CE05BC84-482F-402F-A967-65859255C83C}|Com.Prerit.Core.dll;{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}|Com.Prerit.Configuration.dll;{E572A14A-F02D-43DB-88D3-AB13B797999C}|Com.Prerit.Domain.dll;{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}|Com.Prerit.Services.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/Com.Prerit.Web.UI"
-		Debug.AspNetCompiler.PhysicalPath = "Com.Prerit.Web.UI\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Com.Prerit.Web.UI\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Com.Prerit.Web.UI"
-		Release.AspNetCompiler.PhysicalPath = "Com.Prerit.Web.UI\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Com.Prerit.Web.UI\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "8080"
-		VWDDynamicPort = "false"
-		VWDVirtualPath = "/"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
-Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Deployment", "Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj", "{DE2526A5-EDCF-4579-8AE5-BE61C399A543}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Com.Prerit.Web namespace", "Com.Prerit.Web namespace", "{F107BE01-4C79-478E-9339-BF8D7FF10AC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Com.Prerit.Web.UI namespace", "Com.Prerit.Web.UI namespace", "{11696AB3-9C27-40E7-BB3B-50FD20287984}"
@@ -69,24 +43,6 @@ Global
 		{6E00A3AB-6238-47E6-8765-707327A7B4EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E00A3AB-6238-47E6-8765-707327A7B4EA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6E00A3AB-6238-47E6-8765-707327A7B4EA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Debug|.NET.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Debug|.NET.Build.0 = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Release|.NET.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Release|.NET.Build.0 = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}.Release|Mixed Platforms.Build.0 = Debug|.NET
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|.NET.ActiveCfg = Release|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -133,8 +89,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6E00A3AB-6238-47E6-8765-707327A7B4EA} = {F107BE01-4C79-478E-9339-BF8D7FF10AC7}
-		{DE2526A5-EDCF-4579-8AE5-BE61C399A543} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
-		{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
 		{DB1BA67E-A160-416A-8FA9-1057E2FB2C13} = {108763BC-1705-4467-BC6E-95D1FAC52118}
 		{CE05BC84-482F-402F-A967-65859255C83C} = {46ED0BCE-5F8D-4D0C-88DC-157208D4DE1F}
 		{E572A14A-F02D-43DB-88D3-AB13B797999C} = {50BC9F87-8409-46B8-9DD8-18BB23557093}
