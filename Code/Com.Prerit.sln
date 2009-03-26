@@ -47,6 +47,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Com.Prerit.Web.UI.Legacy", 
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Legacy.Deployment", "Com.Prerit.Web.UI.Legacy.Deployment\Com.Prerit.Web.UI.Legacy.Deployment.wdproj", "{DE2526A5-EDCF-4579-8AE5-BE61C399A543}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Prerit.Web.UI", "Com.Prerit.Web.UI\Com.Prerit.Web.UI.csproj", "{FD83A986-AAC3-4611-9F8C-97182B914984}"
+EndProject
+Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Deployment", "Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj", "{D842BE54-8500-486D-8FFE-3B561F1E6900}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -123,12 +127,32 @@ Global
 		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE2526A5-EDCF-4579-8AE5-BE61C399A543}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Release|.NET.ActiveCfg = Release|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FD83A986-AAC3-4611-9F8C-97182B914984}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|.NET.ActiveCfg = Release|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6E00A3AB-6238-47E6-8765-707327A7B4EA} = {F107BE01-4C79-478E-9339-BF8D7FF10AC7}
+		{FD83A986-AAC3-4611-9F8C-97182B914984} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
+		{D842BE54-8500-486D-8FFE-3B561F1E6900} = {11696AB3-9C27-40E7-BB3B-50FD20287984}
 		{DB1BA67E-A160-416A-8FA9-1057E2FB2C13} = {108763BC-1705-4467-BC6E-95D1FAC52118}
 		{CE05BC84-482F-402F-A967-65859255C83C} = {46ED0BCE-5F8D-4D0C-88DC-157208D4DE1F}
 		{E572A14A-F02D-43DB-88D3-AB13B797999C} = {50BC9F87-8409-46B8-9DD8-18BB23557093}
