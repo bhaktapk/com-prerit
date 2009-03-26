@@ -9,55 +9,33 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DE2526A5-EDCF-4579-8AE5-BE61C399A543}</ProjectGuid>
-    <SourceWebPhysicalPath>..\Com.Prerit.Web.UI</SourceWebPhysicalPath>
-    <SourceWebProject>{AB3D47EE-2DD3-4343-8BDC-BA6969FC6C74}|D:\Code\SVN Checkout\com-prerit\trunk\Code\Com.Prerit.Web.UI</SourceWebProject>
-    <SourceWebVirtualPath>/Com.Prerit.Web.UI</SourceWebVirtualPath>
+    <ProjectGuid>{73FA63D9-AE71-4879-B785-4F28DDEFFA23}</ProjectGuid>
+    <SourceWebPhysicalPath>..\Com.Prerit.Web.UI.Legacy</SourceWebPhysicalPath>
+    <SourceWebProject>{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}|E:\Code\SVN\Checkout\com-prerit\trunk\Code\Com.Prerit.Web.UI.Legacy</SourceWebProject>
+    <SourceWebVirtualPath>/Com.Prerit.Web.UI.Legacy</SourceWebVirtualPath>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>.\Debug\</OutputPath>
+    <OutputPath>.\Debug</OutputPath>
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Legacy</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
     <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
-    <OutputPath>.\Release\</OutputPath>
+    <OutputPath>.\Release</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Legacy</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
     <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
-      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
-      <Name>Com.Prerit.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
-      <Project>{CE05BC84-482F-402F-A967-65859255C83C}</Project>
-      <Name>Com.Prerit.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Domain\Com.Prerit.Domain.csproj">
-      <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
-      <Name>Com.Prerit.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Services\Com.Prerit.Services.csproj">
-      <Project>{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}</Project>
-      <Name>Com.Prerit.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Com.Prerit.Web\Com.Prerit.Web.csproj">
-      <Project>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</Project>
-      <Name>Com.Prerit.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v9.0\Microsoft.WebDeployment.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
