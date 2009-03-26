@@ -52,59 +52,53 @@
   <target name="compile"
           depends="init">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\Compile.build" />-->
+    <nant buildfile="BuildSteps\Compile.build" />
   </target>
 
   <target name="test"
           depends="compile">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\Test.build" />-->
+    <nant buildfile="BuildSteps\Test.build" />
   </target>
 
   <target name="document"
           depends="compile">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\Document.build" />-->
+    <nant buildfile="BuildSteps\Document.build" />
   </target>
 
   <target name="package"
           depends="test document">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<call target="package-website"
-          cascade="false" />-->
+    <call target="package-website"
+          cascade="false" />
   </target>
 
   <target name="package-website"
           depends="test document">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\PackageWebsite.build" />-->
+    <nant buildfile="BuildSteps\PackageWebsite.build" />
   </target>
 
   <target name="deploy"
           depends="package">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<call target="deploy-website"
-          cascade="false" />-->
+    <call target="deploy-website"
+          cascade="false" />
   </target>
 
   <target name="deploy-website"
           depends="package-website">
 
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
 
     <if test="${not target::has-executed('release')}">
-      <nant buildfile="BuildSteps\SetAppSettings.build" />
+      <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+      <!--<nant buildfile="BuildSteps\SetAppSettings.build" />-->
     </if>
 
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
-    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />-->
+    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
 </project>
