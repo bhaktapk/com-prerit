@@ -22,7 +22,7 @@
     </if>
 
   <property name="dir.deploy"
-            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\staging.prerit.com"
+            value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\ccnet.prerit.com"
             overwrite="true" />
   </target>
 </project>
