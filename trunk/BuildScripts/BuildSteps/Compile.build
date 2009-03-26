@@ -39,8 +39,9 @@
   </target>
 
   <target name="use-production-web-config">
-    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config"
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<copy file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config"
           tofile="${dir.build}\${project.name.com-prerit-web-ui}\web.config"
-          overwrite="true" />
+          overwrite="true" />-->
   </target>
 </project>
