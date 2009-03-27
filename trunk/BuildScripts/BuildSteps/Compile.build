@@ -6,9 +6,9 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="compile">
-    <call target="hack--compile-web-application-project-before-web-deployment-project" />
+    <call target="compile-web-application-project" />
     
-    <call target="compile-source-code" />
+    <call target="compile-web-deployment-project" />
 
     <if test="${string::to-lower(msbuild.configuration) == string::to-lower('Release')}">
       <call target="use-production-web-config" />
@@ -21,7 +21,17 @@
 
   <!-- PRIVATE TARGETS -->
 
-  <target name="compile-source-code">
+  <target name="compile-web-application-project">
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
+      <arg value="${dir.code}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj" />
+      <arg value="/t:Clean" />
+      <arg value="/t:Build" />
+      <arg value="/p:Configuration=${msbuild.configuration}" />
+      <arg value="/v:${msbuild.verbosity}" />
+    </exec>
+  </target>
+
+  <target name="compile-web-deployment-project">
     <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
       <arg value="${dir.code}\${project.name.com-prerit-web-ui-deployment}\${project.name.com-prerit-web-ui-deployment}.wdproj" />
       <arg value="/t:Clean" />
@@ -40,16 +50,6 @@
         <include name="production_web.config" />
       </fileset>
     </delete>
-  </target>
-
-  <target name="hack--compile-web-application-project-before-web-deployment-project">
-    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
-      <arg value="${dir.code}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj" />
-      <arg value="/t:Clean" />
-      <arg value="/t:Build" />
-      <arg value="/p:Configuration=${msbuild.configuration}" />
-      <arg value="/v:${msbuild.verbosity}" />
-    </exec>
   </target>
 
   <target name="use-production-web-config">
