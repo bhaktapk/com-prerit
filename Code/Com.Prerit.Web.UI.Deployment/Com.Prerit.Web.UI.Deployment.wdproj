@@ -18,16 +18,22 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>.\Debug</OutputPath>
-    <EnableUpdateable>true</EnableUpdateable>
+    <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <KeyFile>..\Com.Prerit.snk</KeyFile>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
     <OutputPath>.\Release</OutputPath>
-    <EnableUpdateable>true</EnableUpdateable>
+    <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <KeyFile>..\Com.Prerit.snk</KeyFile>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
