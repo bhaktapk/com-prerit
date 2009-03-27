@@ -22,7 +22,8 @@
 
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\SetAppSettings.build" />
+    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
+    <!--<nant buildfile="BuildSteps\SetAppSettings.build" />-->
   </target>
 
   <target name="clean">
