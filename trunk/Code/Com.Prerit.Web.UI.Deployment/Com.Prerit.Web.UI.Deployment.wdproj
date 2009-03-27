@@ -20,7 +20,7 @@
     <OutputPath>.\Debug</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
     <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
@@ -30,7 +30,7 @@
     <OutputPath>.\Release</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Deployment</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
     <KeyFile>..\Com.Prerit.snk</KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
     <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
