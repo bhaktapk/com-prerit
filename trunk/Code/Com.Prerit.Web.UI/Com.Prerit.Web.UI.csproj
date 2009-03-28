@@ -118,6 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app-settings.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
