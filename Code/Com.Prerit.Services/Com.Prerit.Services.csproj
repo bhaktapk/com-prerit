@@ -47,9 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AlbumYearLoaderService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AsyncCacheItemLoaderService.cs" />
     <Compile Include="Caching\CacheItemDependency.cs" />
     <Compile Include="Caching\CacheKey.cs" />
@@ -78,9 +79,6 @@
       <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
       <Name>Com.Prerit.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

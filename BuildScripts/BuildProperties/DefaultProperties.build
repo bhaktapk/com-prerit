@@ -87,10 +87,6 @@
             dynamic="true"
             overwrite="false" />
 
-  <property name="assembly.product"
-            value="http://prerit.com"
-            overwrite="false" />
-
   <property name="assembly.version"
             value="2.5.0.${version-control.revision}"
             dynamic="true"
