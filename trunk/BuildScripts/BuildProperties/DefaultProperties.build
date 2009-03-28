@@ -74,6 +74,23 @@
 
   <!-- ASSEMBLY PROPERTIES -->
 
+  <property name="assembly.common-assembly-info"
+            value="CommonAssemblyInfo.cs"
+            overwrite="false" />
+
+  <property name="assembly.company"
+            value="Prerit Bhakta"
+            overwrite="false" />
+
+  <property name="assembly.copyright"
+            value="Copyright (c) ${assembly.company} 2008-${datetime::get-year(datetime::now())}"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="assembly.product"
+            value="http://prerit.com"
+            overwrite="false" />
+
   <property name="assembly.version"
             value="2.5.0.${version-control.revision}"
             dynamic="true"
