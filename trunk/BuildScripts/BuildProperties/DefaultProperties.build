@@ -94,6 +94,18 @@
 
 
 
+  <!-- MARKUP ASSEMBLY PROPERTIES -->
+
+  <property name="markup-assembly.name"
+            value="Com.Prerit.Web.UI.Markup"
+            overwrite="false" />
+
+  <property name="markup-assembly.guid"
+            value="A7EB2DED-5119-4762-9783-C81BFE5D0E43"
+            overwrite="false" />
+
+
+  
   <!-- MSBUILD PROPERTIES -->
 
   <property name="msbuild.configuration"

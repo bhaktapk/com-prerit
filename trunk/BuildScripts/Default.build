@@ -54,6 +54,7 @@
           depends="init">
 
     <nant buildfile="BuildSteps\Compile.build" />
+    <nant buildfile="BuildSteps\PostCompileCleanup.build" />
   </target>
 
   <target name="test"
