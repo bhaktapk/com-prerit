@@ -19,7 +19,8 @@
 
   <target name="copy-common-assembly-info-for-markup-assembly">
     <copy file="${dir.code}\${assembly.common-assembly-info}"
-          todir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
+          todir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code"
+          overwrite="true" />
   </target>
 
   <target name="create-common-assembly-info">
