@@ -29,22 +29,25 @@
       <imports>
         <import namespace="System.Reflection" />
         <import namespace="System.Runtime.InteropServices" />
+        <import namespace="System.Security" />
       </imports>
       <attributes>
-        <attribute type="ComVisibleAttribute"
-                   value="false" />
-        <attribute type="AssemblyVersionAttribute"
-                   value="${assembly.version}" />
-        <attribute type="AssemblyFileVersionAttribute"
-                   value="${assembly.version}" />
-        <attribute type="AssemblyCopyrightAttribute"
-                   value="${assembly.copyright}" />
+        <attribute type="AllowPartiallyTrustedCallersAttribute"
+                   asis="true" />
         <attribute type="AssemblyCompanyAttribute"
                    value="${assembly.company}" />
         <attribute type="AssemblyConfigurationAttribute"
                    value="${msbuild.configuration}" />
+        <attribute type="AssemblyCopyrightAttribute"
+                   value="${assembly.copyright}" />
+        <attribute type="AssemblyFileVersionAttribute"
+                   value="${assembly.version}" />
         <attribute type="AssemblyInformationalVersionAttribute"
                    value="${assembly.version}" />
+        <attribute type="AssemblyVersionAttribute"
+                   value="${assembly.version}" />
+        <attribute type="ComVisibleAttribute"
+                   value="false" />
       </attributes>
       <references>
         <include name="System.dll" />
