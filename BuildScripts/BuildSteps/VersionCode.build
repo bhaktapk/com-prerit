@@ -9,11 +9,18 @@
     <call target="get-revision" />
     <call target="delete-common-assembly-info" />
     <call target="create-common-assembly-info" />
+    <call target="copy-common-assembly-info-for-markup-assembly" />
+    <call target="create-markup-assembly-info" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="copy-common-assembly-info-for-markup-assembly">
+    <copy file="${dir.code}\${assembly.common-assembly-info}"
+          todir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
+  </target>
 
   <target name="create-common-assembly-info">
     <asminfo output="${dir.code}\${assembly.common-assembly-info}"
@@ -37,6 +44,27 @@
                    value="${msbuild.configuration}" />
         <attribute type="AssemblyInformationalVersionAttribute"
                    value="${assembly.version}" />
+      </attributes>
+      <references>
+        <include name="System.dll" />
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="create-markup-assembly-info">
+    <asminfo output="${dir.code}\${project.name.com-prerit-web-ui}\App_Code\AssemblyInfo.cs"
+             language="CSharp">
+      <imports>
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="AssemblyTitleAttribute"
+                   value="${markup-assembly.name}" />
+        <attribute type="AssemblyProductAttribute"
+                   value="${markup-assembly.name}" />
+        <attribute type="GuidAttribute"
+                   value="${markup-assembly.guid}" />
       </attributes>
       <references>
         <include name="System.dll" />

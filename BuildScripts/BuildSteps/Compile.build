@@ -8,17 +8,11 @@
   <target name="compile">
     <call target="compile-web-application-project" />
     
-    <call target="copy-common-assembly-info-to-app-code" />
-
     <call target="compile-web-deployment-project" />
-
-    <call target="delete-appcode-directory" />
 
     <if test="${string::to-lower(msbuild.configuration) == string::to-lower('Release')}">
       <call target="use-production-web-config" />
     </if>
-
-    <call target="delete-unnecessary-files" />
   </target>
 
 
@@ -44,25 +38,6 @@
       <arg value="/p:OutputPath=&quot;${dir.build}\${project.name.com-prerit-web-ui}&quot;" />
       <arg value="/v:${msbuild.verbosity}" />
     </exec>
-  </target>
-
-  <target name="copy-common-assembly-info-to-app-code">
-    <copy file="${dir.code}\${assembly.common-assembly-info}"
-          todir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
-  </target>
-
-  <target name="delete-appcode-directory">
-    <delete dir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
-  </target>
-
-  <target name="delete-unnecessary-files">
-    <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
-        <include name="logs\*.log" />
-        <include name="app_settings.config" />
-        <include name="production_web.config" />
-      </fileset>
-    </delete>
   </target>
 
   <target name="use-production-web-config">
