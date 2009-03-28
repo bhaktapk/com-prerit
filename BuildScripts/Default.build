@@ -22,8 +22,7 @@
 
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<nant buildfile="BuildSteps\SetAppSettings.build" />-->
+    <nant buildfile="BuildSteps\SetAppSettings.build" />
   </target>
 
   <target name="clean">
@@ -96,8 +95,7 @@
     <nant buildfile="BuildSteps\DeployWebsite.build" />
 
     <if test="${not target::has-executed('release')}">
-      <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-      <!--<nant buildfile="BuildSteps\SetAppSettings.build" />-->
+      <nant buildfile="BuildSteps\SetAppSettings.build" />
     </if>
 
     <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />

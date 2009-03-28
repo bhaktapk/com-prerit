@@ -6,8 +6,8 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="set-app-settings">
-    <copy file="${dir.app-settings-config}\app_settings.config.template"
-          tofile="${dir.app-settings-config}\app_settings.config"
+    <copy file="${dir.code}\${project.name.com-prerit-web-ui}\app-settings.config.template"
+          tofile="${dir.code}\${project.name.com-prerit-web-ui}\app-settings.config"
           overwrite="true">
 
       <!--<filterchain>
