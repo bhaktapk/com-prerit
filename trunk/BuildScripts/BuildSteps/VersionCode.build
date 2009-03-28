@@ -19,7 +19,6 @@
     <asminfo output="${dir.code}\${assembly.common-assembly-info}"
              language="CSharp">
       <imports>
-        <import namespace="System" />
         <import namespace="System.Reflection" />
         <import namespace="System.Runtime.InteropServices" />
       </imports>
@@ -32,8 +31,6 @@
                    value="${assembly.version}" />
         <attribute type="AssemblyCopyrightAttribute"
                    value="${assembly.copyright}" />
-        <attribute type="AssemblyProductAttribute"
-                   value="${assembly.product}" />
         <attribute type="AssemblyCompanyAttribute"
                    value="${assembly.company}" />
         <attribute type="AssemblyConfigurationAttribute"
