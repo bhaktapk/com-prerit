@@ -7,12 +7,49 @@
 
   <target name="version-code">
     <call target="get-revision" />
-    <call target="set-version" />
+    <call target="delete-common-assembly-info" />
+    <call target="create-common-assembly-info" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="create-common-assembly-info">
+    <asminfo output="${dir.code}\${assembly.common-assembly-info}"
+             language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="ComVisibleAttribute"
+                   value="false" />
+        <attribute type="AssemblyVersionAttribute"
+                   value="${assembly.version}" />
+        <attribute type="AssemblyFileVersionAttribute"
+                   value="${assembly.version}" />
+        <attribute type="AssemblyCopyrightAttribute"
+                   value="${assembly.copyright}" />
+        <attribute type="AssemblyProductAttribute"
+                   value="${assembly.product}" />
+        <attribute type="AssemblyCompanyAttribute"
+                   value="${assembly.company}" />
+        <attribute type="AssemblyConfigurationAttribute"
+                   value="${msbuild.configuration}" />
+        <attribute type="AssemblyInformationalVersionAttribute"
+                   value="${assembly.version}" />
+      </attributes>
+      <references>
+        <include name="System.dll" />
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="delete-common-assembly-info">
+    <delete file="${dir.code}\${assembly.common-assembly-info}" />
+  </target>
 
   <target name="get-revision">
     <property name="file.svn-info"
@@ -31,29 +68,5 @@
              property="version-control.revision" />
 
     <delete file="${file.svn-info}" />
-  </target>
-
-  <target name="set-version">
-    <foreach item="File"
-             property="filename">
-      <in>
-        <items basedir="${dir.code}">
-          <include name="**\AssemblyInfo.cs.template" />
-        </items>
-      </in>
-      <do>
-        <copy file="${filename}"
-              tofile="${string::replace(filename, '.template', '')}"
-              overwrite="true">
-
-          <filterchain>
-            <replacetokens>
-              <token key="VERSION"
-                     value="${assembly.version}" />
-            </replacetokens>
-          </filterchain>
-        </copy>
-      </do>
-    </foreach>
   </target>
 </project>
