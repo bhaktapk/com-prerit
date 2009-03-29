@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app-settings.config.template" />
+    <None Include="web.config.production" />
     <None Include="web.config.template" />
   </ItemGroup>
   <ItemGroup>
