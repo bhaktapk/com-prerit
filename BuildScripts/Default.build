@@ -19,7 +19,7 @@
   <target name="setup-dev-environment">
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\UntemplateConfiguration.build" />
+    <nant buildfile="BuildSteps\UseDefaultConfiguration.build" />
   </target>
 
   <target name="clean">
@@ -46,7 +46,7 @@
   <target name="init-code">
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\UntemplateConfiguration.build" />
+    <nant buildfile="BuildSteps\UseDefaultConfiguration.build" />
   </target>
 
   <target name="compile"
@@ -55,7 +55,7 @@
     <nant buildfile="BuildSteps\Compile.build" />
 
     <if test="${target::has-executed('prod')}">
-      <nant buildfile="BuildSteps\UseProductionFiles.build" />
+      <nant buildfile="BuildSteps\UseProductionConfiguration.build" />
     </if>
     
     <nant buildfile="BuildSteps\PostCompileCleanup.build" />

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<project name="UseProductionFiles"
-         default="use-production-files"
+<project name="UseProductionConfiguration"
+         default="use-production-configuration"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="use-production-files">
+  <target name="use-production-configuration">
     <call target="use-production-web-config" />
   </target>
 
@@ -14,7 +14,7 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="use-production-web-config">
-    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\web.config.production"
+    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production-web.config"
           tofile="${dir.build}\${project.name.com-prerit-web-ui}\web.config"
           overwrite="true" />
   </target>

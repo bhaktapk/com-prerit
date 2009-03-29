@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project name="UseDefaultConfiguration"
+         default="use-default-configuration"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="use-default-configuration">
+    <call target="use-default-app-settings" />
+    <call target="use-default-web-config" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="use-default-app-settings">
+    <copy file="${dir.code}\${project.name.com-prerit-web-ui}\default-app-settings.config"
+          tofile="${dir.code}\${project.name.com-prerit-web-ui}\app-settings.config"
+          overwrite="true">
+    </copy>
+  </target>
+
+  <target name="use-default-web-config">
+    <copy file="${dir.code}\${project.name.com-prerit-web-ui}\default-web.config"
+          tofile="${dir.code}\${project.name.com-prerit-web-ui}\web.config"
+          overwrite="true">
+    </copy>
+  </target>
+</project>

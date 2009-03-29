@@ -123,9 +123,9 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app-settings.config.template" />
-    <None Include="web.config.production" />
-    <None Include="web.config.template" />
+    <Content Include="default-app-settings.config" />
+    <Content Include="production-web.config" />
+    <Content Include="default-web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
