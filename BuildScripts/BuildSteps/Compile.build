@@ -9,10 +9,6 @@
     <call target="compile-web-application-project" />
     
     <call target="compile-web-deployment-project" />
-
-    <if test="${string::to-lower(msbuild.configuration) == string::to-lower('Release')}">
-      <call target="use-production-web-config" />
-    </if>
   </target>
 
 
@@ -38,12 +34,5 @@
       <arg value="/p:OutputPath=&quot;${dir.build}\${project.name.com-prerit-web-ui}&quot;" />
       <arg value="/v:${msbuild.verbosity}" />
     </exec>
-  </target>
-
-  <target name="use-production-web-config">
-    <echo>Disabled until project has been converted to ASP.NET MVC</echo>
-    <!--<copy file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config"
-          tofile="${dir.build}\${project.name.com-prerit-web-ui}\web.config"
-          overwrite="true" />-->
   </target>
 </project>
