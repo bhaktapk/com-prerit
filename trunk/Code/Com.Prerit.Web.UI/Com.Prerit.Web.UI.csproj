@@ -134,6 +134,9 @@
     <Content Include="default-web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="production-app-settings.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
