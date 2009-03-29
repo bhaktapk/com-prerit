@@ -123,6 +123,10 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app-settings.config.template" />
+    <None Include="web.config.template" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
