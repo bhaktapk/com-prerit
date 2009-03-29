@@ -17,9 +17,6 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="setup-dev-environment">
-    <property name="dir.app-settings-config"
-              value="${dir.code}\${project.name.com-prerit-web-ui}" />
-
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
     <nant buildfile="BuildSteps\SetAppSettings.build" />
