@@ -90,12 +90,6 @@
 
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
-
-    <if test="${not target::has-executed('release')}">
-      <nant buildfile="BuildSteps\SetAppSettings.build" />
-    </if>
-
-    <nant buildfile="BuildSteps\CleanupDeployedWebsite.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
   </target>
 </project>
