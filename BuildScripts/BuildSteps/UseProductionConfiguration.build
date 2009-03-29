@@ -6,12 +6,19 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="use-production-configuration">
+    <call target="use-production-app-settings" />
     <call target="use-production-web-config" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="use-production-app-settings">
+    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production-app-settings.config"
+          tofile="${dir.build}\${project.name.com-prerit-web-ui}\app-settings.config"
+          overwrite="true" />
+  </target>
 
   <target name="use-production-web-config">
     <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production-web.config"
