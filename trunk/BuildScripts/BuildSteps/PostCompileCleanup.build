@@ -9,10 +9,9 @@
     <call target="delete-app-code-directory" />
     <call target="delete-obj-directory" />
     <call target="delete-log-files" />
-    <call target="delete-app-settings-file" />
+    <call target="delete-template-files" />
     <call target="delete-csproj-file" />
     <call target="delete-user-file" />
-    <call target="delete-production-web-config-file" />
   </target>
 
 
@@ -23,7 +22,11 @@
     <delete dir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
   </target>
 
-  <target name="delete-app-settings-file">
+  <target name="delete-csproj-file">
+    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj" />
+  </target>
+
+  <target name="delete-log-files">
     <delete>
       <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
         <include name="logs\*.log" />
@@ -31,22 +34,18 @@
     </delete>
   </target>
 
-  <target name="delete-csproj-file">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj" />
-  </target>
-
-  <target name="delete-log-files">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\app_settings.config" />
-  </target>
-
   <target name="delete-obj-directory">
     <delete dir="${dir.build}\${project.name.com-prerit-web-ui}\obj" />
   </target>
 
-  <target name="delete-production-web-config-file">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\production_web.config" />
+  <target name="delete-template-files">
+    <delete>
+      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+        <include name="*.template" />
+      </fileset>
+    </delete>
   </target>
-  
+
   <target name="delete-user-file">
     <delete file="${dir.build}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj.user" />
   </target>
