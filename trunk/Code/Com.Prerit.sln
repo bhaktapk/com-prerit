@@ -32,6 +32,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Com.Prerit.Web.UI.Legacy", "Com.Prerit.Web.UI.Legacy\", "{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
+		ProjectReferences = "{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}|Com.Prerit.Configuration.dll;{CE05BC84-482F-402F-A967-65859255C83C}|Com.Prerit.Core.dll;{6E00A3AB-6238-47E6-8765-707327A7B4EA}|Com.Prerit.Web.dll;{E572A14A-F02D-43DB-88D3-AB13B797999C}|Com.Prerit.Domain.dll;{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}|Com.Prerit.Services.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Com.Prerit.Web.UI.Legacy"
 		Debug.AspNetCompiler.PhysicalPath = "Com.Prerit.Web.UI.Legacy\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Com.Prerit.Web.UI.Legacy\"
