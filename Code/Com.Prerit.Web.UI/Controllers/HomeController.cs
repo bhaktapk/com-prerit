@@ -6,7 +6,6 @@ using System.Web.Mvc;
 
 namespace Com.Prerit.Web.UI.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         public ActionResult Index()
