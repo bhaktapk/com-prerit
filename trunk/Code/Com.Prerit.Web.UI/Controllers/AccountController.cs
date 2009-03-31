@@ -11,7 +11,6 @@ using System.Web.UI;
 namespace Com.Prerit.Web.UI.Controllers
 {
 
-    [HandleError]
     public class AccountController : Controller
     {
 
