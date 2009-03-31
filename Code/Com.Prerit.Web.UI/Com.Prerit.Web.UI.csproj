@@ -133,6 +133,10 @@
     <Content Include="default-web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="errors\app_offline.htm" />
+    <Content Include="errors\default.htm" />
+    <Content Include="errors\forbidden.htm" />
+    <Content Include="errors\page_not_found.htm" />
     <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
