@@ -37,6 +37,20 @@
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
+      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
+      <Name>Com.Prerit.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Services\Com.Prerit.Services.csproj">
+      <Project>{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}</Project>
+      <Name>Com.Prerit.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Web\Com.Prerit.Web.csproj">
+      <Project>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</Project>
+      <Name>Com.Prerit.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v9.0\Microsoft.WebDeployment.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.WebDeployment.targets.
