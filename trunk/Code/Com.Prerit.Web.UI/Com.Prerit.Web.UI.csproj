@@ -100,7 +100,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app-settings.config" />
     <Content Include="default.aspx" />
     <Content Include="global.asax" />
   </ItemGroup>
@@ -114,7 +113,6 @@
     <Content Include="scripts\MicrosoftAjax.js" />
     <Content Include="scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="scripts\MicrosoftMvcAjax.js" />
-    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="default-app-settings.config" />
@@ -127,17 +125,19 @@
     <Content Include="errors\forbidden.htm" />
     <Content Include="errors\page_not_found.htm" />
     <Content Include="production-app-settings.config" />
-    <Content Include="views\Account\ChangePassword.aspx" />
-    <Content Include="views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="views\Account\LogOn.aspx" />
-    <Content Include="views\Account\Register.aspx" />
-    <Content Include="views\Home\About.aspx" />
-    <Content Include="views\Home\Index.aspx" />
-    <Content Include="views\Shared\LogOnUserControl.ascx" />
+    <Content Include="views\account\ChangePassword.aspx" />
+    <Content Include="views\account\ChangePasswordSuccess.aspx" />
+    <Content Include="views\account\LogOn.aspx" />
+    <Content Include="views\account\Register.aspx" />
+    <Content Include="views\home\About.aspx" />
+    <Content Include="views\home\Index.aspx" />
+    <Content Include="views\shared\LogOnUserControl.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="views\Shared\Site.Master" />
-    <Content Include="views\Web.config" />
+    <Content Include="app-settings.config" />
+    <Content Include="views\shared\Site.Master" />
+    <Content Include="views\web.config" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
