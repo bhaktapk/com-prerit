@@ -78,17 +78,6 @@
     <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
-    <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Shared\LogOnUserControl.ascx" />
-    <Content Include="Views\Shared\Site.Master" />
-    <Content Include="Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
       <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
       <Name>Com.Prerit.Configuration</Name>
@@ -138,9 +127,20 @@
     <Content Include="errors\forbidden.htm" />
     <Content Include="errors\page_not_found.htm" />
     <Content Include="production-app-settings.config" />
+    <Content Include="views\Account\ChangePassword.aspx" />
+    <Content Include="views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="views\Account\LogOn.aspx" />
+    <Content Include="views\Account\Register.aspx" />
+    <Content Include="views\Home\About.aspx" />
+    <Content Include="views\Home\Index.aspx" />
+    <Content Include="views\Shared\LogOnUserControl.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logs\" />
+    <Content Include="views\Shared\Site.Master" />
+    <Content Include="views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
