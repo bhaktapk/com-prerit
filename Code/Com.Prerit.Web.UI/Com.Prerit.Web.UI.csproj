@@ -102,9 +102,9 @@
     <Content Include="global.asax" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default-app-settings.config" />
+    <Content Include="app-settings.config" />
     <Content Include="production-web.config" />
-    <Content Include="default-web.config" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="errors\app_offline.htm" />
@@ -114,9 +114,7 @@
     <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app-settings.config" />
     <Content Include="views\web.config" />
-    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="content\" />
