@@ -19,7 +19,6 @@
   <target name="setup-dev-environment">
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\UseDefaultConfiguration.build" />
   </target>
 
   <target name="clean">
@@ -46,7 +45,6 @@
   <target name="init-code">
     <nant buildfile="BuildSteps\MakeDirectories.build" />
     <nant buildfile="BuildSteps\VersionCode.build" />
-    <nant buildfile="BuildSteps\UseDefaultConfiguration.build" />
   </target>
 
   <target name="compile"
