@@ -133,7 +133,6 @@
     <Content Include="views\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="content\scripts\" />
     <Folder Include="controllers\" />
     <Folder Include="logs\" />
     <Folder Include="models\" />
