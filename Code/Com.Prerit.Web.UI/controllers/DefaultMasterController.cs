@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 using Com.Prerit.Web.UI.Views.Shared;
 
-namespace Com.Prerit.Web.UI.controllers
+namespace Com.Prerit.Web.UI.Controllers
 {
     public abstract class DefaultMasterController<T> : Controller where T : DefaultMasterModel, new()
     {
