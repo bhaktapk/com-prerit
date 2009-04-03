@@ -2,7 +2,7 @@
 
 namespace Com.Prerit.Web.UI.Views.Shared
 {
-    public abstract class DefaultMasterModel
+    public class DefaultMasterModel
     {
         #region Properties
 
