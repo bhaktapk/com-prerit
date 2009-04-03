@@ -119,7 +119,6 @@
     <Content Include="content\images\bg_body.gif" />
     <Content Include="content\images\bg_header.gif" />
     <Content Include="content\images\bg_subheading.gif" />
-    <Content Include="content\images\default.aspx" />
     <Content Include="content\images\li_bullet.gif" />
     <Content Include="content\images\logo_fullahead.gif" />
     <Content Include="content\images\logo_greenery.gif" />
