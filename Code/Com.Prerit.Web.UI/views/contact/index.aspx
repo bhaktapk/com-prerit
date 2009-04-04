@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<Com.Prerit.Web.UI.Views.Contact.IndexModel>" %>
+<%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<Com.Prerit.Web.Models.Contact.IndexModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="titleContent" runat="server">
 </asp:Content>

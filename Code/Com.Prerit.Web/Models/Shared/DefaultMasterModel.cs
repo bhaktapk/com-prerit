@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Prerit.Web.UI.Views.Shared
+namespace Com.Prerit.Web.Models.Shared
 {
     public class DefaultMasterModel
     {

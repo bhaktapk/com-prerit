@@ -1,4 +1,4 @@
-<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Com.Prerit.Web.UI.Views.Shared.DefaultMasterModel>" %>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Com.Prerit.Web.Models.Shared.DefaultMasterModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -23,8 +23,8 @@
             <h1><span><a href="/" title="Welcome to <%= Model.SiteName %>"><%= Model.SiteName %></a></span></h1>
             <h2><span>Main Menu</span></h2>
             <ul>
-                <li><a href="~/about/" title="">{0}<em>{1}</em>{2}</a></li>
-                <li><a href="~/contact/" title="">{0}<em>{1}</em>{2}</a></li>
+                <li><a href="<%= Url.Action("index", "about") %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
+                <li><a href="<%= Url.Action("index", "contact")%>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
                 <li><a href="~/photo_albums/" title="">{0}<em>{1}</em>{2}</a></li>
                 <li><a href="~/resume/" title="">{0}<em>{1}</em>{2}</a></li>
             </ul>

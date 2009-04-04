@@ -1,8 +1,8 @@
 using System.Web.Mvc;
 
-using Com.Prerit.Web.UI.Views.About;
+using Com.Prerit.Web.Models.About;
 
-namespace Com.Prerit.Web.UI.Controllers
+namespace Com.Prerit.Web.Controllers
 {
     public class AboutController : DefaultMasterController
     {
