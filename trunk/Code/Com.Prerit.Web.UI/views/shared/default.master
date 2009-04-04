@@ -11,11 +11,11 @@
 |____________________________________________________________|
 
 -->
-<head runat="server">
+<head>
     <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /></title>
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
-    <link rel="stylesheet" type="text/css" href="~/content/styles/print.css" media="print" />
-    <link rel="stylesheet" type="text/css" href="~/content/styles/screen.css" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/print.css") %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/screen.css") %>" media="projection, screen, tv" />
 </head>
 <body>
     <div id="header">
@@ -25,7 +25,7 @@
             <ul>
                 <li><a href="<%= Url.Action("index", "about") %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
                 <li><a href="<%= Url.Action("index", "contact")%>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
-                <li><a href="~/photo_albums/" title="">{0}<em>{1}</em>{2}</a></li>
+                <li><a href="<%= Url.Action("index", "photoalbums")%>" accesskey="P" title="Photo albums of Prerit and his family"><em>P</em>hoto Albums</a></li>
                 <li><a href="~/resume/" title="">{0}<em>{1}</em>{2}</a></li>
             </ul>
         </div>
