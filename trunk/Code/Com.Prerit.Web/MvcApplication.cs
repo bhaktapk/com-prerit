@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Com.Prerit.Web.UI
+namespace Com.Prerit.Web
 {
     public class MvcApplication : HttpApplication
     {
