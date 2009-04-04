@@ -5,11 +5,11 @@ using Com.Prerit.Web.UI.Views.Shared;
 
 namespace Com.Prerit.Web.UI.Controllers
 {
-    public abstract class DefaultMasterController<T> : Controller where T : DefaultMasterModel, new()
+    public abstract class DefaultMasterController : Controller
     {
         #region Methods
 
-        public T CreateBaseModel()
+        public T CreateBaseModel<T>() where T : DefaultMasterModel, new()
         {
             {
                 return new T
