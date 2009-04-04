@@ -26,7 +26,7 @@
                 <li><a href="<%= Url.Action("index", "about") %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
                 <li><a href="<%= Url.Action("index", "contact")%>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
                 <li><a href="<%= Url.Action("index", "photoalbums")%>" accesskey="P" title="Photo albums of Prerit and his family"><em>P</em>hoto Albums</a></li>
-                <li><a href="~/resume/" title="">{0}<em>{1}</em>{2}</a></li>
+                <li><a href="<%= Url.Action("index", "resume") %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
             </ul>
         </div>
     </div>

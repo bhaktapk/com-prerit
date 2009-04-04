@@ -136,6 +136,7 @@
     <Content Include="views\about\index.aspx" />
     <Content Include="views\contact\index.aspx" />
     <Content Include="views\photoalbums\index.aspx" />
+    <Content Include="views\resume\index.aspx" />
     <Content Include="views\shared\default.master" />
     <Content Include="views\web.config" />
   </ItemGroup>
