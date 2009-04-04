@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Com.Prerit.Web.UI.MvcApplication" Language="C#" %>
+﻿<%@ Application Inherits="Com.Prerit.Web.MvcApplication" %>
