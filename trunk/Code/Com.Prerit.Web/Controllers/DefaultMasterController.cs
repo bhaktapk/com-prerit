@@ -1,9 +1,9 @@
 using System;
 using System.Web.Mvc;
 
-using Com.Prerit.Web.UI.Views.Shared;
+using Com.Prerit.Web.Models.Shared;
 
-namespace Com.Prerit.Web.UI.Controllers
+namespace Com.Prerit.Web.Controllers
 {
     public abstract class DefaultMasterController : Controller
     {
