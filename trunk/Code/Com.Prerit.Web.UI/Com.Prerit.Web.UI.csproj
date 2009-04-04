@@ -67,6 +67,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="controllers\AboutController.cs" />
+    <Compile Include="controllers\ContactController.cs" />
     <Compile Include="controllers\DefaultMasterController.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -77,6 +78,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="views\about\index.aspx.model.cs" />
+    <Compile Include="views\contact\index.aspx.model.cs" />
     <Compile Include="views\shared\default.master.model.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +135,7 @@
     <Content Include="content\styles\print.css" />
     <Content Include="content\styles\screen.css" />
     <Content Include="views\about\index.aspx" />
+    <Content Include="views\contact\index.aspx" />
     <Content Include="views\shared\default.master" />
     <Content Include="views\web.config" />
   </ItemGroup>
