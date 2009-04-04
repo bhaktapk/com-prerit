@@ -40,6 +40,8 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultMasterController.cs" />
+    <Compile Include="Controllers\PhotoAlbumsController.cs" />
+    <Compile Include="Models\PhotoAlbums\IndexModel.cs" />
     <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />

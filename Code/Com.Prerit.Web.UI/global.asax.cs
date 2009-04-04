@@ -17,6 +17,15 @@ namespace Com.Prerit.Web.UI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("photo-albums",
+                            "photo-albums/{action}/{id}",
+                            new
+                                {
+                                    controller = "photoalbums",
+                                    action = "index",
+                                    id = ""
+                                });
+
             routes.MapRoute("default",
                             "{controller}/{action}/{id}",
                             new
