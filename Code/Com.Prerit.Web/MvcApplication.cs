@@ -32,7 +32,7 @@ namespace Com.Prerit.Web
                             "{controller}/{action}/{id}",
                             new
                                 {
-                                    controller = AboutController.Name.Seo,
+                                    controller = AboutController.Name.WithoutSuffix,
                                     action = SharedAction.Index,
                                     id = ""
                                 });
