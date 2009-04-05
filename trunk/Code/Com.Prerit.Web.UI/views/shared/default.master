@@ -1,3 +1,4 @@
+<%@ Import Namespace="Com.Prerit.Web.Controllers"%>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Com.Prerit.Web.Models.Shared.DefaultMasterModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -23,10 +24,10 @@
             <h1><span><a href="/" title="Welcome to <%= Model.SiteName %>"><%= Model.SiteName %></a></span></h1>
             <h2><span>Main Menu</span></h2>
             <ul>
-                <li><a href="<%= Url.Action("index", "about") %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
-                <li><a href="<%= Url.Action("index", "contact")%>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
-                <li><a href="<%= Url.Action("index", "photoalbums")%>" accesskey="P" title="Photo albums of Prerit and his family"><em>P</em>hoto Albums</a></li>
-                <li><a href="<%= Url.Action("index", "resume") %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
+                <li><a href="<%= Url.Action(AboutController.Action.Index, AboutController.Name.Seo) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
+                <li><a href="<%= Url.Action(ContactController.Action.Index, ContactController.Name.Seo)%>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
+                <li><a href="<%= Url.Action(PhotoAlbumsController.Action.Index, PhotoAlbumsController.Name.Seo)%>" accesskey="P" title="Photo albums of Prerit and his family"><em>P</em>hoto Albums</a></li>
+                <li><a href="<%= Url.Action(ResumeController.Action.Index, ResumeController.Name.Seo) %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
             </ul>
         </div>
     </div>
