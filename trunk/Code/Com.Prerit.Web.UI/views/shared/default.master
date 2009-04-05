@@ -1,3 +1,4 @@
+<%@ Import Namespace="System.Globalization"%>
 <%@ Import Namespace="Com.Prerit.Web.Controllers"%>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Com.Prerit.Web.Models.Shared.DefaultMasterModel>" %>
 
@@ -13,7 +14,11 @@
 
 -->
 <head>
-    <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /></title>
+    <title><%= Model.SiteName %> - <asp:ContentPlaceHolder ID="titleContent" runat="server" /></title>
+    <meta http-equiv="content-language" content="<%= CultureInfo.CurrentCulture.Name.ToLowerInvariant() %>" />
+    <meta http-equiv="content-type" content="<%= Model.ContentType %>; charset=<%= Model.ContentEncoding %>" />
+    <meta name="author" content="<%= Model.WebsiteAuthor %>" />
+    <meta name="copyright" content="Copyright &#169; <%= DateTime.Today.Year %> <%= Model.WebsiteAuthor %>" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/print.css") %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/screen.css") %>" media="projection, screen, tv" />
