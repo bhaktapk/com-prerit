@@ -10,10 +10,6 @@ namespace Com.Prerit.Web
 
         public const int DomainRegistrationYear = 2002;
 
-        public const string GoogleVerificationMetaTagContent = "Zh9YODQtJIOw8hV64WsjasfjjqakXRWrCtzfe0XD/3Q=";
-
-        public const string GoogleVerificationMetaTagName = "verify-v1";
-
         public const string SiteName = "prerit.com";
 
         public const string SmtpHost = "relay-hosting.secureserver.net";
