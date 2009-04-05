@@ -37,7 +37,7 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string Seo = GetSeoFriendlyName<ContactController>();
+            public static readonly string Seo = GetSeoControllerName<ContactController>();
 
             public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<ContactController>();
 

@@ -38,41 +38,39 @@ namespace Com.Prerit.Web.Controllers
             return controllerName.Remove(controllerName.Length - suffix.Length);
         }
 
-        public static string GetSeoFriendlyName<T>() where T : Controller
+        public static string GetSeoControllerName<T>() where T : Controller
         {
             const char separator = '-';
 
-            string s = GetControllerNameWithoutSuffix<T>();
+            string controllerName = GetControllerNameWithoutSuffix<T>();
 
             bool firstLetterFound = false;
 
-            var word = new List<char>();
+            var seoChars = new List<char>();
 
-            for (int i = 0; i < s.Length; i++)
+            foreach (char character in controllerName)
             {
-                char letter = s[i];
-
-                if (char.IsLetterOrDigit(letter))
+                if (char.IsLetterOrDigit(character))
                 {
-                    if (char.IsUpper(letter))
+                    if (char.IsUpper(character))
                     {
                         if (firstLetterFound)
                         {
-                            word.Add(separator);
+                            seoChars.Add(separator);
                         }
 
-                        word.Add(char.ToLowerInvariant(letter));
+                        seoChars.Add(char.ToLowerInvariant(character));
                     }
                     else
                     {
-                        word.Add(letter);
+                        seoChars.Add(character);
                     }
 
                     firstLetterFound = true;
                 }
             }
 
-            return new string(word.ToArray());
+            return new string(seoChars.ToArray());
         }
 
         #endregion
