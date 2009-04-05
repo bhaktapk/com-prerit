@@ -27,31 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Prerit.Web.UI", "Com.Pr
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Deployment", "Com.Prerit.Web.UI.Deployment\Com.Prerit.Web.UI.Deployment.wdproj", "{D842BE54-8500-486D-8FFE-3B561F1E6900}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Com.Prerit.Web.UI.Legacy namespace", "Com.Prerit.Web.UI.Legacy namespace", "{6E3AC4D2-95BA-4646-8D27-F4B2E51D6120}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Com.Prerit.Web.UI.Legacy", "Com.Prerit.Web.UI.Legacy\", "{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "3.5"
-		ProjectReferences = "{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}|Com.Prerit.Configuration.dll;{CE05BC84-482F-402F-A967-65859255C83C}|Com.Prerit.Core.dll;{6E00A3AB-6238-47E6-8765-707327A7B4EA}|Com.Prerit.Web.dll;{E572A14A-F02D-43DB-88D3-AB13B797999C}|Com.Prerit.Domain.dll;{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}|Com.Prerit.Services.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/Com.Prerit.Web.UI.Legacy"
-		Debug.AspNetCompiler.PhysicalPath = "Com.Prerit.Web.UI.Legacy\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Com.Prerit.Web.UI.Legacy\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Com.Prerit.Web.UI.Legacy"
-		Release.AspNetCompiler.PhysicalPath = "Com.Prerit.Web.UI.Legacy\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Com.Prerit.Web.UI.Legacy\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "62601"
-	EndProjectSection
-EndProject
-Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Com.Prerit.Web.UI.Legacy.Deployment", "Com.Prerit.Web.UI.Legacy.Deployment\Com.Prerit.Web.UI.Legacy.Deployment.wdproj", "{73FA63D9-AE71-4879-B785-4F28DDEFFA23}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -130,22 +105,6 @@ Global
 		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D842BE54-8500-486D-8FFE-3B561F1E6900}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Release|.NET.ActiveCfg = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Release|.NET.ActiveCfg = Release|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,7 +117,5 @@ Global
 		{CE05BC84-482F-402F-A967-65859255C83C} = {46ED0BCE-5F8D-4D0C-88DC-157208D4DE1F}
 		{E572A14A-F02D-43DB-88D3-AB13B797999C} = {50BC9F87-8409-46B8-9DD8-18BB23557093}
 		{06EB5132-B7EC-42AE-9F82-6C50FE535A0A} = {21020C67-CAF3-444B-A161-F0F755A97F81}
-		{AE60E2CF-67C2-44E8-B9A2-07CE9B3DEC88} = {6E3AC4D2-95BA-4646-8D27-F4B2E51D6120}
-		{73FA63D9-AE71-4879-B785-4F28DDEFFA23} = {6E3AC4D2-95BA-4646-8D27-F4B2E51D6120}
 	EndGlobalSection
 EndGlobal
