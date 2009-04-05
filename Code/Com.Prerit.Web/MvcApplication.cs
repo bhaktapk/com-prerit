@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
+using Com.Prerit.Web.Controllers;
+
 namespace Com.Prerit.Web
 {
     public class MvcApplication : HttpApplication
@@ -18,11 +20,11 @@ namespace Com.Prerit.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute("photo-albums",
-                            "photo-albums/{action}/{id}",
+                            PhotoAlbumsController.Name.Seo + "/{action}/{id}",
                             new
                                 {
-                                    controller = "photoalbums",
-                                    action = "index",
+                                    controller = PhotoAlbumsController.Name.WithoutSuffix,
+                                    action = PhotoAlbumsController.Action.Index,
                                     id = ""
                                 });
 
@@ -30,8 +32,8 @@ namespace Com.Prerit.Web
                             "{controller}/{action}/{id}",
                             new
                                 {
-                                    controller = "about",
-                                    action = "index",
+                                    controller = AboutController.Name.Seo,
+                                    action = AboutController.Action.Index,
                                     id = ""
                                 });
         }
