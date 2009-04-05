@@ -24,7 +24,7 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Constants
 
-            public const string Index = "index";
+            public const string Index = SharedAction.Index;
 
             #endregion
         }
