@@ -15,6 +15,8 @@ namespace Com.Prerit.Web.Controllers
             {
                 return new T
                            {
+                               ContentEncoding = Response.ContentEncoding.WebName,
+                               ContentType = Response.ContentType,
                                CopyrightBeginYear = WebsiteInfo.DomainRegistrationYear,
                                CopyrightEndYear = DateTime.Today.Year,
                                SiteName = WebsiteInfo.SiteName,
