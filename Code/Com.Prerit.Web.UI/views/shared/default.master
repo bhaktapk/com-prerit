@@ -20,8 +20,8 @@
     <meta name="author" content="<%= Model.WebsiteAuthor %>" />
     <meta name="copyright" content="Copyright &#169; <%= DateTime.Today.Year %> <%= Model.WebsiteAuthor %>" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
-    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/print.css") %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= ResolveUrl("~/content/styles/screen.css") %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/screen.css") %>" media="projection, screen, tv" />
 </head>
 <body>
     <div id="header">
