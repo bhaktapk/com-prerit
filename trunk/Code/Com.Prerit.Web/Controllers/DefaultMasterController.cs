@@ -20,8 +20,7 @@ namespace Com.Prerit.Web.Controllers
                                CopyrightBeginYear = WebsiteInfo.DomainRegistrationYear,
                                CopyrightEndYear = DateTime.Today.Year,
                                SiteName = WebsiteInfo.SiteName,
-                               ValidationUri = Request.Url,
-                               WebsiteAuthor = WebsiteInfo.Author
+                               ValidationUri = Request.Url
                            };
             }
         }
