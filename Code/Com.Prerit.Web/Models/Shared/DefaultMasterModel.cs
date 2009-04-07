@@ -18,8 +18,6 @@ namespace Com.Prerit.Web.Models.Shared
 
         public Uri ValidationUri { get; set; }
 
-        public string WebsiteAuthor { get; set; }
-
         #endregion
     }
 }

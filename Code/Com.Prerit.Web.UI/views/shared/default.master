@@ -17,8 +17,8 @@
     <title><%= Model.SiteName %> - <asp:ContentPlaceHolder ID="titleContent" runat="server" /></title>
     <meta http-equiv="content-language" content="<%= CultureInfo.CurrentCulture.Name.ToLowerInvariant() %>" />
     <meta http-equiv="content-type" content="<%= Model.ContentType %>; charset=<%= Model.ContentEncoding %>" />
-    <meta name="author" content="<%= Model.WebsiteAuthor %>" />
-    <meta name="copyright" content="Copyright &#169; <%= DateTime.Today.Year %> <%= Model.WebsiteAuthor %>" />
+    <meta name="author" content="Prerit Bhakta" />
+    <meta name="copyright" content="Copyright &#169; <%= DateTime.Today.Year %> Prerit Bhakta" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/screen.css") %>" media="projection, screen, tv" />
@@ -55,7 +55,7 @@
             title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines">XHTML</a>
         </p>
         <p id="copyright">
-            Copyright &#169; <%= Model.CopyrightBeginYear %>-<%= Model.CopyrightEndYear %> <%= Model.WebsiteAuthor %>
+            Copyright &#169; <%= Model.CopyrightBeginYear %>-<%= Model.CopyrightEndYear %> Prerit Bhakta
         </p>
     </div>
 </body>
