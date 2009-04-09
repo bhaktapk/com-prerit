@@ -38,6 +38,7 @@
     </Compile>
     <Compile Include="AspNetSiteMapMarkup.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\SharedAction.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultMasterController.cs" />
