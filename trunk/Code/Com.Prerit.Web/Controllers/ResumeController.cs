@@ -8,6 +8,7 @@ namespace Com.Prerit.Web.Controllers
     {
         #region Methods
 
+        [AcceptVerbs(HttpVerbs.Get)]
         [ActionName(Action.Index)]
         public ActionResult Index()
         {
