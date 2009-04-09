@@ -11,7 +11,7 @@ namespace Com.Prerit.Web.Controllers
         [ActionName(Action.Index)]
         public ActionResult Index()
         {
-            var model = CreateBaseModel<IndexModel>();
+            var model = UpdateModelBase(new IndexModel());
 
             return View(model);
         }
