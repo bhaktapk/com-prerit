@@ -6,6 +6,12 @@ namespace Com.Prerit.Web.Controllers
 {
     public abstract class ApplicationController<TModelBase> : Controller where TModelBase : class
     {
+        #region Constants
+
+        public const string TempModelKey = "temp-data-model";
+
+        #endregion
+
         #region Methods
 
         public static string GetControllerNameWithoutSuffix<TController>() where TController : Controller
@@ -57,7 +63,17 @@ namespace Com.Prerit.Web.Controllers
             return new string(seoChars.ToArray());
         }
 
-        public abstract TDerivedModel UpdateModelBase<TDerivedModel>(TDerivedModel model) where TDerivedModel : TModelBase;
+        public T GetTempModel<T>() where T : class, TModelBase
+        {
+            return TempData[TempModelKey] as T;
+        }
+
+        public void SetTempModel<T>(T model) where T : class, TModelBase
+        {
+            TempData[TempModelKey] = model;
+        }
+
+        public abstract T UpdateModelBase<T>(T model) where T : TModelBase;
 
         #endregion
     }
