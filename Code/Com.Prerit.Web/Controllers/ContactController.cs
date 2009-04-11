@@ -11,6 +11,22 @@ namespace Com.Prerit.Web.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [ActionName(Action.EmailSent)]
+        public ActionResult EmailSent()
+        {
+            var indexModel = GetTempModel<IndexModel>();
+
+            if (indexModel == null)
+            {
+                return RedirectToAction(Action.Index);
+            }
+
+            EmailSentModel model = UpdateModelBase(new EmailSentModel(indexModel));
+
+            return View(model);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
         [ActionName(Action.Index)]
         public ActionResult Index()
         {
@@ -44,26 +60,30 @@ namespace Com.Prerit.Web.Controllers
                 ModelState.AddModelError(IndexModel.PropertyName.Message, "Message is required");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var smtpClient = new SmtpClient
-                                     {
-                                         Host = WebsiteInfo.SmtpHost
-                                     };
-
-                using (var message = new MailMessage())
-                {
-                    message.From = new MailAddress(WebsiteInfo.AuthorEmailAddress);
-                    message.To.Add(model.EmailAddress);
-                    message.Subject = WebsiteInfo.GetContactEmailSubject(model.Name);
-                    message.Body = model.Message;
-                    message.IsBodyHtml = false;
-
-                    smtpClient.Send(message);
-                }
+                return View(model);
             }
 
-            return View(model);
+            var smtpClient = new SmtpClient
+                                 {
+                                     Host = WebsiteInfo.SmtpHost
+                                 };
+
+            using (var message = new MailMessage())
+            {
+                message.From = new MailAddress(WebsiteInfo.AuthorEmailAddress);
+                message.To.Add(model.EmailAddress);
+                message.Subject = WebsiteInfo.GetContactEmailSubject(model.Name);
+                message.Body = model.Message;
+                message.IsBodyHtml = false;
+
+                //smtpClient.Send(message);
+            }
+
+            SetTempModel(model);
+
+            return RedirectToAction(Action.EmailSent);
         }
 
         #endregion
@@ -73,6 +93,8 @@ namespace Com.Prerit.Web.Controllers
         public static class Action
         {
             #region Constants
+
+            public const string EmailSent = "email-sent";
 
             public const string Index = SharedAction.Index;
 
