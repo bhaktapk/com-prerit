@@ -1,7 +1,7 @@
+<%@ Import Namespace="Com.Prerit.Web.Helpers.Contact" %>
 <%@ Import Namespace="Com.Prerit.Web.Helpers.Contact.Index" %>
 <%@ Import Namespace="Com.Prerit.Web.Models.Contact" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
-<%@ Import Namespace="Com.Prerit.Web.Helpers.Contact"%>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Contact Prerit Bhakta Via Email</asp:Content>
 
@@ -21,13 +21,13 @@
     <% using (Html.BeginForm()) { %>
         <fieldset>
             <label for="<%= IndexModel.PropertyName.Name %>">Name:</label>
-            <%= Html.TextBox(IndexModel.PropertyName.Name, null, new { maxlength = "40", size = "40" })%>
+            <%= Html.TextBox(IndexModel.PropertyName.Name, null, new { maxlength = "40", size = "40" }) %>
             <br />
             <label for="<%= IndexModel.PropertyName.EmailAddress %>">E-mail:</label>
-            <%= Html.TextBox(IndexModel.PropertyName.EmailAddress, null, new { maxlength = "40", size = "40" })%>
+            <%= Html.TextBox(IndexModel.PropertyName.EmailAddress, null, new { maxlength = "40", size = "40" }) %>
             <br />
             <label for="<%= IndexModel.PropertyName.Message %>">Message:</label>
-            <%= Html.TextArea(IndexModel.PropertyName.Message, null, 10, 40, null)%>
+            <%= Html.TextArea(IndexModel.PropertyName.Message, null, 10, 40, null) %>
             <br />
             <input id="sendMessageButton" class="button" type="submit" value="Send Message" />
         </fieldset>
