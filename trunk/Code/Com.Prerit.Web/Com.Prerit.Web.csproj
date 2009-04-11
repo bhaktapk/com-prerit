@@ -44,6 +44,8 @@
     <Compile Include="Controllers\DefaultMasterController.cs" />
     <Compile Include="Controllers\PhotoAlbumsController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
+    <Compile Include="Helpers\Contact\ContactHelper.cs" />
+    <Compile Include="Helpers\Contact\Index\ContactIndexHelper.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="MvcApplication.cs" />
     <Compile Include="Models\PhotoAlbums\IndexModel.cs" />
@@ -52,7 +54,6 @@
     <Compile Include="Models\About\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ContentQualityComLink.cs" />
-    <Compile Include="CssClassSelector.cs" />
     <Compile Include="DefaultDocumentAwareXmlSiteMapProvider.cs" />
     <Compile Include="GoogleSiteMapHandler.cs" />
     <Compile Include="GoogleSiteMapMarkup.cs" />
