@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public abstract class ApplicationController<TModelBase> : Controller
+    public abstract class ApplicationController<TModelBase> : Controller where TModelBase : class
     {
         #region Methods
 
