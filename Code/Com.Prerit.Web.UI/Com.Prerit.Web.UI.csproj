@@ -136,6 +136,7 @@
     <Content Include="content\styles\screen.css" />
     <Content Include="views\about\index.aspx" />
     <Content Include="views\contact\index.aspx" />
+    <Content Include="views\contact\validation-summary.ascx" />
     <Content Include="views\photoalbums\index.aspx" />
     <Content Include="views\resume\index.aspx" />
     <Content Include="views\shared\default.master" />
