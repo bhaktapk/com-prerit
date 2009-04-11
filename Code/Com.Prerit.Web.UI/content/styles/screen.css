@@ -262,19 +262,19 @@ img
     color: #fff;
 }
 
-#content input.formError,
-#content select.formError,
-#content textarea.formError
+#content input.input-validation-error,
+#content select.input-validation-error,
+#content textarea.input-validation-error
 {
     border: 1px solid #b00;
 }
 
-#content input.formError:focus,
-#content input.formError:hover,
-#content select.formError:focus,
-#content select.formError:hover,
-#content textarea.formError:focus,
-#content textarea.formError:hover
+#content input.input-validation-error:focus,
+#content input.input-validation-error:hover,
+#content select.input-validation-error:focus,
+#content select.input-validation-error:hover,
+#content textarea.input-validation-error:focus,
+#content textarea.input-validation-error:hover
 {
     border: 1px solid #e00;
     color: #fff;
@@ -628,12 +628,6 @@ img
 #mainbar label
 {
     display: block;
-}
-
-#mainbar label.formError
-{
-    color: #e00;
-    font-weight: bold;
 }
 
 #mainbar textarea
