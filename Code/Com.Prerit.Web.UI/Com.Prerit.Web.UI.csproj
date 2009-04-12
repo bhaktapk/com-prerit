@@ -123,19 +123,19 @@
     <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\images\ajax_processing_notifier.gif" />
-    <Content Include="content\images\bg_body.gif" />
-    <Content Include="content\images\bg_header.gif" />
-    <Content Include="content\images\bg_subheading.gif" />
-    <Content Include="content\images\headshot.jpg" />
-    <Content Include="content\images\li_bullet.gif" />
-    <Content Include="content\images\logo_fullahead.gif" />
-    <Content Include="content\images\logo_greenery.gif" />
-    <Content Include="content\images\menu_tab.gif" />
-    <Content Include="content\images\rounded_bl.gif" />
-    <Content Include="content\images\rounded_br.gif" />
-    <Content Include="content\images\rounded_tl.gif" />
-    <Content Include="content\images\rounded_tr.gif" />
+    <Content Include="content\images\ajax-processing-notifier.gif" />
+    <Content Include="content\images\bg-body.gif" />
+    <Content Include="content\images\bg-header.gif" />
+    <Content Include="content\images\bg-subheading.gif" />
+    <Content Include="content\images\about\headshot.jpg" />
+    <Content Include="content\images\li-bullet.gif" />
+    <Content Include="content\images\logo-fullahead.gif" />
+    <Content Include="content\images\logo-greenery.gif" />
+    <Content Include="content\images\menu-tab.gif" />
+    <Content Include="content\images\rounded-bl.gif" />
+    <Content Include="content\images\rounded-br.gif" />
+    <Content Include="content\images\rounded-tl.gif" />
+    <Content Include="content\images\rounded-tr.gif" />
     <Content Include="content\styles\print.css" />
     <Content Include="content\styles\resume\index-print.css" />
     <Content Include="content\styles\resume\index-screen.css" />

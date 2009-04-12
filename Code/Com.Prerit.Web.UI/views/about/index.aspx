@@ -1,5 +1,6 @@
 <%@ Import Namespace="Com.Prerit.Web.Controllers"%>
-<%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<Com.Prerit.Web.Models.About.IndexModel>" %>
+<%@ Import Namespace="Com.Prerit.Web.Models.About"%>
+<%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">About the Website &amp; It's Author</asp:Content>
 
@@ -29,7 +30,7 @@
     </p>
     <h1><span>About the Author</span></h1>
     <p>
-        <img alt="Headshot of Prerit Bhakta" class="headshot" height="100" src="<%= Url.Content("~/content/images/headshot.jpg") %>" width="75" /> Prerit Bhakta
+        <img alt="Headshot of Prerit Bhakta" class="headshot" height="100" src="<%= Url.Content("~/content/images/about/headshot.jpg") %>" width="75" /> Prerit Bhakta
         is a programmer in the St. Louis metropolitan area who currently develops in the <a href="http://en.wikipedia.org/wiki/.NET_Framework" title=".NET Framework">
         .NET Framework</a> to fulfill his clients' needs. He's a geek and like all geeks, he likes to learn things, especially when it comes to the
         web. Why? Well, because the web changes so fast that it takes dedicated people who love it to learn it's complexities. He didn't always started
