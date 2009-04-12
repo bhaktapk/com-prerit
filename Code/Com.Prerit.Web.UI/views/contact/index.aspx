@@ -12,7 +12,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
-    <h1><span>Email</span></h1>
+    <h1><span>Contact Via Email</span></h1>
     <p>
         Emails will generally be read during normal business hours in the Central Time Zone. Please consider these times when anticipating your reply.
     </p>
