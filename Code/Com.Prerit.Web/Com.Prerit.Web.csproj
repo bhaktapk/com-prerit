@@ -58,8 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleSiteMapHandler.cs" />
     <Compile Include="GoogleSiteMapMarkup.cs" />
-    <Compile Include="Management\BufferedTextFileWebEventProvider.cs" />
-    <Compile Include="Management\BufferedTextFileWebEventProviderMarkup.cs" />
     <Compile Include="SiteMapMarkup.cs" />
     <Compile Include="WebsiteInfo.cs" />
   </ItemGroup>
