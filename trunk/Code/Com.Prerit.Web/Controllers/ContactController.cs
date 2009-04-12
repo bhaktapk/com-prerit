@@ -36,8 +36,8 @@ namespace Com.Prerit.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ActionName(Action.Index)]
-        public ActionResult Index(IndexModel model)
+        [ActionName(Action.SendEmail)]
+        public ActionResult SendEmail(IndexModel model)
         {
             UpdateModelBase(model);
 
@@ -62,7 +62,7 @@ namespace Com.Prerit.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction(Action.Index);
             }
 
             var smtpClient = new SmtpClient
@@ -97,6 +97,8 @@ namespace Com.Prerit.Web.Controllers
             public const string EmailSent = "email-sent";
 
             public const string Index = SharedAction.Index;
+
+            public const string SendEmail = "send-email";
 
             #endregion
         }

@@ -1,3 +1,4 @@
+<%@ Import Namespace="Com.Prerit.Web.Controllers"%>
 <%@ Import Namespace="Com.Prerit.Web.Helpers.Contact" %>
 <%@ Import Namespace="Com.Prerit.Web.Helpers.Contact.Index" %>
 <%@ Import Namespace="Com.Prerit.Web.Models.Contact" %>
@@ -18,7 +19,7 @@
     <% if (Html.IsValidationSummaryVisible()) { %>
         <% Html.RenderPartial(ContactHelper.PartialName.ValidationSummary); %>
     <% } %>
-    <% using (Html.BeginForm()) { %>
+    <% using (Html.BeginForm(ContactController.Action.SendEmail, ContactController.Name.Seo)) { %>
         <fieldset>
             <label for="<%= IndexModel.PropertyName.Name %>">Name:</label>
             <%= Html.TextBox(IndexModel.PropertyName.Name, null, new { maxlength = "40", size = "40" }) %>
