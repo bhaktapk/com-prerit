@@ -4,6 +4,8 @@ using System.Web.Mvc;
 
 using Com.Prerit.Web.Models.Contact;
 
+using MvcContrib.Filters;
+
 namespace Com.Prerit.Web.Controllers
 {
     public class ContactController : DefaultMasterController
@@ -28,6 +30,7 @@ namespace Com.Prerit.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [ActionName(Action.Index)]
+        [ModelStateToTempData]
         public ActionResult Index()
         {
             IndexModel model = UpdateModelBase(new IndexModel());
@@ -37,10 +40,9 @@ namespace Com.Prerit.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName(Action.SendEmail)]
+        [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
-            UpdateModelBase(model);
-
             if (model.Name.Trim().Length == 0)
             {
                 ModelState.AddModelError(IndexModel.PropertyName.Name, "Name is required");
