@@ -47,7 +47,7 @@
     <Compile Include="Helpers\Contact\ContactHelper.cs" />
     <Compile Include="Helpers\Contact\Index\ContactIndexHelper.cs" />
     <Compile Include="Helpers\Shared\SharedHelper.cs" />
-    <Compile Include="HostingProvider.cs" />
+    <Compile Include="EmailInfo.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="MvcApplication.cs" />
