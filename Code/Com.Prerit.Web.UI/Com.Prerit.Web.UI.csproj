@@ -133,6 +133,8 @@
     <Content Include="content\images\rounded_tl.gif" />
     <Content Include="content\images\rounded_tr.gif" />
     <Content Include="content\styles\print.css" />
+    <Content Include="content\styles\resume\index-print.css" />
+    <Content Include="content\styles\resume\index-screen.css" />
     <Content Include="content\styles\screen.css" />
     <Content Include="views\about\index.aspx" />
     <Content Include="views\contact\email-sent.aspx" />
@@ -142,6 +144,10 @@
     <Content Include="views\resume\index.aspx" />
     <Content Include="views\shared\default.master" />
     <Content Include="views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="content\resume\resume-of-prerit-bhakta.doc" />
+    <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
