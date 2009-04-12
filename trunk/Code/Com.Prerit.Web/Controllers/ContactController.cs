@@ -69,14 +69,14 @@ namespace Com.Prerit.Web.Controllers
 
             var smtpClient = new SmtpClient
                                  {
-                                     Host = WebsiteInfo.SmtpHost
+                                     Host = HostingProvider.SmtpHost
                                  };
 
             using (var message = new MailMessage())
             {
                 message.From = new MailAddress(WebsiteInfo.AuthorEmailAddress);
                 message.To.Add(model.EmailAddress);
-                message.Subject = WebsiteInfo.GetContactEmailSubject(model.Name);
+                message.Subject = HostingProvider.GetContactEmailSubject(model.Name);
                 message.Body = model.Message;
                 message.IsBodyHtml = false;
 
