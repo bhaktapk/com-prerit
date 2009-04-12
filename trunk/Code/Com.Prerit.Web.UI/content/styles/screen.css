@@ -4,7 +4,7 @@
 
 body
 {
-    background: #585858 url(../images/bg_body.gif) repeat-y center top;
+    background: #585858 url(../images/bg-body.gif) repeat-y center top;
     color: #eee;
     font-family: verdana, helvetica, arial, sans-serif;
     font-size: 62.5%; /* enables font size scaling in IE */
@@ -34,7 +34,7 @@ img
 
 #header
 {
-    background: #585858 url(../images/bg_header.gif) repeat-y center top;
+    background: #585858 url(../images/bg-header.gif) repeat-y center top;
     text-transform: uppercase;
 
     /* HACK: compensate for IE5 centering hack */
@@ -89,7 +89,7 @@ img
 
 #header #innerHeader
 {
-    background: url(../images/logo_greenery.gif) no-repeat right center;
+    background: url(../images/logo-greenery.gif) no-repeat right center;
     margin: 0 auto;
     width: 768px;
 }
@@ -97,7 +97,7 @@ img
 #header ul li a:hover,
 #header ul li a.active
 {
-    background: url(../images/menu_tab.gif) no-repeat center bottom;
+    background: url(../images/menu-tab.gif) no-repeat center bottom;
     color: #111;
 }
 
@@ -342,13 +342,13 @@ img
 
 #sidebar h2
 {
-    background: #686868 url(../images/rounded_tl.gif) no-repeat left top;
+    background: #686868 url(../images/rounded-tl.gif) no-repeat left top;
     text-align: right;
 }
 
 #sidebar h2 span
 {
-    background: url(../images/rounded_bl.gif) no-repeat left bottom;
+    background: url(../images/rounded-bl.gif) no-repeat left bottom;
     display: block;
     padding: 2px;
 }
@@ -419,7 +419,7 @@ img
 
 #sidebar ul li a:hover
 {
-    background: url(../images/bg_subheading.gif) no-repeat left center;
+    background: url(../images/bg-subheading.gif) no-repeat left center;
 }
 
 
@@ -531,7 +531,7 @@ img
 
 #mainbar #processingNotification
 {
-    background: #85e15f url(../images/ajax_processing_notifier.gif) no-repeat 50% 70%;
+    background: #85e15f url(../images/ajax-processing-notifier.gif) no-repeat 50% 70%;
     border: 2px solid #222;
     color: #222;
     font-size: 1.2em;
@@ -553,12 +553,12 @@ img
 
 #mainbar h1
 {
-    background: #686868 url(../images/rounded_tr.gif) no-repeat right top;
+    background: #686868 url(../images/rounded-tr.gif) no-repeat right top;
 }
 
 #mainbar h1 span
 {
-    background: url(../images/rounded_br.gif) no-repeat right bottom;
+    background: url(../images/rounded-br.gif) no-repeat right bottom;
     display: block;
     padding: 2px;
 }
@@ -594,7 +594,7 @@ img
 #mainbar h5,
 #mainbar h6
 {
-    background: url(../images/bg_subheading.gif) repeat-x left center;
+    background: url(../images/bg-subheading.gif) repeat-x left center;
 }
 
 #mainbar h2 span,
@@ -664,7 +664,7 @@ img
 
 #mainbar ul li
 {
-    list-style-image: url(../images/li_bullet.gif);
+    list-style-image: url(../images/li-bullet.gif);
 }
 
 #mainbar ul.long3 li.group2,
@@ -716,7 +716,7 @@ img
 
 #footer #designer a
 {
-    background: url(../images/logo_fullahead.gif) no-repeat 0 0;
+    background: url(../images/logo-fullahead.gif) no-repeat 0 0;
     display: block;
     height: 34px;
     margin: 0 auto;
