@@ -12,7 +12,7 @@ namespace Com.Prerit.Web.Controllers
         [ActionName(Action.Index)]
         public ActionResult Index()
         {
-            var model = UpdateModelBase(new IndexModel());
+            IndexModel model = UpdateModelBase(new IndexModel());
 
             return View(model);
         }

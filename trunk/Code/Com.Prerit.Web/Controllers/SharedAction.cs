@@ -2,7 +2,7 @@ namespace Com.Prerit.Web.Controllers
 {
     public static class SharedAction
     {
-        #region Fields
+        #region Constants
 
         public const string Index = "index";
 

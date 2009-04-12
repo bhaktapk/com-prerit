@@ -2,9 +2,11 @@ using System;
 
 namespace Com.Prerit.Web
 {
-    public static class HostingProvider
+    public static class EmailInfo
     {
         #region Constants
+
+        public const string AuthorEmailAddress = "prerit.bhakta@gmail.com";
 
         public const string SmtpHost = "relay-hosting.secureserver.net";
 
