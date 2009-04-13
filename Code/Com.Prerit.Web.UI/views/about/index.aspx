@@ -7,7 +7,6 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="A brief description about <%= Model.SiteName %> and it's author" />
     <meta name="keywords" content="about, <%= Model.SiteName %>, Prerit Bhakta" />
-    <meta name="verify-v1" content="Zh9YODQtJIOw8hV64WsjasfjjqakXRWrCtzfe0XD/3Q=" >
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">

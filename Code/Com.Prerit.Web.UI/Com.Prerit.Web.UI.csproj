@@ -140,6 +140,7 @@
     <Content Include="content\styles\resume\index-print.css" />
     <Content Include="content\styles\resume\index-screen.css" />
     <Content Include="content\styles\screen.css" />
+    <Content Include="google09f9576d4452b755.html" />
     <Content Include="robots.txt" />
     <Content Include="views\about\index.aspx" />
     <Content Include="views\contact\email-sent.aspx" />
