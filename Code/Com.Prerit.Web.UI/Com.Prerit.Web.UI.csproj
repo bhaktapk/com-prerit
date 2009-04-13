@@ -117,9 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="errors\app_offline.htm" />
-    <Content Include="errors\default.htm" />
-    <Content Include="errors\forbidden.htm" />
-    <Content Include="errors\page_not_found.htm" />
+    <Content Include="errors\default.aspx" />
+    <Content Include="errors\forbidden.aspx" />
+    <Content Include="errors\not-found.aspx" />
     <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
