@@ -116,10 +116,10 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="errors\app_offline.htm" />
-    <Content Include="errors\default.aspx" />
-    <Content Include="errors\forbidden.aspx" />
-    <Content Include="errors\not-found.aspx" />
+    <Content Include="error\app_offline.htm" />
+    <Content Include="error\default.aspx" />
+    <Content Include="error\forbidden.aspx" />
+    <Content Include="error\not-found.aspx" />
     <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
