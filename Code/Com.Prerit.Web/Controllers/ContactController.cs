@@ -80,6 +80,7 @@ namespace Com.Prerit.Web.Controllers
                 message.Body = model.Message;
                 message.IsBodyHtml = false;
 
+                // TODO: uncomment
                 //smtpClient.Send(message);
             }
 
