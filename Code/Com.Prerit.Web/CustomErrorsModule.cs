@@ -22,7 +22,7 @@ namespace Com.Prerit.Web
 
             var exception = context.Server.GetLastError() as HttpException;
 
-            HttpStatusCode? httpCode = exception != null ? (HttpStatusCode) exception.GetHttpCode() : (HttpStatusCode?) null;
+            HttpStatusCode httpCode = exception != null ? (HttpStatusCode) exception.GetHttpCode() : HttpStatusCode.InternalServerError;
 
             switch (httpCode)
             {
@@ -33,8 +33,7 @@ namespace Com.Prerit.Web
                     errorPath = "~/error/not-found.htm";
                     break;
                 default:
-                    errorPath = "~/error/internal-server-error.htm";
-                    httpCode = HttpStatusCode.InternalServerError;
+                    errorPath = "~/error/generic-error.htm";
                     break;
             }
 
