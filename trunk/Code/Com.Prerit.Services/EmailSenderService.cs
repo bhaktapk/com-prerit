@@ -1,5 +1,7 @@
 using System.Net.Mail;
 
+using Com.Prerit.Domain;
+
 namespace Com.Prerit.Services
 {
     public class EmailSenderService : IEmailSenderService
@@ -24,14 +26,14 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public void Send(string fromEmailAddress, string toEmailAddress, string subject, string body)
+        public void Send(Email email)
         {
             using (var message = new MailMessage())
             {
-                message.From = new MailAddress(fromEmailAddress);
-                message.To.Add(toEmailAddress);
-                message.Subject = subject;
-                message.Body = body;
+                message.From = new MailAddress(email.FromEmailAddress);
+                message.To.Add(email.ToEmailAddress);
+                message.Subject = email.Subject;
+                message.Body = email.Message;
                 message.IsBodyHtml = false;
 
                 // TODO: uncomment

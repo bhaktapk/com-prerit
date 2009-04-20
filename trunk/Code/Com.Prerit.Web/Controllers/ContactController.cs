@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
+using Com.Prerit.Domain;
 using Com.Prerit.Services;
 using Com.Prerit.Web.Models.Contact;
 
@@ -94,7 +95,15 @@ namespace Com.Prerit.Web.Controllers
                 return RedirectToAction(Action.Index);
             }
 
-            _emailSenderService.Send(EmailInfo.AuthorEmailAddress, model.EmailAddress, EmailInfo.GetContactEmailSubject(model.Name), model.Message);
+            var email = new Email
+                            {
+                                FromEmailAddress = EmailInfo.AuthorEmailAddress,
+                                ToEmailAddress = model.EmailAddress,
+                                Subject = EmailInfo.GetContactEmailSubject(model.Name),
+                                Message = model.Message,
+                            };
+
+            _emailSenderService.Send(email);
 
             SetTempModel(model);
 

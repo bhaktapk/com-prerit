@@ -42,6 +42,7 @@
     </Compile>
     <Compile Include="Album.cs" />
     <Compile Include="AlbumYear.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Photo.cs" />
     <Compile Include="WebImage.cs" />
