@@ -1,7 +1,9 @@
+using System;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
+using Com.Prerit.Services;
 using Com.Prerit.Web.Models.Contact;
 
 using MvcContrib.Filters;
@@ -10,6 +12,31 @@ namespace Com.Prerit.Web.Controllers
 {
     public class ContactController : DefaultMasterController
     {
+        #region Fields
+
+        private readonly IEmailSenderService _emailSenderService;
+
+        #endregion
+
+        #region Constructors
+
+        public ContactController()
+            : this(new EmailSenderService(EmailInfo.SmtpHost))
+        {
+        }
+
+        private ContactController(IEmailSenderService emailSenderService)
+        {
+            if (emailSenderService == null)
+            {
+                throw new ArgumentNullException("emailSender");
+            }
+
+            _emailSenderService = emailSenderService;
+        }
+
+        #endregion
+
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -67,22 +94,7 @@ namespace Com.Prerit.Web.Controllers
                 return RedirectToAction(Action.Index);
             }
 
-            var smtpClient = new SmtpClient
-                                 {
-                                     Host = EmailInfo.SmtpHost
-                                 };
-
-            using (var message = new MailMessage())
-            {
-                message.From = new MailAddress(EmailInfo.AuthorEmailAddress);
-                message.To.Add(model.EmailAddress);
-                message.Subject = EmailInfo.GetContactEmailSubject(model.Name);
-                message.Body = model.Message;
-                message.IsBodyHtml = false;
-
-                // TODO: uncomment
-                //smtpClient.Send(message);
-            }
+            _emailSenderService.Send(EmailInfo.AuthorEmailAddress, model.EmailAddress, EmailInfo.GetContactEmailSubject(model.Name), model.Message);
 
             SetTempModel(model);
 

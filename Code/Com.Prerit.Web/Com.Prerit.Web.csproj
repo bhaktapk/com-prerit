@@ -105,6 +105,10 @@
       <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
       <Name>Com.Prerit.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Services\Com.Prerit.Services.csproj">
+      <Project>{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}</Project>
+      <Name>Com.Prerit.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
