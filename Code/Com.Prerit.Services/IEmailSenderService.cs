@@ -1,7 +1,13 @@
-﻿namespace Com.Prerit.Services
+﻿using Com.Prerit.Domain;
+
+namespace Com.Prerit.Services
 {
     public interface IEmailSenderService
     {
-        void Send(string fromEmailAddress, string toEmailAddress, string subject, string body);
+        #region Methods
+
+        void Send(Email email);
+
+        #endregion
     }
 }
