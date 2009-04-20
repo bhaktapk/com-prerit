@@ -50,6 +50,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AlbumYearLoaderService.cs" />
+    <Compile Include="EmailSenderService.cs" />
+    <Compile Include="IEmailSenderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AsyncCacheItemLoaderService.cs" />
     <Compile Include="Caching\CacheItemDependency.cs" />
