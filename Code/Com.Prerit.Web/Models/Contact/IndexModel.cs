@@ -5,7 +5,6 @@ using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Models.Contact
 {
-    [Bind]
     public class IndexModel : DefaultMasterModel
     {
         #region Properties
