@@ -1,10 +1,10 @@
 using System;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 using Com.Prerit.Domain;
 using Com.Prerit.Services;
+using Com.Prerit.Web.Filters;
 using Com.Prerit.Web.Models.Contact;
 
 using MvcContrib.Filters;
@@ -42,9 +42,10 @@ namespace Com.Prerit.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [ActionName(Action.EmailSent)]
+        [TempDataToModel]
         public ActionResult EmailSent()
         {
-            var indexModel = GetTempModel<IndexModel>();
+            var indexModel = ViewData.Model as IndexModel;
 
             if (indexModel == null)
             {
@@ -68,6 +69,7 @@ namespace Com.Prerit.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName(Action.SendEmail)]
+        [ModelToTempData]
         [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
@@ -105,9 +107,7 @@ namespace Com.Prerit.Web.Controllers
 
             _emailSenderService.Send(email);
 
-            SetTempModel(model);
-
-            return RedirectToAction(Action.EmailSent);
+            return RedirectToActionWithModel(Action.EmailSent, model);
         }
 
         #endregion

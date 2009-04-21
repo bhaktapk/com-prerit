@@ -63,14 +63,11 @@ namespace Com.Prerit.Web.Controllers
             return new string(seoChars.ToArray());
         }
 
-        public T GetTempModel<T>() where T : class, TModelBase
+        protected RedirectToRouteResult RedirectToActionWithModel(string actionName, object model)
         {
-            return TempData[TempModelKey] as T;
-        }
+            ViewData.Model = model;
 
-        public void SetTempModel<T>(T model) where T : class, TModelBase
-        {
-            TempData[TempModelKey] = model;
+            return RedirectToAction(actionName);
         }
 
         public abstract T UpdateModelBase<T>(T model) where T : TModelBase;
