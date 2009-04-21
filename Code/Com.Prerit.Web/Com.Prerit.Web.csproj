@@ -44,6 +44,8 @@
     <Compile Include="Controllers\PhotoAlbumsController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="CustomErrorsModule.cs" />
+    <Compile Include="Filters\ModelToTempDataAttribute.cs" />
+    <Compile Include="Filters\TempDataToModelAttribute.cs" />
     <Compile Include="Helpers\Contact\ContactHelper.cs" />
     <Compile Include="Helpers\Contact\Index\ContactIndexHelper.cs" />
     <Compile Include="Helpers\Shared\SharedHelper.cs" />
