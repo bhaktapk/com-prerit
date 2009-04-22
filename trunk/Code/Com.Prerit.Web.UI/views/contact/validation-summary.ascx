@@ -1,4 +1,4 @@
-<%@ Import Namespace="Com.Prerit.Web.Models.Contact"%>
+<%@ Import Namespace="Com.Prerit.Web.Models.Contact" %>
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IndexModel>" %>
 
 <div class="validationSummary">

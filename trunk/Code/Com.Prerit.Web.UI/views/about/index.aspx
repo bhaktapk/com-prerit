@@ -1,5 +1,5 @@
-<%@ Import Namespace="Com.Prerit.Web.Controllers"%>
-<%@ Import Namespace="Com.Prerit.Web.Models.About"%>
+<%@ Import Namespace="Com.Prerit.Web.Controllers" %>
+<%@ Import Namespace="Com.Prerit.Web.Models.About" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">About the Website &amp; It's Author</asp:Content>
