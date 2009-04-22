@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Com.Prerit.Web.Helpers.Contact.Index
 {
@@ -6,9 +7,12 @@ namespace Com.Prerit.Web.Helpers.Contact.Index
     {
         #region Methods
 
-        public static bool IsValidationSummaryVisible(this HtmlHelper helper)
+        public static void RenderPartialValidationSummary(this HtmlHelper helper)
         {
-            return !helper.ViewData.ModelState.IsValid;
+            if (!helper.ViewData.ModelState.IsValid)
+            {
+                helper.RenderPartial(ContactHelper.PartialName.ValidationSummary);
+            }
         }
 
         #endregion
