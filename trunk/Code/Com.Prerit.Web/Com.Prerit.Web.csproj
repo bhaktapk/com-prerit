@@ -59,6 +59,7 @@
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterDefaultModelBinderStartupTask.cs" />
     <Compile Include="RegisterRoutesStartupTask.cs" />
     <Compile Include="StartupTaskRunner.cs" />
     <Compile Include="WebsiteInfo.cs" />

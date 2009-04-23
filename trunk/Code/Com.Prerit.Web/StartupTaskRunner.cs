@@ -8,7 +8,7 @@ namespace Com.Prerit.Web
         {
             var tasks = new IStartupTask[]
                             {
-                                new RegisterRoutesStartupTask()
+                                new RegisterRoutesStartupTask(), new RegisterDefaultModelBinderStartupTask()
                             };
 
             foreach (IStartupTask task in tasks)
