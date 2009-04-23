@@ -73,25 +73,6 @@ namespace Com.Prerit.Web.Controllers
         [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
-            if (model.Name.Trim().Length == 0)
-            {
-                ModelState.AddModelError(IndexModel.PropertyName.Name, "Name is required");
-            }
-
-            if (model.EmailAddress.Trim().Length == 0)
-            {
-                ModelState.AddModelError(IndexModel.PropertyName.EmailAddress, "E-mail is required");
-            }
-            else if (!Regex.IsMatch(model.EmailAddress, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
-            {
-                ModelState.AddModelError(IndexModel.PropertyName.EmailAddress, "E-mail is not in a correct format");
-            }
-
-            if (model.Message.Trim().Length == 0)
-            {
-                ModelState.AddModelError(IndexModel.PropertyName.Message, "Message is required");
-            }
-
             if (!ModelState.IsValid)
             {
                 return RedirectToAction(Action.Index);
