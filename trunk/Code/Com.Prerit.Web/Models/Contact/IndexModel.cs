@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-using Com.Prerit.Core;
+﻿using Com.Prerit.Core;
 using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Models.Contact
@@ -9,14 +7,10 @@ namespace Com.Prerit.Web.Models.Contact
     {
         #region Properties
 
-        [Required(ErrorMessage = "E-mail is required")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "Message is required")]
-        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Message is required")]
         public string Message { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
         #endregion
