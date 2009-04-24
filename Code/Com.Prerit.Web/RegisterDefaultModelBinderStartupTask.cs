@@ -1,8 +1,6 @@
 using System;
 using System.Web.Mvc;
 
-using Microsoft.Web.Mvc.DataAnnotations;
-
 namespace Com.Prerit.Web
 {
     public class RegisterDefaultModelBinderStartupTask : IStartupTask
@@ -36,7 +34,7 @@ namespace Com.Prerit.Web
 
         public void Execute()
         {
-            _modelBinderDictionary.DefaultBinder = new DataAnnotationsModelBinder();
+            // TODO: set default mode binder
         }
 
         #endregion
