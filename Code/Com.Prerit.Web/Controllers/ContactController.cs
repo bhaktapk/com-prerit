@@ -30,7 +30,7 @@ namespace Com.Prerit.Web.Controllers
         {
             if (emailSenderService == null)
             {
-                throw new ArgumentNullException("emailSender");
+                throw new ArgumentNullException("emailSenderService");
             }
 
             _emailSenderService = emailSenderService;
