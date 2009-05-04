@@ -1,4 +1,6 @@
-﻿using Com.Prerit.Core;
+﻿using Castle.Components.Validator;
+
+using Com.Prerit.Core;
 using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Models.Contact
@@ -7,10 +9,14 @@ namespace Com.Prerit.Web.Models.Contact
     {
         #region Properties
 
+        [ValidateNonEmpty("An e-mail is required")]
+        [ValidateEmail]
         public string EmailAddress { get; set; }
 
+        [ValidateNonEmpty("A message is required")]
         public string Message { get; set; }
 
+        [ValidateNonEmpty("A name is required")]
         public string Name { get; set; }
 
         #endregion

@@ -62,9 +62,14 @@
     <Compile Include="RegisterDefaultModelBinderStartupTask.cs" />
     <Compile Include="RegisterRoutesStartupTask.cs" />
     <Compile Include="StartupTaskRunner.cs" />
+    <Compile Include="SimpleValidatingModelBinder.cs" />
     <Compile Include="WebsiteInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.Components.Validator.dll</HintPath>
+    </Reference>
     <Reference Include="MvcContrib, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\MvcContrib.dll</HintPath>
@@ -94,6 +99,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.XML" />
+    <Reference Include="xVal, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\xVal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
