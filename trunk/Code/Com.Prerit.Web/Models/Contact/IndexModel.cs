@@ -10,7 +10,7 @@ namespace Com.Prerit.Web.Models.Contact
         #region Properties
 
         [ValidateNonEmpty("An e-mail is required")]
-        [ValidateEmail]
+        [ValidateEmail("The e-mail address is not valid")]
         public string EmailAddress { get; set; }
 
         [ValidateNonEmpty("A message is required")]
