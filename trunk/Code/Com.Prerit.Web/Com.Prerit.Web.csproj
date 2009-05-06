@@ -99,10 +99,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.XML" />
-    <Reference Include="xVal, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\xVal.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
