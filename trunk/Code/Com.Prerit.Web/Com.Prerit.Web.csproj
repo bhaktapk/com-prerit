@@ -51,6 +51,7 @@
     <Compile Include="Helpers\Shared\SharedHelper.cs" />
     <Compile Include="EmailInfo.cs" />
     <Compile Include="IStartupTask.cs" />
+    <Compile Include="ModelStateDictionaryExtensions.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="MvcApplication.cs" />
