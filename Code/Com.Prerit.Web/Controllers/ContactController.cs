@@ -1,6 +1,7 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
+
+using Castle.Components.Validator;
 
 using Com.Prerit.Domain;
 using Com.Prerit.Services;
@@ -22,7 +23,7 @@ namespace Com.Prerit.Web.Controllers
         #region Constructors
 
         public ContactController()
-            : this(new EmailSenderService(EmailInfo.SmtpHost))
+            : this(new EmailSenderService(EmailInfo.SmtpHost, new ValidatorRunner(new CachedValidationRegistry())))
         {
         }
 
@@ -73,11 +74,6 @@ namespace Com.Prerit.Web.Controllers
         [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(Action.Index);
-            }
-
             var email = new Email
                             {
                                 FromEmailAddress = EmailInfo.AuthorEmailAddress,
@@ -86,9 +82,16 @@ namespace Com.Prerit.Web.Controllers
                                 Message = model.Message,
                             };
 
-            _emailSenderService.Send(email);
+            if (_emailSenderService.IsEmailValidToSend(email))
+            {
+                _emailSenderService.Send(email);
+            }
+            else
+            {
+                ModelState.AddModelErrors(_emailSenderService.GetErrorSummaryForInvalidEmail(email));
+            }
 
-            return RedirectToActionWithModel(Action.EmailSent, model);
+            return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, model) : RedirectToAction(Action.Index);
         }
 
         #endregion
