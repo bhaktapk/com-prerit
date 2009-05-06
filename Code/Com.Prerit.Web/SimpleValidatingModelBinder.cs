@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 using Castle.Components.Validator;
@@ -35,55 +33,12 @@ namespace Com.Prerit.Web
         {
             object model = base.BindModel(controllerContext, bindingContext);
 
-            foreach (ErrorInfo error in GetErrors(model))
+            if (model != null && !_runner.IsValid(model))
             {
-                bindingContext.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                bindingContext.ModelState.AddModelErrors(_runner.GetErrorSummary(model));
             }
 
             return model;
-        }
-
-        private IEnumerable<ErrorInfo> GetErrors(object instance)
-        {
-            var result = new List<ErrorInfo>();
-
-            if (instance != null && !_runner.IsValid(instance))
-            {
-                ErrorSummary errorSummary = _runner.GetErrorSummary(instance);
-
-                IEnumerable<ErrorInfo> errorInfos = from prop in errorSummary.InvalidProperties
-                                                    from err in errorSummary.GetErrorsForProperty(prop)
-                                                    select new ErrorInfo(prop, err);
-
-                result.AddRange(errorInfos);
-            }
-
-            return result;
-        }
-
-        #endregion
-
-        #region Nested Type: ErrorInfo
-
-        private class ErrorInfo
-        {
-            #region Properties
-
-            public string ErrorMessage { get; set; }
-
-            public string PropertyName { get; set; }
-
-            #endregion
-
-            #region Constructors
-
-            public ErrorInfo(string errorMessage, string propertyName)
-            {
-                ErrorMessage = errorMessage;
-                PropertyName = propertyName;
-            }
-
-            #endregion
         }
 
         #endregion
