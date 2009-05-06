@@ -5,8 +5,6 @@ using System.Web.Mvc;
 
 using Castle.Components.Validator;
 
-using xVal.ServerSide;
-
 namespace Com.Prerit.Web
 {
     public class SimpleValidatingModelBinder : DefaultModelBinder
@@ -45,7 +43,7 @@ namespace Com.Prerit.Web
             return model;
         }
 
-        private IList<ErrorInfo> GetErrors(object instance)
+        private IEnumerable<ErrorInfo> GetErrors(object instance)
         {
             var result = new List<ErrorInfo>();
 
@@ -61,6 +59,31 @@ namespace Com.Prerit.Web
             }
 
             return result;
+        }
+
+        #endregion
+
+        #region Nested Type: ErrorInfo
+
+        private class ErrorInfo
+        {
+            #region Properties
+
+            public string ErrorMessage { get; set; }
+
+            public string PropertyName { get; set; }
+
+            #endregion
+
+            #region Constructors
+
+            public ErrorInfo(string errorMessage, string propertyName)
+            {
+                ErrorMessage = errorMessage;
+                PropertyName = propertyName;
+            }
+
+            #endregion
         }
 
         #endregion
