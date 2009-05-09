@@ -74,21 +74,24 @@ namespace Com.Prerit.Web.Controllers
         [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
-            var email = new Email
-                            {
-                                FromEmailAddress = EmailInfo.AuthorEmailAddress,
-                                ToEmailAddress = model.EmailAddress,
-                                Subject = EmailInfo.GetContactEmailSubject(model.Name),
-                                Message = model.Message,
-                            };
+            if (ModelState.IsValid)
+            {
+                var email = new Email
+                                {
+                                    FromEmailAddress = EmailInfo.AuthorEmailAddress,
+                                    ToEmailAddress = model.EmailAddress,
+                                    Subject = EmailInfo.GetContactEmailSubject(model.Name),
+                                    Message = model.Message,
+                                };
 
-            if (_emailSenderService.IsEmailValidToSend(email))
-            {
-                _emailSenderService.Send(email);
-            }
-            else
-            {
-                ModelState.AddModelErrors(_emailSenderService.GetErrorSummaryForInvalidEmail(email));
+                if (_emailSenderService.IsEmailValidToSend(email))
+                {
+                    _emailSenderService.Send(email);
+                }
+                else
+                {
+                    ModelState.AddModelErrors(_emailSenderService.GetErrorSummaryForInvalidEmail(email));
+                }
             }
 
             return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, model) : RedirectToAction(Action.Index);
