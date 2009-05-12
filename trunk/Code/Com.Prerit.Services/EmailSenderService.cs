@@ -65,7 +65,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("email");
             }
 
-            if (IsEmailValidToSend(email))
+            if (!IsEmailValidToSend(email))
             {
                 throw new ValidationException("Email is invalid to send", _validatorRunner.GetErrorSummary(email).ErrorMessages);
             }
