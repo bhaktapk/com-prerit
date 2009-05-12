@@ -1,17 +1,32 @@
+using CommonServiceLocator.WindsorAdapter;
+
+using Microsoft.Practices.ServiceLocation;
+
 namespace Com.Prerit.Web
 {
     public static class StartupTaskRunner
     {
+        #region Constructors
+
+        static StartupTaskRunner()
+        {
+            ConfigureCommonServiceLocator();
+        }
+
+        #endregion
+
         #region Methods
+
+        private static void ConfigureCommonServiceLocator()
+        {
+            IServiceLocator serviceLocator = new WindsorServiceLocator(new WindsorContainerInitializer().Init());
+
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
+        }
 
         public static void Run()
         {
-            var tasks = new IStartupTask[]
-                            {
-                                new RegisterRoutesStartupTask(), new RegisterDefaultModelBinderStartupTask()
-                            };
-
-            foreach (IStartupTask task in tasks)
+            foreach (IStartupTask task in ServiceLocator.Current.GetAllInstances<IStartupTask>())
             {
                 task.Execute();
             }
