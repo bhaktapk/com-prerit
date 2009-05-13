@@ -66,6 +66,7 @@
     <Compile Include="StartupTaskRunner.cs" />
     <Compile Include="SimpleValidatingModelBinder.cs" />
     <Compile Include="WebsiteInfo.cs" />
+    <Compile Include="WindsorControllerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
