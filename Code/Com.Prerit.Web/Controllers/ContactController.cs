@@ -27,7 +27,7 @@ namespace Com.Prerit.Web.Controllers
         {
         }
 
-        private ContactController(IEmailSenderService emailSenderService)
+        public ContactController(IEmailSenderService emailSenderService)
         {
             if (emailSenderService == null)
             {
