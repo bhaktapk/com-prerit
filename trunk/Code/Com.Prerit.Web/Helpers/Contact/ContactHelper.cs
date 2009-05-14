@@ -8,7 +8,7 @@
         {
             #region Fields
 
-            public static readonly string ValidationSummary = "validation-summary";
+            public const string ValidationSummary = "validation-summary";
 
             #endregion
         }
