@@ -78,8 +78,7 @@ namespace Com.Prerit.Services
                 message.Body = email.Message;
                 message.IsBodyHtml = false;
 
-                // TODO: uncomment
-                //_smtpClient.Send(message);
+                _smtpClient.Send(message);
             }
         }
 
