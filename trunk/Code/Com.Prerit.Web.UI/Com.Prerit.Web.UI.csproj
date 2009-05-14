@@ -85,10 +85,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.Prerit.Configuration\Com.Prerit.Configuration.csproj">
-      <Project>{DB1BA67E-A160-416A-8FA9-1057E2FB2C13}</Project>
-      <Name>Com.Prerit.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
       <Project>{CE05BC84-482F-402F-A967-65859255C83C}</Project>
       <Name>Com.Prerit.Core</Name>
