@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Web;
 using System.Web.Caching;
 
-using Com.Prerit.Configuration;
+using Com.Prerit.Core.Configuration;
 using Com.Prerit.Domain;
 
 namespace Com.Prerit.Services.Caching
