@@ -22,11 +22,6 @@ namespace Com.Prerit.Web.Controllers
 
         #region Constructors
 
-        public ContactController()
-            : this(new EmailSenderService(EmailInfo.SmtpHost, new ValidatorRunner(new CachedValidationRegistry())))
-        {
-        }
-
         public ContactController(IEmailSenderService emailSenderService)
         {
             if (emailSenderService == null)
