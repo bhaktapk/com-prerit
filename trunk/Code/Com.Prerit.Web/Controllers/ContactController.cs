@@ -1,6 +1,8 @@
 using System;
 using System.Web.Mvc;
 
+using AutoMapper;
+
 using Com.Prerit.Domain;
 using Com.Prerit.Services;
 using Com.Prerit.Web.Filters;
@@ -70,13 +72,9 @@ namespace Com.Prerit.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var email = new Email
-                                {
-                                    FromEmailAddress = EmailInfo.AuthorEmailAddress,
-                                    ToEmailAddress = model.EmailAddress,
-                                    Subject = EmailInfo.GetContactEmailSubject(model.Name),
-                                    Message = model.Message,
-                                };
+                var email = new Email();
+
+                Mapper.Map(model, email);
 
                 if (_emailSenderService.IsEmailValidToSend(email))
                 {
