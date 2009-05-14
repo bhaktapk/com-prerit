@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 using Castle.Windsor;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Web.Infrastructure.Windsor
 {
     public class WindsorControllerFactory : DefaultControllerFactory
     {

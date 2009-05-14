@@ -3,7 +3,9 @@ using System.Web.Mvc;
 
 using Castle.Components.Validator;
 
-namespace Com.Prerit.Web
+using Com.Prerit.Web.Infrastructure.ModelBinders;
+
+namespace Com.Prerit.Web.Infrastructure.StartupTasks
 {
     public class RegisterDefaultModelBinderStartupTask : IStartupTask
     {
@@ -34,7 +36,7 @@ namespace Com.Prerit.Web
         }
 
         public RegisterDefaultModelBinderStartupTask()
-            : this(ModelBinders.Binders, new SimpleValidatingModelBinder(new ValidatorRunner(new CachedValidationRegistry())))
+            : this(System.Web.Mvc.ModelBinders.Binders, new SimpleValidatingModelBinder(new ValidatorRunner(new CachedValidationRegistry())))
         {
         }
 

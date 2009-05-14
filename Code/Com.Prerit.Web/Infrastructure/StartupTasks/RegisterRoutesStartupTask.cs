@@ -4,7 +4,7 @@ using System.Web.Routing;
 
 using Com.Prerit.Web.Controllers;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Web.Infrastructure.StartupTasks
 {
     public class RegisterRoutesStartupTask : IStartupTask
     {

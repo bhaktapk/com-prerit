@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 using Castle.Components.Validator;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit.Web.Infrastructure
 {
     public static class ModelStateDictionaryExtensions
     {
