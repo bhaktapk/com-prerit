@@ -1,6 +1,8 @@
 ﻿using System.Web;
 
-namespace Com.Prerit.Web
+using Com.Prerit.Web.Infrastructure.StartupTasks;
+
+namespace Com.Prerit.Web.Infrastructure.HttpApplications
 {
     public class MvcApplication : HttpApplication
     {
