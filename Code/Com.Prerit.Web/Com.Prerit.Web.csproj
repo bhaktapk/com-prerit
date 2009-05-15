@@ -56,6 +56,9 @@
     <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTask.cs" />
     <Compile Include="Infrastructure\StartupTasks\IStartupTask.cs" />
     <Compile Include="Infrastructure\ModelStateDictionaryExtensions.cs" />
+    <Compile Include="Infrastructure\Windsor\CastleComponentsRegistration.cs" />
+    <Compile Include="Infrastructure\Windsor\ComPreritServicesRegistration.cs" />
+    <Compile Include="Infrastructure\Windsor\ComPreritWebRegistration.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs" />
