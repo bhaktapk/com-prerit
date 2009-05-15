@@ -6,7 +6,7 @@
 
         public static class PartialName
         {
-            #region Fields
+            #region Constants
 
             public const string ValidationSummary = "validation-summary";
 
