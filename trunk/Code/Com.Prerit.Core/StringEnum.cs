@@ -2,15 +2,11 @@ using System;
 
 namespace Com.Prerit.Core
 {
-    public abstract class StringEnum<T> : IEquatable<T> where T : StringEnum<T>
+    public abstract class StringEnum<T> : IEquatable<T>, IComparable<T> where T : StringEnum<T>
     {
         #region Properties
 
-        public string Value
-        {
-            get;
-            private set;
-        }
+        public string Value { get; private set; }
 
         #endregion
 
@@ -18,12 +14,32 @@ namespace Com.Prerit.Core
 
         protected StringEnum(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
             Value = value;
         }
 
         #endregion
 
         #region Methods
+
+        public int CompareTo(T other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return 0;
+            }
+
+            return string.Compare(Value, other.Value);
+        }
 
         public override bool Equals(object obj)
         {
