@@ -12,14 +12,12 @@ namespace Com.Prerit.Core.Configuration
             {
                 bool result;
 
-                if (!bool.TryParse(ConfigurationManager.AppSettings[AppSettingKey.CachePhotoAlbums], out result))
+                if (bool.TryParse(ConfigurationManager.AppSettings[AppSettingKey.CachePhotoAlbums], out result))
                 {
-                    const bool cacheAlbumPhotosDefaultValue = true;
-
-                    result = cacheAlbumPhotosDefaultValue;
+                    return result;
                 }
 
-                return result;
+                return AppSettingDefaultValue<bool>.CacheAlbumPhotos;
             }
         }
 
