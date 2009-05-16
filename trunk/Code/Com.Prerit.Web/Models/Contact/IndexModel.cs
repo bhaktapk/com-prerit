@@ -27,11 +27,11 @@ namespace Com.Prerit.Web.Models.Contact
         {
             #region Fields
 
-            public static readonly string EmailAddress = TypeUtil.GetPropertyName<IndexModel, string>(m => m.EmailAddress);
+            public static readonly string EmailAddress = TypeUtil.GetMemberName<IndexModel>(m => m.EmailAddress);
 
-            public static readonly string Message = TypeUtil.GetPropertyName<IndexModel, string>(m => m.Message);
+            public static readonly string Message = TypeUtil.GetMemberName<IndexModel>(m => m.Message);
 
-            public static readonly string Name = TypeUtil.GetPropertyName<IndexModel, string>(m => m.Name);
+            public static readonly string Name = TypeUtil.GetMemberName<IndexModel>(m => m.Name);
 
             #endregion
         }
