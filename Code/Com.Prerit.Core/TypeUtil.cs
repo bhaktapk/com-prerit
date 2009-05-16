@@ -1,6 +1,5 @@
 using System;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Com.Prerit.Core
 {
@@ -8,32 +7,55 @@ namespace Com.Prerit.Core
     {
         #region Methods
 
-        public static PropertyInfo GetPropertyInfo<T, TResult>(Expression<Func<T, TResult>> p)
+        public static string GetMemberName<T>(Expression<Func<T, object>> expression)
         {
-            return GetPropertyInfo((LambdaExpression) p);
-        }
-
-        private static PropertyInfo GetPropertyInfo(LambdaExpression p)
-        {
-            MemberExpression memberExpression;
-
-            if (p.Body is UnaryExpression)
+            if (expression == null)
             {
-                var ue = (UnaryExpression) p.Body;
-
-                memberExpression = (MemberExpression) ue.Operand;
-            }
-            else
-            {
-                memberExpression = (MemberExpression) p.Body;
+                throw new ArgumentNullException("expression");
             }
 
-            return (PropertyInfo) (memberExpression).Member;
+            var memberExpression = expression.Body as MemberExpression;
+
+            if (memberExpression == null)
+            {
+                throw new ArgumentException("Expression is not a MemberExpression", "expression");
+            }
+
+            return memberExpression.Member.Name;
         }
 
-        public static string GetPropertyName<T, TResult>(Expression<Func<T, TResult>> p)
+        public static string GetMethodName<T>(Expression<Func<T, object>> expression)
         {
-            return GetPropertyInfo((LambdaExpression) p).Name;
+            if (expression == null)
+            {
+                throw new ArgumentNullException("expression");
+            }
+
+            var methodCallExpression = expression.Body as MethodCallExpression;
+
+            if (methodCallExpression == null)
+            {
+                throw new ArgumentException("Expression is not a MethodCallExpression", "expression");
+            }
+
+            return methodCallExpression.Method.Name;
+        }
+
+        public static string GetMethodName<T>(Expression<Action<T>> expression)
+        {
+            if (expression == null)
+            {
+                throw new ArgumentNullException("expression");
+            }
+
+            var methodCallExpression = expression.Body as MethodCallExpression;
+
+            if (methodCallExpression == null)
+            {
+                throw new ArgumentException("Expression is not a MethodCallExpression", "expression");
+            }
+
+            return methodCallExpression.Method.Name;
         }
 
         #endregion

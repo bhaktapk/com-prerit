@@ -36,12 +36,18 @@
       <HintPath>..\..\Libraries\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeUtilTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">
