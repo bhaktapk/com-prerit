@@ -6,19 +6,38 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="test">
-    <call target="get-test-projects-dlls" />
-
     <call target="test-projects" />
+
+    <call target="delete-non-test-results" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
 
-  <target name="get-test-projects-dlls">
-    <property name="project.dlls"
-              value="" />
+  <target name="delete-non-test-results">
+    <delete>
+      <fileset basedir="${dir.build.test-results}">
+        <include name="*" />
+        <exclude name="*.TestResults.xml" />
+      </fileset>
+    </delete>
+  </target>
 
+  <target name="test-project">
+    <exec basedir="${dir.tools.nunit}"
+          workingdir="${dir.build.test-results}"
+          program="nunit-console.exe">
+
+      <arg value="${project.dll}" />
+
+      <arg value="/xml=${path::get-file-name-without-extension(project.dll)}.TestResults.xml" />
+
+      <arg value="/nologo" />
+    </exec>
+  </target>
+
+  <target name="test-projects">
     <foreach item="File"
              property="project.filepath">
       <in>
@@ -27,22 +46,11 @@
         </items>
       </in>
       <do>
-        <property name="project.dlls"
-                  value="${path::get-file-name-without-extension(project.filepath)}.dll ${project.dlls}" />
+        <property name="project.dll"
+                  value="${path::get-file-name-without-extension(project.filepath)}.dll" />
+
+        <call target="test-project" />
       </do>
     </foreach>
-  </target>
-
-  <target name="test-projects">
-    <exec basedir="${dir.tools.nunit}"
-          workingdir="${dir.build.test-results}"
-          program="nunit-console.exe">
-
-      <arg line="${project.dlls}" />
-
-      <arg value="/xml=TestResults.xml" />
-
-      <arg value="/nologo" />
-    </exec>
   </target>
 </project>
