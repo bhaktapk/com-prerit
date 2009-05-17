@@ -4,22 +4,18 @@ namespace Com.Prerit.Services.Caching
 {
     public class CacheKey : StringEnum<CacheKey>
     {
-        #region Fields
-
-        private static readonly CacheKey _albumYears = new CacheKey("AlbumYears");
-
-        #endregion
-
         #region Properties
 
-        public static CacheKey AlbumYears
-        {
-            get { return _albumYears; }
-        }
+        public static CacheKey AlbumYears { get; private set; }
 
         #endregion
 
         #region Constructors
+
+        static CacheKey()
+        {
+            AlbumYears = new CacheKey("AlbumYears");
+        }
 
         protected CacheKey(string name)
             : base(name)
