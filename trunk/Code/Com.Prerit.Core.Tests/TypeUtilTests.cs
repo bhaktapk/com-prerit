@@ -55,7 +55,7 @@ namespace Com.Prerit.Core.Tests
 
             #region Fields
 
-            public object Field;
+            public object Field = new object();
 
             #endregion
 
