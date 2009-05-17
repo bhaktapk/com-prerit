@@ -18,6 +18,11 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.build.test-results"
+            value="${dir.build}\TestResults"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.code"
             value="${dir.base}\Code"
             dynamic="true"
@@ -47,13 +52,8 @@
             dynamic="true"
             overwrite="false" />
 
-  <property name="dir.tools.nantcontrib"
-            value="${dir.tools}\NAntContrib"
-            dynamic="true"
-            overwrite="false" />
-
-  <property name="dir.tools.sqlcmd"
-            value="${dir.tools}\SQLCMD"
+  <property name="dir.tools.nunit"
+            value="${dir.tools}\NUnit"
             dynamic="true"
             overwrite="false" />
 
@@ -126,6 +126,10 @@
 
   <property name="project.name.com-prerit-web-ui-deployment"
             value="Com.Prerit.Web.UI.Deployment"
+            overwrite="false" />
+
+  <property name="project.name.test-suffix"
+            value=".Tests"
             overwrite="false" />
 
 

@@ -6,5 +6,43 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="test">
+    <call target="get-test-projects-dlls" />
+
+    <call target="test-projects" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="get-test-projects-dlls">
+    <property name="project.dlls"
+              value="" />
+
+    <foreach item="File"
+             property="project.filepath">
+      <in>
+        <items>
+          <include name="${dir.code}\**${project.name.test-suffix}.csproj" />
+        </items>
+      </in>
+      <do>
+        <property name="project.dlls"
+                  value="${path::get-file-name-without-extension(project.filepath)}.dll ${project.dlls}" />
+      </do>
+    </foreach>
+  </target>
+
+  <target name="test-projects">
+    <exec basedir="${dir.tools.nunit}"
+          workingdir="${dir.build.test-results}"
+          program="nunit-console.exe">
+
+      <arg line="${project.dlls}" />
+
+      <arg value="/xml=TestResults.xml" />
+
+      <arg value="/nologo" />
+    </exec>
   </target>
 </project>
