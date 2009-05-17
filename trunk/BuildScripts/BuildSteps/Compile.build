@@ -9,11 +9,38 @@
     <call target="compile-web-application-project" />
     
     <call target="compile-web-deployment-project" />
+    
+    <call target="compile-test-projects" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="compile-test-project">
+    <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
+      <arg value="${project.filepath}" />
+      <arg value="/t:Clean" />
+      <arg value="/t:Build" />
+      <arg value="/p:Configuration=${msbuild.configuration}" />
+      <arg value="/p:OutputPath=&quot;${dir.build.test-results}&quot;" />
+      <arg value="/v:${msbuild.verbosity}" />
+    </exec>
+  </target>
+
+  <target name="compile-test-projects">
+    <foreach item="File"
+             property="project.filepath">
+      <in>
+        <items>
+          <include name="${dir.code}\**${project.name.test-suffix}.csproj" />
+        </items>
+      </in>
+      <do>
+        <call target="compile-test-project" />
+      </do>
+    </foreach>
+  </target>
 
   <target name="compile-web-application-project">
     <exec program="${environment::get-variable('windir')}\Microsoft.NET\Framework\v3.5\msbuild.exe">
