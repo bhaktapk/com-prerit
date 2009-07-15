@@ -28,7 +28,7 @@ namespace Com.Prerit.Services.Tests
         #region Tests
 
         [Test]
-        public void ShouldFailToSendEmailBecauseEmailIsInvalid()
+        public void Should_Fail_To_Send_Email_Because_Email_Is_Invalid()
         {
             var email = new Email();
 

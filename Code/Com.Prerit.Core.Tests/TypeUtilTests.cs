@@ -10,7 +10,7 @@ namespace Com.Prerit.Core.Tests
         #region Tests
 
         [Test]
-        public void ShouldFailToGetNameFromConst()
+        public void Should_Fail_To_Get_Name_From_Const()
         {
             TestDelegate code = () => TypeUtil.GetMemberName<Person>(p => Person.Const);
 
@@ -18,25 +18,25 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldGetNameFromField()
+        public void Should_Get_Name_From_Field()
         {
             Assert.That(TypeUtil.GetMemberName<Person>(p => p.Field), Is.EqualTo("Field"));
         }
 
         [Test]
-        public void ShouldGetNameFromMethodWithNoReturnType()
+        public void Should_Get_Name_From_Method_With_No_Return_Type()
         {
             Assert.That(TypeUtil.GetMethodName<Person>(p => p.MethodWithNoReturnType()), Is.EqualTo("MethodWithNoReturnType"));
         }
 
         [Test]
-        public void ShouldGetNameFromMethodWithReturnType()
+        public void Should_Get_Name_From_Method_With_Return_Type()
         {
             Assert.That(TypeUtil.GetMethodName<Person>(p => p.MethodWithReturnType()), Is.EqualTo("MethodWithReturnType"));
         }
 
         [Test]
-        public void ShouldGetNameFromProperty()
+        public void Should_Get_Name_From_Property()
         {
             Assert.That(TypeUtil.GetMemberName<Person>(p => p.Property), Is.EqualTo("Property"));
         }
@@ -55,7 +55,7 @@ namespace Com.Prerit.Core.Tests
 
             #region Fields
 
-            public object Field = new object();
+            public readonly object Field = new object();
 
             #endregion
 
