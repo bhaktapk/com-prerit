@@ -15,7 +15,7 @@ namespace Com.Prerit.Domain.Tests
         #region Tests
 
         [Test]
-        public void ShouldContainValidateEmailAttributeOnFromEmailAddressProperty()
+        public void Should_Contain_ValidateEmailAttribute_On_FromEmailAddress_Property()
         {
             object[] attributes = GetAttributes(e => e.FromEmailAddress, typeof(ValidateEmailAttribute));
 
@@ -23,7 +23,7 @@ namespace Com.Prerit.Domain.Tests
         }
 
         [Test]
-        public void ShouldContainValidateEmailAttributeOnToEmailAddressProperty()
+        public void Should_Contain_ValidateEmailAttribute_On_ToEmailAddress_Property()
         {
             object[] attributes = GetAttributes(e => e.ToEmailAddress, typeof(ValidateEmailAttribute));
 
@@ -31,7 +31,7 @@ namespace Com.Prerit.Domain.Tests
         }
 
         [Test]
-        public void ShouldContainValidateNonEmptyAttributeOnFromEmailAddressProperty()
+        public void Should_Contain_ValidateNonEmptyAttribute_On_FromEmailAddress_Property()
         {
             object[] attributes = GetAttributes(e => e.FromEmailAddress, typeof(ValidateNonEmptyAttribute));
 
@@ -39,7 +39,7 @@ namespace Com.Prerit.Domain.Tests
         }
 
         [Test]
-        public void ShouldContainValidateNonEmptyAttributeOnMessageProperty()
+        public void Should_Contain_ValidateNonEmptyAttribute_On_Message_Property()
         {
             object[] attributes = GetAttributes(e => e.Message, typeof(ValidateNonEmptyAttribute));
 
@@ -47,7 +47,7 @@ namespace Com.Prerit.Domain.Tests
         }
 
         [Test]
-        public void ShouldContainValidateNonEmptyAttributeOnSubjectProperty()
+        public void Should_Contain_ValidateNonEmptyAttribute_On_Subject_Property()
         {
             object[] attributes = GetAttributes(e => e.Subject, typeof(ValidateNonEmptyAttribute));
 
@@ -55,7 +55,7 @@ namespace Com.Prerit.Domain.Tests
         }
 
         [Test]
-        public void ShouldContainValidateNonEmptyAttributeOnToEmailAddressProperty()
+        public void Should_Contain_ValidateNonEmptyAttribute_On_ToEmailAddress_Property()
         {
             object[] attributes = GetAttributes(e => e.ToEmailAddress, typeof(ValidateNonEmptyAttribute));
 

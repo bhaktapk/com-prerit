@@ -10,7 +10,7 @@ namespace Com.Prerit.Core.Tests
         #region Tests
 
         [Test]
-        public void ShouldBeEqualToItselfWhenToStringed()
+        public void Should_Be_Equal_To_Itself_When_ToStringed()
         {
             var a = new HelperStringEnum("a");
 
@@ -18,7 +18,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeEqualWhenCastedToObject()
+        public void Should_Be_Equal_When_Casted_To_Object()
         {
             var a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
@@ -27,7 +27,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeEqualWhenCompared()
+        public void Should_Be_Equal_When_Compared()
         {
             var a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
@@ -36,7 +36,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeEqualWhenHashed()
+        public void Should_Be_Equal_When_Hashed()
         {
             var a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
@@ -45,7 +45,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeGreaterThanWhenComparedToNull()
+        public void Should_Be_Greater_Than_When_Compared_To_Null()
         {
             var a = new HelperStringEnum("a");
 
@@ -53,7 +53,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeGreaterWhenCompared()
+        public void Should_Be_Greater_When_Compared()
         {
             var a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
@@ -62,7 +62,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldBeLessThanWhenCompared()
+        public void Should_Be_Less_Than_When_Compared()
         {
             var a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
@@ -71,7 +71,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldFailWhenConstructedWithNullValue()
+        public void Should_Fail_When_Constructed_With_Null_Value()
         {
             TestDelegate code = () => new HelperStringEnum(null);
 
@@ -79,7 +79,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldNotBeEqualWhenCastedToObject()
+        public void Should_Not_Be_Equal_When_Casted_To_Object()
         {
             var a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
@@ -88,7 +88,7 @@ namespace Com.Prerit.Core.Tests
         }
 
         [Test]
-        public void ShouldNotBeEqualWhenCastedToObjectAndTestedWithNull()
+        public void Should_Not_Be_Equal_When_Casted_To_Object_And_Tested_With_Null()
         {
             var a = new HelperStringEnum("a");
             var b = (HelperStringEnum) null;
