@@ -31,6 +31,14 @@ namespace Com.Prerit.Web.Infrastructure
             }
         }
 
+        public static void AddModelErrors(this ModelStateDictionary modelState, ValidationException exception)
+        {
+            foreach (string errorMessage in exception.ValidationErrorMessages)
+            {
+                modelState.AddModelError(errorMessage, errorMessage);
+            }
+        }
+
         #endregion
     }
 }

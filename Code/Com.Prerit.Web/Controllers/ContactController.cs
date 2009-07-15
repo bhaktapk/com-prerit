@@ -3,6 +3,8 @@ using System.Web.Mvc;
 
 using AutoMapper;
 
+using Castle.Components.Validator;
+
 using Com.Prerit.Domain;
 using Com.Prerit.Services;
 using Com.Prerit.Web.Filters;
@@ -76,13 +78,13 @@ namespace Com.Prerit.Web.Controllers
 
                 Mapper.Map(model, email);
 
-                if (_emailSenderService.IsEmailValidToSend(email))
+                try
                 {
                     _emailSenderService.Send(email);
                 }
-                else
+                catch (ValidationException e)
                 {
-                    ModelState.AddModelErrors(_emailSenderService.GetErrorSummaryForInvalidEmail(email));
+                    ModelState.AddModelErrors(e);
                 }
             }
 
