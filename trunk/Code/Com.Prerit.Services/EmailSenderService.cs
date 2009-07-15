@@ -38,26 +38,6 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public ErrorSummary GetErrorSummaryForInvalidEmail(Email email)
-        {
-            if (email == null)
-            {
-                throw new ArgumentNullException("email");
-            }
-
-            return _validatorRunner.GetErrorSummary(email);
-        }
-
-        public bool IsEmailValidToSend(Email email)
-        {
-            if (email == null)
-            {
-                throw new ArgumentNullException("email");
-            }
-
-            return _validatorRunner.IsValid(email);
-        }
-
         public void Send(Email email)
         {
             if (email == null)
@@ -65,7 +45,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("email");
             }
 
-            if (!IsEmailValidToSend(email))
+            if (!_validatorRunner.IsValid(email))
             {
                 throw new ValidationException("Email is invalid to send", _validatorRunner.GetErrorSummary(email).ErrorMessages);
             }
