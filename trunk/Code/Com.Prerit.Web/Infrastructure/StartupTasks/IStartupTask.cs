@@ -6,6 +6,8 @@
 
         void Execute();
 
+        void Reset();
+
         #endregion
     }
 }

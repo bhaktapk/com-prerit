@@ -20,6 +20,11 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
             Mapper.AssertConfigurationIsValid();
         }
 
+        public void Reset()
+        {
+            Mapper.Reset();
+        }
+
         #endregion
     }
 }

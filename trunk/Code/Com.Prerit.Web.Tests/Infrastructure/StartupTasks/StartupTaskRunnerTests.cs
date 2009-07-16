@@ -39,9 +39,20 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         }
 
         [Test]
-        public void Should_Run_StartupTasks()
+        public void Should_Run_And_Reset_StartupTasks()
         {
             Assert.That(() => StartupTaskRunner.Run(), Throws.Nothing);
+            Assert.That(() => StartupTaskRunner.Reset(), Throws.Nothing);
+        }
+
+        [Test]
+        public void Should_Run_And_Reset_StartupTasks_Multiple_Times()
+        {
+            Assert.That(() => StartupTaskRunner.Run(), Throws.Nothing);
+            Assert.That(() => StartupTaskRunner.Reset(), Throws.Nothing);
+
+            Assert.That(() => StartupTaskRunner.Run(), Throws.Nothing);
+            Assert.That(() => StartupTaskRunner.Reset(), Throws.Nothing);
         }
 
         #endregion

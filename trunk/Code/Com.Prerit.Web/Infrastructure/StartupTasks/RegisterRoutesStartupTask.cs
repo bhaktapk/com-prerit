@@ -58,6 +58,14 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
                                 });
         }
 
+        public void Reset()
+        {
+            for (int i = Routes.Count - 1; i >= 0; i--)
+            {
+                Routes.RemoveAt(i);
+            }
+        }
+
         #endregion
     }
 }

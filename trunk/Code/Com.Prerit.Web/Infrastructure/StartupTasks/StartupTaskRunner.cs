@@ -38,6 +38,14 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
             ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(container));
         }
 
+        public static void Reset()
+        {
+            foreach (IStartupTask task in ServiceLocator.Current.GetAllInstances<IStartupTask>())
+            {
+                task.Reset();
+            }
+        }
+
         public static void Run()
         {
             foreach (IStartupTask task in ServiceLocator.Current.GetAllInstances<IStartupTask>())

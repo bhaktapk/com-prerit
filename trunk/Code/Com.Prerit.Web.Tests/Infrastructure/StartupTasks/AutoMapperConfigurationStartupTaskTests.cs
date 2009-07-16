@@ -11,10 +11,16 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
     {
         #region Setup/Teardown
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetUp()
+        [SetUp]
+        public void SetUp()
         {
             StartupTaskRunner.Run();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            StartupTaskRunner.Reset();
         }
 
         #endregion
@@ -39,15 +45,30 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
 
         #endregion
 
-        private class Source
-        {
-            public int SomeValue { get; set; }
-        }
+        #region Nested Type: Destination
 
         private class Destination
         {
+            #region Properties
+
             public int SomeValuefff { get; set; }
+
+            #endregion
         }
 
+        #endregion
+
+        #region Nested Type: Source
+
+        private class Source
+        {
+            #region Properties
+
+            public int SomeValue { get; set; }
+
+            #endregion
+        }
+
+        #endregion
     }
 }

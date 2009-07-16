@@ -49,6 +49,10 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
             _modelBinderDictionary.DefaultBinder = _modelBinder;
         }
 
+        public void Reset()
+        {
+        }
+
         #endregion
     }
 }
