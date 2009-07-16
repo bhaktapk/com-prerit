@@ -76,6 +76,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTaskTests.cs" />
+    <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTaskTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\StartupTaskRunnerTests.cs" />
     <Compile Include="Infrastructure\Windsor\WindsorContainerInitializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
