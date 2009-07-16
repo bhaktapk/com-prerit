@@ -9,7 +9,7 @@ using Microsoft.Practices.ServiceLocation;
 
 using NUnit.Framework;
 
-namespace Com.Prerit.Web.Tests.Infrastructure
+namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
 {
     [TestFixture]
     public class StartupTaskRunnerTests

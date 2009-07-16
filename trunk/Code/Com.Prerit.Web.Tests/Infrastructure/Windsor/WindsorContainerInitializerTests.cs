@@ -1,6 +1,6 @@
-﻿using Castle.Windsor;
+﻿using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 
-using Com.Prerit.Web.Infrastructure.StartupTasks;
 using Com.Prerit.Web.Infrastructure.Windsor;
 
 using NUnit.Framework;
@@ -17,7 +17,7 @@ namespace Com.Prerit.Web.Tests.Infrastructure.Windsor
         {
             IWindsorContainer container = WindsorContainerInitializer.Init();
 
-            Assert.That(container.ResolveAll<IStartupTask>(), Is.Not.Empty);
+            Assert.That(container.ResolveAll<IRegistration>(), Is.Not.Empty);
         }
 
         #endregion
