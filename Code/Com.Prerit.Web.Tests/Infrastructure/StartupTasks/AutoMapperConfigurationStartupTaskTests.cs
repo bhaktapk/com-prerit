@@ -43,6 +43,17 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
             Assert.That(Mapper.GetAllTypeMaps(), Is.Not.Empty);
         }
 
+        [Test]
+        public void Should_Reset_Mapper()
+        {
+            var task = new AutoMapperConfigurationStartupTask();
+
+            task.Execute();
+            task.Reset();
+
+            Assert.That(Mapper.GetAllTypeMaps(), Is.Empty);
+        }
+
         #endregion
 
         #region Nested Type: Destination
