@@ -21,6 +21,8 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
                 .Register(
                     AllTypes.Of<IMapCreator>().FromAssemblyNamed(assemblyName))
                 .Register(
+                    AllTypes.Of<IModelBinder>().FromAssemblyNamed(assemblyName))
+                .Register(
                     AllTypes.Of<IStartupTask>().FromAssemblyNamed(assemblyName));
         }
     }
