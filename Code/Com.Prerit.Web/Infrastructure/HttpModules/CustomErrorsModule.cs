@@ -5,6 +5,16 @@ namespace Com.Prerit.Web.Infrastructure.HttpModules
 {
     public class CustomErrorsModule : IHttpModule
     {
+        #region Constants
+
+        public const string ForbiddenPath = "~/error/forbidden.htm";
+
+        public const string GenericErrorPath = "~/error/generic-error.htm";
+
+        public const string NotFoundPath = "~/error/not-found.htm";
+
+        #endregion
+
         #region Methods
 
         public void Dispose()
@@ -16,7 +26,7 @@ namespace Com.Prerit.Web.Infrastructure.HttpModules
             context.Error += (sender, e) => OnError(new HttpContextWrapper(((HttpApplication) sender).Context));
         }
 
-        public void OnError(HttpContextWrapper context)
+        public void OnError(HttpContextBase context)
         {
             string errorPath;
 
@@ -27,13 +37,13 @@ namespace Com.Prerit.Web.Infrastructure.HttpModules
             switch (httpCode)
             {
                 case HttpStatusCode.Forbidden:
-                    errorPath = "~/error/forbidden.htm";
+                    errorPath = ForbiddenPath;
                     break;
                 case HttpStatusCode.NotFound:
-                    errorPath = "~/error/not-found.htm";
+                    errorPath = NotFoundPath;
                     break;
                 default:
-                    errorPath = "~/error/generic-error.htm";
+                    errorPath = GenericErrorPath;
                     break;
             }
 
