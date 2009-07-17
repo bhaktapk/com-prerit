@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.Components.Validator.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Castle.Core.dll</HintPath>
@@ -84,6 +88,7 @@
     <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTaskTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterRoutesStartupTaskTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\StartupTaskRunnerTests.cs" />
+    <Compile Include="Infrastructure\Windsor\CastleComponentsRegistrationTests.cs" />
     <Compile Include="Infrastructure\Windsor\WindsorContainerInitializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
