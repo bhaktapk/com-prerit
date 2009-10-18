@@ -1,6 +1,11 @@
 ﻿using AutoMapper;
 
+using Com.Prerit.Web.Infrastructure.MapCreators;
 using Com.Prerit.Web.Infrastructure.StartupTasks;
+
+using Microsoft.Practices.ServiceLocation;
+
+using Moq;
 
 using NUnit.Framework;
 
@@ -9,48 +14,46 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
     [TestFixture]
     public class AutoMapperConfigurationStartupTaskTests
     {
-        #region Setup/Teardown
-
-        [SetUp]
-        public void SetUp()
-        {
-            StartupTaskRunner.Run();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            StartupTaskRunner.Reset();
-        }
-
-        #endregion
-
         #region Tests
 
         [Test]
         public void Should_Assert_Configuration_Is_Valid()
         {
-            Mapper.CreateMap<Source, Destination>();
+            // arrange
+            var serviceLocator = new Mock<IServiceLocator>();
+            var mapCreator = new Mock<IMapCreator>();
 
-            Assert.That(() => new AutoMapperConfigurationStartupTask().Execute(), Throws.InstanceOf<AutoMapperConfigurationException>());
-        }
+            mapCreator.Setup(mc => mc.CreateMap()).Callback(() => Mapper.CreateMap<Source, Destination>());
 
-        [Test]
-        public void Should_Contain_Maps()
-        {
-            new AutoMapperConfigurationStartupTask().Execute();
+            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[]
+                                                                                      {
+                                                                                          mapCreator.Object
+                                                                                      });
 
-            Assert.That(Mapper.GetAllTypeMaps(), Is.Not.Empty);
+            ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
+
+            // act
+            TestDelegate act = () => new AutoMapperConfigurationStartupTask().Execute();
+
+            // assert
+            Assert.That(act, Throws.InstanceOf<AutoMapperConfigurationException>());
+
+            // cleanup
+            Mapper.Reset();
         }
 
         [Test]
         public void Should_Reset_Mapper()
         {
+            // arrange
             var task = new AutoMapperConfigurationStartupTask();
 
-            task.Execute();
+            Mapper.CreateMap<Source, Destination>();
+
+            // act
             task.Reset();
 
+            // assert
             Assert.That(Mapper.GetAllTypeMaps(), Is.Empty);
         }
 
@@ -62,7 +65,16 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         {
             #region Properties
 
-            public int SomeValuefff { get; set; }
+            public int PropertyB { private get; set; }
+
+            #endregion
+
+            #region Constructors
+
+            public Destination(int propertyB)
+            {
+                PropertyB = propertyB;
+            }
 
             #endregion
         }
@@ -75,7 +87,16 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         {
             #region Properties
 
-            public int SomeValue { get; set; }
+            public int PropertyA { private get; set; }
+
+            #endregion
+
+            #region Constructors
+
+            public Source(int propertyA)
+            {
+                PropertyA = propertyA;
+            }
 
             #endregion
         }
