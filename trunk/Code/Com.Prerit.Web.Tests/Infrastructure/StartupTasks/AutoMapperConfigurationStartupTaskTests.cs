@@ -38,20 +38,19 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
             // assert
             Assert.That(act, Throws.InstanceOf<AutoMapperConfigurationException>());
 
-            // cleanup
+            // teardown
             Mapper.Reset();
+            ServiceLocator.SetLocatorProvider(() => null);
         }
 
         [Test]
         public void Should_Reset_Mapper()
         {
             // arrange
-            var task = new AutoMapperConfigurationStartupTask();
-
             Mapper.CreateMap<Source, Destination>();
 
             // act
-            task.Reset();
+            new AutoMapperConfigurationStartupTask().Reset();
 
             // assert
             Assert.That(Mapper.GetAllTypeMaps(), Is.Empty);
