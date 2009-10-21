@@ -34,10 +34,7 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
 
         public void Reset()
         {
-            while (RouteTable.Routes.Count != 0)
-            {
-                RouteTable.Routes.RemoveAt(0);
-            }
+            RouteTable.Routes.Clear();
         }
 
         #endregion
