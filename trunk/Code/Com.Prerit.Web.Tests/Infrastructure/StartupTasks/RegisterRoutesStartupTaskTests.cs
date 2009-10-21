@@ -1,6 +1,12 @@
-﻿using System.Web.Routing;
+﻿using System.Web.Mvc;
+using System.Web.Routing;
 
+using Com.Prerit.Web.Controllers;
 using Com.Prerit.Web.Infrastructure.StartupTasks;
+
+using Microsoft.Practices.ServiceLocation;
+
+using Moq;
 
 using NUnit.Framework;
 
@@ -9,34 +15,31 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
     [TestFixture]
     public class RegisterRoutesStartupTaskTests
     {
-        #region Setup/Teardown
-
-        [TearDown]
-        public void TearDown()
-        {
-            StartupTaskRunner.Reset();
-        }
-
-        #endregion
-
         #region Tests
 
         [Test]
         public void Should_Add_Routes()
         {
+            // act
             new RegisterRoutesStartupTask().Execute();
 
+            // assert
             Assert.That(RouteTable.Routes, Is.Not.Empty);
+
+            // teardown
+            RouteTable.Routes.Clear();
         }
 
         [Test]
         public void Should_Reset_Routes()
         {
-            var task = new RegisterRoutesStartupTask();
+            // arrange
+            RouteTable.Routes.MapRoute("", "");
 
-            task.Execute();
-            task.Reset();
+            // act
+            new RegisterRoutesStartupTask().Reset();
 
+            // assert
             Assert.That(RouteTable.Routes, Is.Empty);
         }
 
