@@ -20,14 +20,14 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         [Test]
         public void Should_Add_Routes()
         {
+            // arrange
+            RouteTable.Routes.Clear();
+
             // act
             new RegisterRoutesStartupTask().Execute();
 
             // assert
             Assert.That(RouteTable.Routes, Is.Not.Empty);
-
-            // teardown
-            RouteTable.Routes.Clear();
         }
 
         [Test]

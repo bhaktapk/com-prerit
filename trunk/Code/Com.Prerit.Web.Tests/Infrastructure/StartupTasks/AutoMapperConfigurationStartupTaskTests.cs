@@ -23,24 +23,19 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
             var serviceLocator = new Mock<IServiceLocator>();
             var mapCreator = new Mock<IMapCreator>();
 
+            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[] { mapCreator.Object });
+
             mapCreator.Setup(mc => mc.CreateMap()).Callback(() => Mapper.CreateMap<Source, Destination>());
 
-            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[]
-                                                                                      {
-                                                                                          mapCreator.Object
-                                                                                      });
-
             ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
+
+            Mapper.Reset();
 
             // act
             TestDelegate act = () => new AutoMapperConfigurationStartupTask().Execute();
 
             // assert
             Assert.That(act, Throws.InstanceOf<AutoMapperConfigurationException>());
-
-            // teardown
-            Mapper.Reset();
-            ServiceLocator.SetLocatorProvider(() => null);
         }
 
         [Test]
