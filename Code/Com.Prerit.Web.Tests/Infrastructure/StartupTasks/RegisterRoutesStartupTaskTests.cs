@@ -1,12 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-using Com.Prerit.Web.Controllers;
 using Com.Prerit.Web.Infrastructure.StartupTasks;
-
-using Microsoft.Practices.ServiceLocation;
-
-using Moq;
 
 using NUnit.Framework;
 
