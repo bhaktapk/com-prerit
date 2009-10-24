@@ -41,6 +41,8 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
 
             serviceLocator.Setup(sl => sl.GetInstance<SimpleValidatingModelBinder>()).Returns(simpleValidatingModelBinder.Object);
 
+            ModelBinders.Binders.DefaultBinder = new DefaultModelBinder();
+
             ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
 
             // act
@@ -48,10 +50,6 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
 
             // assert
             Assert.That(ModelBinders.Binders.DefaultBinder, Is.InstanceOf<SimpleValidatingModelBinder>());
-
-            // teardown
-            ModelBinders.Binders.DefaultBinder = new DefaultModelBinder();
-            ServiceLocator.SetLocatorProvider(() => null);
         }
 
         #endregion
