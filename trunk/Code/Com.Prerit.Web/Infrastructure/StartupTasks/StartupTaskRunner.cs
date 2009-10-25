@@ -9,6 +9,8 @@ using CommonServiceLocator.WindsorAdapter;
 
 using Microsoft.Practices.ServiceLocation;
 
+using MvcContrib.Castle;
+
 namespace Com.Prerit.Web.Infrastructure.StartupTasks
 {
     public static class StartupTaskRunner
