@@ -3,13 +3,14 @@
 using Castle.Windsor;
 
 using Com.Prerit.Web.Infrastructure.StartupTasks;
-using Com.Prerit.Web.Infrastructure.Windsor;
 
 using CommonServiceLocator.WindsorAdapter;
 
 using Microsoft.Practices.ServiceLocation;
 
 using Moq;
+
+using MvcContrib.Castle;
 
 using NUnit.Framework;
 
