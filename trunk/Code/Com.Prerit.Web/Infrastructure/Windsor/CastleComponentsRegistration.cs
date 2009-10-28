@@ -12,7 +12,7 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
             kernel
                 .Register(
                     AllTypes.Pick().FromAssemblyNamed(assemblyName)
-                    .WithService.FirstInterface());
+                        .WithService.FirstInterface());
         }
     }
 }

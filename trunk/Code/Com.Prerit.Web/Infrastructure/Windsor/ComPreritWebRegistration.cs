@@ -17,7 +17,7 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
             kernel
                 .Register(
                     AllTypes.Of<IController>().FromAssemblyNamed(assemblyName)
-                    .Configure(c => c.LifeStyle.Transient))
+                        .Configure(c => c.LifeStyle.Transient))
                 .Register(
                     AllTypes.Of<IMapCreator>().FromAssemblyNamed(assemblyName))
                 .Register(
