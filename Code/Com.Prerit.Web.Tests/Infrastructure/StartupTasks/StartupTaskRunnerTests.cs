@@ -25,12 +25,10 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         public void Should_Configure_ControllerFactory()
         {
             // arrange
-            var container = new Mock<IWindsorContainer>();
-
-            container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new IStartupTask[] { });
+            var container = new WindsorContainer();
 
             // act
-            StartupTaskRunner.Run(container.Object);
+            StartupTaskRunner.Run(container);
 
             // assert
             Assert.That(ControllerBuilder.Current.GetControllerFactory(), Is.TypeOf<WindsorControllerFactory>());
@@ -40,12 +38,10 @@ namespace Com.Prerit.Web.Tests.Infrastructure.StartupTasks
         public void Should_Configure_ServiceLocator()
         {
             // arrange
-            var container = new Mock<IWindsorContainer>();
-
-            container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new IStartupTask[] { });
+            var container = new WindsorContainer();
 
             // act
-            StartupTaskRunner.Run(container.Object);
+            StartupTaskRunner.Run(container);
 
             // assert
             Assert.That(ServiceLocator.Current, Is.TypeOf<WindsorServiceLocator>());
