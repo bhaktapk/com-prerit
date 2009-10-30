@@ -14,6 +14,7 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
             kernel
                 .Register(
                     AllTypes.Pick().FromAssemblyNamed(assemblyName)
+                        .If(t => t.Name.EndsWith("Service"))
                         .Configure(c => c.LifeStyle.Transient)
                         .ConfigureFor<IEmailSenderService>(c => c.Parameters(Parameter.ForKey("smtpHost").Eq(EmailInfo.SmtpHost)))
                         .WithService.FirstInterface());
