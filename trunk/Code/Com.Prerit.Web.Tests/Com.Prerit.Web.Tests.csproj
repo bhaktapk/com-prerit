@@ -106,10 +106,21 @@
     <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTaskTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterRoutesStartupTaskTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\StartupTaskRunnerTests.cs" />
+    <Compile Include="Infrastructure\Windsor\CastleComponentsRegistrationTests.cs" />
+    <Compile Include="Infrastructure\Windsor\ComPreritServicesRegistrationTests.cs" />
+    <Compile Include="Infrastructure\Windsor\ComPreritWebRegistrationTests.cs" />
     <Compile Include="Infrastructure\Windsor\WindsorContainerInitializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Prerit.Domain\Com.Prerit.Domain.csproj">
+      <Project>{E572A14A-F02D-43DB-88D3-AB13B797999C}</Project>
+      <Name>Com.Prerit.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Prerit.Services\Com.Prerit.Services.csproj">
+      <Project>{06EB5132-B7EC-42AE-9F82-6C50FE535A0A}</Project>
+      <Name>Com.Prerit.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Prerit.Web\Com.Prerit.Web.csproj">
       <Project>{6E00A3AB-6238-47E6-8765-707327A7B4EA}</Project>
       <Name>Com.Prerit.Web</Name>
