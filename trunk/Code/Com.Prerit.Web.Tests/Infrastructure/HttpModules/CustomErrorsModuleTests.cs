@@ -16,8 +16,6 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
 
         private Mock<HttpContextBase> _httpContext;
 
-        private Mock<HttpRequestBase> _httpRequest;
-
         private Mock<HttpResponseBase> _httpResponse;
 
         private Mock<HttpServerUtilityBase> _httpServerUtility;
@@ -30,11 +28,9 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
         public void TestFixtureSetUp()
         {
             _httpContext = new Mock<HttpContextBase>();
-            _httpRequest = new Mock<HttpRequestBase>();
             _httpResponse = new Mock<HttpResponseBase>();
             _httpServerUtility = new Mock<HttpServerUtilityBase>();
 
-            _httpContext.SetupGet(c => c.Request).Returns(_httpRequest.Object);
             _httpContext.SetupGet(c => c.Response).Returns(_httpResponse.Object);
             _httpContext.SetupGet(c => c.Server).Returns(_httpServerUtility.Object);
         }
