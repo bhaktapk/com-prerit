@@ -6,12 +6,6 @@ namespace Com.Prerit.Web.Controllers
 {
     public abstract class ApplicationController<TModelBase> : Controller where TModelBase : class
     {
-        #region Constants
-
-        public const string TempModelKey = "temp-data-model";
-
-        #endregion
-
         #region Methods
 
         public static string GetControllerNameWithoutSuffix<TController>() where TController : Controller
