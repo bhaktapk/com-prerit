@@ -41,17 +41,18 @@ namespace Com.Prerit.Web.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [ActionName(Action.EmailSent)]
+        [ModelToTempData]
         [TempDataToModel]
         public ActionResult EmailSent()
         {
-            var indexModel = ViewData.Model as IndexModel;
+            var model = ViewData.Model as EmailSentModel;
 
-            if (indexModel == null)
+            if (model == null)
             {
                 return RedirectToAction(Action.Index);
             }
 
-            EmailSentModel model = UpdateModelBase(new EmailSentModel(indexModel));
+            model = UpdateModelBase(model);
 
             return View(model);
         }
@@ -88,7 +89,7 @@ namespace Com.Prerit.Web.Controllers
                 }
             }
 
-            return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, model) : RedirectToAction(Action.Index);
+            return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, new EmailSentModel(model)) : RedirectToAction(Action.Index);
         }
 
         #endregion
