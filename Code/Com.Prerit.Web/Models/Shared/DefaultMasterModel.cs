@@ -16,7 +16,7 @@ namespace Com.Prerit.Web.Models.Shared
 
         public string SiteName { get; set; }
 
-        public Uri ValidationUri { get; set; }
+        public string ValidationUri { get; set; }
 
         #endregion
     }
