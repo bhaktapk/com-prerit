@@ -15,7 +15,7 @@ namespace Com.Prerit.Web.Controllers
             model.CopyrightBeginYear = WebsiteInfo.DomainRegistrationYear;
             model.CopyrightEndYear = DateTime.Today.Year;
             model.SiteName = WebsiteInfo.SiteName;
-            model.ValidationUri = Request.Url;
+            model.ValidationUri = Request.Url.AbsoluteUri;
 
             return model;
         }
