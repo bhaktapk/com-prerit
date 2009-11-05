@@ -50,8 +50,8 @@
             <a href="http://fullahead.org" title="designed by fullahead.org"><span>designed by fullhead.org</span></a>
         </p>
         <p>
-            Valid <a href="http://jigsaw.w3.org/css-validator/validator?usermedium=all&uri=<%= HttpUtility.UrlEncode(Model.ValidationUri.AbsoluteUri) %>"
-            title="Validate this page's Cascading Style Sheets (CSS) under the W3C's guidelines">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=<%= HttpUtility.UrlEncode(Model.ValidationUri.AbsoluteUri) %>"
+            Valid <a href="http://jigsaw.w3.org/css-validator/validator?usermedium=all&uri=<%= HttpUtility.UrlEncode(Model.ValidationUri) %>"
+            title="Validate this page's Cascading Style Sheets (CSS) under the W3C's guidelines">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=<%= HttpUtility.UrlEncode(Model.ValidationUri) %>"
             title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines">XHTML</a>
         </p>
         <p id="copyright">
