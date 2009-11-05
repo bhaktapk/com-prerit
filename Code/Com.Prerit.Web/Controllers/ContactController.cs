@@ -89,7 +89,9 @@ namespace Com.Prerit.Web.Controllers
                 }
             }
 
-            return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, new EmailSentModel(model)) : RedirectToAction(Action.Index);
+            var emailSentModel = Mapper.Map<IndexModel, EmailSentModel>(model);
+
+            return ModelState.IsValid ? RedirectToActionWithModel(Action.EmailSent, emailSentModel) : RedirectToAction(Action.Index);
         }
 
         #endregion

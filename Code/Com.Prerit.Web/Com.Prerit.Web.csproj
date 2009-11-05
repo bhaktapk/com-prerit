@@ -53,6 +53,7 @@
     <Compile Include="EmailInfo.cs" />
     <Compile Include="Infrastructure\MapCreators\IMapCreator.cs" />
     <Compile Include="Infrastructure\MapCreators\IndexModelToEmailMapCreator.cs" />
+    <Compile Include="Infrastructure\MapCreators\IndexModelToEmailSentModelMapCreator.cs" />
     <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTask.cs" />
     <Compile Include="Infrastructure\StartupTasks\IStartupTask.cs" />
     <Compile Include="Infrastructure\ModelStateDictionaryExtensions.cs" />
