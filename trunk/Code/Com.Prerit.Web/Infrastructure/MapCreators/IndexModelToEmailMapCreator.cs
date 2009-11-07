@@ -12,9 +12,9 @@ namespace Com.Prerit.Web.Infrastructure.MapCreators
         public void CreateMap()
         {
             Mapper.CreateMap<IndexModel, Email>()
-                .ForMember(s => s.FromEmailAddress, opt => opt.MapFrom(d => EmailInfo.AuthorEmailAddress))
-                .ForMember(s => s.ToEmailAddress, opt => opt.MapFrom(d => d.EmailAddress))
-                .ForMember(s => s.Subject, opt => opt.MapFrom(d => EmailInfo.GetContactEmailSubject(d.Name)));
+                .ForMember(d => d.FromEmailAddress, opt => opt.MapFrom(s => EmailInfo.AuthorEmailAddress))
+                .ForMember(d => d.ToEmailAddress, opt => opt.MapFrom(s => s.EmailAddress))
+                .ForMember(d => d.Subject, opt => opt.MapFrom(s => EmailInfo.GetContactEmailSubject(s.Name)));
         }
 
         #endregion
