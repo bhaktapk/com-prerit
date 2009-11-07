@@ -57,7 +57,7 @@ namespace Com.Prerit.Web.Controllers
             return new string(seoChars.ToArray());
         }
 
-        protected RedirectToRouteResult RedirectToActionWithModel(string actionName, object model)
+        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model) where T : TModelBase
         {
             ViewData.Model = model;
 
