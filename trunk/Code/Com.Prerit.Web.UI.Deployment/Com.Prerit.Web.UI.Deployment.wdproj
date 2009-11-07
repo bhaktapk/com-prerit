@@ -32,7 +32,8 @@
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
-    <KeyFile>..\Com.Prerit.snk</KeyFile>
+    <KeyFile>
+    </KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
     <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
   </PropertyGroup>
