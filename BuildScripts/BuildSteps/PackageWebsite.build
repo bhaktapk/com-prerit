@@ -14,7 +14,9 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="package-com-prerit-web-ui">
-    <zip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
+    <zip includeemptydirs="true"
+         zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
+
       <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}"
                failonempty="true">
 
