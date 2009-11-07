@@ -11,11 +11,9 @@ namespace Com.Prerit.Web.UI
 
         public void Page_Load(object sender, EventArgs e)
         {
-            string originalPath = Request.Path;
             HttpContext.Current.RewritePath(Request.ApplicationPath, false);
-            IHttpHandler httpHandler = new MvcHttpHandler();
-            httpHandler.ProcessRequest(HttpContext.Current);
-            HttpContext.Current.RewritePath(originalPath, false);
+            ((IHttpHandler) new MvcHttpHandler()).ProcessRequest(HttpContext.Current);
+            HttpContext.Current.RewritePath(Request.Path, false);
         }
 
         #endregion
