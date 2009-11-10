@@ -101,7 +101,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Infrastructure\HttpModules\CustomErrorsModuleTests.cs" />
+    <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModuleTests.cs" />
     <Compile Include="Infrastructure\MapCreators\IndexModelToEmailMapCreatorTests.cs" />
     <Compile Include="Infrastructure\MapCreators\IndexModelToEmailSentModelMapCreatorTests.cs" />
     <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTaskTests.cs" />
