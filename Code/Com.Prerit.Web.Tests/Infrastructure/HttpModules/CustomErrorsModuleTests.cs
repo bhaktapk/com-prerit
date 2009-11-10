@@ -40,71 +40,21 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
         #region Tests
 
         [Test]
-        public void Should_Clear_Error_From_Request()
+        public void Should_Set_Http_Status_Code()
         {
             // arrange
+            const HttpStatusCode statusCode = HttpStatusCode.NotFound;
+
             var module = new CustomErrorsModule();
+
+            _httpServerUtility.Setup(server => server.GetLastError()).Returns(new HttpException((int) statusCode, ""));
 
             // act
             module.OnError(_httpContext.Object);
             module.Dispose();
 
             // assert
-            _httpContext.Verify(c => c.ClearError());
-        }
-
-        [Test]
-        public void Should_Show_Forbidden_Page()
-        {
-            // arrange
-            var module = new CustomErrorsModule();
-
-            _httpServerUtility.Setup(server => server.GetLastError()).Returns(new HttpException((int) HttpStatusCode.Forbidden, ""));
-
-            // act
-            module.OnError(_httpContext.Object);
-            module.Dispose();
-
-            // assert
-            _httpResponse.VerifySet(response => response.StatusCode = (int) HttpStatusCode.Forbidden);
-
-            _httpServerUtility.Verify(server => server.Transfer(CustomErrorsModule.ForbiddenPath));
-        }
-
-        [Test]
-        public void Should_Show_Generic_Error_Page()
-        {
-            // arrange
-            var module = new CustomErrorsModule();
-
-            _httpServerUtility.Setup(server => server.GetLastError()).Returns(new HttpException((int) HttpStatusCode.InternalServerError, ""));
-
-            // act
-            module.OnError(_httpContext.Object);
-            module.Dispose();
-
-            // assert
-            _httpResponse.VerifySet(response => response.StatusCode = (int) HttpStatusCode.InternalServerError);
-
-            _httpServerUtility.Verify(server => server.Transfer(CustomErrorsModule.GenericErrorPath));
-        }
-
-        [Test]
-        public void Should_Show_Not_Found_Page()
-        {
-            // arrange
-            var module = new CustomErrorsModule();
-
-            _httpServerUtility.Setup(server => server.GetLastError()).Returns(new HttpException((int) HttpStatusCode.NotFound, ""));
-
-            // act
-            module.OnError(_httpContext.Object);
-            module.Dispose();
-
-            // assert
-            _httpResponse.VerifySet(response => response.StatusCode = (int) HttpStatusCode.NotFound);
-
-            _httpServerUtility.Verify(server => server.Transfer(CustomErrorsModule.NotFoundPath));
+            _httpResponse.VerifySet(response => response.StatusCode = (int) statusCode);
         }
 
         #endregion
