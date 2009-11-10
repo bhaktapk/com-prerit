@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Com.Prerit.Web.Infrastructure.HttpModules
 {
-    public class CustomErrorsModule : IHttpModule
+    public class CustomErrorsHelperModule : IHttpModule
     {
         #region Methods
 

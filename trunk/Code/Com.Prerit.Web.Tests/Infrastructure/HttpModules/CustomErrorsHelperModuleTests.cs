@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
 {
     [TestFixture]
-    public class CustomErrorsModuleTests
+    public class CustomErrorsHelperModuleTests
     {
         #region Fields
 
@@ -45,7 +45,7 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
             // arrange
             const HttpStatusCode statusCode = HttpStatusCode.NotFound;
 
-            var module = new CustomErrorsModule();
+            var module = new CustomErrorsHelperModule();
 
             _httpServerUtility.Setup(server => server.GetLastError()).Returns(new HttpException((int) statusCode, ""));
 
