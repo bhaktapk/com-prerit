@@ -11,6 +11,13 @@ namespace Com.Prerit.Web.Infrastructure.HttpModules
         {
         }
 
+        private HttpStatusCode GetHttpStatusCode(HttpContextBase context)
+        {
+            var exception = context.Server.GetLastError() as HttpException;
+
+            return exception != null ? (HttpStatusCode) exception.GetHttpCode() : HttpStatusCode.InternalServerError;
+        }
+
         public void Init(HttpApplication context)
         {
             context.Error += (sender, e) => OnError(new HttpContextWrapper(((HttpApplication) sender).Context));
@@ -18,11 +25,9 @@ namespace Com.Prerit.Web.Infrastructure.HttpModules
 
         public void OnError(HttpContextBase context)
         {
-            var exception = context.Server.GetLastError() as HttpException;
-
-            HttpStatusCode httpCode = exception != null ? (HttpStatusCode) exception.GetHttpCode() : HttpStatusCode.InternalServerError;
-
-            context.Response.StatusCode = (int) httpCode;
+            context.Response.AddHeader("Content-Type", string.Format("{0}; charset={1}", context.Response.ContentType, context.Response.ContentEncoding.WebName));
+            context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            context.Response.StatusCode = (int) GetHttpStatusCode(context);
         }
 
         #endregion
