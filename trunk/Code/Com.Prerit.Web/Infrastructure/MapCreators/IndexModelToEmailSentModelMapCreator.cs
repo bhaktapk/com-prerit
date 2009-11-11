@@ -1,6 +1,5 @@
 using AutoMapper;
 
-using Com.Prerit.Domain;
 using Com.Prerit.Web.Models.Contact;
 
 namespace Com.Prerit.Web.Infrastructure.MapCreators
