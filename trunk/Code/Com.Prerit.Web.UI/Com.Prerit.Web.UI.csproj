@@ -137,6 +137,7 @@
   <ItemGroup>
     <None Include="content\resume\resume-of-prerit-bhakta.doc" />
     <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
+    <Content Include="service-unavailable-web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
