@@ -68,7 +68,6 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
 
             // act
             module.OnError(_httpContext.Object);
-            module.Dispose();
 
             // assert
             _httpResponse.Verify(response => response.AddHeader("Content-Type", "text/html; charset=utf-8"));
@@ -82,7 +81,6 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
 
             // act
             module.OnError(_httpContext.Object);
-            module.Dispose();
 
             // assert
             _httpCachePolicyBase.Verify(cache => cache.SetCacheability(HttpCacheability.NoCache));
@@ -96,7 +94,6 @@ namespace Com.Prerit.Web.Tests.Infrastructure.HttpModules
 
             // act
             module.OnError(_httpContext.Object);
-            module.Dispose();
 
             // assert
             _httpResponse.VerifySet(response => response.StatusCode = (int) _statusCode);
