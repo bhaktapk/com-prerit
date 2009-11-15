@@ -6,6 +6,12 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="bring-website-online">
-    <delete file="${dir.deploy}\app_offline.htm" />
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\web.config"
+          tofile="${dir.deploy}\web.config"
+          overwrite="true" />
+
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\error\service-unavailable.htm"
+          tofile="${dir.deploy}\error\service-unavailable.htm"
+          overwrite="true" />
   </target>
 </project>

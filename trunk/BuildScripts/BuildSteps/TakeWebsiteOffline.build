@@ -6,10 +6,10 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="take-website-offline">
-    <if test="${file::exists(dir.deploy + '\error\app_offline.htm')}">
-      <copy file="${dir.deploy}\error\app_offline.htm"
-            tofile="${dir.deploy}\app_offline.htm"
-            overwrite="true" />
+    <if test="${file::exists(dir.deploy + '\service-unavailable-web.config')}">
+      <copy file="${dir.deploy}\service-unavailable-web.config"
+          tofile="${dir.deploy}\web.config"
+          overwrite="true" />
     </if>
   </target>
 </project>

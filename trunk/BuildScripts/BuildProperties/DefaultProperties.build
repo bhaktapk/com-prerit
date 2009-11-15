@@ -42,6 +42,11 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.deploying-packages"
+            value="${dir.packages}\Deploying"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.tools"
             value="${dir.base}\Tools"
             dynamic="true"
@@ -136,8 +141,13 @@
 
   <!-- PACKAGE PROPERTIES -->
 
+  <property name="package.name.com-prerit-web-ui-base"
+            value="${project.name.com-prerit-web-ui}-${msbuild.configuration}"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="package.name.com-prerit-web-ui"
-            value="${project.name.com-prerit-web-ui}-${msbuild.configuration}.zip"
+            value="${package.name.com-prerit-web-ui-base}.zip"
             dynamic="true"
             overwrite="false" />
 </project>

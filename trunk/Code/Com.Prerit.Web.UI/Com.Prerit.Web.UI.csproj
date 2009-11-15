@@ -98,7 +98,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="error\app_offline.htm" />
+    <Content Include="error\service-unavailable.htm" />
     <Content Include="error\generic-error.htm" />
     <Content Include="error\forbidden.htm" />
     <Content Include="error\not-found.htm" />

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="PostDeploymentCleanup"
+         default="post-deployment-cleanup"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="post-deployment-cleanup">
+    <delete dir="${dir.deploying-packages}" />
+  </target>
+</project>
