@@ -1,1 +1,0 @@
-NAnt.cmd setup-dev-environment
