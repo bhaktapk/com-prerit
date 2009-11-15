@@ -13,6 +13,8 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
         {
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            RouteTable.Routes.IgnoreRoute(PhotoAlbumsController.Name.WithoutSuffix);
+
             RouteTable.Routes.MapRoute("photo-albums",
                                        PhotoAlbumsController.Name.Seo + "/{action}/{id}",
                                        new
