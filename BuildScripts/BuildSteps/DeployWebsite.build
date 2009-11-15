@@ -16,14 +16,23 @@
 
   <target name="copy-new-deployment">
     <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
-           todir="${dir.deploy}" />
+           todir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}" />
+
+    <copy todir="${dir.deploy}">
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
+        <include name="**" />
+        <exclude name="error\service-unavailable.htm" />
+        <exclude name="web.config" />
+      </fileset>
+    </copy>
   </target>
 
   <target name="delete-previous-deployment">
     <delete>
       <fileset basedir="${dir.deploy}">
         <include name="**" />
-        <exclude name="app_offline.htm" />
+        <exclude name="error\service-unavailable.htm" />
+        <exclude name="web.config" />
       </fileset>
     </delete>
   </target>

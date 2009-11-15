@@ -97,5 +97,6 @@
     <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
     <nant buildfile="BuildSteps\DeployWebsite.build" />
     <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+    <nant buildfile="BuildSteps\PostDeploymentCleanup.build" />
   </target>
 </project>
