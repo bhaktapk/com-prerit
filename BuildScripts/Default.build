@@ -16,6 +16,11 @@
 
   <!-- PUBLIC TARGETS -->
 
+  <target name="setup-dev-environment">
+    <nant buildfile="BuildSteps\MakeDirectories.build" />
+    <nant buildfile="BuildSteps\VersionCode.build" />
+  </target>
+
   <target name="clean">
     <nant buildfile="BuildSteps\Clean.build" />
   </target>
