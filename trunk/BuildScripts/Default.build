@@ -87,17 +87,17 @@
   <target name="deploy"
           depends="package">
 
-    <call target="deploy-website"
+    <call target="deploy-website-to-staging"
           cascade="false" />
   </target>
 
-  <target name="deploy-website"
+  <target name="deploy-website-to-staging"
           depends="package-website">
 
     <nant buildfile="BuildSteps\UnzipPackage.build" />
-    <nant buildfile="BuildSteps\TakeWebsiteOffline.build" />
-    <nant buildfile="BuildSteps\DeployWebsite.build" />
-    <nant buildfile="BuildSteps\BringWebsiteOnline.build" />
+    <nant buildfile="BuildSteps\TakeStagingWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\DeployStagingWebsite.build" />
+    <nant buildfile="BuildSteps\BringStagingWebsiteOnline.build" />
     <nant buildfile="BuildSteps\PostDeploymentCleanup.build" />
   </target>
 </project>
