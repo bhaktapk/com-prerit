@@ -29,11 +29,11 @@
             overwrite="false" />
 
   <property name="dir.app-settings-config"
-            value="${dir.deploy}"
+            value="${dir.staging}"
             dynamic="true"
             overwrite="false" />
 
-  <property name="dir.deploy"
+  <property name="dir.staging"
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\staging.prerit.com"
             overwrite="false" />
 

@@ -17,28 +17,28 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="delete-temp-bin">
-    <delete dir="${dir.deploy}\temp-bin" />
+    <delete dir="${dir.staging}\temp-bin" />
   </target>
 
   <target name="replace-bin">
-    <move todir="${dir.deploy}\bin"
+    <move todir="${dir.staging}\bin"
           overwrite="true">
 
-      <fileset basedir="${dir.deploy}\temp-bin">
+      <fileset basedir="${dir.staging}\temp-bin">
         <include name="**" />
       </fileset>
     </move>
   </target>
 
   <target name="replace-service-unavailable-page">
-    <move file="${dir.deploy}\error\temp-service-unavailable.htm"
-          tofile="${dir.deploy}\error\service-unavailable.htm"
+    <move file="${dir.staging}\error\temp-service-unavailable.htm"
+          tofile="${dir.staging}\error\service-unavailable.htm"
           overwrite="true" />
   </target>
 
   <target name="replace-web-config">
-    <move file="${dir.deploy}\temp-web.config"
-          tofile="${dir.deploy}\web.config"
+    <move file="${dir.staging}\temp-web.config"
+          tofile="${dir.staging}\web.config"
           overwrite="true" />
   </target>
 </project>
