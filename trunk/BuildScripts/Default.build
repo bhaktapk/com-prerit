@@ -95,9 +95,9 @@
           depends="package-website">
 
     <nant buildfile="BuildSteps\UnzipPackage.build" />
-    <nant buildfile="BuildSteps\TakeStagingWebsiteOffline.build" />
-    <nant buildfile="BuildSteps\DeployStagingWebsite.build" />
-    <nant buildfile="BuildSteps\BringStagingWebsiteOnline.build" />
+    <nant buildfile="BuildSteps\TakeFileShareWebsiteOffline.build" />
+    <nant buildfile="BuildSteps\DeployFileShareWebsite.build" />
+    <nant buildfile="BuildSteps\BringFileShareWebsiteOnline.build" />
     <nant buildfile="BuildSteps\PostDeploymentCleanup.build" />
   </target>
 </project>
