@@ -16,7 +16,7 @@
 
   <target name="delete-previous-deployment">
     <delete>
-      <fileset basedir="${dir.staging}">
+      <fileset basedir="${dir.file-share-deployment}">
         <include name="**" />
         <exclude name="bin\${project.name.com-prerit-web}.dll" />
         <exclude name="error\service-unavailable.htm" />
@@ -26,7 +26,7 @@
   </target>
 
   <target name="deploy-service-unavailable-website">
-    <copy todir="${dir.staging}"
+    <copy todir="${dir.file-share-deployment}"
           overwrite="true">
 
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
@@ -36,7 +36,7 @@
     </copy>
 
     <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\service-unavailable-web.config"
-          tofile="${dir.staging}\web.config"
+          tofile="${dir.file-share-deployment}\web.config"
           overwrite="true" />
   </target>
 </project>

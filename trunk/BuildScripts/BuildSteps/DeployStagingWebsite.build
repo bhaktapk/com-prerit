@@ -17,7 +17,7 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="copy-temp-bin">
-    <copy todir="${dir.staging}\temp-bin">
+    <copy todir="${dir.file-share-deployment}\temp-bin">
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\bin">
         <include name="**" />
       </fileset>
@@ -25,7 +25,7 @@
   </target>
 
   <target name="copy-temp-deployment">
-    <copy todir="${dir.staging}">
+    <copy todir="${dir.file-share-deployment}">
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
         <include name="**" />
         <exclude name="bin\**" />
@@ -37,13 +37,13 @@
 
   <target name="copy-temp-service-unavailable-page">
     <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\error\service-unavailable.htm"
-          tofile="${dir.staging}\error\temp-service-unavailable.htm"
+          tofile="${dir.file-share-deployment}\error\temp-service-unavailable.htm"
           overwrite="true" />
   </target>
 
   <target name="copy-temp-web-config">
     <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\web.config"
-          tofile="${dir.staging}\temp-web.config"
+          tofile="${dir.file-share-deployment}\temp-web.config"
           overwrite="true" />
   </target>
 </project>

@@ -28,7 +28,7 @@
             dynamic="true"
             overwrite="false" />
 
-  <property name="dir.staging"
+  <property name="dir.file-share-deployment"
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\staging.prerit.com"
             overwrite="false" />
 

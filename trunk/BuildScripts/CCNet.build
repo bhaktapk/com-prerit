@@ -21,7 +21,7 @@
       <fail message="This build file is for use with CruiseControl.NET." />
     </if>
 
-  <property name="dir.deploy"
+  <property name="dir.file-share-deployment"
             value="${environment::get-variable('SystemDrive')}\Inetpub\wwwroot\ccnet.prerit.com"
             overwrite="true" />
   </target>
