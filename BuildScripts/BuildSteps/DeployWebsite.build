@@ -6,34 +6,44 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="deploy-website">
-    <call target="delete-previous-deployment" />
-    <call target="copy-new-deployment" />
+    <call target="copy-temp-deployment" />
+    <call target="copy-temp-bin" />
+    <call target="copy-temp-web-config" />
+    <call target="copy-temp-service-unavailable-page" />
   </target>
 
 
 
   <!-- PRIVATE TARGETS -->
 
-  <target name="copy-new-deployment">
-    <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
-           todir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}" />
+  <target name="copy-temp-bin">
+    <copy todir="${dir.deploy}\temp-bin">
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\bin">
+        <include name="**" />
+      </fileset>
+    </copy>
+  </target>
 
+  <target name="copy-temp-deployment">
     <copy todir="${dir.deploy}">
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
         <include name="**" />
+        <exclude name="bin\**" />
         <exclude name="error\service-unavailable.htm" />
         <exclude name="web.config" />
       </fileset>
     </copy>
   </target>
 
-  <target name="delete-previous-deployment">
-    <delete>
-      <fileset basedir="${dir.deploy}">
-        <include name="**" />
-        <exclude name="error\service-unavailable.htm" />
-        <exclude name="web.config" />
-      </fileset>
-    </delete>
+  <target name="copy-temp-service-unavailable-page">
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\error\service-unavailable.htm"
+          tofile="${dir.deploy}\error\temp-service-unavailable.htm"
+          overwrite="true" />
+  </target>
+
+  <target name="copy-temp-web-config">
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\web.config"
+          tofile="${dir.deploy}\temp-web.config"
+          overwrite="true" />
   </target>
 </project>

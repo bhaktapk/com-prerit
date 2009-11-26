@@ -125,6 +125,10 @@
 
   <!-- PROJECT PROPERTIES -->
 
+  <property name="project.name.com-prerit-web"
+            value="Com.Prerit.Web"
+            overwrite="false" />
+
   <property name="project.name.com-prerit-web-ui"
             value="Com.Prerit.Web.UI"
             overwrite="false" />
