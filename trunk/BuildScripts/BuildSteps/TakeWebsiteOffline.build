@@ -6,10 +6,37 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="take-website-offline">
-    <if test="${file::exists(dir.deploy + '\service-unavailable-web.config')}">
-      <copy file="${dir.deploy}\service-unavailable-web.config"
+    <call target="deploy-service-unavailable-website" />
+    <call target="delete-previous-deployment" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="delete-previous-deployment">
+    <delete>
+      <fileset basedir="${dir.deploy}">
+        <include name="**" />
+        <exclude name="bin\${project.name.com-prerit-web}.dll" />
+        <exclude name="error\service-unavailable.htm" />
+        <exclude name="web.config" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="deploy-service-unavailable-website">
+    <copy todir="${dir.deploy}"
+          overwrite="true">
+
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
+        <include name="bin\${project.name.com-prerit-web}.dll" />
+        <include name="error\service-unavailable.htm" />
+      </fileset>
+    </copy>
+
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\service-unavailable-web.config"
           tofile="${dir.deploy}\web.config"
           overwrite="true" />
-    </if>
   </target>
 </project>

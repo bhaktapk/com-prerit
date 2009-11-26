@@ -6,12 +6,39 @@
   <!-- PUBLIC TARGETS -->
 
   <target name="bring-website-online">
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\web.config"
-          tofile="${dir.deploy}\web.config"
-          overwrite="true" />
+    <call target="replace-bin" />
+    <call target="replace-web-config" />
+    <call target="replace-service-unavailable-page" />
+    <call target="delete-temp-bin" />
+  </target>
 
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\error\service-unavailable.htm"
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <target name="delete-temp-bin">
+    <delete dir="${dir.deploy}\temp-bin" />
+  </target>
+
+  <target name="replace-bin">
+    <move todir="${dir.deploy}\bin"
+          overwrite="true">
+
+      <fileset basedir="${dir.deploy}\temp-bin">
+        <include name="**" />
+      </fileset>
+    </move>
+  </target>
+
+  <target name="replace-service-unavailable-page">
+    <move file="${dir.deploy}\error\temp-service-unavailable.htm"
           tofile="${dir.deploy}\error\service-unavailable.htm"
+          overwrite="true" />
+  </target>
+
+  <target name="replace-web-config">
+    <move file="${dir.deploy}\temp-web.config"
+          tofile="${dir.deploy}\web.config"
           overwrite="true" />
   </target>
 </project>
