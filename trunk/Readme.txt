@@ -41,15 +41,15 @@ Host File Entries
 .................
 
 127.0.0.1	dev.prerit.com
-127.0.0.1	test.prerit.com
+127.0.0.1	staging.prerit.com
 127.0.0.1	www.dev.prerit.com
-127.0.0.1	www.test.prerit.com
+127.0.0.1	www.staging.prerit.com
 
 IIS Sites
 .........
 
 dev.prerit.com / www.dev.prerit.com
-test.prerit.com / www.test.prerit.com
+staging.prerit.com / www.staging.prerit.com
 
 
 
