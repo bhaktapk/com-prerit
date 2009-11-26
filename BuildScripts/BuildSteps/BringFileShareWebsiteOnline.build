@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<project name="BringWebsiteOnline"
-         default="bring-website-online"
+<project name="BringFileShareWebsiteOnline"
+         default="bring-file-share-website-online"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="bring-website-online">
+  <target name="bring-file-share-website-online">
     <call target="replace-bin" />
     <call target="replace-web-config" />
     <call target="replace-service-unavailable-page" />

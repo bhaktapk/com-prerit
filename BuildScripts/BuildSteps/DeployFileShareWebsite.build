@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<project name="DeployWebsite"
-         default="deploy-website"
+<project name="DeployFileShareWebsite"
+         default="deploy-file-share-website"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="deploy-website">
+  <target name="deploy-file-share-website">
     <call target="copy-temp-deployment" />
     <call target="copy-temp-bin" />
     <call target="copy-temp-web-config" />

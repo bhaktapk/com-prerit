@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<project name="TakeWebsiteOffline"
-         default="take-website-offline"
+<project name="TakeFileShareWebsiteOffline"
+         default="take-file-share-website-offline"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- PUBLIC TARGETS -->
 
-  <target name="take-website-offline">
+  <target name="take-file-share-website-offline">
     <call target="deploy-service-unavailable-website" />
     <call target="delete-previous-deployment" />
   </target>
