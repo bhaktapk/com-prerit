@@ -4,4 +4,4 @@
 <meta http-equiv="content-language" content="<%= Model.Culture %>" />
 <meta http-equiv="content-type" content="<%= Model.ContentType %>; charset=<%= Model.ContentEncoding %>" />
 <meta name="author" content="Prerit Bhakta" />
-<meta name="copyright" content="Copyright &#169; <%= Model.CurrentYear %> Prerit Bhakta" />
+<meta name="copyright" content="Copyright &copy; <%= Model.CurrentYear %> Prerit Bhakta" />
