@@ -15,7 +15,7 @@
 
 -->
 <head>
-    <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - <%= Model.SiteName %></title>
+    <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - <% Html.RenderAction(DefaultMasterController.Action.TitleTagSuffix); %></title>
     <% Html.RenderAction(DefaultMasterController.Action.MetaTags); %>
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
