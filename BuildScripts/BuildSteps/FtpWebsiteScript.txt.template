@@ -1,0 +1,4 @@
+#debug 10
+open @SERVER@
+user @USERNAME@ @PASSWORD@
+mirror --delete --exclude "(_db_backups|logs|stats)" --reverse

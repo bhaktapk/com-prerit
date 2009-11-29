@@ -2,4 +2,19 @@
 <project name="LocalProperties"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
+
+
+  <!-- FTP PROPERTIES -->
+
+  <property name="ftp.server"
+            value=""
+            overwrite="true" />
+
+  <property name="ftp.username"
+            value=""
+            overwrite="true" />
+
+  <property name="ftp.password"
+            value=""
+            overwrite="true" />
 </project>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project name="FtpWebsite"
+         default="ftp-website"
+         xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
+
+  <!-- PUBLIC TARGETS -->
+
+  <target name="ftp-website">
+    <call target="untemplate-ftp-script" />
+    <call target="mirror-website" />
+  </target>
+
+
+
+  <!-- PRIVATE TARGETS -->
+
+  <script language="C#"
+          prefix="CSharp">
+
+    <code>
+      <![CDATA[
+        [Function("get-unix-path")]
+        public static string GetUnixPath(string path)
+        {
+          string driveLetter = path.Substring(0, 1);
+          string filePath = path.Substring(3).Replace('\\', '/');
+          
+          return "/cygdrive/" + driveLetter + '/' + filePath;
+        }
+       ]]>
+    </code>
+  </script>
+
+  <target name="mirror-website">
+    <exec program="${dir.tools.lftp}\lftp.exe"
+          workingdir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
+
+      <arg value="-f"  />
+      <arg value="${CSharp::get-unix-path(dir.build-steps + '\FtpWebsiteScript.txt')}"  />
+    </exec>
+  </target>
+
+  <target name="untemplate-ftp-script">
+    <copy file="${dir.build-steps}\FtpWebsiteScript.txt.template"
+          tofile="FtpWebsiteScript.txt"
+          overwrite="true">
+
+      <filterchain>
+        <replacetokens>
+          <token key="PASSWORD"
+                 value="${ftp.password}" />
+
+          <token key="SERVER"
+                 value="${ftp.server}" />
+
+          <token key="USERNAME"
+                 value="${ftp.username}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+  </target>
+</project>
