@@ -1,0 +1,1 @@
+NAnt.cmd deploy-to-ftp-site

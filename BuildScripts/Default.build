@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<project name="Main"
-         default="deploy"
+<project name="Default"
          xmlns="http://nant.sf.net/release/0.86-beta1/nant.xsd">
 
   <!-- INCLUDES -->
@@ -84,22 +83,8 @@
     <nant buildfile="${dir.build-steps}\PackageWebsite.build" />
   </target>
 
-  <target name="deploy"
+  <target name="deploy-to-file-share"
           depends="package">
-
-    <if test="${not target::has-executed('prod')}">
-      <call target="deploy-website-to-staging"
-            cascade="false" />
-    </if>
-
-    <if test="${target::has-executed('prod')}">
-      <call target="deploy-website-to-prod"
-            cascade="false" />
-    </if>
-  </target>
-
-  <target name="deploy-website-to-staging"
-          depends="package-website">
 
     <nant buildfile="${dir.build-steps}\UnzipPackage.build" />
     <nant buildfile="${dir.build-steps}\TakeFileShareWebsiteOffline.build" />
@@ -108,8 +93,8 @@
     <nant buildfile="${dir.build-steps}\PostDeploymentCleanup.build" />
   </target>
 
-  <target name="deploy-website-to-prod"
-          depends="package-website">
+  <target name="deploy-to-ftp-site"
+          depends="package">
 
     <fail if="${ftp.server == ''}"
           message="The property 'ftp.server' must be defined in your LocalProperties.build file (i.e. untemplated version of LocalProperties.build.template)" />
