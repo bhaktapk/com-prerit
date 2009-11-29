@@ -31,7 +31,6 @@
             <ul>
                 <li><a href="<%= Url.Action(AboutController.Action.Index, AboutController.Name.Seo) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
                 <li><a href="<%= Url.Action(ContactController.Action.Index, ContactController.Name.Seo) %>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
-                <li><a href="<%= Url.Action(PhotoAlbumsController.Action.Index, PhotoAlbumsController.Name.Seo) %>" accesskey="P" title="Photo albums of Prerit and his family"><em>P</em>hoto Albums</a></li>
                 <li><a href="<%= Url.Action(ResumeController.Action.Index, ResumeController.Name.Seo) %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
             </ul>
         </div>

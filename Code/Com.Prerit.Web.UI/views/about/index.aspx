@@ -23,9 +23,7 @@
     </p>
     <h2><span>What do you plan on doing with this site?</span></h2>
     <p>
-        Currently, the main goal is to create a photo hub for family members to upload pictures. That should take awhile because I have a lot of things
-        going on in my personal life but am determined to accomplish it so that my family can keep in touch with each other better. A long term goal
-        will be to gauge them to see if they would be interested in blogging together and if not, then just creating a personal blog.
+        Nothing of interest to you but a great deal to me. I use this site as a test bed for trying out new technologies and new techniques.
     </p>
     <h1><span>About the Author</span></h1>
     <p>

@@ -41,7 +41,6 @@
     <Compile Include="Controllers\SharedAction.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultMasterController.cs" />
-    <Compile Include="Controllers\PhotoAlbumsController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Helpers\Contact\Index\ContactValidationSummaryHelper.cs" />
     <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModule.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Models\Contact\EmailSentModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs" />
-    <Compile Include="Models\PhotoAlbums\IndexModel.cs" />
     <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />
