@@ -68,7 +68,7 @@ namespace Com.Prerit.Domain.Tests
 
         private object[] GetAttributes(Expression<Func<Email, object>> member, Type attributeType)
         {
-            return typeof(Email).GetProperty(TypeUtil.GetMemberName(member)).GetCustomAttributes(attributeType, false);
+            return Reflect<Email>.GetProperty(member).GetCustomAttributes(attributeType, false);
         }
 
         #endregion
