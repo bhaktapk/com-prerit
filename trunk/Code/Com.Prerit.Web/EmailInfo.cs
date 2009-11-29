@@ -16,7 +16,7 @@ namespace Com.Prerit.Web
 
         public static string GetContactEmailSubject(string userName)
         {
-            return String.Format("{0} user, '{1}', is contacting you", WebsiteInfo.SiteName, userName);
+            return String.Format("prerit.com user, '{0}', is contacting you", userName);
         }
 
         #endregion

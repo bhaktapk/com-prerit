@@ -4,8 +4,6 @@
     {
         #region Properties
 
-        public int CopyrightBeginYear { get; set; }
-
         public int CopyrightEndYear { get; set; }
 
         public string SiteName { get; set; }

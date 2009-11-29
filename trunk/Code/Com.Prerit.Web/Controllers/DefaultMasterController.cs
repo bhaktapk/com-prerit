@@ -24,19 +24,9 @@ namespace Com.Prerit.Web.Controllers
             return View(model);
         }
 
-        [ActionName(Action.TitleTagSuffix)]
-        public ActionResult TitleTagSuffix()
-        {
-            var model = new TitleTagSuffixModel { Suffix = WebsiteInfo.SiteName };
-
-            return View(model);
-        }
-
         public override T UpdateModelBase<T>(T model)
         {
-            model.CopyrightBeginYear = WebsiteInfo.DomainRegistrationYear;
             model.CopyrightEndYear = DateTime.Today.Year;
-            model.SiteName = WebsiteInfo.SiteName;
             model.ValidationUri = Request.Url.AbsoluteUri;
 
             return model;
@@ -51,8 +41,6 @@ namespace Com.Prerit.Web.Controllers
             #region Constants
 
             public const string MetaTags = "meta-tags";
-
-            public const string TitleTagSuffix = "title-tag-suffix";
 
             #endregion
         }

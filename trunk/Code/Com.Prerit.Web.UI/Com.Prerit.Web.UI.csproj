@@ -135,7 +135,6 @@
     <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
     <Content Include="service-unavailable-web.config" />
     <Content Include="views\shared\meta-tags.ascx" />
-    <Content Include="views\shared\title-tag-suffix.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
