@@ -11,6 +11,8 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
 
         public void Execute()
         {
+            RouteTable.Routes.IgnoreRoute("errors/{*pathInfo}");
+
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             RouteTable.Routes.IgnoreRoute(PhotoAlbumsController.Name.WithoutSuffix);
