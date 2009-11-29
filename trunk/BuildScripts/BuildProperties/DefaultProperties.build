@@ -23,6 +23,21 @@
             dynamic="true"
             overwrite="false" />
 
+  <property name="dir.build-scripts"
+            value="${dir.base}\BuildScripts"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.build-commands"
+            value="${dir.build-scripts}\BuildCommands"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.build-steps"
+            value="${dir.build-scripts}\BuildSteps"
+            dynamic="true"
+            overwrite="false" />
+
   <property name="dir.code"
             value="${dir.base}\Code"
             dynamic="true"
@@ -44,6 +59,11 @@
 
   <property name="dir.tools"
             value="${dir.base}\Tools"
+            dynamic="true"
+            overwrite="false" />
+
+  <property name="dir.tools.lftp"
+            value="${dir.tools}\LFTP"
             dynamic="true"
             overwrite="false" />
 
