@@ -44,12 +44,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Album.cs" />
-    <Compile Include="AlbumYear.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Photo.cs" />
-    <Compile Include="WebImage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

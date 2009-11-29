@@ -52,24 +52,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AlbumYearLoaderService.cs" />
     <Compile Include="EmailSenderService.cs" />
     <Compile Include="IEmailSenderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AsyncCacheItemLoaderService.cs" />
-    <Compile Include="Caching\CacheItemDependency.cs" />
-    <Compile Include="Caching\CacheKey.cs" />
-    <Compile Include="Caching\TypedCache.cs" />
-    <Compile Include="IAlbumYearLoaderService.cs" />
-    <Compile Include="IAsyncCacheItemLoaderService.cs" />
-    <Compile Include="IImageEditorService.cs" />
-    <Compile Include="ILoaderService.cs" />
-    <Compile Include="ImageEditorService.cs" />
-    <Compile Include="IPhotoAlbumFinderService.cs" />
-    <Compile Include="IAsyncLoaderService.cs" />
-    <Compile Include="LoaderAsyncServiceStatus.cs" />
-    <Compile Include="PhotoAlbumFinderService.cs" />
-    <Compile Include="PhotoAlbumLoaderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Prerit.Core\Com.Prerit.Core.csproj">

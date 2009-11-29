@@ -93,7 +93,6 @@
     <Content Include="global.asax" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app-settings.config" />
     <Content Include="production-web.config" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -102,7 +101,6 @@
     <Content Include="error\generic-error.htm" />
     <Content Include="error\forbidden.htm" />
     <Content Include="error\not-found.htm" />
-    <Content Include="production-app-settings.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\ajax-processing-notifier.gif" />
@@ -128,7 +126,6 @@
     <Content Include="views\contact\email-sent.aspx" />
     <Content Include="views\contact\index.aspx" />
     <Content Include="views\contact\validation-summary.ascx" />
-    <Content Include="views\photoalbums\index.aspx" />
     <Content Include="views\resume\index.aspx" />
     <Content Include="views\shared\default.master" />
     <Content Include="views\web.config" />
