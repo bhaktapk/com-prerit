@@ -15,7 +15,7 @@
 
 -->
 <head>
-    <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - <% Html.RenderAction(DefaultMasterController.Action.TitleTagSuffix); %></title>
+    <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - prerit.com</title>
     <% Html.RenderAction(DefaultMasterController.Action.MetaTags); %>
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
@@ -24,7 +24,7 @@
 <body>
     <div id="header">
         <div id="innerHeader">
-            <h1><span><a href="/" title="Welcome to <%= Model.SiteName %>"><%= Model.SiteName %></a></span></h1>
+            <h1><span><a href="/" title="Welcome to prerit.com">prerit.com</a></span></h1>
             <h2><span>Main Menu</span></h2>
             <ul>
                 <li><a href="<%= Url.Action(AboutController.Action.Index, AboutController.Name.Seo) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
@@ -52,7 +52,7 @@
             title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines">XHTML</a>
         </p>
         <p id="copyright">
-            Copyright &#169; <%= Model.CopyrightBeginYear %>-<%= Model.CopyrightEndYear %> Prerit Bhakta
+            Copyright &#169; 2002-<%= Model.CopyrightEndYear %> Prerit Bhakta
         </p>
     </div>
 </body>
