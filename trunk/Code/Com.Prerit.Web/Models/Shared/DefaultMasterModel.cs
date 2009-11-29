@@ -1,14 +1,8 @@
-﻿using System;
-
-namespace Com.Prerit.Web.Models.Shared
+﻿namespace Com.Prerit.Web.Models.Shared
 {
     public class DefaultMasterModel
     {
         #region Properties
-
-        public string ContentEncoding { get; set; }
-
-        public string ContentType { get; set; }
 
         public int CopyrightBeginYear { get; set; }
 
