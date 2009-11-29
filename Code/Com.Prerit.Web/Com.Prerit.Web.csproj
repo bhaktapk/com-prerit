@@ -66,6 +66,7 @@
     <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />
+    <Compile Include="Models\Shared\MetaTagsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTask.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterRoutesStartupTask.cs" />

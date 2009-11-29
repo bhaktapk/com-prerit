@@ -1,5 +1,6 @@
 <%@ Import Namespace="System.Globalization" %>
 <%@ Import Namespace="Com.Prerit.Web.Controllers" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Com.Prerit.Web.Models.Shared.DefaultMasterModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -15,10 +16,7 @@
 -->
 <head>
     <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - <%= Model.SiteName %></title>
-    <meta http-equiv="content-language" content="<%= CultureInfo.CurrentCulture.Name.ToLowerInvariant() %>" />
-    <meta http-equiv="content-type" content="<%= Model.ContentType %>; charset=<%= Model.ContentEncoding %>" />
-    <meta name="author" content="Prerit Bhakta" />
-    <meta name="copyright" content="Copyright &#169; <%= DateTime.Today.Year %> Prerit Bhakta" />
+    <% Html.RenderAction(DefaultMasterController.Action.MetaTags); %>
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/screen.css") %>" media="projection, screen, tv" />
