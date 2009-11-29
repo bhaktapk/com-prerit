@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace Com.Prerit.Web.Helpers.Contact.Index
+namespace Com.Prerit.Web.Helpers.Contact
 {
-    public static class ContactIndexHelper
+    public static class IndexHelper
     {
         #region Methods
 
@@ -11,7 +11,7 @@ namespace Com.Prerit.Web.Helpers.Contact.Index
         {
             if (!helper.ViewData.ModelState.IsValid)
             {
-                helper.RenderPartial(ContactHelper.PartialName.ValidationSummary);
+                helper.RenderPartial(PartialName.ValidationSummary);
             }
         }
 

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Web.Mvc;
 
-namespace Com.Prerit.Web.Helpers.Contact.Index
+namespace Com.Prerit.Web.Helpers.Contact
 {
-    public static class ContactValidationSummaryHelper
+    public static class ValidationSummaryHelper
     {
         #region Methods
 
