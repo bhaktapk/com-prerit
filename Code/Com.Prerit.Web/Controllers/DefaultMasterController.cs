@@ -10,16 +10,26 @@ namespace Com.Prerit.Web.Controllers
     {
         #region Methods
 
-        [ActionName(Action.MetaTags)]
-        public ActionResult MetaTags()
+        [ActionName(Action.ContentEncoding)]
+        public ActionResult ContentEncoding()
         {
-            var model = new MetaTagsModel
-                            {
-                                ContentEncoding = Response.ContentEncoding.WebName,
-                                ContentType = Response.ContentType,
-                                Culture = CultureInfo.CurrentCulture.Name.ToLowerInvariant(),
-                                CurrentYear = DateTime.Today.Year
-                            };
+            var model = new ContentEncodingModel { ContentEncoding = Response.ContentEncoding.WebName };
+
+            return View(model);
+        }
+
+        [ActionName(Action.ContentType)]
+        public ActionResult ContentType()
+        {
+            var model = new ContentTypeModel { ContentType = Response.ContentType };
+
+            return View(model);
+        }
+
+        [ActionName(Action.Culture)]
+        public ActionResult Culture()
+        {
+            var model = new CultureModel { Culture = CultureInfo.CurrentCulture.Name.ToLowerInvariant() };
 
             return View(model);
         }
@@ -32,6 +42,14 @@ namespace Com.Prerit.Web.Controllers
             return model;
         }
 
+        [ActionName(Action.Year)]
+        public ActionResult Year()
+        {
+            var model = new YearModel { Year = DateTime.Today.Year };
+
+            return View(model);
+        }
+
         #endregion
 
         #region Nested Type: Action
@@ -40,7 +58,13 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Constants
 
-            public const string MetaTags = "meta-tags";
+            public const string ContentEncoding = "content-encoding";
+
+            public const string ContentType = "content-type";
+
+            public const string Culture = "culture";
+
+            public const string Year = "year";
 
             #endregion
         }
