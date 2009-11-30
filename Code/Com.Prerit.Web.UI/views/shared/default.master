@@ -53,7 +53,7 @@
             title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines">XHTML</a>
         </p>
         <p id="copyright">
-            Copyright &copy; <%= Model.CopyrightEndYear %> Prerit Bhakta
+            Copyright &copy; <% Html.RenderAction(DefaultMasterController.Action.Year); %> Prerit Bhakta
         </p>
     </div>
 </body>
