@@ -61,12 +61,15 @@
     <Compile Include="Infrastructure\Windsor\ComPreritServicesRegistration.cs" />
     <Compile Include="Infrastructure\Windsor\ComPreritWebRegistration.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs" />
+    <Compile Include="Models\Shared\ContentEncodingModel.cs" />
+    <Compile Include="Models\Shared\ContentTypeModel.cs" />
+    <Compile Include="Models\Shared\CultureModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs" />
+    <Compile Include="Models\Shared\YearModel.cs" />
     <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />
-    <Compile Include="Models\Shared\MetaTagsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTask.cs" />
     <Compile Include="Infrastructure\StartupTasks\RegisterRoutesStartupTask.cs" />

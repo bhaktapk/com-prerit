@@ -14,7 +14,10 @@
 -->
 <head>
     <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - prerit.com</title>
-    <% Html.RenderAction(DefaultMasterController.Action.MetaTags); %>
+    <meta http-equiv="content-language" content="<% Html.RenderAction(DefaultMasterController.Action.Culture); %>" />
+    <meta http-equiv="content-type" content="<% Html.RenderAction(DefaultMasterController.Action.ContentType); %>; charset=<% Html.RenderAction(DefaultMasterController.Action.ContentEncoding); %>" />
+    <meta name="author" content="Prerit Bhakta" />
+    <meta name="copyright" content="Copyright &copy; <% Html.RenderAction(DefaultMasterController.Action.Year); %> Prerit Bhakta" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/screen.css") %>" media="projection, screen, tv" />
