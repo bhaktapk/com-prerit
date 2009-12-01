@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public abstract class ApplicationController<TModelBase> : Controller where TModelBase : class
+    public abstract class ApplicationController : Controller
     {
         #region Methods
 
@@ -57,14 +57,12 @@ namespace Com.Prerit.Web.Controllers
             return new string(seoChars.ToArray());
         }
 
-        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model) where T : TModelBase
+        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model)
         {
             ViewData.Model = model;
 
             return RedirectToAction(actionName);
         }
-
-        public abstract T UpdateModelBase<T>(T model) where T : TModelBase;
 
         #endregion
     }

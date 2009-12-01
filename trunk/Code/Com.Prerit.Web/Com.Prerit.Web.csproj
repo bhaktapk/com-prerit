@@ -68,7 +68,6 @@
     <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs" />
     <Compile Include="Models\Shared\CurrentUrlEncodedModel.cs" />
     <Compile Include="Models\Shared\YearModel.cs" />
-    <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
     <Compile Include="Models\About\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

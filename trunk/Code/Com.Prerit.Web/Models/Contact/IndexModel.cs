@@ -1,11 +1,10 @@
 ﻿using Castle.Components.Validator;
 
 using Com.Prerit.Core;
-using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Models.Contact
 {
-    public class IndexModel : DefaultMasterModel
+    public class IndexModel
     {
         #region Properties
 

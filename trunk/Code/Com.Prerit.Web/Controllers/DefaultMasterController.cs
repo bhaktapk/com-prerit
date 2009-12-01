@@ -6,7 +6,7 @@ using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public abstract class DefaultMasterController : ApplicationController<DefaultMasterModel>
+    public abstract class DefaultMasterController : ApplicationController
     {
         #region Methods
 
@@ -40,14 +40,6 @@ namespace Com.Prerit.Web.Controllers
             var model = new CurrentUrlEncodedModel { CurrentUrlEncoded = Request.Url.AbsoluteUri };
 
             return View(model);
-        }
-
-        public override T UpdateModelBase<T>(T model)
-        {
-            model.CopyrightEndYear = DateTime.Today.Year;
-            model.ValidationUri = Request.Url.AbsoluteUri;
-
-            return model;
         }
 
         [ActionName(Action.Year)]
