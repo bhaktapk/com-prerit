@@ -18,6 +18,8 @@
   <target name="setup-dev-environment">
     <nant buildfile="${dir.build-steps}\MakeDirectories.build" />
     <nant buildfile="${dir.build-steps}\VersionCode.build" />
+
+    <call target="clean" />
   </target>
 
   <target name="clean">
