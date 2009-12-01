@@ -34,6 +34,14 @@ namespace Com.Prerit.Web.Controllers
             return View(model);
         }
 
+        [ActionName(Action.CurrentUrlEncoded)]
+        public ActionResult CurrentUrlEncoded()
+        {
+            var model = new CurrentUrlEncodedModel { CurrentUrlEncoded = Request.Url.AbsoluteUri };
+
+            return View(model);
+        }
+
         public override T UpdateModelBase<T>(T model)
         {
             model.CopyrightEndYear = DateTime.Today.Year;
@@ -63,6 +71,8 @@ namespace Com.Prerit.Web.Controllers
             public const string ContentType = "content-type";
 
             public const string Culture = "culture";
+
+            public const string CurrentUrlEncoded = "current-url-encoded";
 
             public const string Year = "year";
 

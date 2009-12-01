@@ -137,6 +137,7 @@
     <Content Include="views\shared\content-encoding.ascx" />
     <Content Include="views\shared\culture.ascx" />
     <Content Include="views\shared\content-type.ascx" />
+    <Content Include="views\shared\current-url-encoded.ascx" />
     <Content Include="views\shared\year.ascx" />
   </ItemGroup>
   <ItemGroup>

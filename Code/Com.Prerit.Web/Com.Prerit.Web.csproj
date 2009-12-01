@@ -66,6 +66,7 @@
     <Compile Include="Models\Shared\CultureModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs" />
     <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs" />
+    <Compile Include="Models\Shared\CurrentUrlEncodedModel.cs" />
     <Compile Include="Models\Shared\YearModel.cs" />
     <Compile Include="Models\Shared\DefaultMasterModel.cs" />
     <Compile Include="Models\Contact\IndexModel.cs" />
