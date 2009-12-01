@@ -27,13 +27,12 @@
     </p>
     <h1><span>About the Author</span></h1>
     <p>
-        <img alt="Headshot of Prerit Bhakta" class="headshot" height="100" src="<%= Url.Content("~/content/images/about/headshot.jpg") %>" width="75" /> Prerit Bhakta
-        is a programmer in the St. Louis metropolitan area who currently develops in the <a href="http://en.wikipedia.org/wiki/.NET_Framework" title=".NET Framework">
-        .NET Framework</a> to fulfill his clients' needs. He's a geek and like all geeks, he likes to learn things, especially when it comes to the
-        web. Why? Well, because the web changes so fast that it takes dedicated people who love it to learn it's complexities. He didn't always started
-        out that way but he's always had a love of technology and science. He may have started late compared to some of my peers but once he learned
-        about the underling structure and it's mathematical nature, he fell in love with it and took his education into overdrive. Now, he is one of
-        the top developers in the area and gives constant feedback on improving systems. Feel free to check out his
+        Prerit Bhakta is a programmer in the St. Louis metropolitan area who currently develops in the <a href="http://en.wikipedia.org/wiki/.NET_Framework"
+        title=".NET Framework">.NET Framework</a> to fulfill his clients' needs. He's a geek and like all geeks, he likes to learn things, especially
+        when it comes to the web. Why? Well, because the web changes so fast that it takes dedicated people who love it to learn it's complexities.
+        He didn't always started out that way but he's always had a love of technology and science. He may have started late compared to some of my
+        peers but once he learned about the underling structure and it's mathematical nature, he fell in love with it and took his education into overdrive.
+        Now, he is one of the top developers in the area and gives constant feedback on improving systems. Feel free to check out his
         <%= Html.ActionLink("resume", ResumeController.Action.Index, null, new { title = "Resume of Prerit Bhakta" }) %>
         for more details on what he has accomplished and what he knows.
     </p>
