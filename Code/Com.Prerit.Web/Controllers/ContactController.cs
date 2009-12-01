@@ -52,8 +52,6 @@ namespace Com.Prerit.Web.Controllers
                 return RedirectToAction(Action.Index);
             }
 
-            model = UpdateModelBase(model);
-
             return View(model);
         }
 
@@ -62,7 +60,7 @@ namespace Com.Prerit.Web.Controllers
         [ModelStateToTempData]
         public ActionResult Index()
         {
-            IndexModel model = UpdateModelBase(new IndexModel());
+            var model = new IndexModel();
 
             return View(model);
         }
@@ -89,7 +87,7 @@ namespace Com.Prerit.Web.Controllers
                 }
             }
 
-            var emailSentModel = Mapper.Map<IndexModel, EmailSentModel>(model);
+            EmailSentModel emailSentModel = Mapper.Map<IndexModel, EmailSentModel>(model);
 
             return ModelState.IsValid ? RedirectToAction(Action.EmailSent, emailSentModel) : RedirectToAction(Action.Index);
         }

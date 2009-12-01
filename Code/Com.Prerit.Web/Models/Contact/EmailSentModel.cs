@@ -1,8 +1,6 @@
-﻿using Com.Prerit.Web.Models.Shared;
-
-namespace Com.Prerit.Web.Models.Contact
+﻿namespace Com.Prerit.Web.Models.Contact
 {
-    public class EmailSentModel : DefaultMasterModel
+    public class EmailSentModel
     {
         #region Properties
 

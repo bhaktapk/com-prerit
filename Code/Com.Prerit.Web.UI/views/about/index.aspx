@@ -5,20 +5,20 @@
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">About the Website &amp; It's Author</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="A brief description about <%= Model.SiteName %> and it's author" />
-    <meta name="keywords" content="about, <%= Model.SiteName %>, Prerit Bhakta" />
+    <meta name="description" content="A brief description about prerit.com and it's author" />
+    <meta name="keywords" content="about, prerit.com, Prerit Bhakta" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
     <h1><span>About this Website</span></h1>
     <h2><span>Where am I?</span></h2>
     <p>
-        "<%= Model.SiteName %>" is a virtual home away from home for Prerit Bhakta. It's where he can play with new technology and try to build something that
+        "prerit.com" is a virtual home away from home for Prerit Bhakta. It's where he can play with new technology and try to build something that
         maybe useful for both himself and family members.
     </p>
     <h2><span>Who's this site intended for?</span></h2>
     <p>
-        The intent of "<%= Model.SiteName %>" is to amuse myself, keep my skills sharp by playing with new technologies, build an online hub for people that know
+        The intent of "prerit.com" is to amuse myself, keep my skills sharp by playing with new technologies, build an online hub for people that know
         me and always have an up-to-date resume online.
     </p>
     <h2><span>What do you plan on doing with this site?</span></h2>
