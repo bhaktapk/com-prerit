@@ -107,7 +107,6 @@
     <Content Include="content\images\bg-body.gif" />
     <Content Include="content\images\bg-header.gif" />
     <Content Include="content\images\bg-subheading.gif" />
-    <Content Include="content\images\about\headshot.jpg" />
     <Content Include="content\images\li-bullet.gif" />
     <Content Include="content\images\logo-fullahead.gif" />
     <Content Include="content\images\logo-greenery.gif" />
