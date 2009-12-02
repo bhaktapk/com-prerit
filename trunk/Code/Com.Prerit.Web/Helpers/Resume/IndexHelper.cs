@@ -11,6 +11,16 @@ namespace Com.Prerit.Web.Helpers.Resume
             return helper.Content("~/content/styles/resume/print.css");
         }
 
+        public static string ResumeDoc(this UrlHelper helper)
+        {
+            return helper.Content("~/content/resume/resume-of-prerit-bhakta.doc");
+        }
+
+        public static string ResumePdf(this UrlHelper helper)
+        {
+            return helper.Content("~/content/resume/resume-of-prerit-bhakta.pdf");
+        }
+
         public static string ScreenCss(this UrlHelper helper)
         {
             return helper.Content("~/content/styles/resume/screen.css");
