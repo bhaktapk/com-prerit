@@ -44,6 +44,7 @@
     <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Helpers\Contact\IndexHelper.cs" />
     <Compile Include="Helpers\Contact\ValidationSummaryHelper.cs" />
+    <Compile Include="Helpers\Resume\IndexHelper.cs" />
     <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModule.cs" />
     <Compile Include="Filters\ModelToTempDataAttribute.cs" />
     <Compile Include="Filters\TempDataToModelAttribute.cs" />
