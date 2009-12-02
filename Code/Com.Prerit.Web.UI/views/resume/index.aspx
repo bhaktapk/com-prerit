@@ -1,3 +1,4 @@
+<%@ Import Namespace="Com.Prerit.Web.Helpers.Resume" %>
 <%@ Import Namespace="Com.Prerit.Web.Models.Resume" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
@@ -6,8 +7,8 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Resume of Prerit Bhakta" />
     <meta name="keywords" content="resume, Prerit Bhakta" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/print.css") %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/screen.css") %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.PrintCss() %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.ScreenCss() %>" media="projection, screen, tv" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
