@@ -1,5 +1,4 @@
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 
 namespace Com.Prerit.Web.Helpers.Contact
 {
@@ -11,7 +10,7 @@ namespace Com.Prerit.Web.Helpers.Contact
         {
             if (!helper.ViewData.ModelState.IsValid)
             {
-                helper.RenderPartial(PartialName.ValidationSummary);
+                helper.RenderValidationSummary();
             }
         }
 

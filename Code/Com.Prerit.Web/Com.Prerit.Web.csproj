@@ -47,7 +47,6 @@
     <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModule.cs" />
     <Compile Include="Filters\ModelToTempDataAttribute.cs" />
     <Compile Include="Filters\TempDataToModelAttribute.cs" />
-    <Compile Include="Helpers\Contact\PartialName.cs" />
     <Compile Include="Helpers\Shared\SharedHelper.cs" />
     <Compile Include="EmailInfo.cs" />
     <Compile Include="Infrastructure\HttpModules\ServiceUnavailableModule.cs" />
