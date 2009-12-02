@@ -1,4 +1,5 @@
 <%@ Import Namespace="Com.Prerit.Web.Controllers" %>
+<%@ Import Namespace="Com.Prerit.Web.Helpers.Shared" %>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -19,8 +20,8 @@
     <meta name="author" content="Prerit Bhakta" />
     <meta name="copyright" content="Copyright &copy; <% Html.RenderAction(DefaultMasterController.Action.Year); %> Prerit Bhakta" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/print.css") %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/screen.css") %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.PrintCss() %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.ScreenCss() %>" media="projection, screen, tv" />
 </head>
 <body>
     <div id="header">
