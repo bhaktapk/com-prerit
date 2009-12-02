@@ -6,8 +6,8 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Resume of Prerit Bhakta" />
     <meta name="keywords" content="resume, Prerit Bhakta" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/index-print.css") %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/index-screen.css") %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/print.css") %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content("~/content/styles/resume/screen.css") %>" media="projection, screen, tv" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
