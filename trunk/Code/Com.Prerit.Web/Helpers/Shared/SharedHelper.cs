@@ -12,6 +12,16 @@ namespace Com.Prerit.Web.Helpers.Shared
             return s.Replace(Environment.NewLine, "<br />");
         }
 
+        public static string PrintCss(this UrlHelper helper)
+        {
+            return helper.Content("~/content/styles/print.css");
+        }
+
+        public static string ScreenCss(this UrlHelper helper)
+        {
+            return helper.Content("~/content/styles/screen.css");
+        }
+
         #endregion
     }
 }
