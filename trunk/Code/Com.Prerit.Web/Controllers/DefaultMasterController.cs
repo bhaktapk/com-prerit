@@ -6,7 +6,7 @@ using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public abstract class DefaultMasterController : ApplicationController
+    public class DefaultMasterController : ApplicationController
     {
         #region Methods
 
@@ -67,6 +67,21 @@ namespace Com.Prerit.Web.Controllers
             public const string CurrentUrlEncoded = "current-url-encoded";
 
             public const string Year = "year";
+
+            #endregion
+        }
+
+        #endregion
+
+        #region Nested Type: Name
+
+        public static class Name
+        {
+            #region Fields
+
+            public static readonly string Seo = GetSeoControllerName<DefaultMasterController>();
+
+            public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<DefaultMasterController>();
 
             #endregion
         }

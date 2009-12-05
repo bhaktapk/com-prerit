@@ -4,7 +4,7 @@ using Com.Prerit.Web.Models.About;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class AboutController : DefaultMasterController
+    public class AboutController : ApplicationController
     {
         #region Methods
 
