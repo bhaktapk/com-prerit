@@ -37,6 +37,7 @@
     <Compile Include="Core\StringEnumTests.cs" />
     <Compile Include="Domain\EmailTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailSenderServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Prerit\Com.Prerit.csproj">
