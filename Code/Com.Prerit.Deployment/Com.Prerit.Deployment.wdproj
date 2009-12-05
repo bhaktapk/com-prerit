@@ -1,0 +1,54 @@
+﻿<!-- 
+  Microsoft Visual Studio 2008 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkID=104956
+
+-->
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FA8B432A-B216-488A-805F-AA447BDC01E6}</ProjectGuid>
+    <SourceWebPhysicalPath>..\Com.Prerit</SourceWebPhysicalPath>
+    <SourceWebProject>{5C489AF6-F5A5-491C-B6FC-D74CBB0B332C}|Com.Prerit\Com.Prerit.csproj</SourceWebProject>
+    <SourceWebVirtualPath>/Com.Prerit.csproj</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug</OutputPath>
+    <EnableUpdateable>false</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
+    <KeyFile>
+    </KeyFile>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release</OutputPath>
+    <EnableUpdateable>false</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
+    <KeyFile>
+    </KeyFile>
+    <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v9.0\Microsoft.WebDeployment.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.WebDeployment.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="BeforeMerge">
+  </Target>
+  <Target Name="AfterMerge">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
