@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public abstract class ApplicationController : Controller
+    public static class ControllerUtil
     {
         #region Methods
 
@@ -55,13 +55,6 @@ namespace Com.Prerit.Web.Controllers
             }
 
             return new string(seoChars.ToArray());
-        }
-
-        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model)
-        {
-            ViewData.Model = model;
-
-            return RedirectToAction(actionName);
         }
 
         #endregion

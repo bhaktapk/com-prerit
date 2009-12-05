@@ -15,7 +15,7 @@ using MvcContrib.Filters;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class ContactController : ApplicationController
+    public class ContactController : Controller
     {
         #region Fields
 
@@ -63,6 +63,13 @@ namespace Com.Prerit.Web.Controllers
             var model = new IndexModel();
 
             return View(model);
+        }
+
+        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model)
+        {
+            ViewData.Model = model;
+
+            return RedirectToAction(actionName);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -117,9 +124,9 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string Seo = GetSeoControllerName<ContactController>();
+            public static readonly string Seo = ControllerUtil.GetSeoControllerName<ContactController>();
 
-            public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<ContactController>();
+            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<ContactController>();
 
             #endregion
         }

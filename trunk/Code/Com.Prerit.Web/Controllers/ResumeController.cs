@@ -4,7 +4,7 @@ using Com.Prerit.Web.Models.Resume;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class ResumeController : ApplicationController
+    public class ResumeController : Controller
     {
         #region Methods
 
@@ -38,9 +38,9 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string Seo = GetSeoControllerName<ResumeController>();
+            public static readonly string Seo = ControllerUtil.GetSeoControllerName<ResumeController>();
 
-            public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<ResumeController>();
+            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<ResumeController>();
 
             #endregion
         }

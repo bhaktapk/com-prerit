@@ -4,7 +4,7 @@ using Com.Prerit.Web.Models.About;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class AboutController : ApplicationController
+    public class AboutController : Controller
     {
         #region Methods
 
@@ -38,9 +38,9 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string Seo = GetSeoControllerName<AboutController>();
+            public static readonly string Seo = ControllerUtil.GetSeoControllerName<AboutController>();
 
-            public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<AboutController>();
+            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<AboutController>();
 
             #endregion
         }

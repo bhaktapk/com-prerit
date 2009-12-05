@@ -6,7 +6,7 @@ using Com.Prerit.Web.Models.Shared;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class DefaultMasterController : ApplicationController
+    public class DefaultMasterController : Controller
     {
         #region Methods
 
@@ -79,7 +79,7 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<DefaultMasterController>();
+            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<DefaultMasterController>();
 
             #endregion
         }
