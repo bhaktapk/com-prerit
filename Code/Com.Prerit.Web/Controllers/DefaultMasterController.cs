@@ -79,8 +79,6 @@ namespace Com.Prerit.Web.Controllers
         {
             #region Fields
 
-            public static readonly string Seo = GetSeoControllerName<DefaultMasterController>();
-
             public static readonly string WithoutSuffix = GetControllerNameWithoutSuffix<DefaultMasterController>();
 
             #endregion
