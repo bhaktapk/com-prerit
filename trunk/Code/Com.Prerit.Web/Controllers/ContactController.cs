@@ -65,38 +65,33 @@ namespace Com.Prerit.Web.Controllers
             return View(model);
         }
 
-        protected RedirectToRouteResult RedirectToAction<T>(string actionName, T model)
-        {
-            ViewData.Model = model;
-
-            return RedirectToAction(actionName);
-        }
-
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName(Action.SendEmail)]
         [ModelToTempData]
         [ModelStateToTempData]
         public ActionResult SendEmail(IndexModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var email = new Email();
-
-                Mapper.Map(model, email);
-
-                try
-                {
-                    _emailSenderService.Send(email);
-                }
-                catch (ValidationException e)
-                {
-                    ModelState.AddModelErrors(e);
-                }
+                return RedirectToAction(Action.Index);
             }
 
-            EmailSentModel emailSentModel = Mapper.Map<IndexModel, EmailSentModel>(model);
+            var email = Mapper.Map<IndexModel, Email>(model);
 
-            return ModelState.IsValid ? RedirectToAction(Action.EmailSent, emailSentModel) : RedirectToAction(Action.Index);
+            try
+            {
+                _emailSenderService.Send(email);
+            }
+            catch (ValidationException e)
+            {
+                ModelState.AddModelErrors(e);
+
+                return RedirectToAction(Action.Index);
+            }
+
+            ViewData.Model = Mapper.Map<IndexModel, EmailSentModel>(model);
+
+            return RedirectToAction(Action.EmailSent);
         }
 
         #endregion
