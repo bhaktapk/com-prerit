@@ -15,6 +15,8 @@ namespace Com.Prerit.Web.Infrastructure.StartupTasks
 
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            RouteTable.Routes.IgnoreRoute("{controller}/{*pathInfo}", new { controller = DefaultMasterController.Name.WithoutSuffix });
+
             RouteTable.Routes.MapRoute("default",
                                        "{controller}/{action}/{id}",
                                        new

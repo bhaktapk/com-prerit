@@ -4,7 +4,7 @@ using Com.Prerit.Web.Models.Resume;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class ResumeController : DefaultMasterController
+    public class ResumeController : ApplicationController
     {
         #region Methods
 

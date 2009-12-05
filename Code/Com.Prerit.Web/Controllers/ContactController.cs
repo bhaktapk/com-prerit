@@ -15,7 +15,7 @@ using MvcContrib.Filters;
 
 namespace Com.Prerit.Web.Controllers
 {
-    public class ContactController : DefaultMasterController
+    public class ContactController : ApplicationController
     {
         #region Fields
 
