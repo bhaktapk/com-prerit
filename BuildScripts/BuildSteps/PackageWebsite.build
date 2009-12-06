@@ -15,9 +15,9 @@
 
   <target name="package-com-prerit-web-ui">
     <zip includeemptydirs="true"
-         zipfile="${dir.packages}\${package.name.com-prerit-web-ui}">
+         zipfile="${dir.packages}\${package.name.com-prerit}">
 
-      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}"
+      <fileset basedir="${dir.build}\${project.name.com-prerit}"
                failonempty="true">
 
         <include name="**" />

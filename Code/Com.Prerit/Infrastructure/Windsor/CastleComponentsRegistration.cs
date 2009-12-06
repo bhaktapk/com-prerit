@@ -1,7 +1,7 @@
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
-namespace Com.Prerit.Web.Infrastructure.Windsor
+namespace Com.Prerit.Infrastructure.Windsor
 {
     public class CastleComponentsRegistration : IRegistration
     {
@@ -11,8 +11,8 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
 
             kernel
                 .Register(
-                    AllTypes.Pick().FromAssemblyNamed(assemblyName)
-                        .WithService.FirstInterface());
+                AllTypes.Pick().FromAssemblyNamed(assemblyName)
+                    .WithService.FirstInterface());
         }
     }
 }

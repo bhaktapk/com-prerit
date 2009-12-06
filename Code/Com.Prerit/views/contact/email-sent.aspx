@@ -1,5 +1,5 @@
-<%@ Import Namespace="Com.Prerit.Web.Helpers.Shared" %>
-<%@ Import Namespace="Com.Prerit.Web.Models.Contact" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
+<%@ Import Namespace="Com.Prerit.Models.Contact" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<EmailSentModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Email To Prerit Bhakta Has Been Sent</asp:Content>

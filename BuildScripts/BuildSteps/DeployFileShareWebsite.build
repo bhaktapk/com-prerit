@@ -18,7 +18,7 @@
 
   <target name="copy-temp-bin">
     <copy todir="${dir.file-share-deployment}\temp-bin">
-      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\bin">
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-base}\bin">
         <include name="**" />
       </fileset>
     </copy>
@@ -26,7 +26,7 @@
 
   <target name="copy-temp-deployment">
     <copy todir="${dir.file-share-deployment}">
-      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-base}">
         <include name="**" />
         <exclude name="bin\**" />
         <exclude name="error\service-unavailable.htm" />
@@ -36,13 +36,13 @@
   </target>
 
   <target name="copy-temp-service-unavailable-page">
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\error\service-unavailable.htm"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\error\service-unavailable.htm"
           tofile="${dir.file-share-deployment}\error\temp-service-unavailable.htm"
           overwrite="true" />
   </target>
 
   <target name="copy-temp-web-config">
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\web.config"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\web.config"
           tofile="${dir.file-share-deployment}\temp-web.config"
           overwrite="true" />
   </target>

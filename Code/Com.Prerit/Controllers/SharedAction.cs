@@ -1,4 +1,4 @@
-namespace Com.Prerit.Web.Controllers
+namespace Com.Prerit.Controllers
 {
     public static class SharedAction
     {

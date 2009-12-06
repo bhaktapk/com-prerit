@@ -1,10 +1,10 @@
 using System.Web.Mvc;
 
-using Com.Prerit.Web.Infrastructure.ModelBinders;
+using Com.Prerit.Infrastructure.ModelBinders;
 
 using Microsoft.Practices.ServiceLocation;
 
-namespace Com.Prerit.Web.Infrastructure.StartupTasks
+namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public class RegisterDefaultModelBinderStartupTask : IStartupTask
     {

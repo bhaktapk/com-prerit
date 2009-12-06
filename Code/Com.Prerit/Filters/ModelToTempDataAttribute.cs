@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Com.Prerit.Web.Filters
+namespace Com.Prerit.Filters
 {
     public class ModelToTempDataAttribute : ActionFilterAttribute
     {

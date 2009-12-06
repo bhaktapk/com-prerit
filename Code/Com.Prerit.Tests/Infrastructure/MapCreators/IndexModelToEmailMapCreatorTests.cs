@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-using Com.Prerit.Web.Infrastructure.MapCreators;
+using Com.Prerit.Infrastructure.MapCreators;
 
 using NUnit.Framework;
 

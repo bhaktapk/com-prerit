@@ -1,8 +1,8 @@
 using System.Web.Mvc;
 
-using Com.Prerit.Web.Models.About;
+using Com.Prerit.Models.About;
 
-namespace Com.Prerit.Web.Controllers
+namespace Com.Prerit.Controllers
 {
     public class AboutController : Controller
     {

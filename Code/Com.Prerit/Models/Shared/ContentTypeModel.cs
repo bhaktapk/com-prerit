@@ -1,4 +1,4 @@
-namespace Com.Prerit.Web.Models.Shared
+namespace Com.Prerit.Models.Shared
 {
     public class ContentTypeModel
     {

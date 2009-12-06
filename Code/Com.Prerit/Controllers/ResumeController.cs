@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 
-using Com.Prerit.Web.Models.Resume;
+using Com.Prerit.Models.Resume;
 
-namespace Com.Prerit.Web.Controllers
+namespace Com.Prerit.Controllers
 {
     public class ResumeController : Controller
     {

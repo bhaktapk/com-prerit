@@ -33,7 +33,7 @@
 
   <target name="mirror-website">
     <exec program="${dir.tools.lftp}\lftp.exe"
-          workingdir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
+          workingdir="${dir.deploying-packages}\${package.name.com-prerit-base}">
 
       <arg value="-f"  />
       <arg value="${CSharp::get-unix-path(dir.build-steps + '\FtpWebsiteScript.txt')}"  />

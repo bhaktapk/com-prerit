@@ -7,12 +7,10 @@ using Castle.Core;
 using Castle.MicroKernel;
 using Castle.Windsor;
 
+using Com.Prerit.Infrastructure.MapCreators;
+using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.Infrastructure.Windsor;
 using Com.Prerit.Services;
-using Com.Prerit.Web;
-using Com.Prerit.Web.Infrastructure.MapCreators;
-using Com.Prerit.Web.Infrastructure.StartupTasks;
-using Com.Prerit.Web.Infrastructure.Windsor;
 
 using NUnit.Framework;
 

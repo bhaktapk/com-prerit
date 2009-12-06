@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-using Com.Prerit.Web.Infrastructure.HttpModules;
+using Com.Prerit.Infrastructure.HttpModules;
 
 using Moq;
 

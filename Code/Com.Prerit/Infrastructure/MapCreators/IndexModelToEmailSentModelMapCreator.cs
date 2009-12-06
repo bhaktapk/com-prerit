@@ -1,8 +1,8 @@
 using AutoMapper;
 
-using Com.Prerit.Web.Models.Contact;
+using Com.Prerit.Models.Contact;
 
-namespace Com.Prerit.Web.Infrastructure.MapCreators
+namespace Com.Prerit.Infrastructure.MapCreators
 {
     public class IndexModelToEmailSentModelMapCreator : IMapCreator
     {

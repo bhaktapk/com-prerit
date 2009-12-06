@@ -2,7 +2,7 @@
 
 using Castle.Windsor;
 
-using Com.Prerit.Web.Infrastructure.StartupTasks;
+using Com.Prerit.Infrastructure.StartupTasks;
 
 using CommonServiceLocator.WindsorAdapter;
 

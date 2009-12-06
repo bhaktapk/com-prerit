@@ -117,7 +117,7 @@
   <!-- MARKUP ASSEMBLY PROPERTIES -->
 
   <property name="markup-assembly.name"
-            value="Com.Prerit.Web.UI.Markup"
+            value="Com.Prerit.Markup"
             overwrite="false" />
 
   <property name="markup-assembly.guid"
@@ -140,16 +140,12 @@
 
   <!-- PROJECT PROPERTIES -->
 
-  <property name="project.name.com-prerit-web"
-            value="Com.Prerit.Web"
+  <property name="project.name.com-prerit"
+            value="Com.Prerit"
             overwrite="false" />
 
-  <property name="project.name.com-prerit-web-ui"
-            value="Com.Prerit.Web.UI"
-            overwrite="false" />
-
-  <property name="project.name.com-prerit-web-ui-deployment"
-            value="Com.Prerit.Web.UI.Deployment"
+  <property name="project.name.com-prerit-deployment"
+            value="Com.Prerit.Deployment"
             overwrite="false" />
 
   <property name="project.name.test-suffix"
@@ -160,13 +156,13 @@
 
   <!-- PACKAGE PROPERTIES -->
 
-  <property name="package.name.com-prerit-web-ui-base"
-            value="${project.name.com-prerit-web-ui}-${msbuild.configuration}"
+  <property name="package.name.com-prerit-base"
+            value="${project.name.com-prerit}-${msbuild.configuration}"
             dynamic="true"
             overwrite="false" />
 
-  <property name="package.name.com-prerit-web-ui"
-            value="${package.name.com-prerit-web-ui-base}.zip"
+  <property name="package.name.com-prerit"
+            value="${package.name.com-prerit-base}.zip"
             dynamic="true"
             overwrite="false" />
 </project>

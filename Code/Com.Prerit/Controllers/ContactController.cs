@@ -6,14 +6,14 @@ using AutoMapper;
 using Castle.Components.Validator;
 
 using Com.Prerit.Domain;
+using Com.Prerit.Filters;
+using Com.Prerit.Infrastructure;
+using Com.Prerit.Models.Contact;
 using Com.Prerit.Services;
-using Com.Prerit.Web.Filters;
-using Com.Prerit.Web.Infrastructure;
-using Com.Prerit.Web.Models.Contact;
 
 using MvcContrib.Filters;
 
-namespace Com.Prerit.Web.Controllers
+namespace Com.Prerit.Controllers
 {
     public class ContactController : Controller
     {

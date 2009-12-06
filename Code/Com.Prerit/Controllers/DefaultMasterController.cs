@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.Web.Mvc;
 
-using Com.Prerit.Web.Models.Shared;
+using Com.Prerit.Models.Shared;
 
-namespace Com.Prerit.Web.Controllers
+namespace Com.Prerit.Controllers
 {
     public class DefaultMasterController : Controller
     {

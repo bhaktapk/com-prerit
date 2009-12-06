@@ -2,7 +2,7 @@
 
 using Com.Prerit.Core;
 
-namespace Com.Prerit.Web.Models.Contact
+namespace Com.Prerit.Models.Contact
 {
     public class IndexModel
     {

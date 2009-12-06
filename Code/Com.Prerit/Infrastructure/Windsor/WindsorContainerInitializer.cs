@@ -3,7 +3,7 @@ using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
-namespace Com.Prerit.Web.Infrastructure.Windsor
+namespace Com.Prerit.Infrastructure.Windsor
 {
     public static class WindsorContainerInitializer
     {
@@ -15,7 +15,7 @@ namespace Com.Prerit.Web.Infrastructure.Windsor
 
             container
                 .Register(
-                    AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
+                AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
 
             foreach (IRegistration registration in container.ResolveAll<IRegistration>())
             {

@@ -1,7 +1,7 @@
 using System.Net;
 using System.Web;
 
-namespace Com.Prerit.Web.Infrastructure.HttpModules
+namespace Com.Prerit.Infrastructure.HttpModules
 {
     public class CustomErrorsHelperModule : IHttpModule
     {

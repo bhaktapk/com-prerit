@@ -4,7 +4,7 @@ using System.Linq;
 using Castle.MicroKernel;
 using Castle.Windsor;
 
-using Com.Prerit.Web.Infrastructure.Windsor;
+using Com.Prerit.Infrastructure.Windsor;
 
 using NUnit.Framework;
 

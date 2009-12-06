@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace Com.Prerit.Web.Helpers.Shared
+namespace Com.Prerit.Helpers.Shared
 {
     public static class SharedHelper
     {

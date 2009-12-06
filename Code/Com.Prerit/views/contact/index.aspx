@@ -1,6 +1,6 @@
-<%@ Import Namespace="Com.Prerit.Web.Controllers" %>
-<%@ Import Namespace="Com.Prerit.Web.Helpers.Contact" %>
-<%@ Import Namespace="Com.Prerit.Web.Models.Contact" %>
+<%@ Import Namespace="Com.Prerit.Controllers" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Contact" %>
+<%@ Import Namespace="Com.Prerit.Models.Contact" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Contact Prerit Bhakta Via Email</asp:Content>

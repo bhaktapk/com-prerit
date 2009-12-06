@@ -3,10 +3,9 @@
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
+using Com.Prerit.Infrastructure.MapCreators;
+using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.Services;
-using Com.Prerit.Web;
-using Com.Prerit.Web.Infrastructure.MapCreators;
-using Com.Prerit.Web.Infrastructure.StartupTasks;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {

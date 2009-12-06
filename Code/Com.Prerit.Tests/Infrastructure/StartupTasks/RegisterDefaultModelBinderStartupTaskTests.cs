@@ -2,8 +2,8 @@
 
 using Castle.Components.Validator;
 
-using Com.Prerit.Web.Infrastructure.ModelBinders;
-using Com.Prerit.Web.Infrastructure.StartupTasks;
+using Com.Prerit.Infrastructure.ModelBinders;
+using Com.Prerit.Infrastructure.StartupTasks;
 
 using Microsoft.Practices.ServiceLocation;
 

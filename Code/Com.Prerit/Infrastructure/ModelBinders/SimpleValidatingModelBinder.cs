@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 using Castle.Components.Validator;
 
-namespace Com.Prerit.Web.Infrastructure.ModelBinders
+namespace Com.Prerit.Infrastructure.ModelBinders
 {
     public class SimpleValidatingModelBinder : DefaultModelBinder
     {
