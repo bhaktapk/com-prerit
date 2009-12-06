@@ -1,4 +1,4 @@
-﻿namespace Com.Prerit.Web.Infrastructure.StartupTasks
+﻿namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public interface IStartupTask
     {

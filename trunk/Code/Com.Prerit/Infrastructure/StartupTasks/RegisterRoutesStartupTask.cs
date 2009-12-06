@@ -1,9 +1,9 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-using Com.Prerit.Web.Controllers;
+using Com.Prerit.Controllers;
 
-namespace Com.Prerit.Web.Infrastructure.StartupTasks
+namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public class RegisterRoutesStartupTask : IStartupTask
     {

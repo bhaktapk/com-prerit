@@ -1,7 +1,7 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
-using Com.Prerit.Web.Infrastructure.Windsor;
+using Com.Prerit.Infrastructure.Windsor;
 
 using NUnit.Framework;
 

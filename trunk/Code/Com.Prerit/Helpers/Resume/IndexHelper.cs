@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Com.Prerit.Web.Helpers.Resume
+namespace Com.Prerit.Helpers.Resume
 {
     public static class IndexHelper
     {

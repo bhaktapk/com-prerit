@@ -1,6 +1,6 @@
 using System.Web.Mvc;
 
-namespace Com.Prerit.Web.Helpers.Contact
+namespace Com.Prerit.Helpers.Contact
 {
     public static class IndexHelper
     {

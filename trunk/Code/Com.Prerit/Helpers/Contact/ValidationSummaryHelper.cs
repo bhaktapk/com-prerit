@@ -2,7 +2,7 @@ using System;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace Com.Prerit.Web.Helpers.Contact
+namespace Com.Prerit.Helpers.Contact
 {
     public static class ValidationSummaryHelper
     {

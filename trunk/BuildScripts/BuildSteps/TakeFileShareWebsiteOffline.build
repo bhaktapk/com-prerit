@@ -18,7 +18,7 @@
     <delete>
       <fileset basedir="${dir.file-share-deployment}">
         <include name="**" />
-        <exclude name="bin\${project.name.com-prerit-web}.dll" />
+        <exclude name="bin\${project.name.com-prerit}.dll" />
         <exclude name="error\service-unavailable.htm" />
         <exclude name="web.config" />
       </fileset>
@@ -29,13 +29,13 @@
     <copy todir="${dir.file-share-deployment}"
           overwrite="true">
 
-      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}">
-        <include name="bin\${project.name.com-prerit-web}.dll" />
+      <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-base}">
+        <include name="bin\${project.name.com-prerit}.dll" />
         <include name="error\service-unavailable.htm" />
       </fileset>
     </copy>
 
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}\service-unavailable-web.config"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\service-unavailable-web.config"
           tofile="${dir.file-share-deployment}\web.config"
           overwrite="true" />
   </target>

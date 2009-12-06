@@ -1,6 +1,6 @@
 using System;
 
-namespace Com.Prerit.Web
+namespace Com.Prerit
 {
     public static class EmailInfo
     {

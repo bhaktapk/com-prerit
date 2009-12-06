@@ -1,5 +1,5 @@
-<%@ Import Namespace="Com.Prerit.Web.Controllers" %>
-<%@ Import Namespace="Com.Prerit.Web.Helpers.Shared" %>
+<%@ Import Namespace="Com.Prerit.Controllers" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

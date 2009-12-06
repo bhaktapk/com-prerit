@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 using Castle.Windsor;
 
-using Com.Prerit.Web.Infrastructure.Windsor;
+using Com.Prerit.Infrastructure.Windsor;
 
 using CommonServiceLocator.WindsorAdapter;
 
@@ -11,7 +11,7 @@ using Microsoft.Practices.ServiceLocation;
 
 using MvcContrib.Castle;
 
-namespace Com.Prerit.Web.Infrastructure.StartupTasks
+namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public static class StartupTaskRunner
     {

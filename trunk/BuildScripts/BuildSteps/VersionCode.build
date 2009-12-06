@@ -19,7 +19,7 @@
 
   <target name="copy-common-assembly-info-for-markup-assembly">
     <copy file="${dir.code}\${assembly.common-assembly-info}"
-          todir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code"
+          todir="${dir.code}\${project.name.com-prerit}\App_Code"
           overwrite="true" />
   </target>
 
@@ -56,7 +56,7 @@
   </target>
 
   <target name="create-markup-assembly-info">
-    <asminfo output="${dir.code}\${project.name.com-prerit-web-ui}\App_Code\AssemblyInfo.cs"
+    <asminfo output="${dir.code}\${project.name.com-prerit}\App_Code\AssemblyInfo.cs"
              language="CSharp">
       <imports>
         <import namespace="System.Reflection" />

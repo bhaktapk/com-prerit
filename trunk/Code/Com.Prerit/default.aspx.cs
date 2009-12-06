@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 
-namespace Com.Prerit.Web.UI
+namespace Com.Prerit
 {
     public class _Default : Page
     {

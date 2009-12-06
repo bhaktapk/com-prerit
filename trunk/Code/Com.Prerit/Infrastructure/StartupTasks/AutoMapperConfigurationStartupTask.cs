@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 
-using Com.Prerit.Web.Infrastructure.MapCreators;
+using Com.Prerit.Infrastructure.MapCreators;
 
 using Microsoft.Practices.ServiceLocation;
 
-namespace Com.Prerit.Web.Infrastructure.StartupTasks
+namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public class AutoMapperConfigurationStartupTask : IStartupTask
     {

@@ -1,5 +1,5 @@
-<%@ Import Namespace="Com.Prerit.Web.Helpers.Resume" %>
-<%@ Import Namespace="Com.Prerit.Web.Models.Resume" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Resume" %>
+<%@ Import Namespace="Com.Prerit.Models.Resume" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Resume of Prerit Bhakta</asp:Content>

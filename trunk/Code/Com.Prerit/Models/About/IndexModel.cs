@@ -1,4 +1,4 @@
-﻿namespace Com.Prerit.Web.Models.About
+﻿namespace Com.Prerit.Models.About
 {
     public class IndexModel
     {

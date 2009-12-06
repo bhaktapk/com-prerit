@@ -14,8 +14,8 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="use-production-web-config">
-    <copy file="${dir.build}\${project.name.com-prerit-web-ui}\production-web.config"
-          tofile="${dir.build}\${project.name.com-prerit-web-ui}\web.config"
+    <copy file="${dir.build}\${project.name.com-prerit}\production-web.config"
+          tofile="${dir.build}\${project.name.com-prerit}\web.config"
           overwrite="true" />
   </target>
 </project>

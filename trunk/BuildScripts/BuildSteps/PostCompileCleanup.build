@@ -20,16 +20,16 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="delete-app-code-directory">
-    <delete dir="${dir.code}\${project.name.com-prerit-web-ui}\App_Code" />
+    <delete dir="${dir.code}\${project.name.com-prerit}\App_Code" />
   </target>
 
   <target name="delete-csproj-file">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj" />
+    <delete file="${dir.build}\${project.name.com-prerit}\${project.name.com-prerit}.csproj" />
   </target>
 
   <target name="delete-default-config-files">
     <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+      <fileset basedir="${dir.build}\${project.name.com-prerit}">
         <include name="default-*.config" />
       </fileset>
     </delete>
@@ -37,25 +37,25 @@
 
   <target name="delete-log-files">
     <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+      <fileset basedir="${dir.build}\${project.name.com-prerit}">
         <include name="logs\**\*" />
       </fileset>
     </delete>
   </target>
 
   <target name="delete-obj-directory">
-    <delete dir="${dir.build}\${project.name.com-prerit-web-ui}\obj" />
+    <delete dir="${dir.build}\${project.name.com-prerit}\obj" />
   </target>
 
   <target name="delete-production-config-files">
     <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit-web-ui}">
+      <fileset basedir="${dir.build}\${project.name.com-prerit}">
         <include name="production-*.config" />
       </fileset>
     </delete>
   </target>
 
   <target name="delete-user-file">
-    <delete file="${dir.build}\${project.name.com-prerit-web-ui}\${project.name.com-prerit-web-ui}.csproj.user" />
+    <delete file="${dir.build}\${project.name.com-prerit}\${project.name.com-prerit}.csproj.user" />
   </target>
 </project>

@@ -15,11 +15,11 @@
   <!-- PRIVATE TARGETS -->
 
   <target name="delete-previous">
-    <delete dir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}" />
+    <delete dir="${dir.deploying-packages}\${package.name.com-prerit-base}" />
   </target>
 
   <target name="unzip">
-    <unzip zipfile="${dir.packages}\${package.name.com-prerit-web-ui}"
-           todir="${dir.deploying-packages}\${package.name.com-prerit-web-ui-base}" />
+    <unzip zipfile="${dir.packages}\${package.name.com-prerit}"
+           todir="${dir.deploying-packages}\${package.name.com-prerit-base}" />
   </target>
 </project>

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-using Com.Prerit.Web.Infrastructure.StartupTasks;
+using Com.Prerit.Infrastructure.StartupTasks;
 
 using NUnit.Framework;
 

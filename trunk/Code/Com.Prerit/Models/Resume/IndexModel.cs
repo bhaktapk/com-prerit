@@ -1,4 +1,4 @@
-﻿namespace Com.Prerit.Web.Models.Resume
+﻿namespace Com.Prerit.Models.Resume
 {
     public class IndexModel
     {
