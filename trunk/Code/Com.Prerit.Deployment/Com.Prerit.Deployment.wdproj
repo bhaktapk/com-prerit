@@ -20,7 +20,7 @@
     <OutputPath>.\Debug</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Markup</SingleAssemblyName>
     <KeyFile>
     </KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
@@ -31,7 +31,7 @@
     <OutputPath>.\Release</OutputPath>
     <EnableUpdateable>false</EnableUpdateable>
     <UseMerge>true</UseMerge>
-    <SingleAssemblyName>Com.Prerit.Web.UI.Markup</SingleAssemblyName>
+    <SingleAssemblyName>Com.Prerit.Markup</SingleAssemblyName>
     <KeyFile>
     </KeyFile>
     <AllowPartiallyTrustedCallers>false</AllowPartiallyTrustedCallers>
