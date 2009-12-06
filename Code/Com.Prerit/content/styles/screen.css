@@ -1,0 +1,734 @@
+/******************************************************************************
+    XHTML Tags
+******************************************************************************/
+
+body
+{
+    background: #585858 url(../images/bg-body.gif) repeat-y center top;
+    color: #eee;
+    font-family: verdana, helvetica, arial, sans-serif;
+    font-size: 62.5%; /* enables font size scaling in IE */
+    margin: 0;
+    padding: 0;
+
+    /* HACK: centering in IE5 */
+    text-align: center;
+}
+
+form
+{
+    margin: 0;
+    padding: 0;
+}
+
+img
+{
+    border: 0;
+}
+
+
+
+/******************************************************************************
+    Header Section
+******************************************************************************/
+
+#header
+{
+    background: #585858 url(../images/bg-header.gif) repeat-y center top;
+    text-transform: uppercase;
+
+    /* HACK: compensate for IE5 centering hack */
+    text-align: left;
+}
+
+#header h1
+{
+    float: right;
+    font-size: 1em;
+    margin: 0;
+}
+
+#header h1 a
+{
+    color: #222;
+    display: block;
+    padding: 10px 55px 10px 0;
+    text-decoration: none;
+}
+
+#header h2
+{
+    display: none;
+}
+
+#header ul
+{
+    margin: 0;
+    padding: 10px 0 10px 15px;
+}
+
+#header ul li
+{
+    display: inline;
+    list-style: none;
+}
+
+#header ul li a
+{
+    color: #222;
+    font-weight: bold;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+#header ul li a em
+{
+    font-style: normal;
+    text-decoration: underline;
+}
+
+#header #innerHeader
+{
+    background: url(../images/logo-greenery.gif) no-repeat right center;
+    margin: 0 auto;
+    width: 768px;
+}
+
+#header ul li a:hover,
+#header ul li a.active
+{
+    background: url(../images/menu-tab.gif) no-repeat center bottom;
+    color: #111;
+}
+
+
+
+/******************************************************************************
+    Content Section
+******************************************************************************/
+
+#content
+{
+    margin: 0 auto;
+    width: 768px;
+
+    /* HACK: compensate for IE5 centering hack */
+    text-align: left;
+}
+
+#content a
+{
+    color: #86e160;
+}
+
+#content a:hover
+{
+    color: #fff;
+}
+
+#content a:visited
+{
+    color: #aaa;
+}
+
+#content em
+{
+    font-style: italic;
+}
+
+#content strong
+{
+    font-weight: bold;
+}
+
+#content abbr,
+#content acronym
+{
+    border-bottom: 1px dotted #777;
+    cursor: help;
+}
+
+#content blockquote,
+#content fieldset,
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6,
+#content p,
+#content ul
+{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#content li em,
+#content p em,
+#content li strong,
+#content p strong
+{
+    color: #fff;
+}
+
+
+
+/******************************************************************************
+    Content Section - Headings Subsection
+******************************************************************************/
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6
+{
+    clear: both;
+    color: #7bd32c;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+#content h1 a,
+#content h2 a,
+#content h3 a,
+#content h4 a,
+#content h5 a,
+#content h6 a
+{
+    color: #7bd32c;
+}
+
+
+
+/******************************************************************************
+    Content Section - Forms Subsection
+******************************************************************************/
+
+#content div.validationSummary
+{
+    display: none;
+}
+
+#content fieldset
+{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#content input.button
+{
+    background-color: #777;
+}
+
+#content legend
+{
+    display: none;
+}
+
+#content p.successMessage
+{
+    border: 1px dashed #83e05e;
+    color: #83e05e;
+}
+
+#content input,
+#content textarea
+{
+    padding: 1px 3px;
+}
+
+#content input,
+#content select,
+#content textarea
+{
+    background-color: transparent;
+    border: 1px solid #999;
+    color: #eee;
+    font-family: verdana, helvetica, arial, sans-serif;
+    font-size: 1em;
+}
+
+#content input:focus,
+#content input:hover,
+#content select:focus,
+#content select:hover,
+#content textarea:focus,
+#content textarea:hover
+{
+    border: 1px solid #eee;
+    color: #fff;
+}
+
+#content input.input-validation-error,
+#content select.input-validation-error,
+#content textarea.input-validation-error
+{
+    border: 1px solid #b00;
+}
+
+#content input.input-validation-error:focus,
+#content input.input-validation-error:hover,
+#content select.input-validation-error:focus,
+#content select.input-validation-error:hover,
+#content textarea.input-validation-error:focus,
+#content textarea.input-validation-error:hover
+{
+    border: 1px solid #e00;
+    color: #fff;
+}
+
+#content p.successMessage
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+/******************************************************************************
+    Sidebar Section
+******************************************************************************/
+
+#sidebar
+{
+    float: right;
+    padding-right: 20px;
+    width: 145px; /* could use box model hack here but I say screw anything less than IE6 */
+}
+
+#sidebar p
+{
+    text-align: justify;
+}
+
+#sidebar #randomPhoto p
+{
+    text-align: center;
+}
+
+#sidebar #randomPhoto p img
+{
+    border: 1px solid #eee;
+}
+
+#sidebar fieldset,
+#sidebar li,
+#sidebar p
+{
+    line-height: 1.5em;
+}
+
+#sidebar #completedIndicator,
+#sidebar #failedLoadIndicator
+{
+    display: none;
+}
+
+#sidebar #completedIndicator p,
+#sidebar #failedLoadIndicator p,
+#sidebar #inProgressIndicator p
+{
+    text-align: center;
+}
+
+
+
+/******************************************************************************
+    Sidebar Section - Headings Subsection
+******************************************************************************/
+
+#sidebar h2
+{
+    background: #686868 url(../images/rounded-tl.gif) no-repeat left top;
+    text-align: right;
+}
+
+#sidebar h2 span
+{
+    background: url(../images/rounded-bl.gif) no-repeat left bottom;
+    display: block;
+    padding: 2px;
+}
+
+
+
+/******************************************************************************
+    Sidebar Section - Forms Subsection
+******************************************************************************/
+
+#sidebar input
+{
+    width: 110px;
+}
+
+#sidebar input.button
+{
+    cursor: pointer;
+    width: auto;
+}
+
+#sidebar label
+{
+    display: none;
+}
+
+#sidebar textarea
+{
+    height: 70px;
+    width: 137px;
+}
+
+#sidebar input,
+#sidebar textarea
+{
+    margin: 5px 0;
+}
+
+
+
+/******************************************************************************
+    Sidebar Section - Lists Subsection
+******************************************************************************/
+
+#sidebar ul
+{
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#sidebar ul li
+{
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    list-style-type: none;
+    margin-top: -1px;
+}
+
+#sidebar ul li a
+{
+    display: block;
+    padding: 2px 0;
+    text-decoration: none;
+    text-align: right;
+}
+
+#sidebar ul li a:hover
+{
+    background: url(../images/bg-subheading.gif) no-repeat left center;
+}
+
+
+
+/******************************************************************************
+    Mainbar Section
+******************************************************************************/
+
+#mainbar
+{
+    border-right: 1px solid #83e05e;
+    float: left;
+    padding: 0 20px 0 20px;
+    width: 542px; /* could use box model hack here but I say screw anything less than IE6 */
+    
+    /* HACK: Min-Height Fast Hack (http://www.dustindiaz.com/min-height-fast-hack) */
+    min-height: 500px;
+    height: auto !important;
+    height: 500px;
+}
+
+#mainbar blockquote
+{
+    background-color: #585858;
+    border-bottom: 1px solid #999;
+    border-top: 1px solid #999;
+    color: #7bd32c;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#mainbar p img.headshot
+{
+    border: 1px solid #eee;
+    float: left;
+    margin-right: 15px;
+}
+
+#mainbar div.albums
+{
+    text-align: center;
+}
+
+#mainbar div.albums p
+{
+    color: #7bd32c;
+    float: left;
+    font-weight: bold;
+    height: 270px;
+    margin: 0 10px 20px 10px;
+    text-transform: uppercase;
+    width: 250px;
+}
+
+#mainbar div.albums p a
+{
+    display: block;
+    text-decoration: none;
+}
+
+#mainbar div.albums p br
+{
+    display: none;
+}
+
+#mainbar div.albums p img
+{
+    border: 1px solid #eee;
+}
+
+#mainbar div.albums p span
+{
+    display: block;
+}
+
+#mainbar div.photos
+{
+    text-align: center;
+}
+
+#mainbar div.photos p
+{
+    float: left;
+    height: 160px;
+    line-height: 160px;
+    margin: 0 10px 40px 10px;
+    width: 160px;
+}
+
+#mainbar div.photos p a
+{
+    text-decoration: none;
+}
+
+#mainbar div.photos p img
+{
+    border: 1px solid #eee;
+    vertical-align: middle;    
+}
+
+#mainbar fieldset,
+#mainbar li,
+#mainbar p
+{
+    line-height: 1.75em;
+}
+
+#mainbar #processingNotification
+{
+    background: #85e15f url(../images/ajax-processing-notifier.gif) no-repeat 50% 70%;
+    border: 2px solid #222;
+    color: #222;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 5px 10px 25px 10px;
+    text-align: center;
+    width: 150px;
+
+    /* invalid CSS */
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+
+
+
+/******************************************************************************
+    Mainbar Section - Headings Subsection
+******************************************************************************/
+
+#mainbar h1
+{
+    background: #686868 url(../images/rounded-tr.gif) no-repeat right top;
+}
+
+#mainbar h1 span
+{
+    background: url(../images/rounded-br.gif) no-repeat right bottom;
+    display: block;
+    padding: 2px;
+}
+
+#mainbar h2
+{
+    padding-left: 10px;
+}
+
+#mainbar h3
+{
+    padding-left: 20px;
+}
+
+#mainbar h4
+{
+    padding-left: 30px;
+}
+
+#mainbar h5
+{
+    padding-left: 40px;
+}
+
+#mainbar h6
+{
+    padding-left: 50px;
+}
+
+#mainbar h2,
+#mainbar h3,
+#mainbar h4,
+#mainbar h5,
+#mainbar h6
+{
+    background: url(../images/bg-subheading.gif) repeat-x left center;
+}
+
+#mainbar h2 span,
+#mainbar h3 span,
+#mainbar h4 span,
+#mainbar h5 span,
+#mainbar h6 span
+{
+    background-color: #444;
+    display: block;
+}
+
+
+
+/******************************************************************************
+    Mainbar Section - Forms Subsection
+******************************************************************************/
+
+#mainbar input
+{
+    width: 85%;
+}
+
+#mainbar input.button
+{
+    cursor: pointer;
+    margin: 10px 0;
+    width: auto;
+}
+
+#mainbar label
+{
+    display: block;
+}
+
+#mainbar textarea
+{
+    height: 130px;
+}
+
+#mainbar p.successMessage
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+#mainbar select,
+#mainbar textarea
+{
+    width: 95%;
+}
+
+
+
+/******************************************************************************
+    Mainbar Section - Lists Subsection
+******************************************************************************/
+
+#mainbar ul
+{
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+    padding-right: 0;
+}
+
+#mainbar ul li
+{
+    list-style-image: url(../images/li-bullet.gif);
+}
+
+#mainbar ul.long3 li.group2,
+#mainbar ul.long3 li.group2first
+{
+    margin-left: 167px;
+}
+
+#mainbar ul.long3 li.group3, 
+#mainbar ul.long3 li.group3first
+{
+    margin-left: 334px;
+}
+
+
+
+/******************************************************************************
+    Footer Section
+******************************************************************************/
+
+#footer
+{
+    border-top: 1px solid #83e05e;
+    clear: both;
+    color: #888;
+    margin: 0 auto;
+    width: 768px;
+}
+
+#footer a
+{
+    color: #888;
+}
+
+#footer a:hover
+{
+    color: #fff;
+}
+
+#footer h1
+{
+    display: none;
+}
+
+#footer p
+{
+    margin: 5px 0;
+}
+
+#footer #designer a
+{
+    background: url(../images/logo-fullahead.gif) no-repeat 0 0;
+    display: block;
+    height: 34px;
+    margin: 0 auto;
+    width: 30px;
+}
+
+#footer #designer a:hover
+{
+    background-position: -30px 0;
+}
+
+#footer #designer a span
+{
+    display: none;
+}
