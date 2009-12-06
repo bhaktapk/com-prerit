@@ -34,20 +34,187 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Controllers\AboutController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ContactController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ControllerUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\DefaultMasterController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ResumeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SharedAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Reflect.cs" />
     <Compile Include="Core\StringEnum.cs" />
     <Compile Include="Domain\Email.cs" />
+    <Compile Include="EmailInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\ModelToTempDataAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\TempDataToModelAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\Contact\IndexHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\Contact\ValidationSummaryHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\Resume\IndexHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\Shared\SharedHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\HttpApplications\MvcApplication.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\HttpModules\ServiceUnavailableModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\MapCreators\IMapCreator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\MapCreators\IndexModelToEmailMapCreator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\MapCreators\IndexModelToEmailSentModelMapCreator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\ModelBinders\SimpleValidatingModelBinder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\ModelStateDictionaryExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\StartupTasks\IStartupTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\StartupTasks\RegisterDefaultModelBinderStartupTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\StartupTasks\RegisterRoutesStartupTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\StartupTasks\StartupTaskRunner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Windsor\CastleComponentsRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Windsor\ComPreritRegistration.cs" />
+    <Compile Include="Infrastructure\Windsor\WindsorContainerInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\About\IndexModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Contact\EmailSentModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Contact\IndexModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Resume\IndexModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Shared\ContentEncodingModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Shared\ContentTypeModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Shared\CultureModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Shared\CurrentUrlEncodedModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Shared\YearModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailSenderService.cs" />
     <Compile Include="Services\IEmailSenderService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=0.3.1.71, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Castle.Components.Validator.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator.WindsorAdapter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib, Version=1.0.0.978, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib.Castle, Version=1.0.0.978, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\MvcContrib.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\System.Web.Abstractions.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\System.Web.Routing.dll</HintPath>
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
