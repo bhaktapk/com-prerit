@@ -1,10 +1,11 @@
 ﻿using Castle.Components.Validator;
 
 using Com.Prerit.Domain;
+using Com.Prerit.Services;
 
 using NUnit.Framework;
 
-namespace Com.Prerit.Services.Tests
+namespace Com.Prerit.Tests.Services
 {
     [TestFixture]
     public class EmailSenderServiceTests
