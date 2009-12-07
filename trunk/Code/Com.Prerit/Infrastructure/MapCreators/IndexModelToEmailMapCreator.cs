@@ -13,8 +13,8 @@ namespace Com.Prerit.Infrastructure.MapCreators
         {
             Mapper.CreateMap<IndexModel, Email>()
                 .ForMember(d => d.FromEmailAddress, opt => opt.MapFrom(s => s.EmailAddress))
-                .ForMember(d => d.ToEmailAddress, opt => opt.MapFrom(s => EmailInfo.AuthorEmailAddress))
-                .ForMember(d => d.Subject, opt => opt.MapFrom(s => EmailInfo.GetContactEmailSubject(s.Name)));
+                .ForMember(d => d.ToEmailAddress, opt => opt.MapFrom(s => "prerit.bhakta@gmail.com"))
+                .ForMember(d => d.Subject, opt => opt.MapFrom(s => string.Format("prerit.com user, '{0}', is contacting you", s.Name)));
         }
 
         #endregion
