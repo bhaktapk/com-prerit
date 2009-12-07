@@ -21,7 +21,7 @@ namespace Com.Prerit.Tests.Services
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _emailSenderService = new EmailSenderService("localhost", new ValidatorRunner(new CachedValidationRegistry()));
+            _emailSenderService = new EmailSenderService(new ValidatorRunner(new CachedValidationRegistry()));
         }
 
         #endregion

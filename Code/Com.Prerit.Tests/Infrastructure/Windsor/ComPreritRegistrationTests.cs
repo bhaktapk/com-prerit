@@ -22,29 +22,6 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         #region Tests
 
         [Test]
-        public void Should_Register_IEmailSenderService_With_SmtpHost_Parameter()
-        {
-            // arrange
-            var container = new WindsorContainer();
-            IHandler handler = null;
-
-            container.Kernel.HandlerRegistered += (IHandler h, ref bool stateChanged) =>
-                                                      {
-                                                          if (h.Service == typeof(IEmailSenderService))
-                                                          {
-                                                              handler = h;
-                                                          }
-                                                      };
-
-            // act
-            new ComPreritRegistration().Register(container.Kernel);
-
-            // assert
-            Assert.That(handler, Is.Not.Null);
-            Assert.That(handler.ComponentModel.Configuration.Children[0].Children[0].Value, Is.EqualTo(EmailInfo.SmtpHost));
-        }
-
-        [Test]
         public void Should_Register_MapCreators()
         {
             // arrange

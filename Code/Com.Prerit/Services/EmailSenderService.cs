@@ -11,25 +11,18 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
-        private readonly SmtpClient _smtpClient;
-
         private readonly IValidatorRunner _validatorRunner;
 
         #endregion
 
         #region Constructors
 
-        public EmailSenderService(string smtpHost, IValidatorRunner validatorRunner)
+        public EmailSenderService(IValidatorRunner validatorRunner)
         {
             if (validatorRunner == null)
             {
                 throw new ArgumentNullException("validatorRunner");
             }
-
-            _smtpClient = new SmtpClient
-                              {
-                                  Host = smtpHost
-                              };
 
             _validatorRunner = validatorRunner;
         }
@@ -50,6 +43,8 @@ namespace Com.Prerit.Services
                 throw new ValidationException("Email is invalid to send", _validatorRunner.GetErrorSummary(email).ErrorMessages);
             }
 
+            var smtpClient = new SmtpClient();
+
             using (var message = new MailMessage())
             {
                 message.From = new MailAddress(email.FromEmailAddress);
@@ -58,7 +53,7 @@ namespace Com.Prerit.Services
                 message.Body = email.Message;
                 message.IsBodyHtml = false;
 
-                _smtpClient.Send(message);
+                smtpClient.Send(message);
             }
         }
 
