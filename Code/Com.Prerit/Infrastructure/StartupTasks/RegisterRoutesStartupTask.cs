@@ -17,14 +17,9 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.IgnoreRoute("{controller}/{*pathInfo}", new { controller = DefaultMasterController.Name.WithoutSuffix });
 
-            RouteTable.Routes.MapRoute("default",
-                                       "{controller}/{action}/{id}",
-                                       new
-                                           {
-                                               controller = AboutController.Name.WithoutSuffix,
-                                               action = SharedAction.Index,
-                                               id = ""
-                                           });
+            // NOTE: lack of default controller forces ASP.NET MVC to generate full url instead of just "/"
+            // NOTE: default controller is handled via IIS's Url Rewriting module
+            RouteTable.Routes.MapRoute("default", "{controller}/{action}", new { action = SharedAction.Index });
         }
 
         public void Reset()
