@@ -4,13 +4,19 @@ using Com.Prerit.Models.About;
 
 namespace Com.Prerit.Controllers
 {
-    public class AboutController : Controller
+    public partial class AboutController : Controller
     {
+        #region Fields
+
+        public static readonly string SeoName = ControllerUtil.GetSeoControllerName<AboutController>();
+
+        #endregion
+
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(Action.Index)]
-        public ActionResult Index()
+        [ActionName(ActionName.Index)]
+        public virtual ActionResult Index()
         {
             var model = new IndexModel();
 
@@ -19,28 +25,13 @@ namespace Com.Prerit.Controllers
 
         #endregion
 
-        #region Nested Type: Action
+        #region Nested Type: ActionName
 
-        public static class Action
+        public static class ActionName
         {
             #region Constants
 
             public const string Index = SharedAction.Index;
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Nested Type: Name
-
-        public static class Name
-        {
-            #region Fields
-
-            public static readonly string Seo = ControllerUtil.GetSeoControllerName<AboutController>();
-
-            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<AboutController>();
 
             #endregion
         }

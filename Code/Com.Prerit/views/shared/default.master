@@ -15,10 +15,10 @@
 -->
 <head>
     <title><asp:ContentPlaceHolder ID="titleContent" runat="server" /> - prerit.com</title>
-    <meta http-equiv="content-language" content="<% Html.RenderAction(DefaultMasterController.Action.Culture, DefaultMasterController.Name.WithoutSuffix); %>" />
-    <meta http-equiv="content-type" content="<% Html.RenderAction(DefaultMasterController.Action.ContentType, DefaultMasterController.Name.WithoutSuffix); %>; charset=<% Html.RenderAction(DefaultMasterController.Action.ContentEncoding, DefaultMasterController.Name.WithoutSuffix); %>" />
+    <meta http-equiv="content-language" content="<% Html.RenderAction(DefaultMasterController.ActionName.Culture, MVC.DefaultMaster.Name); %>" />
+    <meta http-equiv="content-type" content="<% Html.RenderAction(DefaultMasterController.ActionName.ContentType, MVC.DefaultMaster.Name); %>; charset=<% Html.RenderAction(DefaultMasterController.ActionName.ContentEncoding, MVC.DefaultMaster.Name); %>" />
     <meta name="author" content="Prerit Bhakta" />
-    <meta name="copyright" content="Copyright &copy; <% Html.RenderAction(DefaultMasterController.Action.Year, DefaultMasterController.Name.WithoutSuffix); %> Prerit Bhakta" />
+    <meta name="copyright" content="Copyright &copy; <% Html.RenderAction(DefaultMasterController.ActionName.Year, MVC.DefaultMaster.Name); %> Prerit Bhakta" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
     <link rel="stylesheet" type="text/css" href="<%= Url.PrintCss() %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.ScreenCss() %>" media="projection, screen, tv" />
@@ -29,9 +29,9 @@
             <h1><span><a href="/" title="Welcome to prerit.com">prerit.com</a></span></h1>
             <h2><span>Main Menu</span></h2>
             <ul>
-                <li><a href="<%= Url.Action(AboutController.Action.Index, AboutController.Name.Seo) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
-                <li><a href="<%= Url.Action(ContactController.Action.Index, ContactController.Name.Seo) %>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
-                <li><a href="<%= Url.Action(ResumeController.Action.Index, ResumeController.Name.Seo) %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
+                <li><a href="<%= Url.Action(AboutController.ActionName.Index, AboutController.SeoName) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
+                <li><a href="<%= Url.Action(ContactController.ActionName.Index, ContactController.SeoName) %>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
+                <li><a href="<%= Url.Action(ResumeController.ActionName.Index, ResumeController.SeoName) %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
             </ul>
         </div>
     </div>
@@ -49,13 +49,13 @@
             <a href="http://fullahead.org" title="designed by fullahead.org"><span>designed by fullhead.org</span></a>
         </p>
         <p>
-            Valid <a href="http://jigsaw.w3.org/css-validator/validator?usermedium=all&uri=<% Html.RenderAction(DefaultMasterController.Action.CurrentUrlEncoded, DefaultMasterController.Name.WithoutSuffix); %>"
+            Valid <a href="http://jigsaw.w3.org/css-validator/validator?usermedium=all&uri=<% Html.RenderAction(DefaultMasterController.ActionName.CurrentUrlEncoded, MVC.DefaultMaster.Name); %>"
             title="Validate this page's Cascading Style Sheets (CSS) under the W3C's guidelines">CSS</a>
-            &amp; <a href="http://validator.w3.org/check?uri=<% Html.RenderAction(DefaultMasterController.Action.CurrentUrlEncoded, DefaultMasterController.Name.WithoutSuffix); %>"
+            &amp; <a href="http://validator.w3.org/check?uri=<% Html.RenderAction(DefaultMasterController.ActionName.CurrentUrlEncoded, MVC.DefaultMaster.Name); %>"
             title="Validate this page under the W3C's eXtensible HyperText Markup Language (XHTML) guidelines">XHTML</a>
         </p>
         <p id="copyright">
-            Copyright &copy; <% Html.RenderAction(DefaultMasterController.Action.Year, DefaultMasterController.Name.WithoutSuffix); %> Prerit Bhakta
+            Copyright &copy; <% Html.RenderAction(DefaultMasterController.ActionName.Year, MVC.DefaultMaster.Name); %> Prerit Bhakta
         </p>
     </div>
 </body>

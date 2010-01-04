@@ -33,7 +33,7 @@
         He didn't always started out that way but he's always had a love of technology and science. He may have started late compared to some of my
         peers but once he learned about the underling structure and it's mathematical nature, he fell in love with it and took his education into overdrive.
         Now, he is one of the top developers in the area and gives constant feedback on improving systems. Feel free to check out his
-        <%= Html.ActionLink("resume", ResumeController.Action.Index, null, new { title = "Resume of Prerit Bhakta" }) %>
+        <%= Html.ActionLink("resume", ResumeController.ActionName.Index, null, new { title = "Resume of Prerit Bhakta" }) %>
         for more details on what he has accomplished and what he knows.
     </p>
 </asp:Content>

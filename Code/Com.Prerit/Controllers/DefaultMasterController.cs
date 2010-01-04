@@ -6,44 +6,44 @@ using Com.Prerit.Models.Shared;
 
 namespace Com.Prerit.Controllers
 {
-    public class DefaultMasterController : Controller
+    public partial class DefaultMasterController : Controller
     {
         #region Methods
 
-        [ActionName(Action.ContentEncoding)]
-        public ActionResult ContentEncoding()
+        [ActionName(ActionName.ContentEncoding)]
+        public virtual ActionResult ContentEncoding()
         {
             var model = new ContentEncodingModel { ContentEncoding = Response.ContentEncoding.WebName };
 
             return View(model);
         }
 
-        [ActionName(Action.ContentType)]
-        public ActionResult ContentType()
+        [ActionName(ActionName.ContentType)]
+        public virtual ActionResult ContentType()
         {
             var model = new ContentTypeModel { ContentType = Response.ContentType };
 
             return View(model);
         }
 
-        [ActionName(Action.Culture)]
-        public ActionResult Culture()
+        [ActionName(ActionName.Culture)]
+        public virtual ActionResult Culture()
         {
             var model = new CultureModel { Culture = CultureInfo.CurrentCulture.Name.ToLowerInvariant() };
 
             return View(model);
         }
 
-        [ActionName(Action.CurrentUrlEncoded)]
-        public ActionResult CurrentUrlEncoded()
+        [ActionName(ActionName.CurrentUrlEncoded)]
+        public virtual ActionResult CurrentUrlEncoded()
         {
             var model = new CurrentUrlEncodedModel { CurrentUrlEncoded = Request.Url.AbsoluteUri };
 
             return View(model);
         }
 
-        [ActionName(Action.Year)]
-        public ActionResult Year()
+        [ActionName(ActionName.Year)]
+        public virtual ActionResult Year()
         {
             var model = new YearModel { Year = DateTime.Today.Year };
 
@@ -52,9 +52,9 @@ namespace Com.Prerit.Controllers
 
         #endregion
 
-        #region Nested Type: Action
+        #region Nested Type: ActionName
 
-        public static class Action
+        public static class ActionName
         {
             #region Constants
 
@@ -67,19 +67,6 @@ namespace Com.Prerit.Controllers
             public const string CurrentUrlEncoded = "current-url-encoded";
 
             public const string Year = "year";
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Nested Type: Name
-
-        public static class Name
-        {
-            #region Fields
-
-            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<DefaultMasterController>();
 
             #endregion
         }
