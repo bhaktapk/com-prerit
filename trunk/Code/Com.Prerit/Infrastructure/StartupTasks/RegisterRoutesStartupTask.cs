@@ -15,7 +15,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            RouteTable.Routes.IgnoreRoute("{controller}/{*pathInfo}", new { controller = DefaultMasterController.Name.WithoutSuffix });
+            RouteTable.Routes.IgnoreRoute("{controller}/{*pathInfo}", new { controller = MVC.DefaultMaster.Name });
 
             // NOTE: lack of default controller forces ASP.NET MVC to generate full url instead of just "/"
             // NOTE: default controller is handled via IIS's Url Rewriting module

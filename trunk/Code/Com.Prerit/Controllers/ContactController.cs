@@ -15,11 +15,13 @@ using MvcContrib.Filters;
 
 namespace Com.Prerit.Controllers
 {
-    public class ContactController : Controller
+    public partial class ContactController : Controller
     {
         #region Fields
 
         private readonly IEmailSenderService _emailSenderService;
+
+        public static readonly string SeoName = ControllerUtil.GetSeoControllerName<ContactController>();
 
         #endregion
 
@@ -40,25 +42,25 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(Action.EmailSent)]
+        [ActionName(ActionName.EmailSent)]
         [ModelToTempData]
         [TempDataToModel]
-        public ActionResult EmailSent()
+        public virtual ActionResult EmailSent()
         {
             var model = ViewData.Model as EmailSentModel;
 
             if (model == null)
             {
-                return RedirectToAction(Action.Index);
+                return RedirectToAction(ActionName.Index);
             }
 
             return View(model);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(Action.Index)]
+        [ActionName(ActionName.Index)]
         [ModelStateToTempData]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var model = new IndexModel();
 
@@ -66,17 +68,17 @@ namespace Com.Prerit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ActionName(Action.SendEmail)]
+        [ActionName(ActionName.SendEmail)]
         [ModelToTempData]
         [ModelStateToTempData]
-        public ActionResult SendEmail(IndexModel model)
+        public virtual ActionResult SendEmail(IndexModel model)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction(Action.Index);
+                return RedirectToAction(ActionName.Index);
             }
 
-            var email = Mapper.Map<IndexModel, Email>(model);
+            Email email = Mapper.Map<IndexModel, Email>(model);
 
             try
             {
@@ -86,19 +88,19 @@ namespace Com.Prerit.Controllers
             {
                 ModelState.AddModelErrors(e);
 
-                return RedirectToAction(Action.Index);
+                return RedirectToAction(ActionName.Index);
             }
 
             ViewData.Model = Mapper.Map<IndexModel, EmailSentModel>(model);
 
-            return RedirectToAction(Action.EmailSent);
+            return RedirectToAction(ActionName.EmailSent);
         }
 
         #endregion
 
-        #region Nested Type: Action
+        #region Nested Type: ActionName
 
-        public static class Action
+        public static class ActionName
         {
             #region Constants
 
@@ -107,21 +109,6 @@ namespace Com.Prerit.Controllers
             public const string Index = SharedAction.Index;
 
             public const string SendEmail = "send-email";
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Nested Type: Name
-
-        public static class Name
-        {
-            #region Fields
-
-            public static readonly string Seo = ControllerUtil.GetSeoControllerName<ContactController>();
-
-            public static readonly string WithoutSuffix = ControllerUtil.GetControllerNameWithoutSuffix<ContactController>();
 
             #endregion
         }

@@ -16,7 +16,7 @@
         Emails will generally be read during normal business hours in the Central Time Zone. Please consider these times when anticipating your reply.
     </p>
     <% Html.RenderPartialValidationSummary(); %>
-    <% using (Html.BeginForm(ContactController.Action.SendEmail, ContactController.Name.Seo)) { %>
+    <% using (Html.BeginForm(ContactController.ActionName.SendEmail, ContactController.SeoName)) { %>
         <fieldset>
             <label for="<%= IndexModel.PropertyName.Name %>">Name:</label>
             <%= Html.TextBox(IndexModel.PropertyName.Name, null, new { maxlength = "40", size = "40" }) %>
