@@ -268,16 +268,6 @@
     <Content Include="global.asax" />
     <Content Include="google09f9576d4452b755.html" />
     <Content Include="robots.txt" />
-    <Content Include="views\about\index.aspx" />
-    <Content Include="views\contact\email-sent.aspx" />
-    <Content Include="views\contact\index.aspx" />
-    <Content Include="views\contact\validation-summary.ascx" />
-    <Content Include="views\resume\index.aspx" />
-    <Content Include="views\shared\content-encoding.ascx" />
-    <Content Include="views\shared\content-type.ascx" />
-    <Content Include="views\shared\culture.ascx" />
-    <Content Include="views\shared\current-url-encoded.ascx" />
-    <Content Include="views\shared\year.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="content\resume\resume-of-prerit-bhakta.doc" />
@@ -287,10 +277,20 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Shared\Default.master" />
+    <Content Include="Views\web.config" />
     <Content Include="production-web.config" />
     <Content Include="service-unavailable-web.config" />
-    <Content Include="views\shared\default.master" />
-    <Content Include="views\web.config" />
+    <Content Include="Views\About\Index.aspx" />
+    <Content Include="Views\Contact\Email-Sent.aspx" />
+    <Content Include="Views\Contact\Index.aspx" />
+    <Content Include="Views\Contact\Validation-Summary.ascx" />
+    <Content Include="Views\Resume\Index.aspx" />
+    <Content Include="Views\Shared\Content-Encoding.ascx" />
+    <Content Include="Views\Shared\Content-Type.ascx" />
+    <Content Include="Views\Shared\Culture.ascx" />
+    <Content Include="Views\Shared\Current-Url-Encoded.ascx" />
+    <Content Include="Views\Shared\Year.ascx" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
