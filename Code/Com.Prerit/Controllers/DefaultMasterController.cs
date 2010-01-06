@@ -58,15 +58,15 @@ namespace Com.Prerit.Controllers
         {
             #region Constants
 
-            public const string ContentEncoding = "content-encoding";
+            public const string ContentEncoding = "Content-Encoding";
 
-            public const string ContentType = "content-type";
+            public const string ContentType = "Content-Type";
 
-            public const string Culture = "culture";
+            public const string Culture = "Culture";
 
-            public const string CurrentUrlEncoded = "current-url-encoded";
+            public const string CurrentUrlEncoded = "Current-Url-Encoded";
 
-            public const string Year = "year";
+            public const string Year = "Year";
 
             #endregion
         }

@@ -104,11 +104,11 @@ namespace Com.Prerit.Controllers
         {
             #region Constants
 
-            public const string EmailSent = "email-sent";
+            public const string EmailSent = "Email-Sent";
 
             public const string Index = SharedAction.Index;
 
-            public const string SendEmail = "send-email";
+            public const string SendEmail = "Send-Email";
 
             #endregion
         }
