@@ -4,7 +4,7 @@ namespace Com.Prerit.Controllers
     {
         #region Constants
 
-        public const string Index = "index";
+        public const string Index = "Index";
 
         #endregion
     }
