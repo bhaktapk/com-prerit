@@ -6,12 +6,6 @@ namespace Com.Prerit.Controllers
 {
     public partial class ResumeController : Controller
     {
-        #region Fields
-
-        public static readonly string SeoName = ControllerUtil.GetSeoControllerName<ResumeController>();
-
-        #endregion
-
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]

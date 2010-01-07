@@ -20,8 +20,6 @@ namespace Com.Prerit.Controllers
 
         private readonly IEmailSenderService _emailSenderService;
 
-        public static readonly string SeoName = ControllerUtil.GetSeoControllerName<ContactController>();
-
         #endregion
 
         #region Constructors
