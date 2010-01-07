@@ -7,7 +7,6 @@ using Castle.Components.Validator;
 
 using Com.Prerit.Domain;
 using Com.Prerit.Filters;
-using Com.Prerit.Infrastructure;
 using Com.Prerit.Models.Contact;
 using Com.Prerit.Services;
 
@@ -83,7 +82,7 @@ namespace Com.Prerit.Controllers
             }
             catch (ValidationException e)
             {
-                ModelState.AddModelErrors(e);
+                ControllerUtil.AddModelErrors(ModelState, e);
 
                 return RedirectToAction(MVC.Contact.Index());
             }
