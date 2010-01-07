@@ -8,11 +8,16 @@
   <target name="post-compile-cleanup">
     <call target="delete-app-code-directory" />
     <call target="delete-obj-directory" />
+    <call target="delete-templates-directory" />
+
     <call target="delete-default-config-files" />
     <call target="delete-log-files" />
     <call target="delete-production-config-files" />
+
     <call target="delete-csproj-file" />
     <call target="delete-user-file" />
+
+    <call target="rename-web-config" />
   </target>
 
 
@@ -50,12 +55,26 @@
   <target name="delete-production-config-files">
     <delete>
       <fileset basedir="${dir.build}\${project.name.com-prerit}">
-        <include name="production-*.config" />
+        <include name="Production*.config" />
       </fileset>
     </delete>
   </target>
 
+  <target name="delete-templates-directory">
+    <delete dir="${dir.build}\${project.name.com-prerit}\Templates" />
+  </target>
+
   <target name="delete-user-file">
     <delete file="${dir.build}\${project.name.com-prerit}\${project.name.com-prerit}.csproj.user" />
+  </target>
+
+  <target name="rename-web-config">
+    <move file="${dir.build}\${project.name.com-prerit}\web.config"
+          tofile="${dir.build}\${project.name.com-prerit}\TempWeb.config"
+          overwrite="true" />
+
+    <move file="${dir.build}\${project.name.com-prerit}\TempWeb.config"
+          tofile="${dir.build}\${project.name.com-prerit}\Web.config"
+          overwrite="true" />
   </target>
 </project>
