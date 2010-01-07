@@ -2,7 +2,7 @@ using AutoMapper;
 
 using Com.Prerit.Models.Contact;
 
-namespace Com.Prerit.Infrastructure.MapCreators
+namespace Com.Prerit.MapCreators
 {
     public class IndexModelToEmailSentModelMapCreator : IMapCreator
     {

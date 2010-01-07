@@ -86,13 +86,13 @@
     <Compile Include="Infrastructure\HttpModules\ServiceUnavailableModule.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\MapCreators\IMapCreator.cs">
+    <Compile Include="MapCreators\IMapCreator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\MapCreators\IndexModelToEmailMapCreator.cs">
+    <Compile Include="MapCreators\IndexModelToEmailMapCreator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\MapCreators\IndexModelToEmailSentModelMapCreator.cs">
+    <Compile Include="MapCreators\IndexModelToEmailSentModelMapCreator.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\ModelBinders\SimpleValidatingModelBinder.cs">

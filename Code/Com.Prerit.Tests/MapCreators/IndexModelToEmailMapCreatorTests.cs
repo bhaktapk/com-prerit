@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 
-using Com.Prerit.Infrastructure.MapCreators;
+using Com.Prerit.MapCreators;
 
 using NUnit.Framework;
 
-namespace Com.Prerit.Tests.Infrastructure.MapCreators
+namespace Com.Prerit.Tests.MapCreators
 {
     [TestFixture]
-    public class IndexModelToEmailSentModelMapCreatorTests
+    public class IndexModelToEmailMapCreatorTests
     {
         #region Tests
 
@@ -18,7 +18,7 @@ namespace Com.Prerit.Tests.Infrastructure.MapCreators
             Mapper.Reset();
 
             // act
-            new IndexModelToEmailSentModelMapCreator().CreateMap();
+            new IndexModelToEmailMapCreator().CreateMap();
 
             // assert
             Mapper.AssertConfigurationIsValid();

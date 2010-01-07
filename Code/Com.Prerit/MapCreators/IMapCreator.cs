@@ -1,4 +1,4 @@
-﻿namespace Com.Prerit.Infrastructure.MapCreators
+﻿namespace Com.Prerit.MapCreators
 {
     public interface IMapCreator
     {

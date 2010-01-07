@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-using Com.Prerit.Infrastructure.MapCreators;
+using Com.Prerit.MapCreators;
 
 using Microsoft.Practices.ServiceLocation;
 
