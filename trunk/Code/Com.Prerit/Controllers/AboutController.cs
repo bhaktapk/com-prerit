@@ -15,25 +15,11 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(ActionName.Index)]
         public virtual ActionResult Index()
         {
             var model = new IndexModel();
 
             return View(model);
-        }
-
-        #endregion
-
-        #region Nested Type: ActionName
-
-        public static class ActionName
-        {
-            #region Constants
-
-            public const string Index = SharedAction.Index;
-
-            #endregion
         }
 
         #endregion

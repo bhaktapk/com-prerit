@@ -42,7 +42,6 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(ActionName.EmailSent)]
         [ModelToTempData]
         [TempDataToModel]
         public virtual ActionResult EmailSent()
@@ -51,14 +50,13 @@ namespace Com.Prerit.Controllers
 
             if (model == null)
             {
-                return RedirectToAction(ActionName.Index);
+                return RedirectToAction(MVC.Contact.Index());
             }
 
             return View(model);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ActionName(ActionName.Index)]
         [ModelStateToTempData]
         public virtual ActionResult Index()
         {
@@ -68,14 +66,13 @@ namespace Com.Prerit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ActionName(ActionName.SendEmail)]
         [ModelToTempData]
         [ModelStateToTempData]
         public virtual ActionResult SendEmail(IndexModel model)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction(ActionName.Index);
+                return RedirectToAction(MVC.Contact.Index());
             }
 
             Email email = Mapper.Map<IndexModel, Email>(model);
@@ -88,29 +85,12 @@ namespace Com.Prerit.Controllers
             {
                 ModelState.AddModelErrors(e);
 
-                return RedirectToAction(ActionName.Index);
+                return RedirectToAction(MVC.Contact.Index());
             }
 
             ViewData.Model = Mapper.Map<IndexModel, EmailSentModel>(model);
 
-            return RedirectToAction(ActionName.EmailSent);
-        }
-
-        #endregion
-
-        #region Nested Type: ActionName
-
-        public static class ActionName
-        {
-            #region Constants
-
-            public const string EmailSent = "Email-Sent";
-
-            public const string Index = SharedAction.Index;
-
-            public const string SendEmail = "Send-Email";
-
-            #endregion
+            return RedirectToAction(MVC.Contact.EmailSent());
         }
 
         #endregion

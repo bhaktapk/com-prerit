@@ -36,11 +36,11 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
-            public readonly string ContentEncoding = ActionName.ContentEncoding;
-            public readonly string ContentType = ActionName.ContentType;
-            public readonly string Culture = ActionName.Culture;
-            public readonly string CurrentUrlEncoded = ActionName.CurrentUrlEncoded;
-            public readonly string Year = ActionName.Year;
+            public readonly string ContentEncoding = "ContentEncoding";
+            public readonly string ContentType = "ContentType";
+            public readonly string Culture = "Culture";
+            public readonly string CurrentUrlEncoded = "CurrentUrlEncoded";
+            public readonly string Year = "Year";
         }
 
 
