@@ -101,6 +101,8 @@
     <Compile Include="Infrastructure\ModelStateDictionaryExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Routing\RouteCollectionExtensions.cs" />
+    <Compile Include="Infrastructure\Routing\SeoRoute.cs" />
     <Compile Include="Infrastructure\StartupTasks\AutoMapperConfigurationStartupTask.cs">
       <SubType>Code</SubType>
     </Compile>
