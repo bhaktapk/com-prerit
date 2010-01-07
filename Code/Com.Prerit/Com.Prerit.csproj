@@ -270,8 +270,8 @@
   <ItemGroup>
     <None Include="content\resume\resume-of-prerit-bhakta.doc" />
     <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
-    <Content Include="Production-Web.config" />
-    <Content Include="Service-Unavailable-Web.config" />
+    <Content Include="ProductionWeb.config" />
+    <Content Include="ServiceUnavailableWeb.config" />
     <None Include="Templates\T4MVC.settings.t4" />
     <None Include="Templates\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

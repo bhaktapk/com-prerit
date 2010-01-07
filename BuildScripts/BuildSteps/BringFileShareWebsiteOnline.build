@@ -37,8 +37,8 @@
   </target>
 
   <target name="replace-web-config">
-    <move file="${dir.file-share-deployment}\temp-web.config"
-          tofile="${dir.file-share-deployment}\web.config"
+    <move file="${dir.file-share-deployment}\TempWeb.config"
+          tofile="${dir.file-share-deployment}\Web.config"
           overwrite="true" />
   </target>
 </project>
