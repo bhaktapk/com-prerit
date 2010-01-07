@@ -6,17 +6,11 @@ namespace Com.Prerit.Helpers.Contact
 {
     public static class ValidationSummaryHelper
     {
-        #region Constants
-
-        private const string _validationSummaryPartialName = "validation-summary";
-
-        #endregion
-
         #region Methods
 
         public static void RenderValidationSummary(this HtmlHelper helper)
         {
-            helper.RenderPartial(_validationSummaryPartialName);
+            helper.RenderPartial(MVC.Contact.Views.ValidationSummary);
         }
 
         public static void RepeatErrorMessages(this HtmlHelper helper, Action<ModelError> render)
