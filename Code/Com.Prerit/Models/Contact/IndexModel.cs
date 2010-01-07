@@ -1,7 +1,5 @@
 ﻿using Castle.Components.Validator;
 
-using Com.Prerit.Core;
-
 namespace Com.Prerit.Models.Contact
 {
     public class IndexModel
@@ -17,23 +15,6 @@ namespace Com.Prerit.Models.Contact
 
         [ValidateNonEmpty("A name is required")]
         public string Name { get; set; }
-
-        #endregion
-
-        #region Nested Type: PropertyName
-
-        public static class PropertyName
-        {
-            #region Fields
-
-            public static readonly string EmailAddress = Reflect<IndexModel>.GetProperty(i => i.EmailAddress).Name;
-
-            public static readonly string Message = Reflect<IndexModel>.GetProperty(i => i.Message).Name;
-
-            public static readonly string Name = Reflect<IndexModel>.GetProperty(i => i.Name).Name;
-
-            #endregion
-        }
 
         #endregion
     }
