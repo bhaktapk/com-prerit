@@ -30,7 +30,7 @@
         <include name="**" />
         <exclude name="bin\**" />
         <exclude name="error\service-unavailable.htm" />
-        <exclude name="web.config" />
+        <exclude name="Web.config" />
       </fileset>
     </copy>
   </target>
@@ -42,8 +42,8 @@
   </target>
 
   <target name="copy-temp-web-config">
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\web.config"
-          tofile="${dir.file-share-deployment}\temp-web.config"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\Web.config"
+          tofile="${dir.file-share-deployment}\TempWeb.config"
           overwrite="true" />
   </target>
 </project>

@@ -20,7 +20,7 @@
         <include name="**" />
         <exclude name="bin\${project.name.com-prerit}.dll" />
         <exclude name="error\service-unavailable.htm" />
-        <exclude name="web.config" />
+        <exclude name="Web.config" />
       </fileset>
     </delete>
   </target>
@@ -35,8 +35,8 @@
       </fileset>
     </copy>
 
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\service-unavailable-web.config"
-          tofile="${dir.file-share-deployment}\web.config"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\ServiceUnavailableWeb.config"
+          tofile="${dir.file-share-deployment}\Web.config"
           overwrite="true" />
   </target>
 </project>
