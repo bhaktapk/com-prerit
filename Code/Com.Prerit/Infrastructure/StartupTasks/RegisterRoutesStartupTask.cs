@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 
 using Com.Prerit.Controllers;
+using Com.Prerit.Infrastructure.Routing;
 
 namespace Com.Prerit.Infrastructure.StartupTasks
 {
@@ -19,7 +20,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             // NOTE: lack of default controller forces ASP.NET MVC to generate full url instead of just "/"
             // NOTE: default controller is handled via IIS's Url Rewriting module
-            RouteTable.Routes.MapRoute("default", "{controller}/{action}", new { action = SharedAction.Index });
+            RouteTable.Routes.MapSeoRoute("default", "{controller}/{action}", new { action = SharedAction.Index });
         }
 
         public void Reset()
