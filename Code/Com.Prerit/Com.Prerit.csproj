@@ -282,14 +282,14 @@
     <Content Include="production-web.config" />
     <Content Include="service-unavailable-web.config" />
     <Content Include="Views\About\Index.aspx" />
-    <Content Include="Views\Contact\Email-Sent.aspx" />
+    <Content Include="Views\Contact\EmailSent.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
-    <Content Include="Views\Contact\Validation-Summary.ascx" />
+    <Content Include="Views\Contact\ValidationSummary.ascx" />
     <Content Include="Views\Resume\Index.aspx" />
-    <Content Include="Views\Shared\Content-Encoding.ascx" />
-    <Content Include="Views\Shared\Content-Type.ascx" />
+    <Content Include="Views\Shared\ContentEncoding.ascx" />
+    <Content Include="Views\Shared\ContentType.ascx" />
     <Content Include="Views\Shared\Culture.ascx" />
-    <Content Include="Views\Shared\Current-Url-Encoded.ascx" />
+    <Content Include="Views\Shared\CurrentUrlEncoded.ascx" />
     <Content Include="Views\Shared\Year.ascx" />
     <Content Include="web.config" />
   </ItemGroup>

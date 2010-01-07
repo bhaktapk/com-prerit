@@ -36,14 +36,14 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
-            public readonly string Index = ActionName.Index;
+            public readonly string Index = "Index";
         }
 
 
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
-            public readonly string index = "~/views/about/index.aspx";
+            public readonly string Index = "~/Views/About/Index.aspx";
         }
     }
 

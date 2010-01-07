@@ -38,18 +38,18 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
-            public readonly string EmailSent = ActionName.EmailSent;
-            public readonly string Index = ActionName.Index;
-            public readonly string SendEmail = ActionName.SendEmail;
+            public readonly string EmailSent = "EmailSent";
+            public readonly string Index = "Index";
+            public readonly string SendEmail = "SendEmail";
         }
 
 
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
-            public readonly string email_sent = "~/views/contact/email-sent.aspx";
-            public readonly string index = "~/views/contact/index.aspx";
-            public readonly string validation_summary = "~/views/contact/validation-summary.ascx";
+            public readonly string EmailSent = "~/Views/Contact/EmailSent.aspx";
+            public readonly string Index = "~/Views/Contact/Index.aspx";
+            public readonly string ValidationSummary = "~/Views/Contact/ValidationSummary.ascx";
         }
     }
 
