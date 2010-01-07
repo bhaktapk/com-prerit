@@ -54,8 +54,8 @@
     </Compile>
     <Compile Include="Core\Reflect.cs" />
     <Compile Include="Core\StringEnum.cs" />
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Domain\Email.cs" />
@@ -262,27 +262,28 @@
     <Content Include="content\styles\resume\print.css" />
     <Content Include="content\styles\resume\screen.css" />
     <Content Include="content\styles\screen.css" />
-    <Content Include="default.aspx" />
     <Content Include="error\forbidden.htm" />
     <Content Include="error\generic-error.htm" />
     <Content Include="error\not-found.htm" />
     <Content Include="error\service-unavailable.htm" />
-    <Content Include="global.asax" />
-    <Content Include="google09f9576d4452b755.html" />
-    <Content Include="robots.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="content\resume\resume-of-prerit-bhakta.doc" />
     <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
+    <Content Include="Production-Web.config" />
+    <Content Include="Service-Unavailable-Web.config" />
     <None Include="Templates\T4MVC.settings.t4" />
     <None Include="Templates\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Web.config" />
+    <Content Include="Web.config" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="google09f9576d4452b755.html" />
+    <Content Include="robots.txt" />
     <Content Include="Views\Shared\Default.master" />
-    <Content Include="Views\web.config" />
-    <Content Include="production-web.config" />
-    <Content Include="service-unavailable-web.config" />
     <Content Include="Views\About\Index.aspx" />
     <Content Include="Views\Contact\EmailSent.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
@@ -293,7 +294,6 @@
     <Content Include="Views\Shared\Culture.ascx" />
     <Content Include="Views\Shared\CurrentUrlEncoded.ascx" />
     <Content Include="Views\Shared\Year.ascx" />
-    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
