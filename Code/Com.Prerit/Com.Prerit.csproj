@@ -259,10 +259,10 @@
     <Content Include="content\styles\resume\print.css" />
     <Content Include="content\styles\resume\screen.css" />
     <Content Include="content\styles\screen.css" />
-    <Content Include="error\forbidden.htm" />
-    <Content Include="error\generic-error.htm" />
-    <Content Include="error\not-found.htm" />
-    <Content Include="error\service-unavailable.htm" />
+    <Content Include="error-pages\forbidden.htm" />
+    <Content Include="error-pages\generic-error.htm" />
+    <Content Include="error-pages\not-found.htm" />
+    <Content Include="error-pages\service-unavailable.htm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="content\resume\resume-of-prerit-bhakta.doc" />
