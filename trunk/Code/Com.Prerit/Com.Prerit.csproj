@@ -202,6 +202,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\CommonServiceLocator.WindsorAdapter.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenAuth, Version=3.3.1.9337, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\DotNetOpenAuth.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah, Version=1.0.11211.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Elmah.dll</HintPath>
