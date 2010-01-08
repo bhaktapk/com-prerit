@@ -1,4 +1,3 @@
-<%@ Import Namespace="Com.Prerit.Helpers.Resume" %>
 <%@ Import Namespace="Com.Prerit.Models.Resume" %>
 <%@ Page Language="C#" MasterPageFile="~/views/shared/default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 
@@ -7,8 +6,8 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Resume of Prerit Bhakta" />
     <meta name="keywords" content="resume, Prerit Bhakta" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.PrintCss() %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.ScreenCss() %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.print_css) %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.screen_css) %>" media="projection, screen, tv" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
@@ -283,7 +282,7 @@
 <asp:Content ContentPlaceHolderID="sidebarContent" runat="server">
     <h2><span>Other Formats</span></h2>
     <ul>
-        <li><a href="<%= Url.ResumePdf() %>" title="Resume of Prerit Bhakta in Adobe PDF">Adobe PDF</a></li>
-        <li><a href="<%= Url.ResumeDoc() %>" title="Resume of Prerit Bhakta in Microsoft Word">Microsoft Word</a></li>
+        <li><a href="<%= Url.Content(Links.content.resume.resume_of_prerit_bhakta_pdf) %>" title="Resume of Prerit Bhakta in Adobe PDF">Adobe PDF</a></li>
+        <li><a href="<%= Url.Content(Links.content.resume.resume_of_prerit_bhakta_doc) %>" title="Resume of Prerit Bhakta in Microsoft Word">Microsoft Word</a></li>
     </ul>
 </asp:Content>

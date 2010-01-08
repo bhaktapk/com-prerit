@@ -71,9 +71,6 @@
     <Compile Include="Helpers\Contact\ValidationSummaryHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\Resume\IndexHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Helpers\Shared\SharedHelper.cs">
       <SubType>Code</SubType>
     </Compile>
