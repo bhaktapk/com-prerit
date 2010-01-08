@@ -20,8 +20,8 @@
     <meta name="author" content="Prerit Bhakta" />
     <meta name="copyright" content="Copyright &copy; <% Html.RenderAction(MVC.DefaultMaster.Actions.Year, MVC.DefaultMaster.Name); %> Prerit Bhakta" />
     <asp:ContentPlaceHolder ID="headContent" runat="server" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.PrintCss() %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.ScreenCss() %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.print_css) %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.screen_css) %>" media="projection, screen, tv" />
 </head>
 <body>
     <div id="header">
