@@ -24,6 +24,7 @@ public static class MVC {
     public static Com.Prerit.Controllers.ContactController Contact = new Com.Prerit.Controllers.T4MVC_ContactController();
     public static Com.Prerit.Controllers.DefaultMasterController DefaultMaster = new Com.Prerit.Controllers.T4MVC_DefaultMasterController();
     public static Com.Prerit.Controllers.ResumeController Resume = new Com.Prerit.Controllers.T4MVC_ResumeController();
+    public static Com.Prerit.Controllers.ResumeFormatsController ResumeFormats = new Com.Prerit.Controllers.T4MVC_ResumeFormatsController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -138,10 +139,19 @@ public class T4MVC_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResul
 
 namespace Links {
     [CompilerGenerated]
-    public static class scripts {
-        private const string URLPATH = "~/scripts";
+    public static class App_Data {
+        private const string URLPATH = "~/App_Data";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        [CompilerGenerated]
+        public static class ResumeFormats {
+            private const string URLPATH = "~/App_Data/ResumeFormats";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string AdobePdf_pdf = Url("AdobePdf.pdf");
+            public static readonly string MicrosoftWord_doc = Url("MicrosoftWord.doc");
+        }
+    
     }
 
     [CompilerGenerated]
@@ -169,15 +179,6 @@ namespace Links {
         }
     
         [CompilerGenerated]
-        public static class resume {
-            private const string URLPATH = "~/content/resume";
-            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string resume_of_prerit_bhakta_doc = Url("resume-of-prerit-bhakta.doc");
-            public static readonly string resume_of_prerit_bhakta_pdf = Url("resume-of-prerit-bhakta.pdf");
-        }
-    
-        [CompilerGenerated]
         public static class styles {
             private const string URLPATH = "~/content/styles";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -195,6 +196,13 @@ namespace Links {
             public static readonly string screen_css = Url("screen.css");
         }
     
+    }
+
+    [CompilerGenerated]
+    public static class scripts {
+        private const string URLPATH = "~/scripts";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
     }
 
 }

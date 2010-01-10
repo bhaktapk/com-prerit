@@ -282,7 +282,7 @@
 <asp:Content ContentPlaceHolderID="sidebarContent" runat="server">
     <h2><span>Other Formats</span></h2>
     <ul>
-        <li><a href="<%= Url.Content(Links.content.resume.resume_of_prerit_bhakta_pdf) %>" title="Resume of Prerit Bhakta in Adobe PDF">Adobe PDF</a></li>
-        <li><a href="<%= Url.Content(Links.content.resume.resume_of_prerit_bhakta_doc) %>" title="Resume of Prerit Bhakta in Microsoft Word">Microsoft Word</a></li>
+        <li><a href="<%= Url.Action(MVC.ResumeFormats.AdobePdf()) %>" title="Resume of Prerit Bhakta in Adobe PDF format">Adobe PDF</a></li>
+        <li><a href="<%= Url.Action(MVC.ResumeFormats.MicrosoftWord()) %>" title="Resume of Prerit Bhakta in Microsoft Word format">Microsoft Word</a></li>
     </ul>
 </asp:Content>
