@@ -40,6 +40,8 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\ResumeFormatsController.cs" />
+    <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -161,6 +163,9 @@
     <Compile Include="Templates\ResumeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Templates\ResumeFormatsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Templates\SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -266,10 +271,10 @@
     <Content Include="error-pages\service-unavailable.htm" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="content\resume\resume-of-prerit-bhakta.doc" />
-    <None Include="content\resume\resume-of-prerit-bhakta.pdf" />
     <Content Include="ProductionWeb.config" />
     <Content Include="ServiceUnavailableWeb.config" />
+    <None Include="App_Data\ResumeFormats\AdobePdf.pdf" />
+    <None Include="App_Data\ResumeFormats\MicrosoftWord.doc" />
     <None Include="Templates\T4MVC.settings.t4" />
     <None Include="Templates\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
