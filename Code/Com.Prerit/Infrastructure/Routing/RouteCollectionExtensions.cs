@@ -45,11 +45,7 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("url");
             }
 
-            var route = new SeoRoute(url, new MvcRouteHandler())
-                            {
-                                Defaults = new RouteValueDictionary(defaults),
-                                Constraints = new RouteValueDictionary(constraints)
-                            };
+            var route = new SeoRoute(url, new RouteValueDictionary(defaults), new RouteValueDictionary(constraints), new MvcRouteHandler());
 
             if (namespaces != null && namespaces.Length > 0)
             {
