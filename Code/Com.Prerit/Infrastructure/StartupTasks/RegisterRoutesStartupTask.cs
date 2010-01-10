@@ -12,8 +12,6 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public void Execute()
         {
-            RouteTable.Routes.IgnoreRoute("errors/{*pathInfo}");
-
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             RouteTable.Routes.IgnoreRoute("{controller}/{*pathInfo}", new { controller = MVC.DefaultMaster.Name });
