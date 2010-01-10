@@ -8,6 +8,15 @@ namespace Com.Prerit.Infrastructure.Routing
 {
     public class SeoRoute : Route
     {
+        #region Fields
+
+        private static readonly string[] RouteParams = new[]
+                                                           {
+                                                               "action", "controller"
+                                                           };
+
+        #endregion
+
         #region Constructors
 
         public SeoRoute(string url, IRouteHandler routeHandler)
@@ -34,36 +43,35 @@ namespace Com.Prerit.Infrastructure.Routing
 
         #region Methods
 
-        private void DashifyUrlParams(RouteValueDictionary values)
+        private void DashifyRouteParamValues(RouteValueDictionary routeValueDictionary)
         {
-            if (values == null)
+            foreach (string key in GetDashableRouteParams(routeValueDictionary))
             {
-                return;
-            }
-
-            foreach (string key in GetUrlParamKeysWithSafeValues(values))
-            {
-                values[key] = GetDashedValue((string) values[key]);
+                routeValueDictionary[key] = GetDashedValue((string) routeValueDictionary[key]);
             }
         }
 
-        private static string GetDashedValue(string val)
+        private string[] GetDashableRouteParams(RouteValueDictionary routeValueDictionary)
         {
-            if (string.IsNullOrEmpty(val))
-            {
-                return "";
-            }
+            return (from key in routeValueDictionary.Keys
+                    where
+                        RouteParams.Contains(key, StringComparer.InvariantCultureIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
+                        !((string) routeValueDictionary[key]).Contains('-')
+                    select key).ToArray();
+        }
 
+        private static string GetDashedValue(string value)
+        {
             var seoChars = new List<char>();
 
-            for (int i = 0; i < val.Length; i++)
+            for (int i = 0; i < value.Length; i++)
             {
-                if (i != 0 && char.IsUpper(val[i]))
+                if (i != 0 && char.IsUpper(value[i]))
                 {
                     seoChars.Add('-');
                 }
 
-                seoChars.Add(val[i]);
+                seoChars.Add(value[i]);
             }
 
             return new string(seoChars.ToArray());
@@ -73,62 +81,68 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             RouteData routeData = base.GetRouteData(httpContext);
 
-            UndashifyUrlParams(routeData);
+            if (routeData != null)
+            {
+                UndashifyRouteParamValues(routeData);
+            }
 
             return routeData;
         }
 
-        private static string GetUndashedValue(string val)
+        private string[] GetUndashableRouteParams(RouteValueDictionary routeValueDictionary)
         {
-            if (string.IsNullOrEmpty(val))
-            {
-                return "";
-            }
-
-            return val.Replace("-", "");
+            return (from key in routeValueDictionary.Keys
+                    where
+                        RouteParams.Contains(key, StringComparer.InvariantCultureIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
+                        ((string) routeValueDictionary[key]).Contains('-')
+                    select key).ToArray();
         }
 
-        private string[] GetUrlParamKeysWithSafeValues(RouteValueDictionary routeValueDictionary)
+        private static string GetUndashedValue(string value)
         {
-            var urlParams = new[]
-                                {
-                                    "action", "controller"
-                                };
-
-            return (from key in routeValueDictionary.Keys
-                    where urlParams.Contains(key, StringComparer.InvariantCultureIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string)
-                    select key).ToArray();
+            return value.Replace("-", "");
         }
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
-            DashifyUrlParams(values);
+            if (Defaults != null)
+            {
+                DashifyRouteParamValues(Defaults);
+            }
+
+            if (values != null)
+            {
+                DashifyRouteParamValues(values);
+            }
 
             VirtualPathData path = base.GetVirtualPath(requestContext, values);
 
-            LowercaseVirtualPath(path);
+            if (path != null)
+            {
+                LowercaseVirtualPath(path);
+            }
 
             return path;
         }
 
         private void LowercaseVirtualPath(VirtualPathData path)
         {
-            if (path != null)
+            path.VirtualPath = path.VirtualPath.ToLowerInvariant();
+        }
+
+        private void UndashifyRouteParamValues(RouteValueDictionary routeValueDictionary)
+        {
+            foreach (string key in GetUndashableRouteParams(routeValueDictionary))
             {
-                path.VirtualPath = path.VirtualPath.ToLowerInvariant();
+                routeValueDictionary[key] = GetUndashedValue((string) routeValueDictionary[key]);
             }
         }
 
-        private void UndashifyUrlParams(RouteData routeData)
+        private void UndashifyRouteParamValues(RouteData routeData)
         {
-            if (routeData == null || routeData.Values == null)
+            if (routeData.Values != null)
             {
-                return;
-            }
-
-            foreach (string key in GetUrlParamKeysWithSafeValues(routeData.Values))
-            {
-                routeData.Values[key] = GetUndashedValue((string) routeData.Values[key]);
+                UndashifyRouteParamValues(routeData.Values);
             }
         }
 
