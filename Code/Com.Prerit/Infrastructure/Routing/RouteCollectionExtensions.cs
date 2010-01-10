@@ -8,6 +8,29 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Methods
 
+        public static void IgnoreSeoRoute(this RouteCollection routes, string url)
+        {
+            routes.IgnoreSeoRoute(url, null);
+        }
+
+        public static void IgnoreSeoRoute(this RouteCollection routes, string url, object constraints)
+        {
+            if (routes == null)
+            {
+                throw new ArgumentNullException("routes");
+            }
+
+            if (url == null)
+            {
+                throw new ArgumentNullException("url");
+            }
+
+            routes.Add(new IgnoreSeoRoute(url)
+                           {
+                               Constraints = new RouteValueDictionary(constraints)
+                           });
+        }
+
         public static void MapSeoRoute(this RouteCollection routes, string name, string url)
         {
             routes.MapSeoRoute(name, url, null, null);
