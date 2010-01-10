@@ -79,11 +79,21 @@ namespace Com.Prerit.Infrastructure.Routing
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
+            if (Defaults != null)
+            {
+                DashifyRouteParamValues(Defaults);
+            }
+
+            if (Constraints != null)
+            {
+                DashifyRouteParamValues(Constraints);
+            }
+
             RouteData routeData = base.GetRouteData(httpContext);
 
-            if (routeData != null)
+            if (routeData != null && routeData.Values != null)
             {
-                UndashifyRouteParamValues(routeData);
+                UndashifyRouteParamValues(routeData.Values);
             }
 
             return routeData;
@@ -108,6 +118,11 @@ namespace Com.Prerit.Infrastructure.Routing
             if (Defaults != null)
             {
                 DashifyRouteParamValues(Defaults);
+            }
+
+            if (Constraints != null)
+            {
+                DashifyRouteParamValues(Constraints);
             }
 
             if (values != null)
@@ -135,14 +150,6 @@ namespace Com.Prerit.Infrastructure.Routing
             foreach (string key in GetUndashableRouteParams(routeValueDictionary))
             {
                 routeValueDictionary[key] = GetUndashedValue((string) routeValueDictionary[key]);
-            }
-        }
-
-        private void UndashifyRouteParamValues(RouteData routeData)
-        {
-            if (routeData.Values != null)
-            {
-                UndashifyRouteParamValues(routeData.Values);
             }
         }
 
