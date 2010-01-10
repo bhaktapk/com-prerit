@@ -85,6 +85,7 @@
     <Compile Include="Infrastructure\HttpModules\ServiceUnavailableModule.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Routing\IgnoreSeoRoute.cs" />
     <Compile Include="MapCreators\IMapCreator.cs">
       <SubType>Code</SubType>
     </Compile>
