@@ -285,5 +285,6 @@
     <ul>
         <li><a href="<%= Url.Action(MVC.ResumeFormats.AdobePdf()) %>" title="Resume of Prerit Bhakta in Adobe PDF format">Adobe PDF</a></li>
         <li><a href="<%= Url.Action(MVC.ResumeFormats.MicrosoftWord()) %>" title="Resume of Prerit Bhakta in Microsoft Word format">Microsoft Word</a></li>
+        <li><a href="javascript:window.print();" title="Resume of Prerit Bhakta in a web printable format">Web Printable</a></li>
     </ul>
 </asp:Content>
