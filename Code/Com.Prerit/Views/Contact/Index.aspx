@@ -8,6 +8,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Contact Prerit Bhakta Via Email" />
     <meta name="keywords" content="contact, Prerit Bhakta, email" />
+    <link rel="canonical" href="<%= Url.Action(MVC.Contact.Index()) %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
