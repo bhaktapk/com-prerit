@@ -6,7 +6,7 @@ namespace Com.Prerit.Helpers.Contact
     {
         #region Methods
 
-        public static void RenderPartialValidationSummary(this HtmlHelper helper)
+        public static void RenderValidationSummaryPartial(this HtmlHelper helper)
         {
             if (!helper.ViewData.ModelState.IsValid)
             {
