@@ -6,6 +6,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Resume of Prerit Bhakta" />
     <meta name="keywords" content="resume, Prerit Bhakta" />
+    <link rel="canonical" href="<%= Url.Action(MVC.Resume.Index()) %>" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.print_css) %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.screen_css) %>" media="projection, screen, tv" />
 </asp:Content>
