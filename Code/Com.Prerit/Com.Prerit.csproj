@@ -67,6 +67,7 @@
     <Compile Include="Filters\TempDataToModelAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Filters\XrdsLocationAttribute.cs" />
     <Compile Include="Helpers\Contact\IndexHelper.cs">
       <SubType>Code</SubType>
     </Compile>
