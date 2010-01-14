@@ -18,10 +18,12 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             // NOTE: lack of default controller forces ASP.NET MVC to generate full url instead of just "/"
             // NOTE: default controller is handled via IIS's Url Rewriting module
-            RouteTable.Routes.MapSeoRoute("root routes",
+            RouteTable.Routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
                                           new { action = SharedAction.Index },
                                           new { controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.Resume.Name) });
+
+            RouteTable.Routes.MapSeoRoute("root routes without default action", "{controller}/{action}", null, new { controller = MVC.OpenId.Name });
 
             RouteTable.Routes.MapSeoRoute("resume formats route", "resume/formats/{action}", new { controller = MVC.ResumeFormats.Name });
         }

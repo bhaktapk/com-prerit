@@ -40,6 +40,7 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
@@ -133,6 +134,7 @@
     <Compile Include="Models\Contact\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\OpenId\XrdsModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -161,6 +163,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\DefaultMasterController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\OpenIdController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\ResumeController.generated.cs">
@@ -283,6 +288,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
