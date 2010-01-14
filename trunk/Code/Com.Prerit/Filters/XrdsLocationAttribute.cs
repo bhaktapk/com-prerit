@@ -1,35 +1,16 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Com.Prerit.Filters
 {
     public class XrdsLocationAttribute : ActionFilterAttribute
     {
-        #region Fields
-
-        private readonly string _path;
-
-        #endregion
-
-        #region Constructors
-
-        public XrdsLocationAttribute(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                throw new ArgumentNullException("path");
-            }
-
-            _path = path;
-        }
-
-        #endregion
-
         #region Methods
 
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            filterContext.HttpContext.Response.AppendHeader("x-xrds-location", _path);
+            var urlHelper = new UrlHelper(filterContext.RequestContext);
+
+            filterContext.HttpContext.Response.AppendHeader("x-xrds-location", urlHelper.Action(MVC.OpenId.Xrds()));
 
             base.OnResultExecuted(filterContext);
         }
