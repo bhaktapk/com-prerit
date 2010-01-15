@@ -130,6 +130,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Accounts\LoggedInModel.cs" />
+    <Compile Include="Models\Accounts\LoginModel.cs" />
     <Compile Include="Models\Accounts\NotLoggedInModel.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs">
       <SubType>Code</SubType>
@@ -295,6 +296,7 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <Content Include="Views\Accounts\LoggedIn.ascx" />
+    <Content Include="Views\Accounts\Login.aspx" />
     <Content Include="Views\Accounts\NotLoggedIn.ascx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />

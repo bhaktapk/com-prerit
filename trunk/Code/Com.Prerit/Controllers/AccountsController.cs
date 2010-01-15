@@ -8,6 +8,13 @@ namespace Com.Prerit.Controllers
     {
         #region Methods
 
+        public virtual ActionResult Login()
+        {
+            var model = new LoginModel();
+
+            return View(model);
+        }
+
         public virtual ActionResult LoginStatus()
         {
             if (User.Identity.IsAuthenticated)
