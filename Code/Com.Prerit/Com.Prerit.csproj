@@ -37,6 +37,7 @@
     <Compile Include="Controllers\AboutController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -128,6 +129,8 @@
     <Compile Include="Models\About\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Accounts\LoggedInModel.cs" />
+    <Compile Include="Models\Accounts\NotLoggedInModel.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -157,6 +160,9 @@
     <Compile Include="Services\EmailSenderService.cs" />
     <Compile Include="Services\IEmailSenderService.cs" />
     <Compile Include="Templates\AboutController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\AccountsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\ContactController.generated.cs">
@@ -288,6 +294,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Accounts\LoggedIn.ascx" />
+    <Content Include="Views\Accounts\NotLoggedIn.ascx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />
     <Content Include="Web.config" />

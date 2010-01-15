@@ -21,6 +21,7 @@ using T4MVC;
 [CompilerGenerated]
 public static class MVC {
     public static Com.Prerit.Controllers.AboutController About = new Com.Prerit.Controllers.T4MVC_AboutController();
+    public static Com.Prerit.Controllers.AccountsController Accounts = new Com.Prerit.Controllers.T4MVC_AccountsController();
     public static Com.Prerit.Controllers.ContactController Contact = new Com.Prerit.Controllers.T4MVC_ContactController();
     public static Com.Prerit.Controllers.DefaultMasterController DefaultMaster = new Com.Prerit.Controllers.T4MVC_DefaultMasterController();
     public static Com.Prerit.Controllers.OpenIdController OpenId = new Com.Prerit.Controllers.T4MVC_OpenIdController();
