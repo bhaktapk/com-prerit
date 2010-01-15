@@ -36,6 +36,7 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
+            public readonly string Login = "Login";
             public readonly string LoginStatus = "LoginStatus";
         }
 
@@ -44,6 +45,7 @@ namespace Com.Prerit.Controllers {
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
             public readonly string LoggedIn = "~/Views/Accounts/LoggedIn.ascx";
+            public readonly string Login = "~/Views/Accounts/Login.aspx";
             public readonly string NotLoggedIn = "~/Views/Accounts/NotLoggedIn.ascx";
         }
     }
@@ -51,6 +53,11 @@ namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public class T4MVC_AccountsController: Com.Prerit.Controllers.AccountsController {
         public T4MVC_AccountsController() : base(Dummy.Instance) { }
+
+        public override System.Web.Mvc.ActionResult Login() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Login);
+            return callInfo;
+        }
 
         public override System.Web.Mvc.ActionResult LoginStatus() {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.LoginStatus);
