@@ -1,4 +1,5 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<Com.Prerit.Models.Accounts.LoginModel>" %>
+<%@ Import Namespace="Com.Prerit.Models.Accounts" %>
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LoginModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Login</asp:Content>
 
