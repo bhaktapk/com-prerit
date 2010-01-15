@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using System.Web.Security;
 
 using Com.Prerit.Models.Accounts;
 
@@ -8,6 +9,7 @@ namespace Com.Prerit.Controllers
     {
         #region Methods
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Login()
         {
             var model = new LoginModel();
@@ -15,6 +17,7 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult LoginStatus()
         {
             if (User.Identity.IsAuthenticated)
@@ -29,6 +32,19 @@ namespace Com.Prerit.Controllers
 
                 return View(MVC.Accounts.Views.NotLoggedIn, model);
             }
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public virtual ActionResult Logout(string returnUrl)
+        {
+            FormsAuthentication.SignOut();
+
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+
+            return Redirect(FormsAuthentication.DefaultUrl);
         }
 
         #endregion
