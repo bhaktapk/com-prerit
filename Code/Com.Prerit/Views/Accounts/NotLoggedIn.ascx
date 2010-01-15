@@ -3,5 +3,6 @@
 
 <h2><span>Login</span></h2>
 <p>
-    Try <a href="<%= Url.Action(MVC.Accounts.Login()) %>" title="Login to prerit.com">logging in</a> to get access to the photo albums! Don't worry about not having an account with this site. Just try it.
+    Try <a href="<%= Url.Action(MVC.Accounts.Login()) %>" title="Login">logging in</a> to get access to the photo albums! Don't worry about not
+    having an account with this site. Just try it.
 </p>
