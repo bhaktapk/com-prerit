@@ -38,6 +38,7 @@
     <div id="content">
         <div id="sidebar">
             <asp:ContentPlaceHolder ID="sidebarContent" runat="server" />
+            <% Html.RenderAction(MVC.Accounts.Actions.LoginStatus, MVC.Accounts.Name); %>
         </div>
         <div id="mainbar">
             <asp:ContentPlaceHolder ID="mainbarContent" runat="server" />
