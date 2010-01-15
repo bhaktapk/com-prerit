@@ -10,6 +10,7 @@ namespace Com.Prerit.Controllers
     {
         #region Methods
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult ContentEncoding()
         {
             var model = new ContentEncodingModel { ContentEncoding = Response.ContentEncoding.WebName };
@@ -17,6 +18,7 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult ContentType()
         {
             var model = new ContentTypeModel { ContentType = Response.ContentType };
@@ -24,6 +26,7 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Culture()
         {
             var model = new CultureModel { Culture = CultureInfo.CurrentCulture.Name.ToLowerInvariant() };
@@ -31,6 +34,7 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult CurrentUrlEncoded()
         {
             var model = new CurrentUrlEncodedModel { CurrentUrlEncoded = Request.Url.AbsoluteUri };
@@ -38,6 +42,7 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Year()
         {
             var model = new YearModel { Year = DateTime.Today.Year };
