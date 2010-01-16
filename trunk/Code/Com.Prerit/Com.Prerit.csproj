@@ -129,6 +129,7 @@
     <Compile Include="Models\About\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Accounts\LoggingInModel.cs" />
     <Compile Include="Models\Accounts\LoggedInModel.cs" />
     <Compile Include="Models\Accounts\LoginModel.cs" />
     <Compile Include="Models\Accounts\NotLoggedInModel.cs" />
@@ -295,6 +296,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Accounts\LoggingIn.ascx" />
     <Content Include="Views\Accounts\LoggedIn.ascx" />
     <Content Include="Views\Accounts\Login.aspx" />
     <Content Include="Views\Accounts\NotLoggedIn.ascx" />
