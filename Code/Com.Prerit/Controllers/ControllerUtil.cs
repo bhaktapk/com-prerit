@@ -1,3 +1,4 @@
+using System;
 using System.Web.Mvc;
 
 using Castle.Components.Validator;
@@ -14,6 +15,15 @@ namespace Com.Prerit.Controllers
             {
                 modelState.AddModelError(errorMessage, errorMessage);
             }
+        }
+
+        public static bool IsLoginRequest(Uri requestUrl, UrlHelper urlHelper)
+        {
+            string relativeLoginUrl = urlHelper.Action(MVC.Accounts.Login());
+
+            var absoluteLoginUrl = new Uri(requestUrl, relativeLoginUrl);
+
+            return string.Compare(requestUrl.LocalPath, absoluteLoginUrl.LocalPath, StringComparison.InvariantCultureIgnoreCase) == 0;
         }
 
         #endregion

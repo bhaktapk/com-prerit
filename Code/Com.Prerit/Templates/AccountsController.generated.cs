@@ -50,6 +50,7 @@ namespace Com.Prerit.Controllers {
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
             public readonly string LoggedIn = "~/Views/Accounts/LoggedIn.ascx";
+            public readonly string LoggingIn = "~/Views/Accounts/LoggingIn.ascx";
             public readonly string Login = "~/Views/Accounts/Login.aspx";
             public readonly string NotLoggedIn = "~/Views/Accounts/NotLoggedIn.ascx";
         }
