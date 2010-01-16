@@ -1,13 +1,18 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-using Com.Prerit.Controllers;
 using Com.Prerit.Infrastructure.Routing;
 
 namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public class RegisterRoutesStartupTask : IStartupTask
     {
+        #region Constants
+
+        private const string DefaultAction = "Index";
+
+        #endregion
+
         #region Methods
 
         public void Execute()
@@ -20,7 +25,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             // NOTE: default controller is handled via IIS's Url Rewriting module
             RouteTable.Routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
-                                          new { action = SharedAction.Index },
+                                          new { action = DefaultAction },
                                           new { controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.Resume.Name) });
 
             RouteTable.Routes.MapSeoRoute("root routes without default action", "{controller}/{action}", null, new { controller = MVC.OpenId.Name });
