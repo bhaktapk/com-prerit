@@ -3,6 +3,6 @@
 
 <h2><span>Welcome Back</span></h2>
 <p>
-    You're already logged in. <a href="<%= Url.Action(MVC.Accounts.Logout(Request.Url.PathAndQuery)) %>" title="Logout">Logout</a> if you want to
-    login with a different account.
+    You're already logged in. <a href="<%= Url.Action(MVC.Accounts.Logout(Request.Url.PathAndQuery)) %>" title="Logout">Log out</a> if you want to
+    log in with a different account.
 </p>
