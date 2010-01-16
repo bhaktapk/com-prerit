@@ -5,7 +5,6 @@ using Castle.MicroKernel.Registration;
 
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
-using Com.Prerit.Services;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
