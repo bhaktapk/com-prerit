@@ -1,4 +1,3 @@
-using System;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -27,7 +26,7 @@ namespace Com.Prerit.Controllers
 
                 return View(MVC.Accounts.Views.LoggedIn, model);
             }
-            
+
             if (ControllerUtil.IsLoginRequest(Request.Url, Url))
             {
                 var model = new LoggingInModel();
