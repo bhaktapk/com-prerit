@@ -3,5 +3,5 @@
 
 <h2><span>Open ID</span></h2>
 <p>
-    <a href="http://openid.net/get-an-openid/what-is-openid" title="What is OpenID?">OpenID</a> is a safe an secure way to login. It's the future of the web.
+    <a href="http://openid.net/get-an-openid/what-is-openid" title="What is OpenID?">OpenID</a> is a safe an secure way to log in. It's the future of the web.
 </p>
