@@ -10,9 +10,9 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public virtual ActionResult Login()
+        public virtual ActionResult Login(string returnUrl)
         {
-            var model = new LoginModel();
+            var model = new LoginModel { ReturnUrl = returnUrl };
 
             return View(model);
         }

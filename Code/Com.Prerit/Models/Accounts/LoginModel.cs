@@ -2,5 +2,10 @@
 {
     public class LoginModel
     {
+        #region Properties
+
+        public string ReturnUrl { get; set; }
+
+        #endregion
     }
 }
