@@ -314,6 +314,15 @@ img
     border: 1px solid #eee;
 }
 
+#sidebar blockquote,
+#sidebar fieldset,
+#sidebar p,
+#sidebar ul
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 #sidebar fieldset,
 #sidebar li,
 #sidebar p
