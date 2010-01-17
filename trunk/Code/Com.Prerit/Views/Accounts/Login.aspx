@@ -6,7 +6,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Log in to get access to the photo albums" />
     <meta name="keywords" content="login" />
-    <link rel="canonical" href="<%= Url.Action(MVC.Accounts.Login()) %>" />
+    <link rel="canonical" href="<%= Url.Action(MVC.Accounts.Login(null)) %>" />
     <link rel="stylesheet" href="<%= Links.content.styles.openid_jquery.openid_jquery_css %>" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="<%= Links.scripts.openid_jquery.openid_jquery_js %>"></script>

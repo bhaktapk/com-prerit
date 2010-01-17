@@ -30,6 +30,10 @@ namespace Com.Prerit.Controllers {
         }
 
         [NonAction]
+        public System.Web.Mvc.ActionResult Login() {
+            return new T4MVC_ActionResult(Area, Name, Actions.Login);
+        }
+        [NonAction]
         public System.Web.Mvc.ActionResult Logout() {
             return new T4MVC_ActionResult(Area, Name, Actions.Logout);
         }
@@ -60,8 +64,9 @@ namespace Com.Prerit.Controllers {
     public class T4MVC_AccountsController: Com.Prerit.Controllers.AccountsController {
         public T4MVC_AccountsController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Login() {
+        public override System.Web.Mvc.ActionResult Login(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Login);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }
 
