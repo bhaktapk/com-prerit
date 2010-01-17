@@ -31,7 +31,7 @@
         <div id="openid_btns">
         </div>
     </div>
-    <form id="openid_form" action="" method="post">
+    <% using (Html.BeginForm(MVC.OpenId.CreateRequest(Model.ReturnUrl), FormMethod.Post, new { id = "openid_form" })) { %>
         <div id="openid_input_area">
             <fieldset>
                 <input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
@@ -39,5 +39,5 @@
                 <input id="openid_submit" class="button" type="submit" value="Log In" />
             </fieldset>
         </div>
-    </form>
+    <% } %>
 </asp:Content>
