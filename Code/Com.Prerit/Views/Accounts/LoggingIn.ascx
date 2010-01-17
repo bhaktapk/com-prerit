@@ -12,5 +12,5 @@
     It's an open standard.
 </p>
 <p>
-    <a href="http://openid.net/get-an-openid/what-is-openid" title="What is OpenID?">Learn more.</a>
+    <a href="http://openid.net/get-an-openid/what-is-openid/" title="What is OpenID?">Learn more.</a>
 </p>
