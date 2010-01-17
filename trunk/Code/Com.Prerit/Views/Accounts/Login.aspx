@@ -21,8 +21,9 @@
     <h1><span>Log In With OpenID</span></h1>
     <noscript>
         <p>
-            OpenID is service that allows you to log-on to many different websites using a single indentity. Find out <a href="http://openid.net/what/">
-            more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.
+            OpenID is service that allows you to log-on to many different websites using a single indentity. <a href="http://openid.net/get-an-openid/what-is-openid/"
+            title="What is OpenID?">Find out more</a> about OpenID and how to <a href="http://openid.net/get-an-openid/" title="Get an OpenID">get an OpenID
+            enabled account</a>.
         </p>
     </noscript>
     <div id="openid_choice">
@@ -39,4 +40,4 @@
             </fieldset>
         </div>
     </form>
-</asp:Content>
+</asp:Content>/asp:Content>
