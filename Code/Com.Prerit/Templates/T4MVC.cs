@@ -174,6 +174,28 @@ namespace Links {
             public static readonly string logo_fullahead_gif = Url("logo-fullahead.gif");
             public static readonly string logo_greenery_gif = Url("logo-greenery.gif");
             public static readonly string menu_tab_gif = Url("menu-tab.gif");
+            [CompilerGenerated]
+            public static class openid_jquery {
+                private const string URLPATH = "~/content/images/openid-jquery";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string aol_gif = Url("aol.gif");
+                public static readonly string blogger_ico = Url("blogger.ico");
+                public static readonly string claimid_ico = Url("claimid.ico");
+                public static readonly string facebook_gif = Url("facebook.gif");
+                public static readonly string flickr_ico = Url("flickr.ico");
+                public static readonly string google_gif = Url("google.gif");
+                public static readonly string livejournal_ico = Url("livejournal.ico");
+                public static readonly string myopenid_ico = Url("myopenid.ico");
+                public static readonly string openid_inputicon_gif = Url("openid-inputicon.gif");
+                public static readonly string openid_gif = Url("openid.gif");
+                public static readonly string technorati_ico = Url("technorati.ico");
+                public static readonly string verisign_ico = Url("verisign.ico");
+                public static readonly string vidoop_ico = Url("vidoop.ico");
+                public static readonly string wordpress_ico = Url("wordpress.ico");
+                public static readonly string yahoo_gif = Url("yahoo.gif");
+            }
+        
             public static readonly string rounded_bl_gif = Url("rounded-bl.gif");
             public static readonly string rounded_br_gif = Url("rounded-br.gif");
             public static readonly string rounded_tl_gif = Url("rounded-tl.gif");
@@ -185,6 +207,14 @@ namespace Links {
             private const string URLPATH = "~/content/styles";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [CompilerGenerated]
+            public static class openid_jquery {
+                private const string URLPATH = "~/content/styles/openid-jquery";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string openid_jquery_css = Url("openid-jquery.css");
+            }
+        
             public static readonly string print_css = Url("print.css");
             [CompilerGenerated]
             public static class resume {
@@ -205,6 +235,14 @@ namespace Links {
         private const string URLPATH = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        [CompilerGenerated]
+        public static class openid_jquery {
+            private const string URLPATH = "~/scripts/openid-jquery";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string openid_jquery_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/openid-jquery.min.js") ? Url("openid-jquery.min.js") : Url("openid-jquery.js");
+        }
+    
     }
 
 }
