@@ -29,6 +29,10 @@ namespace Com.Prerit.Controllers {
             return RedirectToRoute(callInfo.RouteValues);
         }
 
+        [NonAction]
+        public System.Web.Mvc.ActionResult CreateRequest() {
+            return new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
+        }
 
         public readonly string Area = "";
         public readonly string Name = "OpenId";
@@ -36,6 +40,7 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
+            public readonly string CreateRequest = "CreateRequest";
             public readonly string Xrds = "Xrds";
         }
 
@@ -50,6 +55,12 @@ namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public class T4MVC_OpenIdController: Com.Prerit.Controllers.OpenIdController {
         public T4MVC_OpenIdController() : base(Dummy.Instance) { }
+
+        public override System.Web.Mvc.ActionResult CreateRequest(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
 
         public override System.Web.Mvc.ActionResult Xrds() {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Xrds);
