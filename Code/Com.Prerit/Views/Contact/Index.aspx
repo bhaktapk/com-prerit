@@ -13,10 +13,10 @@
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
     <h1><span>Contact Via Email</span></h1>
+    <% Html.RenderValidationSummaryPartial(); %>
     <p>
         Emails will generally be read during normal business hours in the Central Time Zone. Please consider these times when anticipating your reply.
     </p>
-    <% Html.RenderValidationSummaryPartial(); %>
     <% using (Html.BeginForm(MVC.Contact.SendEmail(), FormMethod.Post)) { %>
         <fieldset>
             <label for="<%= IndexModel.PropertyName.Name %>">Name:</label>
