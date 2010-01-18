@@ -1,4 +1,5 @@
 <%@ Import Namespace="Com.Prerit.Core" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
 <%@ Import Namespace="Com.Prerit.Models.OpenId" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LoginModel>" %>
@@ -21,6 +22,7 @@
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
     <h1><span>Log In With OpenID</span></h1>
+    <% Html.RenderValidationSummaryPartial(); %>
     <noscript>
         <p>
             OpenID is service that allows you to log-on to many different websites using a single indentity. <a href="http://openid.net/get-an-openid/what-is-openid/"
