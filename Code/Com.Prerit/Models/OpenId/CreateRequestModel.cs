@@ -9,9 +9,9 @@ namespace Com.Prerit.Models.OpenId
         #region Properties
 
         [ValidateNonEmpty("An OpenID identifier is required")]
-        public string openid_identifier { get; set; }
+        public string OpenIdIdentifier { get; set; }
 
-        public string openid_username { get; set; }
+        public string OpenIdUsername { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -23,9 +23,9 @@ namespace Com.Prerit.Models.OpenId
         {
             #region Fields
 
-            public static readonly string openid_identifier = Reflect<CreateRequestModel>.GetProperty(i => i.openid_identifier).Name;
+            public static readonly string OpenIdIdentifier = Reflect<CreateRequestModel>.GetProperty(i => i.OpenIdIdentifier).Name;
 
-            public static readonly string openid_username = Reflect<CreateRequestModel>.GetProperty(i => i.openid_username).Name;
+            public static readonly string OpenIdUsername = Reflect<CreateRequestModel>.GetProperty(i => i.OpenIdUsername).Name;
 
             public static readonly string ReturnUrl = Reflect<CreateRequestModel>.GetProperty(i => i.ReturnUrl).Name;
 

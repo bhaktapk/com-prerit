@@ -14,7 +14,7 @@
     <script type="text/javascript" src="<%= Links.scripts.openid_jquery.openid_jquery_js %>"></script>
     <script type="text/javascript">
         $(function() {
-            openid.init("<%= CreateRequestModel.PropertyName.openid_identifier %>", "<%= CreateRequestModel.PropertyName.openid_username %>");
+            openid.init("<%= CreateRequestModel.PropertyName.OpenIdIdentifier %>", "<%= CreateRequestModel.PropertyName.OpenIdUsername %>");
         });
 	</script>
 </asp:Content>
@@ -37,7 +37,7 @@
         <%= Html.Hidden(CreateRequestModel.PropertyName.ReturnUrl, Model.ReturnUrl) %>
         <div id="openid_input_area">
             <fieldset>
-                <%= Html.TextBox(CreateRequestModel.PropertyName.openid_identifier, "http://") %>
+                <%= Html.TextBox(CreateRequestModel.PropertyName.OpenIdIdentifier, "http://") %>
                 <br />
                 <input id="openid_submit" class="button" type="submit" value="Log In" />
             </fieldset>
