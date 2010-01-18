@@ -136,6 +136,7 @@
     <Compile Include="Models\Contact\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\OpenId\CreateRequestModel.cs" />
     <Compile Include="Models\OpenId\XrdsModel.cs" />
     <Compile Include="Models\Resume\IndexModel.cs">
       <SubType>Code</SubType>

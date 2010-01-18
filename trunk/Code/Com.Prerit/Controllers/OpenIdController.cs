@@ -1,7 +1,9 @@
-using System;
 using System.Web.Mvc;
 
+using Com.Prerit.Filters;
 using Com.Prerit.Models.OpenId;
+
+using MvcContrib.Filters;
 
 namespace Com.Prerit.Controllers
 {
@@ -9,9 +11,19 @@ namespace Com.Prerit.Controllers
     {
         #region Methods
 
-        public virtual ActionResult CreateRequest(string returnUrl)
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ModelToTempData]
+        [ModelStateToTempData]
+        public virtual ActionResult CreateRequest(CreateRequestModel model)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(MVC.Accounts.Login(model.ReturnUrl));
+            }
+
+            // TODO: create request
+
+            return !string.IsNullOrEmpty(model.ReturnUrl) ? (ActionResult) Redirect(model.ReturnUrl) : RedirectToAction(MVC.About.Index());
         }
 
         public virtual ActionResult Xrds()
