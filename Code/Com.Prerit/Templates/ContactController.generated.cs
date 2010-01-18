@@ -49,7 +49,6 @@ namespace Com.Prerit.Controllers {
         public class ViewNames {
             public readonly string EmailSent = "~/Views/Contact/EmailSent.aspx";
             public readonly string Index = "~/Views/Contact/Index.aspx";
-            public readonly string ValidationSummary = "~/Views/Contact/ValidationSummary.ascx";
         }
     }
 

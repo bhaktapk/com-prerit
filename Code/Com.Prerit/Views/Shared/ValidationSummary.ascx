@@ -1,6 +1,6 @@
-<%@ Import Namespace="Com.Prerit.Helpers.Contact" %>
 <%@ Import Namespace="Com.Prerit.Models.Contact" %>
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IndexModel>" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Shared"%>
 
 <div class="validationSummary">
     <h2><span>Form Entry Errors</span></h2>

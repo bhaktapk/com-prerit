@@ -28,6 +28,7 @@ namespace T4MVC {
             public readonly string ContentType = "~/Views/Shared/ContentType.ascx";
             public readonly string Culture = "~/Views/Shared/Culture.ascx";
             public readonly string CurrentUrlEncoded = "~/Views/Shared/CurrentUrlEncoded.ascx";
+            public readonly string ValidationSummary = "~/Views/Shared/ValidationSummary.ascx";
             public readonly string Year = "~/Views/Shared/Year.ascx";
         }
     }
