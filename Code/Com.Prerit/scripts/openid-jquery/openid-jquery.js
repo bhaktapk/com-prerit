@@ -88,13 +88,15 @@ var openid = {
     img_path: '/content/images/openid-jquery/',
 
     input_id: null,
+    input_username: null,
     provider_url: null,
 
-    init: function(input_id) {
+    init: function(input_id, input_username) {
 
         var openid_btns = $('#openid_btns');
 
         this.input_id = input_id;
+        this.input_username = input_username;
 
         $('#openid_choice').show();
         $('#openid_input_area').empty();
@@ -207,7 +209,7 @@ var openid = {
         var input_area = $('#openid_input_area');
 
         var html = '';
-        var id = 'openid_username';
+        var id = this.input_username;
         var value = '';
         var label = provider['label'];
         var style = '';

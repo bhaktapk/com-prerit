@@ -1,4 +1,6 @@
+<%@ Import Namespace="Com.Prerit.Core" %>
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
+<%@ Import Namespace="Com.Prerit.Models.OpenId" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LoginModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Login</asp:Content>
@@ -12,7 +14,7 @@
     <script type="text/javascript" src="<%= Links.scripts.openid_jquery.openid_jquery_js %>"></script>
     <script type="text/javascript">
         $(function() {
-            openid.init('openid_identifier');
+            openid.init("<%= CreateRequestModel.PropertyName.openid_identifier %>", "<%= CreateRequestModel.PropertyName.openid_username %>");
         });
 	</script>
 </asp:Content>
@@ -31,10 +33,11 @@
         <div id="openid_btns">
         </div>
     </div>
-    <% using (Html.BeginForm(MVC.OpenId.CreateRequest(Model.ReturnUrl), FormMethod.Post, new { id = "openid_form" })) { %>
+    <% using (Html.BeginForm(MVC.OpenId.CreateRequest(), FormMethod.Post, new { id = "openid_form" })) { %>
+        <%= Html.Hidden(CreateRequestModel.PropertyName.ReturnUrl, Model.ReturnUrl) %>
         <div id="openid_input_area">
             <fieldset>
-                <input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
+                <%= Html.TextBox(CreateRequestModel.PropertyName.openid_identifier, "http://") %>
                 <br />
                 <input id="openid_submit" class="button" type="submit" value="Log In" />
             </fieldset>

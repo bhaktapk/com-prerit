@@ -56,9 +56,9 @@ namespace Com.Prerit.Controllers {
     public class T4MVC_OpenIdController: Com.Prerit.Controllers.OpenIdController {
         public T4MVC_OpenIdController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult CreateRequest(string returnUrl) {
+        public override System.Web.Mvc.ActionResult CreateRequest(Com.Prerit.Models.OpenId.CreateRequestModel model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
-            callInfo.RouteValues.Add("returnUrl", returnUrl);
+            callInfo.RouteValues.Add("model", model);
             return callInfo;
         }
 
