@@ -67,10 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Filters\XrdsLocationAttribute.cs" />
-    <Compile Include="Helpers\Contact\IndexHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Helpers\Contact\ValidationSummaryHelper.cs">
+    <Compile Include="Helpers\Shared\ValidationSummaryHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\Shared\SharedHelper.cs">
@@ -326,7 +323,7 @@
     <Content Include="Views\About\Index.aspx" />
     <Content Include="Views\Contact\EmailSent.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
-    <Content Include="Views\Contact\ValidationSummary.ascx" />
+    <Content Include="Views\Shared\ValidationSummary.ascx" />
     <Content Include="Views\Resume\Index.aspx" />
     <Content Include="Views\Shared\ContentEncoding.ascx" />
     <Content Include="Views\Shared\ContentType.ascx" />

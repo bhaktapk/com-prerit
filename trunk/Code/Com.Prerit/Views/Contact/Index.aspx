@@ -1,5 +1,5 @@
 <%@ Import Namespace="Com.Prerit.Controllers" %>
-<%@ Import Namespace="Com.Prerit.Helpers.Contact" %>
+<%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
 <%@ Import Namespace="Com.Prerit.Models.Contact" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<IndexModel>" %>
 

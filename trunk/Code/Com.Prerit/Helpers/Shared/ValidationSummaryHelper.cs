@@ -2,15 +2,18 @@ using System;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace Com.Prerit.Helpers.Contact
+namespace Com.Prerit.Helpers.Shared
 {
     public static class ValidationSummaryHelper
     {
         #region Methods
 
-        public static void RenderValidationSummary(this HtmlHelper helper)
+        public static void RenderValidationSummaryPartial(this HtmlHelper helper)
         {
-            helper.RenderPartial(MVC.Contact.Views.ValidationSummary);
+            if (!helper.ViewData.ModelState.IsValid)
+            {
+                helper.RenderPartial(MVC.Shared.Views.ValidationSummary);
+            }
         }
 
         public static void RepeatErrorMessages(this HtmlHelper helper, Action<ModelError> render)
