@@ -3,6 +3,8 @@ using System.Web.Security;
 
 using Com.Prerit.Models.Accounts;
 
+using MvcContrib.Filters;
+
 namespace Com.Prerit.Controllers
 {
     public partial class AccountsController : Controller
@@ -10,6 +12,7 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [ModelStateToTempData]
         public virtual ActionResult Login(string returnUrl)
         {
             var model = new LoginModel { ReturnUrl = returnUrl };
