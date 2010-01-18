@@ -4,5 +4,5 @@
 <h2><span>Welcome Back</span></h2>
 <p>
     You're already logged in. <a href="<%= Url.Action(MVC.Accounts.Logout(Request.Url.PathAndQuery)) %>" title="Logout">Log out</a> if you want to
-    log in with a different account.
+    log in with another account.
 </p>
