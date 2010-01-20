@@ -16,12 +16,20 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+
+using Castle.Components.Validator;
+
+using Com.Prerit.Models.OpenId;
+
+using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OpenId;
+using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
+using DotNetOpenAuth.OpenId.RelyingParty;
+
 using T4MVC;
 namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public partial class OpenIdController {
-        public OpenIdController() { }
-
         protected OpenIdController(Dummy d) { }
 
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -33,6 +41,10 @@ namespace Com.Prerit.Controllers {
         public System.Web.Mvc.ActionResult CreateRequest() {
             return new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
         }
+        [NonAction]
+        public System.Web.Mvc.ActionResult HandleResponse() {
+            return new T4MVC_ActionResult(Area, Name, Actions.HandleResponse);
+        }
 
         public readonly string Area = "";
         public readonly string Name = "OpenId";
@@ -41,6 +53,7 @@ namespace Com.Prerit.Controllers {
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
             public readonly string CreateRequest = "CreateRequest";
+            public readonly string HandleResponse = "HandleResponse";
             public readonly string Xrds = "Xrds";
         }
 
@@ -59,6 +72,12 @@ namespace Com.Prerit.Controllers {
         public override System.Web.Mvc.ActionResult CreateRequest(Com.Prerit.Models.OpenId.CreateRequestModel model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
             callInfo.RouteValues.Add("model", model);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult HandleResponse(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.HandleResponse);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }
 

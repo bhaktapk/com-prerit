@@ -43,6 +43,8 @@
     </Compile>
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
+    <Compile Include="Controllers\Services\IOpenIdService.cs" />
+    <Compile Include="Controllers\Services\OpenIdService.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
       <SubType>Code</SubType>
