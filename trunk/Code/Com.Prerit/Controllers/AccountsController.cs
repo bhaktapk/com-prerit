@@ -25,22 +25,22 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInModel();
+                var model = new LoggedInStatusModel();
 
-                return View(MVC.Accounts.Views.LoggedIn, model);
+                return View(MVC.Accounts.Views.LoggedInStatus, model);
             }
 
             if (ControllerUtil.IsLoginRequest(Request.Url, Url))
             {
-                var model = new LoggingInModel();
+                var model = new LoggingInStatusModel();
 
-                return View(MVC.Accounts.Views.LoggingIn, model);
+                return View(MVC.Accounts.Views.LoggingInStatus, model);
             }
             else
             {
-                var model = new NotLoggedInModel();
+                var model = new NotLoggedInStatusModel();
 
-                return View(MVC.Accounts.Views.NotLoggedIn, model);
+                return View(MVC.Accounts.Views.NotLoggedInStatus, model);
             }
         }
 
