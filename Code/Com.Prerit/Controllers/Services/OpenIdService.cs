@@ -9,19 +9,19 @@ namespace Com.Prerit.Controllers.Services
     {
         #region Methods
 
-        public IAuthenticationRequest CreateAuthenticationRequest(string openIdIdentifier, Uri baseUri, Uri returnToUri)
+        public IAuthenticationRequest CreateRequest(Uri baseUri, Uri returnToUri)
         {
             IAuthenticationRequest request;
 
             using (var openIdRelyingParty = new OpenIdRelyingParty())
             {
-                request = openIdRelyingParty.CreateRequest(Identifier.Parse(openIdIdentifier), new Realm(baseUri), returnToUri);
+                request = openIdRelyingParty.CreateRequest(Identifier.Parse("https://www.google.com/accounts/o8/id"), new Realm(baseUri), returnToUri);
             }
 
             return request;
         }
 
-        public IAuthenticationResponse GetAuthenticationResponse()
+        public IAuthenticationResponse GetResponse()
         {
             using (var openid = new OpenIdRelyingParty())
             {

@@ -13,36 +13,17 @@
     <link rel="stylesheet" href="<%= Links.content.styles.openid_jquery.openid_jquery_css %>" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="<%= Links.scripts.openid_jquery.openid_jquery_js %>"></script>
-    <script type="text/javascript">
-        $(function() {
-            openid.init("<%= CreateRequestModel.PropertyName.OpenIdIdentifier %>", "<%= CreateRequestModel.PropertyName.OpenIdUsername %>");
-        });
-	</script>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
-    <h1><span>Log In With OpenID</span></h1>
-    <% Html.RenderValidationSummaryPartial(); %>
-    <noscript>
-        <p>
-            OpenID is service that allows you to log-on to many different websites using a single indentity. <a href="http://openid.net/get-an-openid/what-is-openid/"
-            title="What is OpenID?">Find out more</a> about OpenID and how to <a href="http://openid.net/get-an-openid/" title="Get an OpenID">get an OpenID
-            enabled account</a>.
-        </p>
-    </noscript>
-    <div id="openid_choice">
-        <h2><span>Please Click Your Account Provider</span></h2>
-        <div id="openid_btns">
-        </div>
-    </div>
-    <% using (Html.BeginForm(MVC.OpenId.CreateRequest(), FormMethod.Post, new { id = "openid_form" })) { %>
-        <%= Html.Hidden(CreateRequestModel.PropertyName.ReturnUrl, Model.ReturnUrl) %>
-        <div id="openid_input_area">
-            <fieldset>
-                <%= Html.TextBox(CreateRequestModel.PropertyName.OpenIdIdentifier, "http://") %>
-                <br />
-                <input id="openid_submit" class="button" type="submit" value="Log In" />
-            </fieldset>
-        </div>
+    <h1><span>Log Into Your Google Account Via OpenID</span></h1>
+    <p>
+        You can log into this site with your Google account via <a href="http://openid.net/get-an-openid/what-is-openid/" title="What is OpenID?">OpenID</a>.
+        This is a safe and revolutionary method that all websites will be incorporating. It's fast, easy, free and most importantly safe.
+    </p>
+    <% using (Html.BeginForm(MVC.OpenId.RequestAuth(Model.ReturnUrl), FormMethod.Post)) { %>
+        <fieldset>
+            <input id="openid_submit" class="button" type="submit" value="Log In" />
+        </fieldset>
     <% } %>
 </asp:Content>

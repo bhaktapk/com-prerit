@@ -3,13 +3,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using Com.Prerit.Controllers.Services;
-using Com.Prerit.Filters;
 using Com.Prerit.Models.OpenId;
 
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.RelyingParty;
-
-using MvcContrib.Filters;
 
 namespace Com.Prerit.Controllers
 {
@@ -38,26 +35,21 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ModelToTempData]
-        [ModelStateToTempData]
-        public virtual ActionResult CreateRequest(CreateRequestModel model)
+        [ActionName("Request")]
+        public virtual ActionResult RequestAuth(string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(MVC.Accounts.Login(model.ReturnUrl));
-            }
-
             var baseUri = new Uri(Request.Url, "/");
-            var returnToUri = new Uri(baseUri, Url.Action(MVC.OpenId.HandleResponse(model.ReturnUrl)));
+            var returnToUri = new Uri(baseUri, Url.Action(MVC.OpenId.Respond(returnUrl)));
 
-            IAuthenticationRequest request = _openIdService.CreateAuthenticationRequest(model.OpenIdIdentifier, baseUri, returnToUri);
+            IAuthenticationRequest request = _openIdService.CreateRequest(baseUri, returnToUri);
 
             return request.RedirectingResponse.AsActionResult();
         }
 
-        public virtual ActionResult HandleResponse(string returnUrl)
+        [AcceptVerbs(HttpVerbs.Get)]
+        public virtual ActionResult Respond(string returnUrl)
         {
-            IAuthenticationResponse response = _openIdService.GetAuthenticationResponse();
+            IAuthenticationResponse response = _openIdService.GetResponse();
 
             switch (response.Status)
             {
@@ -72,6 +64,7 @@ namespace Com.Prerit.Controllers
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Xrds()
         {
             var model = new XrdsModel();
