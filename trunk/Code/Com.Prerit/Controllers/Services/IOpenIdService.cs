@@ -8,9 +8,9 @@ namespace Com.Prerit.Controllers.Services
     {
         #region Methods
 
-        IAuthenticationRequest CreateAuthenticationRequest(string openIdIdentifier, Uri baseUri, Uri returnToUri);
+        IAuthenticationRequest CreateRequest(Uri baseUri, Uri returnToUri);
 
-        IAuthenticationResponse GetAuthenticationResponse();
+        IAuthenticationResponse GetResponse();
 
         #endregion
     }

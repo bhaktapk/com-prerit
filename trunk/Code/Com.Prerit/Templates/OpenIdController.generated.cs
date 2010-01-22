@@ -16,16 +16,6 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-
-using Castle.Components.Validator;
-
-using Com.Prerit.Models.OpenId;
-
-using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OpenId;
-using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
-using DotNetOpenAuth.OpenId.RelyingParty;
-
 using T4MVC;
 namespace Com.Prerit.Controllers {
     [CompilerGenerated]
@@ -38,12 +28,12 @@ namespace Com.Prerit.Controllers {
         }
 
         [NonAction]
-        public System.Web.Mvc.ActionResult CreateRequest() {
-            return new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
+        public System.Web.Mvc.ActionResult RequestAuth() {
+            return new T4MVC_ActionResult(Area, Name, Actions.RequestAuth);
         }
         [NonAction]
-        public System.Web.Mvc.ActionResult HandleResponse() {
-            return new T4MVC_ActionResult(Area, Name, Actions.HandleResponse);
+        public System.Web.Mvc.ActionResult Respond() {
+            return new T4MVC_ActionResult(Area, Name, Actions.Respond);
         }
 
         public readonly string Area = "";
@@ -52,8 +42,8 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
-            public readonly string CreateRequest = "CreateRequest";
-            public readonly string HandleResponse = "HandleResponse";
+            public readonly string RequestAuth = "Request";
+            public readonly string Respond = "Respond";
             public readonly string Xrds = "Xrds";
         }
 
@@ -69,14 +59,14 @@ namespace Com.Prerit.Controllers {
     public class T4MVC_OpenIdController: Com.Prerit.Controllers.OpenIdController {
         public T4MVC_OpenIdController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult CreateRequest(Com.Prerit.Models.OpenId.CreateRequestModel model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.CreateRequest);
-            callInfo.RouteValues.Add("model", model);
+        public override System.Web.Mvc.ActionResult RequestAuth(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.RequestAuth);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult HandleResponse(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.HandleResponse);
+        public override System.Web.Mvc.ActionResult Respond(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Respond);
             callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }
