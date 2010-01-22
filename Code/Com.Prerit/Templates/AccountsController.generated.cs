@@ -53,10 +53,10 @@ namespace Com.Prerit.Controllers {
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
-            public readonly string LoggedIn = "~/Views/Accounts/LoggedIn.ascx";
-            public readonly string LoggingIn = "~/Views/Accounts/LoggingIn.ascx";
+            public readonly string LoggedInStatus = "~/Views/Accounts/LoggedInStatus.ascx";
+            public readonly string LoggingInStatus = "~/Views/Accounts/LoggingInStatus.ascx";
             public readonly string Login = "~/Views/Accounts/Login.aspx";
-            public readonly string NotLoggedIn = "~/Views/Accounts/NotLoggedIn.ascx";
+            public readonly string NotLoggedInStatus = "~/Views/Accounts/NotLoggedInStatus.ascx";
         }
     }
 

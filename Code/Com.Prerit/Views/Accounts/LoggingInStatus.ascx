@@ -1,5 +1,5 @@
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LoggingInModel>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LoggingInStatusModel>" %>
 
 <h2><span>Why OpenID?</span></h2>
 <p>

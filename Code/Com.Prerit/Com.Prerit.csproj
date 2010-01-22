@@ -125,10 +125,10 @@
     <Compile Include="Models\About\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Accounts\LoggingInModel.cs" />
-    <Compile Include="Models\Accounts\LoggedInModel.cs" />
+    <Compile Include="Models\Accounts\LoggingInStatusModel.cs" />
+    <Compile Include="Models\Accounts\LoggedInStatusModel.cs" />
     <Compile Include="Models\Accounts\LoginModel.cs" />
-    <Compile Include="Models\Accounts\NotLoggedInModel.cs" />
+    <Compile Include="Models\Accounts\NotLoggedInStatusModel.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -309,10 +309,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Accounts\LoggingIn.ascx" />
-    <Content Include="Views\Accounts\LoggedIn.ascx" />
+    <Content Include="Views\Accounts\LoggingInStatus.ascx" />
+    <Content Include="Views\Accounts\LoggedInStatus.ascx" />
     <Content Include="Views\Accounts\Login.aspx" />
-    <Content Include="Views\Accounts\NotLoggedIn.ascx" />
+    <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />
     <Content Include="Web.config" />
