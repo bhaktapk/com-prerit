@@ -1,5 +1,6 @@
 using System.Reflection;
 
+using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
@@ -14,8 +15,9 @@ namespace Com.Prerit.Infrastructure.Windsor
             var container = new WindsorContainer();
 
             container
+                .AddFacility<FactorySupportFacility>()
                 .Register(
-                AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
+                    AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
 
             foreach (IRegistration registration in container.ResolveAll<IRegistration>())
             {
