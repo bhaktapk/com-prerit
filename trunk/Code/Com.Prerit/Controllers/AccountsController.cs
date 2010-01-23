@@ -23,7 +23,7 @@ namespace Com.Prerit.Controllers
         {
             if (membershipService == null)
             {
-                throw new ArgumentNullException("accountsService");
+                throw new ArgumentNullException("membershipService");
             }
 
             _membershipService = membershipService;
