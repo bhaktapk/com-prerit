@@ -21,7 +21,10 @@ namespace Com.Prerit.Infrastructure.Windsor
                     .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Response))
                 .Register(Component.For<HttpSessionStateBase>()
                     .LifeStyle.PerWebRequest
-                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Session));
+                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Session))
+                .Register(Component.For<HttpServerUtilityBase>()
+                    .LifeStyle.PerWebRequest
+                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Server));
         }
     }
 }
