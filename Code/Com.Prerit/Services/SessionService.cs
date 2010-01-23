@@ -3,7 +3,7 @@ using System.Web;
 
 using Com.Prerit.Domain;
 
-namespace Com.Prerit.Controllers.Services
+namespace Com.Prerit.Services
 {
     public class SessionService : ISessionService
     {

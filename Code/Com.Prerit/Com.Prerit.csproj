@@ -43,12 +43,12 @@
     </Compile>
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
-    <Compile Include="Controllers\Services\AccountsService.cs" />
-    <Compile Include="Controllers\Services\IAccountsService.cs" />
-    <Compile Include="Controllers\Services\IOpenIdService.cs" />
-    <Compile Include="Controllers\Services\ISessionService.cs" />
-    <Compile Include="Controllers\Services\OpenIdService.cs" />
-    <Compile Include="Controllers\Services\SessionService.cs" />
+    <Compile Include="Services\AccountsService.cs" />
+    <Compile Include="Services\IAccountsService.cs" />
+    <Compile Include="Services\IOpenIdService.cs" />
+    <Compile Include="Services\ISessionService.cs" />
+    <Compile Include="Services\OpenIdService.cs" />
+    <Compile Include="Services\SessionService.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
@@ -344,6 +344,7 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\Services\" />
     <Folder Include="logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

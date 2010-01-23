@@ -2,7 +2,7 @@ using System;
 
 using Com.Prerit.Domain;
 
-namespace Com.Prerit.Controllers.Services
+namespace Com.Prerit.Services
 {
     public class AccountsService : IAccountsService
     {
