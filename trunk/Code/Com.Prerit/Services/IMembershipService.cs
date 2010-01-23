@@ -2,7 +2,7 @@ using Com.Prerit.Domain;
 
 namespace Com.Prerit.Services
 {
-    public interface IAccountsService
+    public interface IMembershipService
     {
         #region Methods
 

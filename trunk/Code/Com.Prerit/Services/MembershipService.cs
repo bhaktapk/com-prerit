@@ -4,7 +4,7 @@ using Com.Prerit.Domain;
 
 namespace Com.Prerit.Services
 {
-    public class AccountsService : IAccountsService
+    public class MembershipService : IMembershipService
     {
         #region Fields
 
@@ -14,7 +14,7 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public AccountsService(ISessionService sessionService)
+        public MembershipService(ISessionService sessionService)
         {
             if (sessionService == null)
             {
