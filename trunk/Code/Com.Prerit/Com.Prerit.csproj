@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Infrastructure\Routing\IgnoreSeoRoute.cs" />
     <Compile Include="Infrastructure\Routing\ListConstraint.cs" />
+    <Compile Include="Infrastructure\Windsor\SystemWebRegistration.cs" />
     <Compile Include="MapCreators\IMapCreator.cs">
       <SubType>Code</SubType>
     </Compile>
