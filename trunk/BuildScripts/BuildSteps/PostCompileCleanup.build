@@ -10,7 +10,6 @@
     <call target="delete-obj-directory" />
     <call target="delete-templates-directory" />
 
-    <call target="delete-default-config-files" />
     <call target="delete-log-files" />
     <call target="delete-membership-data-files" />
     <call target="delete-production-config-files" />
@@ -42,14 +41,6 @@
 
   <target name="delete-csproj-file">
     <delete file="${dir.build}\${project.name.com-prerit}\${project.name.com-prerit}.csproj" />
-  </target>
-
-  <target name="delete-default-config-files">
-    <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit}">
-        <include name="default-*.config" />
-      </fileset>
-    </delete>
   </target>
 
   <target name="delete-log-files">
