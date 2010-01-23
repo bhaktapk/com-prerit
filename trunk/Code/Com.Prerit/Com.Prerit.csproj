@@ -291,24 +291,7 @@
     <Content Include="error-pages\service-unavailable.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\images\openid-jquery\aol.gif" />
-    <Content Include="content\images\openid-jquery\blogger.ico" />
-    <Content Include="content\images\openid-jquery\claimid.ico" />
-    <Content Include="content\images\openid-jquery\facebook.gif" />
-    <Content Include="content\images\openid-jquery\flickr.ico" />
-    <Content Include="content\images\openid-jquery\google.gif" />
-    <Content Include="content\images\openid-jquery\livejournal.ico" />
-    <Content Include="content\images\openid-jquery\myopenid.ico" />
-    <Content Include="content\images\openid-jquery\openid-inputicon.gif" />
-    <Content Include="content\images\openid-jquery\openid.gif" />
-    <Content Include="content\images\openid-jquery\technorati.ico" />
-    <Content Include="content\images\openid-jquery\verisign.ico" />
-    <Content Include="content\images\openid-jquery\vidoop.ico" />
-    <Content Include="content\images\openid-jquery\wordpress.ico" />
-    <Content Include="content\images\openid-jquery\yahoo.gif" />
-    <Content Include="content\styles\openid-jquery\openid-jquery.css" />
     <Content Include="ProductionWeb.config" />
-    <Content Include="scripts\openid-jquery\openid-jquery.js" />
     <Content Include="ServiceUnavailableWeb.config" />
     <None Include="App_Data\ResumeFormats\AdobePdf.pdf" />
     <None Include="App_Data\ResumeFormats\MicrosoftWord.doc" />
@@ -346,6 +329,7 @@
   <ItemGroup>
     <Folder Include="Controllers\Services\" />
     <Folder Include="logs\" />
+    <Folder Include="scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

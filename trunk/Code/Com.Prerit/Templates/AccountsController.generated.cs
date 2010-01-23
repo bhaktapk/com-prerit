@@ -20,8 +20,6 @@ using T4MVC;
 namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public partial class AccountsController {
-        public AccountsController() { }
-
         protected AccountsController(Dummy d) { }
 
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
