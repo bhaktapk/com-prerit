@@ -2,5 +2,10 @@
 {
     public class LoggedInStatusModel
     {
+        #region Properties
+
+        public string EmailAddress { get; set; }
+
+        #endregion
     }
 }

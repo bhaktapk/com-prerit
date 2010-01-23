@@ -43,8 +43,13 @@
     </Compile>
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
+    <Compile Include="Controllers\Services\AccountsService.cs" />
+    <Compile Include="Controllers\Services\IAccountsService.cs" />
     <Compile Include="Controllers\Services\IOpenIdService.cs" />
+    <Compile Include="Controllers\Services\ISessionService.cs" />
     <Compile Include="Controllers\Services\OpenIdService.cs" />
+    <Compile Include="Controllers\Services\SessionService.cs" />
+    <Compile Include="Domain\Account.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
       <SubType>Code</SubType>
@@ -245,6 +250,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -260,6 +266,7 @@
       <HintPath>..\..\Libraries\System.Web.Routing.dll</HintPath>
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\ajax-processing-notifier.gif" />

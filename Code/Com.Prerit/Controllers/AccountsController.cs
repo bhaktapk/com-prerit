@@ -1,6 +1,8 @@
+using System;
 using System.Web.Mvc;
 using System.Web.Security;
 
+using Com.Prerit.Controllers.Services;
 using Com.Prerit.Models.Accounts;
 
 using MvcContrib.Filters;
@@ -9,6 +11,26 @@ namespace Com.Prerit.Controllers
 {
     public partial class AccountsController : Controller
     {
+        #region Fields
+
+        private readonly IAccountsService _accountsService;
+
+        #endregion
+
+        #region Constructors
+
+        public AccountsController(IAccountsService accountsService)
+        {
+            if (accountsService == null)
+            {
+                throw new ArgumentNullException("accountsService");
+            }
+
+            _accountsService = accountsService;
+        }
+
+        #endregion
+
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -25,7 +47,7 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel();
+                var model = new LoggedInStatusModel { EmailAddress = _accountsService.GetAccount().Name };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }
