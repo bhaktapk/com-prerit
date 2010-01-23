@@ -1,6 +1,7 @@
 ﻿using System;
 
 using DotNetOpenAuth.OpenId;
+using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
 namespace Com.Prerit.Controllers.Services
@@ -16,6 +17,8 @@ namespace Com.Prerit.Controllers.Services
             using (var openIdRelyingParty = new OpenIdRelyingParty())
             {
                 request = openIdRelyingParty.CreateRequest(Identifier.Parse("https://www.google.com/accounts/o8/id"), new Realm(baseUri), returnToUri);
+
+                request.AddExtension(new ClaimsRequest { Email = DemandLevel.Require });
             }
 
             return request;
