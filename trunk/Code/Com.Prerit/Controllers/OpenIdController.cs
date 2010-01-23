@@ -2,8 +2,8 @@ using System;
 using System.Web.Mvc;
 using System.Web.Security;
 
-using Com.Prerit.Controllers.Services;
 using Com.Prerit.Models.OpenId;
+using Com.Prerit.Services;
 
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;

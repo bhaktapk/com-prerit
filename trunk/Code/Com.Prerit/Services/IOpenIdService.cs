@@ -2,7 +2,7 @@ using System;
 
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace Com.Prerit.Controllers.Services
+namespace Com.Prerit.Services
 {
     public interface IOpenIdService
     {
