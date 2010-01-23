@@ -328,7 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Services\" />
-    <Folder Include="logs\" />
+    <Folder Include="Logs\" />
     <Folder Include="MembershipData\" />
     <Folder Include="scripts\" />
   </ItemGroup>
