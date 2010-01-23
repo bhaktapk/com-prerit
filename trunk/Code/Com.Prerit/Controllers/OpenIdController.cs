@@ -3,9 +3,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using Com.Prerit.Controllers.Services;
+using Com.Prerit.Domain;
 using Com.Prerit.Models.OpenId;
 
 using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
 namespace Com.Prerit.Controllers
@@ -14,19 +16,27 @@ namespace Com.Prerit.Controllers
     {
         #region Fields
 
+        private readonly IAccountsService _accountsService;
+
         private readonly IOpenIdService _openIdService;
 
         #endregion
 
         #region Constructors
 
-        public OpenIdController(IOpenIdService openIdService)
+        public OpenIdController(IAccountsService accountsService, IOpenIdService openIdService)
         {
+            if (accountsService == null)
+            {
+                throw new ArgumentNullException("accountsService");
+            }
+
             if (openIdService == null)
             {
                 throw new ArgumentNullException("openIdService");
             }
 
+            _accountsService = accountsService;
             _openIdService = openIdService;
         }
 
@@ -54,7 +64,11 @@ namespace Com.Prerit.Controllers
             switch (response.Status)
             {
                 case AuthenticationStatus.Authenticated:
+                    var claimsResponse = response.GetExtension<ClaimsResponse>();
+
                     FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+
+                    _accountsService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
 
                     return !string.IsNullOrEmpty(returnUrl) ? (ActionResult) Redirect(returnUrl) : RedirectToAction(MVC.About.Index());
                 default:
