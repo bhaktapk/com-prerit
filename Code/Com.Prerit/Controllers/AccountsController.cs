@@ -13,20 +13,20 @@ namespace Com.Prerit.Controllers
     {
         #region Fields
 
-        private readonly IAccountsService _accountsService;
+        private readonly IMembershipService _membershipService;
 
         #endregion
 
         #region Constructors
 
-        public AccountsController(IAccountsService accountsService)
+        public AccountsController(IMembershipService membershipService)
         {
-            if (accountsService == null)
+            if (membershipService == null)
             {
                 throw new ArgumentNullException("accountsService");
             }
 
-            _accountsService = accountsService;
+            _membershipService = membershipService;
         }
 
         #endregion
@@ -47,7 +47,7 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel { EmailAddress = _accountsService.GetAccount().Name };
+                var model = new LoggedInStatusModel { EmailAddress = _membershipService.GetAccount().Name };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }

@@ -15,7 +15,7 @@ namespace Com.Prerit.Controllers
     {
         #region Fields
 
-        private readonly IAccountsService _accountsService;
+        private readonly IMembershipService _membershipService;
 
         private readonly IOpenIdService _openIdService;
 
@@ -23,9 +23,9 @@ namespace Com.Prerit.Controllers
 
         #region Constructors
 
-        public OpenIdController(IAccountsService accountsService, IOpenIdService openIdService)
+        public OpenIdController(IMembershipService membershipService, IOpenIdService openIdService)
         {
-            if (accountsService == null)
+            if (membershipService == null)
             {
                 throw new ArgumentNullException("accountsService");
             }
@@ -35,7 +35,7 @@ namespace Com.Prerit.Controllers
                 throw new ArgumentNullException("openIdService");
             }
 
-            _accountsService = accountsService;
+            _membershipService = membershipService;
             _openIdService = openIdService;
         }
 
@@ -67,7 +67,7 @@ namespace Com.Prerit.Controllers
 
                     FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
 
-                    _accountsService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+                    _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
 
                     return !string.IsNullOrEmpty(returnUrl) ? (ActionResult) Redirect(returnUrl) : RedirectToAction(MVC.About.Index());
                 default:
