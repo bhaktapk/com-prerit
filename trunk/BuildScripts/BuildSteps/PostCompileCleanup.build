@@ -12,10 +12,14 @@
 
     <call target="delete-default-config-files" />
     <call target="delete-log-files" />
+    <call target="delete-membership-data-files" />
     <call target="delete-production-config-files" />
 
     <call target="delete-csproj-file" />
     <call target="delete-user-file" />
+
+    <call target="make-logs-directory" />
+    <call target="make-membership-data-directory" />
 
     <call target="rename-web-config" />
   </target>
@@ -23,6 +27,14 @@
 
 
   <!-- PRIVATE TARGETS -->
+
+  <target name="make-logs-directory">
+    <mkdir dir="${dir.build}\${project.name.com-prerit}\Logs" />
+  </target>
+
+  <target name="make-membership-data-directory">
+    <mkdir dir="${dir.build}\${project.name.com-prerit}\MembershipData" />
+  </target>
 
   <target name="delete-app-code-directory">
     <delete dir="${dir.code}\${project.name.com-prerit}\App_Code" />
@@ -44,6 +56,14 @@
     <delete>
       <fileset basedir="${dir.build}\${project.name.com-prerit}">
         <include name="Logs\**\*" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="delete-membership-data-files">
+    <delete>
+      <fileset basedir="${dir.build}\${project.name.com-prerit}">
+        <include name="MembershipData\**\*" />
       </fileset>
     </delete>
   </target>
