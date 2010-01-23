@@ -43,7 +43,7 @@
   <target name="delete-log-files">
     <delete>
       <fileset basedir="${dir.build}\${project.name.com-prerit}">
-        <include name="logs\**\*" />
+        <include name="Logs\**\*" />
       </fileset>
     </delete>
   </target>
