@@ -329,7 +329,7 @@
   <ItemGroup>
     <Folder Include="Controllers\Services\" />
     <Folder Include="logs\" />
-    <Folder Include="membership-data\" />
+    <Folder Include="MembershipData\" />
     <Folder Include="scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
