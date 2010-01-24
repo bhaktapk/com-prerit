@@ -67,7 +67,7 @@ namespace Com.Prerit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public virtual ActionResult Logout(string returnUrl)
+        public virtual ActionResult LogOut(string returnUrl)
         {
             FormsAuthentication.SignOut();
 

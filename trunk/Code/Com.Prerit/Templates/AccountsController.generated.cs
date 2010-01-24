@@ -32,8 +32,8 @@ namespace Com.Prerit.Controllers {
             return new T4MVC_ActionResult(Area, Name, Actions.LogIn);
         }
         [NonAction]
-        public System.Web.Mvc.ActionResult Logout() {
-            return new T4MVC_ActionResult(Area, Name, Actions.Logout);
+        public System.Web.Mvc.ActionResult LogOut() {
+            return new T4MVC_ActionResult(Area, Name, Actions.LogOut);
         }
 
         public readonly string Area = "";
@@ -44,7 +44,7 @@ namespace Com.Prerit.Controllers {
         public class ActionNames {
             public readonly string LogIn = "LogIn";
             public readonly string LoginStatus = "LoginStatus";
-            public readonly string Logout = "Logout";
+            public readonly string LogOut = "LogOut";
         }
 
 
@@ -73,8 +73,8 @@ namespace Com.Prerit.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Logout(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Logout);
+        public override System.Web.Mvc.ActionResult LogOut(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.LogOut);
             callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }
