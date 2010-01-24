@@ -23,7 +23,7 @@ namespace Com.Prerit.Controllers
 
             var absoluteLoginUrl = new Uri(requestUrl, relativeLoginUrl);
 
-            return string.Compare(requestUrl.LocalPath, absoluteLoginUrl.LocalPath, StringComparison.InvariantCultureIgnoreCase) == 0;
+            return string.Compare(requestUrl.LocalPath, absoluteLoginUrl.LocalPath, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         #endregion

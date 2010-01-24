@@ -40,7 +40,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             if (values.TryGetValue(parameterName, out value) && value is string)
             {
-                return _list.Any(item => string.Compare(item, (string) value, StringComparison.InvariantCultureIgnoreCase) == 0);
+                return _list.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
             }
 
             return false;
