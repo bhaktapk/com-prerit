@@ -72,19 +72,13 @@ namespace Com.Prerit.Services
                 response = openid.GetResponse();
             }
 
-            if (response != null)
+            if (response != null && response.Status == AuthenticationStatus.Authenticated)
             {
-                switch (response.Status)
-                {
-                    case AuthenticationStatus.Authenticated:
-                        var claimsResponse = response.GetExtension<ClaimsResponse>();
+                var claimsResponse = response.GetExtension<ClaimsResponse>();
 
-                        _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+                _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
 
-                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
-
-                        break;
-                }
+                FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
             }
 
             return response;
