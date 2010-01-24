@@ -15,19 +15,27 @@ namespace Com.Prerit.Controllers
     {
         #region Fields
 
+        private readonly IFormsAuthenticationService _formsAuthenticationService;
+
         private readonly IOpenIdService _openIdService;
 
         #endregion
 
         #region Constructors
 
-        public OpenIdController(IOpenIdService openIdService)
+        public OpenIdController(IFormsAuthenticationService formsAuthenticationService, IOpenIdService openIdService)
         {
+            if (formsAuthenticationService == null)
+            {
+                throw new ArgumentNullException("formsAuthenticationService");
+            }
+
             if (openIdService == null)
             {
                 throw new ArgumentNullException("openIdService");
             }
 
+            _formsAuthenticationService = formsAuthenticationService;
             _openIdService = openIdService;
         }
 
@@ -59,6 +67,8 @@ namespace Com.Prerit.Controllers
                 switch (response.Status)
                 {
                     case AuthenticationStatus.Authenticated:
+                        _formsAuthenticationService.SetAuthCookie(response.ClaimedIdentifier, false);
+
                         if (!string.IsNullOrEmpty(validatedReturnUrl))
                         {
                             return Redirect(validatedReturnUrl);
@@ -76,8 +86,7 @@ namespace Com.Prerit.Controllers
                                                  "Google sent a message that did not contain an identity assertion, but may carry OpenID extensions.");
                         break;
                     case AuthenticationStatus.SetupRequired:
-                        ModelState.AddModelError("SetupRequired",
-                                                 "Google responded to a additional setup is required.");
+                        ModelState.AddModelError("SetupRequired", "Google responded to a additional setup is required.");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
