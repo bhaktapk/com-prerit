@@ -285,10 +285,10 @@
     <Content Include="content\styles\resume\print.css" />
     <Content Include="content\styles\resume\screen.css" />
     <Content Include="content\styles\screen.css" />
-    <Content Include="error-pages\forbidden.htm" />
-    <Content Include="error-pages\generic-error.htm" />
-    <Content Include="error-pages\not-found.htm" />
-    <Content Include="error-pages\service-unavailable.htm" />
+    <Content Include="ErrorPages\forbidden.htm" />
+    <Content Include="ErrorPages\generic-error.htm" />
+    <Content Include="ErrorPages\not-found.htm" />
+    <Content Include="ErrorPages\service-unavailable.htm" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProductionWeb.config" />

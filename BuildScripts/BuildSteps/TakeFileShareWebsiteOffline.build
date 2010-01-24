@@ -19,7 +19,7 @@
       <fileset basedir="${dir.file-share-deployment}">
         <include name="**" />
         <exclude name="bin\${project.name.com-prerit}.dll" />
-        <exclude name="error-pages\service-unavailable.htm" />
+        <exclude name="ErrorPages\service-unavailable.htm" />
         <exclude name="Web.config" />
       </fileset>
     </delete>
@@ -31,7 +31,7 @@
 
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-base}">
         <include name="bin\${project.name.com-prerit}.dll" />
-        <include name="error-pages\service-unavailable.htm" />
+        <include name="ErrorPages\service-unavailable.htm" />
       </fileset>
     </copy>
 
