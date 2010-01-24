@@ -14,6 +14,7 @@
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
     <h1><span>Log Into Your Google Account Via OpenID</span></h1>
+    <% Html.RenderValidationSummaryPartial(); %>
     <p>
         You can log into this site with your Google account via <a href="http://openid.net/get-an-openid/what-is-openid/" title="What is OpenID?">OpenID</a>.
         This is a safe and revolutionary method that all websites will be incorporating. It's fast, easy, free and most importantly safe.
