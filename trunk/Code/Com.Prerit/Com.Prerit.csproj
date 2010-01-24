@@ -44,6 +44,8 @@
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
     <Compile Include="Infrastructure\Routing\DashableRouteConstraint.cs" />
+    <Compile Include="Services\FormsAuthenticationService.cs" />
+    <Compile Include="Services\IFormsAuthenticationService.cs" />
     <Compile Include="Services\MembershipService.cs" />
     <Compile Include="Services\IMembershipService.cs" />
     <Compile Include="Services\IOpenIdService.cs" />
