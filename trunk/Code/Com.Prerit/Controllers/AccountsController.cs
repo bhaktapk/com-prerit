@@ -13,19 +13,27 @@ namespace Com.Prerit.Controllers
     {
         #region Fields
 
+        private readonly IFormsAuthenticationService _formsAuthenticationService;
+
         private readonly IMembershipService _membershipService;
 
         #endregion
 
         #region Constructors
 
-        public AccountsController(IMembershipService membershipService)
+        public AccountsController(IFormsAuthenticationService formsAuthenticationService, IMembershipService membershipService)
         {
+            if (formsAuthenticationService == null)
+            {
+                throw new ArgumentNullException("formsAuthenticationService");
+            }
+
             if (membershipService == null)
             {
                 throw new ArgumentNullException("membershipService");
             }
 
+            _formsAuthenticationService = formsAuthenticationService;
             _membershipService = membershipService;
         }
 
@@ -73,14 +81,14 @@ namespace Com.Prerit.Controllers
         {
             string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
-            FormsAuthentication.SignOut();
+            _formsAuthenticationService.SignOut();
 
             if (!string.IsNullOrEmpty(validatedReturnUrl))
             {
                 return Redirect(returnUrl);
             }
 
-            return Redirect(FormsAuthentication.DefaultUrl);
+            return Redirect(_formsAuthenticationService.DefaultUrl);
         }
 
         #endregion

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Security;
 
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
@@ -77,8 +76,6 @@ namespace Com.Prerit.Services
                 var claimsResponse = response.GetExtension<ClaimsResponse>();
 
                 _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
-
-                FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
             }
 
             return response;
