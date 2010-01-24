@@ -19,7 +19,7 @@ namespace Com.Prerit.Controllers
 
         public static bool IsLoginRequest(Uri requestUrl, UrlHelper urlHelper)
         {
-            string relativeLoginUrl = urlHelper.Action(MVC.Accounts.Login(null));
+            string relativeLoginUrl = urlHelper.Action(MVC.Accounts.LogIn(null));
 
             var absoluteLoginUrl = new Uri(requestUrl, relativeLoginUrl);
 

@@ -1,6 +1,6 @@
 ﻿namespace Com.Prerit.Models.Accounts
 {
-    public class LoginModel
+    public class LogInModel
     {
         #region Properties
 

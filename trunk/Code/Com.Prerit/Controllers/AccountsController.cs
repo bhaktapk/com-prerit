@@ -35,9 +35,9 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [ModelStateToTempData]
-        public virtual ActionResult Login(string returnUrl)
+        public virtual ActionResult LogIn(string returnUrl)
         {
-            var model = new LoginModel { ReturnUrl = returnUrl };
+            var model = new LogInModel { ReturnUrl = returnUrl };
 
             return View(model);
         }

@@ -2,14 +2,14 @@
 <%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
 <%@ Import Namespace="Com.Prerit.Models.OpenId" %>
-<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LoginModel>" %>
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LogInModel>" %>
 
-<asp:Content ContentPlaceHolderID="titleContent" runat="server">Login</asp:Content>
+<asp:Content ContentPlaceHolderID="titleContent" runat="server">Log In</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Log in to get access to the photo albums" />
-    <meta name="keywords" content="login" />
-    <link rel="canonical" href="<%= Url.Action(MVC.Accounts.Login(null)) %>" />
+    <meta name="keywords" content="log in" />
+    <link rel="canonical" href="<%= Url.Action(MVC.Accounts.LogIn(null)) %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
