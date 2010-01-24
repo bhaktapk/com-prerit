@@ -285,7 +285,7 @@
     <Content Include="content\styles\resume\print.css" />
     <Content Include="content\styles\resume\screen.css" />
     <Content Include="content\styles\screen.css" />
-    <Content Include="ErrorPages\forbidden.htm" />
+    <Content Include="ErrorPages\Forbidden.htm" />
     <Content Include="ErrorPages\GenericError.htm" />
     <Content Include="ErrorPages\NotFound.htm" />
     <Content Include="ErrorPages\ServiceUnavailable.htm" />
