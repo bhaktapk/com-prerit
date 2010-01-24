@@ -7,5 +7,5 @@
 </p>
 <h2><span>Log Out</span></h2>
 <p>
-    You can <a href="<%= Url.Action(MVC.Accounts.Logout(Request.Url.PathAndQuery)) %>" title="Logout">log out</a> at any time.
+    You can <a href="<%= Url.Action(MVC.Accounts.LogOut(Request.Url.PathAndQuery)) %>" title="Log out">log out</a> at any time.
 </p>
