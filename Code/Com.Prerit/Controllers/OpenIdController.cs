@@ -9,6 +9,8 @@ using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
+using MvcContrib.Filters;
+
 namespace Com.Prerit.Controllers
 {
     public partial class OpenIdController : Controller
@@ -55,32 +57,40 @@ namespace Com.Prerit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [ModelStateToTempData]
         public virtual ActionResult Respond(string returnUrl)
         {
             string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
             IAuthenticationResponse response = _openIdService.GetResponse();
 
-            switch (response.Status)
+            if (response != null)
             {
-                case AuthenticationStatus.Authenticated:
-                    var claimsResponse = response.GetExtension<ClaimsResponse>();
+                switch (response.Status)
+                {
+                    case AuthenticationStatus.Authenticated:
+                        var claimsResponse = response.GetExtension<ClaimsResponse>();
 
-                    _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+                        _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
 
-                    FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
 
-                    if (!string.IsNullOrEmpty(validatedReturnUrl))
-                    {
-                        return Redirect(validatedReturnUrl);
-                    }
+                        if (!string.IsNullOrEmpty(validatedReturnUrl))
+                        {
+                            return Redirect(validatedReturnUrl);
+                        }
 
-                    return RedirectToAction(MVC.About.Index());
-                default:
-                    ModelState.AddModelError(response.Exception.Message, response.Exception.Message);
+                        return RedirectToAction(MVC.About.Index());
+                    default:
+                        ModelState.AddModelError(response.Exception.Message, response.Exception.Message);
 
-                    return RedirectToAction(MVC.Accounts.LogIn(validatedReturnUrl));
+                        return RedirectToAction(MVC.Accounts.LogIn(validatedReturnUrl));
+                }
             }
+
+            ModelState.AddModelError("NoOpenIDIdentifier", "No OpenID identifier was provided");
+
+            return RedirectToAction(MVC.Accounts.LogIn(validatedReturnUrl));
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
