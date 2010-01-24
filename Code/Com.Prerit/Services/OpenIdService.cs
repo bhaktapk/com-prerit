@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Security;
 
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
@@ -11,19 +12,27 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
+        private readonly IMembershipService _membershipService;
+
         private readonly HttpRequestBase _request;
 
         #endregion
 
         #region Constructors
 
-        public OpenIdService(HttpRequestBase request)
+        public OpenIdService(IMembershipService membershipService, HttpRequestBase request)
         {
+            if (membershipService == null)
+            {
+                throw new ArgumentNullException("membershipService");
+            }
+
             if (request == null)
             {
                 throw new ArgumentNullException("request");
             }
 
+            _membershipService = membershipService;
             _request = request;
         }
 
@@ -56,10 +65,29 @@ namespace Com.Prerit.Services
 
         public IAuthenticationResponse GetResponse()
         {
+            IAuthenticationResponse response;
+
             using (var openid = new OpenIdRelyingParty())
             {
-                return openid.GetResponse();
+                response = openid.GetResponse();
             }
+
+            if (response != null)
+            {
+                switch (response.Status)
+                {
+                    case AuthenticationStatus.Authenticated:
+                        var claimsResponse = response.GetExtension<ClaimsResponse>();
+
+                        _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+
+                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+
+                        break;
+                }
+            }
+
+            return response;
         }
 
         #endregion
