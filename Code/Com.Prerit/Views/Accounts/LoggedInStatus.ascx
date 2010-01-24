@@ -3,7 +3,7 @@
 
 <h2><span>Logged In As</span></h2>
 <p>
-    <%= Model.EmailAddress %>
+    <%= Model.Name %>
 </p>
 <h2><span>Log Out</span></h2>
 <p>
