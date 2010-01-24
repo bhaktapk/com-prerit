@@ -35,7 +35,7 @@ namespace Com.Prerit.Services
         {
             if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
             {
-                throw new ArgumentException("Parameter is not a well formed relative uri string", "returnUrl");
+                throw new ArgumentException("Value is not a well formed relative uri string", "returnUrl");
             }
 
             IAuthenticationRequest request;
