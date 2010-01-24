@@ -1,5 +1,3 @@
-using System;
-
 using DotNetOpenAuth.OpenId.RelyingParty;
 
 namespace Com.Prerit.Services
