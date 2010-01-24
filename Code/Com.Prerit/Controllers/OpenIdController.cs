@@ -47,8 +47,11 @@ namespace Com.Prerit.Controllers
         [ActionName("Request")]
         public virtual ActionResult RequestAuth(string returnUrl)
         {
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+
             var baseUri = new Uri(Request.Url, "/");
-            var returnToUri = new Uri(baseUri, Url.Action(MVC.OpenId.Respond(returnUrl)));
+
+            var returnToUri = new Uri(baseUri, Url.Action(MVC.OpenId.Respond(validatedReturnUrl)));
 
             IAuthenticationRequest request = _openIdService.CreateRequest(baseUri, returnToUri);
 
@@ -58,6 +61,8 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Respond(string returnUrl)
         {
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+
             IAuthenticationResponse response = _openIdService.GetResponse();
 
             switch (response.Status)
@@ -69,11 +74,16 @@ namespace Com.Prerit.Controllers
 
                     FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
 
-                    return !string.IsNullOrEmpty(returnUrl) ? (ActionResult) Redirect(returnUrl) : RedirectToAction(MVC.About.Index());
+                    if (!string.IsNullOrEmpty(validatedReturnUrl))
+                    {
+                        return Redirect(validatedReturnUrl);
+                    }
+
+                    return RedirectToAction(MVC.About.Index());
                 default:
                     ModelState.AddModelError(response.Exception.Message, response.Exception.Message);
 
-                    return RedirectToAction(MVC.Accounts.LogIn(returnUrl));
+                    return RedirectToAction(MVC.Accounts.LogIn(validatedReturnUrl));
             }
         }
 

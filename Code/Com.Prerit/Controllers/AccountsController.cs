@@ -37,7 +37,9 @@ namespace Com.Prerit.Controllers
         [ModelStateToTempData]
         public virtual ActionResult LogIn(string returnUrl)
         {
-            var model = new LogInModel { ReturnUrl = returnUrl };
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+
+            var model = new LogInModel { ReturnUrl = validatedReturnUrl };
 
             return View(model);
         }
@@ -69,9 +71,11 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult LogOut(string returnUrl)
         {
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+
             FormsAuthentication.SignOut();
 
-            if (!string.IsNullOrEmpty(returnUrl))
+            if (!string.IsNullOrEmpty(validatedReturnUrl))
             {
                 return Redirect(returnUrl);
             }
