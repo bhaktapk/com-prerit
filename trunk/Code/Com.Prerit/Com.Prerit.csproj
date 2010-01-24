@@ -134,7 +134,7 @@
     </Compile>
     <Compile Include="Models\Accounts\LoggingInStatusModel.cs" />
     <Compile Include="Models\Accounts\LoggedInStatusModel.cs" />
-    <Compile Include="Models\Accounts\LoginModel.cs" />
+    <Compile Include="Models\Accounts\LogInModel.cs" />
     <Compile Include="Models\Accounts\NotLoggedInStatusModel.cs" />
     <Compile Include="Models\Contact\EmailSentModel.cs">
       <SubType>Code</SubType>
@@ -303,7 +303,7 @@
     </None>
     <Content Include="Views\Accounts\LoggingInStatus.ascx" />
     <Content Include="Views\Accounts\LoggedInStatus.ascx" />
-    <Content Include="Views\Accounts\Login.aspx" />
+    <Content Include="Views\Accounts\LogIn.aspx" />
     <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />
