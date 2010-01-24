@@ -10,10 +10,7 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Fields
 
-        private static readonly string[] RouteParams = new[]
-                                                           {
-                                                               "action", "controller"
-                                                           };
+        private static readonly string[] RouteParams = new[] { "action", "controller" };
 
         #endregion
 
@@ -47,17 +44,37 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             foreach (string key in GetDashableRouteParams(routeValueDictionary))
             {
-                routeValueDictionary[key] = GetDashedValue((string) routeValueDictionary[key]);
+                if (routeValueDictionary[key] is string)
+                {
+                    routeValueDictionary[key] = GetDashedValue((string) routeValueDictionary[key]);
+                }
+                else if (routeValueDictionary[key] is DashableRouteConstraint)
+                {
+                    var dashable = (DashableRouteConstraint) routeValueDictionary[key];
+
+                    dashable.DashableData = from data in dashable.DashableData
+                                            select !data.Contains('-') ? GetDashedValue(data) : data;
+                }
             }
         }
 
         private string[] GetDashableRouteParams(RouteValueDictionary routeValueDictionary)
         {
-            return (from key in routeValueDictionary.Keys
-                    where
-                        RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
-                        !((string) routeValueDictionary[key]).Contains('-')
-                    select key).ToArray();
+            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
+                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
+                                                                             select kvp;
+
+            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
+                                                    where !string.IsNullOrEmpty(kvp.Value as string) && !((string) kvp.Value).Contains('-')
+                                                    select kvp.Key;
+
+            IEnumerable<string> idashableRouteParams = from kvp in potentialRouteParams
+                                                       where
+                                                           kvp.Value as DashableRouteConstraint != null &&
+                                                           ((DashableRouteConstraint) kvp.Value).DashableData.Any(data => !data.Contains('-'))
+                                                       select kvp.Key;
+
+            return stringRouteParams.Concat(idashableRouteParams).ToArray();
         }
 
         private static string GetDashedValue(string value)
@@ -101,11 +118,21 @@ namespace Com.Prerit.Infrastructure.Routing
 
         private string[] GetUndashableRouteParams(RouteValueDictionary routeValueDictionary)
         {
-            return (from key in routeValueDictionary.Keys
-                    where
-                        RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
-                        ((string) routeValueDictionary[key]).Contains('-')
-                    select key).ToArray();
+            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
+                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
+                                                                             select kvp;
+
+            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
+                                                    where !string.IsNullOrEmpty(kvp.Value as string) && ((string) kvp.Value).Contains('-')
+                                                    select kvp.Key;
+
+            IEnumerable<string> idashableRouteParams = from kvp in potentialRouteParams
+                                                       where
+                                                           kvp.Value as DashableRouteConstraint != null &&
+                                                           ((DashableRouteConstraint) kvp.Value).DashableData.Any(data => data.Contains('-'))
+                                                       select kvp.Key;
+
+            return stringRouteParams.Concat(idashableRouteParams).ToArray();
         }
 
         private static string GetUndashedValue(string value)
@@ -149,7 +176,17 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             foreach (string key in GetUndashableRouteParams(routeValueDictionary))
             {
-                routeValueDictionary[key] = GetUndashedValue((string) routeValueDictionary[key]);
+                if (routeValueDictionary[key] is string)
+                {
+                    routeValueDictionary[key] = GetUndashedValue((string) routeValueDictionary[key]);
+                }
+                else if (routeValueDictionary[key] is DashableRouteConstraint)
+                {
+                    var dashable = (DashableRouteConstraint) routeValueDictionary[key];
+
+                    dashable.DashableData = from data in dashable.DashableData
+                                            select data.Contains('-') ? GetUndashedValue(data) : data;
+                }
             }
         }
 
