@@ -47,13 +47,9 @@ namespace Com.Prerit.Controllers
         [ActionName("Request")]
         public virtual ActionResult RequestAuth(string returnUrl)
         {
-            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
-            var baseUri = new Uri(Request.Url, "/");
-
-            var returnToUri = new Uri(baseUri, Url.Action(MVC.OpenId.Respond(validatedReturnUrl)));
-
-            IAuthenticationRequest request = _openIdService.CreateRequest(baseUri, returnToUri);
+            IAuthenticationRequest request = _openIdService.CreateRequest(Url.Action(MVC.OpenId.Respond(validatedReturnUrl)));
 
             return request.RedirectingResponse.AsActionResult();
         }
@@ -61,7 +57,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Respond(string returnUrl)
         {
-            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute) ? returnUrl : null;
+            string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
             IAuthenticationResponse response = _openIdService.GetResponse();
 
