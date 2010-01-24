@@ -8,7 +8,7 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        IAuthenticationRequest CreateRequest(Uri baseUri, Uri returnToUri);
+        IAuthenticationRequest CreateRequest(string returnUrl);
 
         IAuthenticationResponse GetResponse();
 
