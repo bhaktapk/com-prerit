@@ -47,7 +47,7 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel { EmailAddress = _membershipService.GetAccount().Name };
+                var model = new LoggedInStatusModel { EmailAddress = _membershipService.GetAccount(User.Identity.Name).Name };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }
