@@ -55,7 +55,7 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             return (from key in routeValueDictionary.Keys
                     where
-                        RouteParams.Contains(key, StringComparer.InvariantCultureIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
+                        RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
                         !((string) routeValueDictionary[key]).Contains('-')
                     select key).ToArray();
         }
@@ -103,7 +103,7 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             return (from key in routeValueDictionary.Keys
                     where
-                        RouteParams.Contains(key, StringComparer.InvariantCultureIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
+                        RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase) && !string.IsNullOrEmpty(routeValueDictionary[key] as string) &&
                         ((string) routeValueDictionary[key]).Contains('-')
                     select key).ToArray();
         }
