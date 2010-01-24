@@ -31,8 +31,8 @@
   </target>
 
   <target name="replace-service-unavailable-page">
-    <move file="${dir.file-share-deployment}\ErrorPages\temp-service-unavailable.htm"
-          tofile="${dir.file-share-deployment}\ErrorPages\service-unavailable.htm"
+    <move file="${dir.file-share-deployment}\ErrorPages\TempServiceUnavailable.htm"
+          tofile="${dir.file-share-deployment}\ErrorPages\ServiceUnavailable.htm"
           overwrite="true" />
   </target>
 
