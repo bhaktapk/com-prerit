@@ -208,7 +208,33 @@ img
 
 #content div.validationSummary
 {
-    display: none;
+    border: 1px dashed #f40;
+    margin: 0 auto;
+    width: 90%;
+}
+
+#content div.validationSummary h2
+{
+    background-image: none;
+    color: #f40;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#content div.validationSummary ul
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+#content div.validationSummary li
+{
+    color: #f40;
+    font-weight: bold;
+    list-style-image: none;
+    list-style-type: disc;
 }
 
 #content fieldset
@@ -226,12 +252,6 @@ img
 #content legend
 {
     display: none;
-}
-
-#content p.successMessage
-{
-    border: 1px dashed #83e05e;
-    color: #83e05e;
 }
 
 #content input,
@@ -266,7 +286,7 @@ img
 #content select.input-validation-error,
 #content textarea.input-validation-error
 {
-    border: 1px solid #b00;
+    border: 1px solid #f00;
 }
 
 #content input.input-validation-error:focus,
@@ -276,14 +296,8 @@ img
 #content textarea.input-validation-error:focus,
 #content textarea.input-validation-error:hover
 {
-    border: 1px solid #e00;
+    border: 1px solid #f80;
     color: #fff;
-}
-
-#content p.successMessage
-{
-    font-weight: bold;
-    text-align: center;
 }
 
 
@@ -642,13 +656,6 @@ img
 #mainbar textarea
 {
     height: 130px;
-}
-
-#mainbar p.successMessage
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
 }
 
 #mainbar select,
