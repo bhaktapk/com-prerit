@@ -75,13 +75,6 @@ img
     display: none;
 }
 
-#content p.successMessage
-{
-    border: 1pt dashed #000;
-    font-weight: bold;
-    text-align: center;
-}
-
 #content input,
 #content select,
 #content textarea
@@ -246,13 +239,6 @@ img
 #mainbar label
 {
     display: block;
-}
-
-#mainbar p.successMessage
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: 400pt;
 }
 
 #mainbar select,
