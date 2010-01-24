@@ -10,7 +10,7 @@ namespace Com.Prerit.Filters
         {
             var urlHelper = new UrlHelper(filterContext.RequestContext);
 
-            filterContext.HttpContext.Response.AppendHeader("x-xrds-location", urlHelper.Action(MVC.OpenId.Xrds()));
+            filterContext.HttpContext.Response.AppendHeader("X-XRDS-Location", urlHelper.Action(MVC.OpenId.Xrds()));
 
             base.OnResultExecuted(filterContext);
         }
