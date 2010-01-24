@@ -28,8 +28,8 @@ namespace Com.Prerit.Controllers {
         }
 
         [NonAction]
-        public System.Web.Mvc.ActionResult Login() {
-            return new T4MVC_ActionResult(Area, Name, Actions.Login);
+        public System.Web.Mvc.ActionResult LogIn() {
+            return new T4MVC_ActionResult(Area, Name, Actions.LogIn);
         }
         [NonAction]
         public System.Web.Mvc.ActionResult Logout() {
@@ -42,7 +42,7 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
-            public readonly string Login = "Login";
+            public readonly string LogIn = "LogIn";
             public readonly string LoginStatus = "LoginStatus";
             public readonly string Logout = "Logout";
         }
@@ -62,8 +62,8 @@ namespace Com.Prerit.Controllers {
     public class T4MVC_AccountsController: Com.Prerit.Controllers.AccountsController {
         public T4MVC_AccountsController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Login(string returnUrl) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Login);
+        public override System.Web.Mvc.ActionResult LogIn(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.LogIn);
             callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }

@@ -73,7 +73,7 @@ namespace Com.Prerit.Controllers
                 default:
                     ModelState.AddModelError(response.Exception.Message, response.Exception.Message);
 
-                    return RedirectToAction(MVC.Accounts.Login(returnUrl));
+                    return RedirectToAction(MVC.Accounts.LogIn(returnUrl));
             }
         }
 
