@@ -201,6 +201,13 @@ namespace Links {
     }
 
     [CompilerGenerated]
+    public static class MembershipData {
+        private const string URLPATH = "~/MembershipData";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+    }
+
+    [CompilerGenerated]
     public static class scripts {
         private const string URLPATH = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
