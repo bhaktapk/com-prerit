@@ -65,9 +65,9 @@ namespace Com.Prerit.Controllers
                 case AuthenticationStatus.Authenticated:
                     var claimsResponse = response.GetExtension<ClaimsResponse>();
 
-                    FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
-
                     _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+
+                    FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
 
                     return !string.IsNullOrEmpty(returnUrl) ? (ActionResult) Redirect(returnUrl) : RedirectToAction(MVC.About.Index());
                 default:
