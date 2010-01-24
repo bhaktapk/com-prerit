@@ -53,7 +53,7 @@ namespace Com.Prerit.Controllers {
         public class ViewNames {
             public readonly string LoggedInStatus = "~/Views/Accounts/LoggedInStatus.ascx";
             public readonly string LoggingInStatus = "~/Views/Accounts/LoggingInStatus.ascx";
-            public readonly string Login = "~/Views/Accounts/Login.aspx";
+            public readonly string LogIn = "~/Views/Accounts/LogIn.aspx";
             public readonly string NotLoggedInStatus = "~/Views/Accounts/NotLoggedInStatus.ascx";
         }
     }
