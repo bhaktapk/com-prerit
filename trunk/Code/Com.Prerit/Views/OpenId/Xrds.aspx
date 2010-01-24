@@ -13,9 +13,9 @@ is default.aspx.
 		<Service priority="1">
 			<Type>http://specs.openid.net/auth/2.0/return_to</Type>
 			<%-- Every page with an OpenID login should be listed here. --%>
-			<%-- We use the Authenticate action instead of Login because Authenticate
+			<%-- We use the Respond action instead of Request because Respond
 			     is the action that receives OpenId assertions. --%>
-			<URI></URI>
+			<URI><%= new Uri(Request.Url, Url.Action(MVC.OpenId.Respond())).AbsoluteUri %></URI>
 		</Service>
 	</xrd>
 </xrds:xrds>
