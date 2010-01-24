@@ -4,7 +4,7 @@
     {
         #region Properties
 
-        public string EmailAddress { get; set; }
+        public string Name { get; set; }
 
         #endregion
     }
