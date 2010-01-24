@@ -29,15 +29,15 @@
       <fileset basedir="${dir.deploying-packages}\${package.name.com-prerit-base}">
         <include name="**" />
         <exclude name="bin\**" />
-        <exclude name="error-pages\service-unavailable.htm" />
+        <exclude name="ErrorPages\service-unavailable.htm" />
         <exclude name="Web.config" />
       </fileset>
     </copy>
   </target>
 
   <target name="copy-temp-service-unavailable-page">
-    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\error-pages\service-unavailable.htm"
-          tofile="${dir.file-share-deployment}\error-pages\temp-service-unavailable.htm"
+    <copy file="${dir.deploying-packages}\${package.name.com-prerit-base}\ErrorPages\service-unavailable.htm"
+          tofile="${dir.file-share-deployment}\ErrorPages\temp-service-unavailable.htm"
           overwrite="true" />
   </target>
 
