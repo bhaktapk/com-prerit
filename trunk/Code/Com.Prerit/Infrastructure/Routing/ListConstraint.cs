@@ -5,26 +5,20 @@ using System.Web.Routing;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public class ListConstraint : IRouteConstraint
+    public class ListConstraint : DashableRouteConstraint
     {
-        #region Fields
-
-        private readonly string[] _list;
-
-        #endregion
-
         #region Constructors
 
         public ListConstraint(params string[] list)
         {
-            _list = list;
+            DashableData = list;
         }
 
         #endregion
 
         #region Methods
 
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+        public override bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             if (string.IsNullOrEmpty(parameterName))
             {
@@ -40,7 +34,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             if (values.TryGetValue(parameterName, out value) && value is string)
             {
-                return _list.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
+                return DashableData.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
             }
 
             return false;
