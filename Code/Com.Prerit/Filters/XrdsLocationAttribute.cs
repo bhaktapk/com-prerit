@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Com.Prerit.Filters
 {
@@ -10,7 +11,9 @@ namespace Com.Prerit.Filters
         {
             var urlHelper = new UrlHelper(filterContext.RequestContext);
 
-            filterContext.HttpContext.Response.AppendHeader("X-XRDS-Location", urlHelper.Action(MVC.OpenId.Xrds()));
+            string xrdsLocationUrl = new Uri(filterContext.HttpContext.Request.Url, urlHelper.Action(MVC.OpenId.Xrds())).AbsoluteUri;
+
+            filterContext.HttpContext.Response.AppendHeader("X-XRDS-Location", xrdsLocationUrl);
 
             base.OnResultExecuted(filterContext);
         }
