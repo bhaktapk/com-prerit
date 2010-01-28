@@ -7,7 +7,7 @@
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Log Into Your Google Account Via OpenID</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="Log into your google account via OpenID" />
+    <meta name="description" content="Log into your Google account via OpenID" />
     <meta name="keywords" content="log in, Google account, OpenID" />
     <link rel="canonical" href="<%= Url.Action(MVC.Accounts.LogIn(null)) %>" />
 </asp:Content>
