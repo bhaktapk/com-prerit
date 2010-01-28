@@ -3,7 +3,7 @@
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">OpenID Information</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="General OpenID information such as the openid.realm and openid.return_to parameters" />
+    <meta name="description" content="General OpenID information such as the openid.realm and openid.return_to parameters are listed." />
     <meta name="keywords" content="OpenID, information, openid.realm, openid.return_to, openid.sreg.required, X-XRDS-Location" />
     <meta http-equiv="X-XRDS-Location" content="<%= new Uri(Request.Url, Url.Action(MVC.OpenId.Xrds())).AbsoluteUri %>" />
     <link rel="canonical" href="<%= Url.Action(MVC.OpenId.Index()) %>" />

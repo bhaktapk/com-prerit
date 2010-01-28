@@ -4,7 +4,7 @@
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Resume of Prerit Bhakta</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="Resume of Prerit Bhakta" />
+    <meta name="description" content="View the resume of Prerit Bhakta." />
     <meta name="keywords" content="resume, Prerit Bhakta" />
     <link rel="canonical" href="<%= Url.Action(MVC.Resume.Index()) %>" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.print_css) %>" media="print" />
