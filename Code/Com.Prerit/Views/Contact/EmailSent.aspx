@@ -7,7 +7,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="An email to Prerit Bhakta has been sent." />
     <meta name="keywords" content="email sent, contact, Prerit Bhakta" />
-    <link rel="canonical" href="<%= Url.Action(MVC.Contact.EmailSent()) %>" />
+    <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Contact.EmailSent())) %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">
