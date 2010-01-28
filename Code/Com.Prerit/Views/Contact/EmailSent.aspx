@@ -5,7 +5,7 @@
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Email To Prerit Bhakta Has Been Sent</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="Email To Prerit Bhakta Has Been Sent" />
+    <meta name="description" content="An email to Prerit Bhakta has been sent." />
     <meta name="keywords" content="email sent, contact, Prerit Bhakta" />
     <link rel="canonical" href="<%= Url.Action(MVC.Contact.EmailSent()) %>" />
 </asp:Content>
