@@ -4,11 +4,11 @@
 <%@ Import Namespace="Com.Prerit.Models.OpenId" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LogInModel>" %>
 
-<asp:Content ContentPlaceHolderID="titleContent" runat="server">Log In</asp:Content>
+<asp:Content ContentPlaceHolderID="titleContent" runat="server">Log Into Your Google Account Via OpenID</asp:Content>
 
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
-    <meta name="description" content="Log in to get access to the photo albums" />
-    <meta name="keywords" content="log in" />
+    <meta name="description" content="Log into your google account via OpenID" />
+    <meta name="keywords" content="log in, Google account, OpenID" />
     <link rel="canonical" href="<%= Url.Action(MVC.Accounts.LogIn(null)) %>" />
 </asp:Content>
 
