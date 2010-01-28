@@ -7,7 +7,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Find out what prerit.com is and about it's author, Prerit Bhakta." />
     <meta name="keywords" content="about, prerit.com, Prerit Bhakta" />
-    <link rel="canonical" href="<%= Url.Action(MVC.About.Index()) %>" />
+    <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.About.Index())) %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">

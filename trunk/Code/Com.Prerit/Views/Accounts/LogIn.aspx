@@ -9,7 +9,7 @@
 <asp:Content ContentPlaceHolderID="headContent" runat="server">
     <meta name="description" content="Log into your Google account via OpenID." />
     <meta name="keywords" content="log in, Google account, OpenID" />
-    <link rel="canonical" href="<%= Url.Action(MVC.Accounts.LogIn(null)) %>" />
+    <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Accounts.LogIn(null))) %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
