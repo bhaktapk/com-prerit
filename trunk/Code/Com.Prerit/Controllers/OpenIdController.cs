@@ -1,6 +1,7 @@
 using System;
 using System.Web.Mvc;
 
+using Com.Prerit.Filters;
 using Com.Prerit.Models.OpenId;
 using Com.Prerit.Services;
 
@@ -43,13 +44,24 @@ namespace Com.Prerit.Controllers
 
         #region Methods
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        [XrdsLocation]
+        public virtual ActionResult Index()
+        {
+            return View();
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         [ActionName("Request")]
         public virtual ActionResult RequestAuth(string returnUrl)
         {
             string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
-            IAuthenticationRequest request = _openIdService.CreateRequest(Url.Action(MVC.OpenId.Respond(validatedReturnUrl)));
+            string realmUrl = Url.Action(MVC.OpenId.Index());
+
+            string respondUrl = Url.Action(MVC.OpenId.Respond(validatedReturnUrl));
+
+            IAuthenticationRequest request = _openIdService.CreateRequest(realmUrl, respondUrl);
 
             return request.RedirectingResponse.AsActionResult();
         }

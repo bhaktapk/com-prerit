@@ -26,9 +26,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             RouteTable.Routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
                                           new { action = DefaultAction },
-                                          new { controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.Resume.Name) });
-
-            RouteTable.Routes.MapSeoRoute("root routes without default action", "{controller}/{action}", null, new { controller = MVC.OpenId.Name });
+                                          new { controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.OpenId.Name, MVC.Resume.Name) });
 
             RouteTable.Routes.MapSeoRoute("account routes",
                                           "{controller}/{action}",

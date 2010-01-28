@@ -39,8 +39,13 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public IAuthenticationRequest CreateRequest(string returnUrl)
+        public IAuthenticationRequest CreateRequest(string realmUrl, string returnUrl)
         {
+            if (!Uri.IsWellFormedUriString(realmUrl, UriKind.Relative))
+            {
+                throw new ArgumentException("Value is not a well formed relative uri string", "realmUrl");
+            }
+
             if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
             {
                 throw new ArgumentException("Value is not a well formed relative uri string", "returnUrl");
@@ -50,11 +55,13 @@ namespace Com.Prerit.Services
 
             var baseUri = new Uri(_request.Url, "/");
 
+            var realmUri = new Uri(baseUri, realmUrl);
+
             var returnToUri = new Uri(baseUri, returnUrl);
 
             using (var openIdRelyingParty = new OpenIdRelyingParty())
             {
-                request = openIdRelyingParty.CreateRequest(Identifier.Parse("https://www.google.com/accounts/o8/id"), new Realm(baseUri), returnToUri);
+                request = openIdRelyingParty.CreateRequest(Identifier.Parse("https://www.google.com/accounts/o8/id"), new Realm(realmUri), returnToUri);
             }
 
             request.AddExtension(new ClaimsRequest { Email = DemandLevel.Require });

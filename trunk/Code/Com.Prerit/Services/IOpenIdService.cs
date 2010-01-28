@@ -6,7 +6,7 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        IAuthenticationRequest CreateRequest(string returnUrl);
+        IAuthenticationRequest CreateRequest(string realmUrl, string returnUrl);
 
         IAuthenticationResponse GetResponse();
 

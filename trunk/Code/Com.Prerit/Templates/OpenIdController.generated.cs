@@ -42,6 +42,7 @@ namespace Com.Prerit.Controllers {
         static readonly ActionNames s_actions = new ActionNames();
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
+            public readonly string Index = "Index";
             public readonly string RequestAuth = "Request";
             public readonly string Respond = "Respond";
             public readonly string Xrds = "Xrds";
@@ -51,6 +52,7 @@ namespace Com.Prerit.Controllers {
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
+            public readonly string Index = "~/Views/OpenId/Index.aspx";
             public readonly string Xrds = "~/Views/OpenId/Xrds.aspx";
         }
     }
@@ -58,6 +60,11 @@ namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public class T4MVC_OpenIdController: Com.Prerit.Controllers.OpenIdController {
         public T4MVC_OpenIdController() : base(Dummy.Instance) { }
+
+        public override System.Web.Mvc.ActionResult Index() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Index);
+            return callInfo;
+        }
 
         public override System.Web.Mvc.ActionResult RequestAuth(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.RequestAuth);
