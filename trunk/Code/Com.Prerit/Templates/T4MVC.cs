@@ -205,6 +205,7 @@ namespace Links {
         private const string URLPATH = "~/MembershipData";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string AdminAccounts_xml = Url("AdminAccounts.xml");
     }
 
     [CompilerGenerated]
