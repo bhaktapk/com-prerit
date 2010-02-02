@@ -20,13 +20,20 @@ namespace Com.Prerit.Services
         private readonly HttpServerUtilityBase _server;
 
         private readonly ISessionService _sessionService;
+        
+        private readonly ICacheService _cacheService;
 
         #endregion
 
         #region Constructors
 
-        public MembershipService(ISessionService sessionService, HttpServerUtilityBase server)
+        public MembershipService(ICacheService cacheService, ISessionService sessionService, HttpServerUtilityBase server)
         {
+            if (cacheService == null)
+            {
+                throw new ArgumentNullException("cacheService");
+            }
+
             if (sessionService == null)
             {
                 throw new ArgumentNullException("sessionService");
@@ -37,6 +44,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("server");
             }
 
+            _cacheService = cacheService;
             _sessionService = sessionService;
             _server = server;
         }
@@ -87,6 +95,25 @@ namespace Com.Prerit.Services
             string filename = GetSafeFilename(claimedIdentifier.OriginalString);
 
             return Path.Combine(directoryPath, filename);
+        }
+
+        public IEnumerable<Account> GetAdminAccounts()
+        {
+            if (_cacheService.AdminAccounts == null)
+            {
+                IEnumerable<Account> adminAccounts;
+
+                var serializer = new XmlSerializer(typeof(Account[]));
+
+                using (var reader = new StreamReader(_server.MapPath(MembershipData.AdminAccounts_xml)))
+                {
+                    adminAccounts = (IEnumerable<Account>) serializer.Deserialize(reader);
+                }
+
+                _cacheService.AdminAccounts = adminAccounts;
+            }
+
+            return _cacheService.AdminAccounts;
         }
 
         public void SaveAccount(Identifier claimedIdentifier, string emailAddress)
