@@ -34,7 +34,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Accounts.Name,
-                                                  action = new ListConstraint(MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut)
+                                                  action = new ListConstraint(MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut, MVC.Accounts.Actions.Unauthorized)
                                               });
 
             RouteTable.Routes.MapSeoRoute("resume formats route", "resume/formats/{action}", new { controller = MVC.ResumeFormats.Name });
