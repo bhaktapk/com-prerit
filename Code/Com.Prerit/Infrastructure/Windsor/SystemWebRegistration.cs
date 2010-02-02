@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Caching;
 
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
@@ -13,6 +14,9 @@ namespace Com.Prerit.Infrastructure.Windsor
                 .Register(Component.For<HttpContextBase>()
                     .LifeStyle.PerWebRequest
                     .UsingFactoryMethod(() => new HttpContextWrapper(HttpContext.Current)))
+                .Register(Component.For<Cache>()
+                    .LifeStyle.PerWebRequest
+                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Cache))
                 .Register(Component.For<HttpRequestBase>()
                     .LifeStyle.PerWebRequest
                     .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Request))
