@@ -294,6 +294,7 @@
     <Content Include="ErrorPages\ServiceUnavailable.htm" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MembershipData\AdminAccounts.xml" />
     <Content Include="ProductionWeb.config" />
     <Content Include="ServiceUnavailableWeb.config" />
     <None Include="App_Data\ResumeFormats\AdobePdf.pdf" />
@@ -332,7 +333,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />
-    <Folder Include="MembershipData\" />
     <Folder Include="scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
