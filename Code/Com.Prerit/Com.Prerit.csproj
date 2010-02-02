@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
+    <Compile Include="Models\Accounts\UnauthorizedModel.cs" />
     <Compile Include="Infrastructure\Routing\DashableRouteConstraint.cs" />
     <Compile Include="Services\CacheService.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\Accounts\LoggedInStatus.ascx" />
     <Content Include="Views\Accounts\LogIn.aspx" />
     <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
+    <Content Include="Views\Accounts\Unauthorized.aspx" />
     <Content Include="Views\OpenId\Index.aspx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />

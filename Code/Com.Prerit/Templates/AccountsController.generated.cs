@@ -35,6 +35,10 @@ namespace Com.Prerit.Controllers {
         public System.Web.Mvc.ActionResult LogOut() {
             return new T4MVC_ActionResult(Area, Name, Actions.LogOut);
         }
+        [NonAction]
+        public System.Web.Mvc.ActionResult Unauthorized() {
+            return new T4MVC_ActionResult(Area, Name, Actions.Unauthorized);
+        }
 
         public readonly string Area = "";
         public readonly string Name = "Accounts";
@@ -45,6 +49,7 @@ namespace Com.Prerit.Controllers {
             public readonly string LogIn = "LogIn";
             public readonly string LoginStatus = "LoginStatus";
             public readonly string LogOut = "LogOut";
+            public readonly string Unauthorized = "Unauthorized";
         }
 
 
@@ -55,6 +60,7 @@ namespace Com.Prerit.Controllers {
             public readonly string LoggingInStatus = "~/Views/Accounts/LoggingInStatus.ascx";
             public readonly string LogIn = "~/Views/Accounts/LogIn.aspx";
             public readonly string NotLoggedInStatus = "~/Views/Accounts/NotLoggedInStatus.ascx";
+            public readonly string Unauthorized = "~/Views/Accounts/Unauthorized.aspx";
         }
     }
 
@@ -75,6 +81,12 @@ namespace Com.Prerit.Controllers {
 
         public override System.Web.Mvc.ActionResult LogOut(string returnUrl) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.LogOut);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Unauthorized(string returnUrl) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Unauthorized);
             callInfo.RouteValues.Add("returnUrl", returnUrl);
             return callInfo;
         }

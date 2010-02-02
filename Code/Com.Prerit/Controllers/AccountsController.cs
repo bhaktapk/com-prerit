@@ -90,6 +90,14 @@ namespace Com.Prerit.Controllers
             return Redirect(_formsAuthenticationService.DefaultUrl);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public virtual ActionResult Unauthorized(string returnUrl)
+        {
+            var model = new UnauthorizedModel { ReturnUrl = returnUrl };
+
+            return View(model);
+        }
+
         #endregion
     }
 }
