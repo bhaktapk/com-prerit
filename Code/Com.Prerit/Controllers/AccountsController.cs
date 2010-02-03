@@ -63,16 +63,10 @@ namespace Com.Prerit.Controllers
 
             if (ControllerUtil.IsLoginRequest(Request.Url, Url))
             {
-                var model = new LoggingInStatusModel();
-
-                return View(MVC.Accounts.Views.LoggingInStatus, model);
+                return View(MVC.Accounts.Views.LoggingInStatus);
             }
-            else
-            {
-                var model = new NotLoggedInStatusModel();
 
-                return View(MVC.Accounts.Views.NotLoggedInStatus, model);
-            }
+            return View(MVC.Accounts.Views.NotLoggedInStatus);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

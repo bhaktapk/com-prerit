@@ -1,5 +1,5 @@
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<NotLoggedInStatusModel>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 
 <h2><span>Log In</span></h2>
 <p>

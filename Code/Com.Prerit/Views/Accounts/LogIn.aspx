@@ -1,7 +1,6 @@
 <%@ Import Namespace="Com.Prerit.Core" %>
 <%@ Import Namespace="Com.Prerit.Helpers.Shared" %>
 <%@ Import Namespace="Com.Prerit.Models.Accounts" %>
-<%@ Import Namespace="Com.Prerit.Models.OpenId" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<LogInModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Log Into Your Google Account Via OpenID</asp:Content>

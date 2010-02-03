@@ -1,7 +1,5 @@
 using System.Web.Mvc;
 
-using Com.Prerit.Models.About;
-
 namespace Com.Prerit.Controllers
 {
     public partial class AboutController : Controller
@@ -11,9 +9,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Index()
         {
-            var model = new IndexModel();
-
-            return View(model);
+            return View();
         }
 
         #endregion
