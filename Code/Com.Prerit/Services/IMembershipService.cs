@@ -10,11 +10,11 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        Account GetAccount(Identifier claimedIdentifier);
+        Account GetAccount(Identifier id);
 
         IEnumerable<Account> GetAdminAccounts();
 
-        void SaveAccount(Identifier claimedIdentifier, string emailAddress);
+        void SaveAccount(Identifier id, string emailAddress);
 
         #endregion
     }
