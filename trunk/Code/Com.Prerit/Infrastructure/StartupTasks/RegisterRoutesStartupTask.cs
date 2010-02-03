@@ -31,7 +31,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                               },
                                           new
                                               {
-                                                  controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.OpenId.Name, MVC.Resume.Name)
+                                                  controller = new ListConstraint(new[]
+                                                                                      {
+                                                                                          MVC.About.Name, MVC.Contact.Name, MVC.OpenId.Name, MVC.Resume.Name
+                                                                                      })
                                               });
 
             RouteTable.Routes.MapSeoRoute("account routes",
@@ -40,8 +43,11 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Accounts.Name,
-                                                  action =
-                                              new ListConstraint(MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut, MVC.Accounts.Actions.Unauthorized)
+                                                  action = new ListConstraint(new[]
+                                                                                  {
+                                                                                      MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut,
+                                                                                      MVC.Accounts.Actions.Unauthorized
+                                                                                  })
                                               });
 
             RouteTable.Routes.MapSeoRoute("resume formats route",
