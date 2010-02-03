@@ -3,9 +3,12 @@
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Unauthorized</asp:Content>
 
-<asp:Content ContentPlaceHolderID="headContent" runat="server">
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <meta name="description" content="You are seeking a resource for which you are unauthorized." />
     <meta name="keywords" content="unauthorized" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="linkContent" runat="server">
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Accounts.Unauthorized())).AbsoluteUri %>" />
 </asp:Content>
 

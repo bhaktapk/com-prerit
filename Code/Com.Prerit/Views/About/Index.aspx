@@ -4,9 +4,12 @@
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">About the Website &amp; It's Author</asp:Content>
 
-<asp:Content ContentPlaceHolderID="headContent" runat="server">
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <meta name="description" content="Find out what prerit.com is and about it's author, Prerit Bhakta." />
     <meta name="keywords" content="about, prerit.com, Prerit Bhakta" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="linkContent" runat="server">
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.About.Index())).AbsoluteUri %>" />
 </asp:Content>
 

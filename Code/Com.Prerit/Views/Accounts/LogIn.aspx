@@ -6,9 +6,12 @@
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Log Into Your Google Account Via OpenID</asp:Content>
 
-<asp:Content ContentPlaceHolderID="headContent" runat="server">
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <meta name="description" content="Log into your Google account via OpenID." />
     <meta name="keywords" content="log in, Google account, OpenID" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="linkContent" runat="server">
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Accounts.LogIn(null))).AbsoluteUri %>" />
 </asp:Content>
 
