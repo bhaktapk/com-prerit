@@ -142,7 +142,7 @@ namespace Com.Prerit.Services
 
         public void SaveAccount(Identifier id, string emailAddress)
         {
-            var account = new Account { ClaimedIdentifier = id.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
+            var account = new Account { Id = id.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
 
             lock (GetAccountSyncRoot(id))
             {
