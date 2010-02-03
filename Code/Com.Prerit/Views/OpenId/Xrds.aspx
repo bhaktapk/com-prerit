@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" ContentType="application/xrds+xml" %>
+<%@ Page Language="C#" ContentType="application/xrds+xml" Inherits="System.Web.Mvc.ViewPage" %>
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <%--
