@@ -83,7 +83,7 @@ namespace Com.Prerit.Services
 
             List<char> safeFilename = characters.Select(c => !Path.GetInvalidFileNameChars().Contains(c) ? c : '-').ToList();
 
-            safeFilename.AddRange(".log".ToCharArray());
+            safeFilename.AddRange(".xml".ToCharArray());
 
             return new string(safeFilename.ToArray());
         }
