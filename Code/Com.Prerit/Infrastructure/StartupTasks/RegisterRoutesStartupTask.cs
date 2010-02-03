@@ -50,7 +50,42 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                   })
                                               });
 
-            RouteTable.Routes.MapSeoRoute("resume formats route",
+            RouteTable.Routes.MapSeoRoute("album routes with all albums",
+                                          "{controller}",
+                                          new
+                                              {
+                                                  action = MVC.Albums.Actions.AllAlbums
+                                              },
+                                          new
+                                              {
+                                                  controller = MVC.Albums.Name
+                                              });
+
+            RouteTable.Routes.MapSeoRoute("album routes by year",
+                                          "{controller}/{year}",
+                                          new
+                                              {
+                                                  action = MVC.Albums.Actions.AlbumsByYear,
+                                              },
+                                          new
+                                              {
+                                                  controller = MVC.Albums.Name,
+                                                  year = @"\d+"
+                                              });
+
+            RouteTable.Routes.MapSeoRoute("album routes by year and title",
+                                          "{controller}/{year}/{title}",
+                                          new
+                                              {
+                                                  action = MVC.Albums.Actions.AlbumsByYearAndTitle,
+                                              },
+                                          new
+                                              {
+                                                  controller = MVC.Albums.Name,
+                                                  year = @"\d+"
+                                              });
+
+            RouteTable.Routes.MapSeoRoute("resume format routes",
                                           "resume/formats/{action}",
                                           new
                                               {

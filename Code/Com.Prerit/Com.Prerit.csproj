@@ -38,6 +38,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -163,6 +164,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\AccountsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\AlbumsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\ContactController.generated.cs">
