@@ -28,13 +28,9 @@ namespace Com.Prerit.Filters
 
             var cacheService = new CacheService(httpContext.Cache);
 
-            var httpSessionState = new HttpSessionStateWrapper(httpContext.Session);
-
-            var sessionService = new SessionService(httpSessionState);
-
             var httpServerUtility = new HttpServerUtilityWrapper(httpContext.Server);
 
-            _membershipService = new MembershipService(cacheService, sessionService, httpServerUtility);
+            _membershipService = new MembershipService(cacheService, httpServerUtility);
         }
 
         public AuthorizeAdminAttribute(IMembershipService membershipService)

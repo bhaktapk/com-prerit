@@ -53,9 +53,7 @@
     <Compile Include="Services\MembershipService.cs" />
     <Compile Include="Services\IMembershipService.cs" />
     <Compile Include="Services\IOpenIdService.cs" />
-    <Compile Include="Services\ISessionService.cs" />
     <Compile Include="Services\OpenIdService.cs" />
-    <Compile Include="Services\SessionService.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">

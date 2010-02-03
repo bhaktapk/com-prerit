@@ -21,7 +21,9 @@ namespace Com.Prerit.Services
 
         private readonly HttpServerUtilityBase _server;
 
-        private readonly ISessionService _sessionService;
+        private static readonly object AccountDictionarySyncRoot = new object();
+
+        private static readonly Dictionary<Identifier, object> AccountSyncRoots = new Dictionary<Identifier, object>();
 
         private static readonly object AdminAccountsSyncRoot = new object();
 
@@ -29,16 +31,11 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public MembershipService(ICacheService cacheService, ISessionService sessionService, HttpServerUtilityBase server)
+        public MembershipService(ICacheService cacheService, HttpServerUtilityBase server)
         {
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
-            }
-
-            if (sessionService == null)
-            {
-                throw new ArgumentNullException("sessionService");
             }
 
             if (server == null)
@@ -47,7 +44,6 @@ namespace Com.Prerit.Services
             }
 
             _cacheService = cacheService;
-            _sessionService = sessionService;
             _server = server;
         }
 
@@ -70,14 +66,40 @@ namespace Com.Prerit.Services
             }
         }
 
-        public Account GetAccount(Identifier claimedIdentifier)
+        public Account GetAccount(Identifier id)
         {
-            if (_sessionService.Account == null)
+            string accountId = id.OriginalString;
+
+            if (_cacheService.GetAccount(accountId) == null)
             {
-                _sessionService.Account = Deserialize<Account, Account>(GetSavedAccountFilePath(claimedIdentifier));
+                lock (GetAccountSyncRoot(accountId))
+                {
+                    if (_cacheService.GetAccount(accountId) == null)
+                    {
+                        string filePath = GetSavedAccountFilePath(id);
+
+                        _cacheService.SetAccount(Deserialize<Account, Account>(filePath), accountId, filePath);
+                    }
+                }
             }
 
-            return _sessionService.Account;
+            return _cacheService.GetAccount(accountId);
+        }
+
+        private object GetAccountSyncRoot(Identifier id)
+        {
+            if (!AccountSyncRoots.ContainsKey(id))
+            {
+                lock (AccountDictionarySyncRoot)
+                {
+                    if (!AccountSyncRoots.ContainsKey(id))
+                    {
+                        AccountSyncRoots.Add(id, new object());
+                    }
+                }
+            }
+
+            return AccountSyncRoots[id];
         }
 
         public IEnumerable<Account> GetAdminAccounts()
@@ -98,9 +120,9 @@ namespace Com.Prerit.Services
             return _cacheService.GetAdminAccounts();
         }
 
-        private string GetSafeFilename(Identifier claimedIdentifier)
+        private string GetSafeFilename(Identifier id)
         {
-            char[] characters = claimedIdentifier.OriginalString.ToCharArray();
+            char[] characters = id.OriginalString.ToCharArray();
 
             List<char> safeFilename = characters.Select(c => !Path.GetInvalidFileNameChars().Contains(c) ? c : '-').ToList();
 
@@ -109,20 +131,23 @@ namespace Com.Prerit.Services
             return new string(safeFilename.ToArray());
         }
 
-        private string GetSavedAccountFilePath(Identifier claimedIdentifier)
+        private string GetSavedAccountFilePath(Identifier id)
         {
             string directoryPath = _server.MapPath(MembershipData.Url());
 
-            string filename = GetSafeFilename(claimedIdentifier.OriginalString);
+            string filename = GetSafeFilename(id.OriginalString);
 
             return Path.Combine(directoryPath, filename);
         }
 
-        public void SaveAccount(Identifier claimedIdentifier, string emailAddress)
+        public void SaveAccount(Identifier id, string emailAddress)
         {
-            var account = new Account { ClaimedIdentifier = claimedIdentifier.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
+            var account = new Account { ClaimedIdentifier = id.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
 
-            Serialize(GetSavedAccountFilePath(claimedIdentifier), account);
+            lock (GetAccountSyncRoot(id))
+            {
+                Serialize(GetSavedAccountFilePath(id), account);
+            }
         }
 
         private void Serialize<T>(string filePath, T obj)
