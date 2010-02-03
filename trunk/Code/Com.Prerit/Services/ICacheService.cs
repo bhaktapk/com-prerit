@@ -10,7 +10,7 @@ namespace Com.Prerit.Services
 
         IEnumerable<Account> GetAdminAccounts();
 
-        void SetAdminAccounts(IEnumerable<Account> value, string virtualPath);
+        void SetAdminAccounts(IEnumerable<Account> value, string filePath);
 
         #endregion
     }
