@@ -23,6 +23,8 @@ namespace Com.Prerit.Services
 
         private readonly ISessionService _sessionService;
 
+        private static readonly object AdminAccountsSyncRoot = new object();
+
         #endregion
 
         #region Constructors
@@ -82,9 +84,15 @@ namespace Com.Prerit.Services
         {
             if (_cacheService.GetAdminAccounts() == null)
             {
-                string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
+                lock (AdminAccountsSyncRoot)
+                {
+                    if (_cacheService.GetAdminAccounts() == null)
+                    {
+                        string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
 
-                _cacheService.SetAdminAccounts(Deserialize<Account[], IEnumerable<Account>>(filePath), filePath);
+                        _cacheService.SetAdminAccounts(Deserialize<Account[], IEnumerable<Account>>(filePath), filePath);
+                    }
+                }
             }
 
             return _cacheService.GetAdminAccounts();
