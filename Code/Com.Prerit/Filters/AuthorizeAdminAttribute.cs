@@ -59,7 +59,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            return _membershipService.GetAdminAccounts().Any(a => a.ClaimedIdentifier == httpContext.User.Identity.Name);
+            return _membershipService.GetAdminAccounts().Any(a => a.Id == httpContext.User.Identity.Name);
         }
 
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
