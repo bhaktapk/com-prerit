@@ -54,7 +54,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           "{controller}",
                                           new
                                               {
-                                                  action = MVC.Albums.Actions.AllAlbums
+                                                  action = DefaultAction
                                               },
                                           new
                                               {

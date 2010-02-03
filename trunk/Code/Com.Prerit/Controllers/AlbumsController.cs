@@ -19,7 +19,7 @@ namespace Com.Prerit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public virtual ActionResult AllAlbums()
+        public virtual ActionResult Index()
         {
             return new EmptyResult();
         }
