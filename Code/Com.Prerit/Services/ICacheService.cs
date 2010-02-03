@@ -6,9 +6,11 @@ namespace Com.Prerit.Services
 {
     public interface ICacheService
     {
-        #region Properties
+        #region Methods
 
-        IEnumerable<Account> AdminAccounts { get; set; }
+        IEnumerable<Account> GetAdminAccounts();
+
+        void SetAdminAccounts(IEnumerable<Account> value, string virtualPath);
 
         #endregion
     }

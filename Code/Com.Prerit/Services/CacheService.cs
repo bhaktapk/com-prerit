@@ -20,16 +20,6 @@ namespace Com.Prerit.Services
 
         #endregion
 
-        #region Properties
-
-        public IEnumerable<Account> AdminAccounts
-        {
-            get { return _cache[AdminAccountsKey] as IEnumerable<Account>; }
-            set { _cache[AdminAccountsKey] = value; }
-        }
-
-        #endregion
-
         #region Constructors
 
         public CacheService(Cache cache)
@@ -40,6 +30,20 @@ namespace Com.Prerit.Services
             }
 
             _cache = cache;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public IEnumerable<Account> GetAdminAccounts()
+        {
+            return _cache[AdminAccountsKey] as IEnumerable<Account>;
+        }
+
+        public void SetAdminAccounts(IEnumerable<Account> value, string virtualPath)
+        {
+            _cache.Insert(AdminAccountsKey, value, new CacheDependency(virtualPath));
         }
 
         #endregion

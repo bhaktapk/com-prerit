@@ -58,11 +58,11 @@ namespace Com.Prerit.Services
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
         }
 
-        private TDeserialized Deserialize<TSerialized, TDeserialized>(string virtualPath)
+        private TDeserialized Deserialize<TSerialized, TDeserialized>(string filePath)
         {
             var serializer = new XmlSerializer(typeof(TSerialized));
 
-            using (var reader = new StreamReader(_server.MapPath(virtualPath)))
+            using (var reader = new StreamReader(filePath))
             {
                 return (TDeserialized) serializer.Deserialize(reader);
             }
@@ -80,12 +80,14 @@ namespace Com.Prerit.Services
 
         public IEnumerable<Account> GetAdminAccounts()
         {
-            if (_cacheService.AdminAccounts == null)
+            if (_cacheService.GetAdminAccounts() == null)
             {
-                _cacheService.AdminAccounts = Deserialize<Account[], IEnumerable<Account>>(MembershipData.AdminAccounts_xml);
+                string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
+
+                _cacheService.SetAdminAccounts(Deserialize<Account[], IEnumerable<Account>>(filePath), filePath);
             }
 
-            return _cacheService.AdminAccounts;
+            return _cacheService.GetAdminAccounts();
         }
 
         private string GetSafeFilename(Identifier claimedIdentifier)
@@ -101,7 +103,7 @@ namespace Com.Prerit.Services
 
         private string GetSavedAccountFilePath(Identifier claimedIdentifier)
         {
-            string directoryPath = MembershipData.Url();
+            string directoryPath = _server.MapPath(MembershipData.Url());
 
             string filename = GetSafeFilename(claimedIdentifier.OriginalString);
 
@@ -115,11 +117,11 @@ namespace Com.Prerit.Services
             Serialize(GetSavedAccountFilePath(claimedIdentifier), account);
         }
 
-        private void Serialize<T>(string virtualPath, T obj)
+        private void Serialize<T>(string filePath, T obj)
         {
             var serializer = new XmlSerializer(typeof(T));
 
-            using (var writer = new StreamWriter(_server.MapPath(virtualPath)))
+            using (var writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, obj);
             }
