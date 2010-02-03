@@ -41,9 +41,9 @@ namespace Com.Prerit.Services
             return _cache[AdminAccountsKey] as IEnumerable<Account>;
         }
 
-        public void SetAdminAccounts(IEnumerable<Account> value, string virtualPath)
+        public void SetAdminAccounts(IEnumerable<Account> value, string filePath)
         {
-            _cache.Insert(AdminAccountsKey, value, new CacheDependency(virtualPath));
+            _cache.Insert(AdminAccountsKey, value, new CacheDependency(filePath));
         }
 
         #endregion
