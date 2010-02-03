@@ -3,12 +3,15 @@
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Resume of Prerit Bhakta</asp:Content>
 
-<asp:Content ContentPlaceHolderID="headContent" runat="server">
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <meta name="description" content="View the resume of Prerit Bhakta." />
     <meta name="keywords" content="resume, Prerit Bhakta" />
-    <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Resume.Index())).AbsoluteUri %>" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="linkContent" runat="server">
     <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.print_css) %>" media="print" />
     <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.screen_css) %>" media="projection, screen, tv" />
+    <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Resume.Index())).AbsoluteUri %>" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainBarContent" runat="server">

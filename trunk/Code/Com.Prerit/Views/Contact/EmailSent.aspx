@@ -4,9 +4,12 @@
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Email To Prerit Bhakta Has Been Sent</asp:Content>
 
-<asp:Content ContentPlaceHolderID="headContent" runat="server">
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <meta name="description" content="An email to Prerit Bhakta has been sent." />
     <meta name="keywords" content="email sent, contact, Prerit Bhakta" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Contact.EmailSent())).AbsoluteUri %>" />
 </asp:Content>
 
