@@ -17,11 +17,11 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
+        private readonly ICacheService _cacheService;
+
         private readonly HttpServerUtilityBase _server;
 
         private readonly ISessionService _sessionService;
-        
-        private readonly ICacheService _cacheService;
 
         #endregion
 
@@ -58,23 +58,34 @@ namespace Com.Prerit.Services
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
         }
 
+        private TDeserialized Deserialize<TSerialized, TDeserialized>(string virtualPath)
+        {
+            var serializer = new XmlSerializer(typeof(TSerialized));
+
+            using (var reader = new StreamReader(_server.MapPath(virtualPath)))
+            {
+                return (TDeserialized) serializer.Deserialize(reader);
+            }
+        }
+
         public Account GetAccount(Identifier claimedIdentifier)
         {
             if (_sessionService.Account == null)
             {
-                Account account;
-
-                var serializer = new XmlSerializer(typeof(Account));
-
-                using (var reader = new StreamReader(GetSavedAccountFilePath(claimedIdentifier)))
-                {
-                    account = (Account) serializer.Deserialize(reader);
-                }
-
-                _sessionService.Account = account;
+                _sessionService.Account = Deserialize<Account, Account>(GetSavedAccountFilePath(claimedIdentifier));
             }
 
             return _sessionService.Account;
+        }
+
+        public IEnumerable<Account> GetAdminAccounts()
+        {
+            if (_cacheService.AdminAccounts == null)
+            {
+                _cacheService.AdminAccounts = Deserialize<Account[], IEnumerable<Account>>(MembershipData.AdminAccounts_xml);
+            }
+
+            return _cacheService.AdminAccounts;
         }
 
         private string GetSafeFilename(Identifier claimedIdentifier)
@@ -90,41 +101,27 @@ namespace Com.Prerit.Services
 
         private string GetSavedAccountFilePath(Identifier claimedIdentifier)
         {
-            string directoryPath = _server.MapPath(MembershipData.Url());
+            string directoryPath = MembershipData.Url();
 
             string filename = GetSafeFilename(claimedIdentifier.OriginalString);
 
             return Path.Combine(directoryPath, filename);
         }
 
-        public IEnumerable<Account> GetAdminAccounts()
-        {
-            if (_cacheService.AdminAccounts == null)
-            {
-                IEnumerable<Account> adminAccounts;
-
-                var serializer = new XmlSerializer(typeof(Account[]));
-
-                using (var reader = new StreamReader(_server.MapPath(MembershipData.AdminAccounts_xml)))
-                {
-                    adminAccounts = (IEnumerable<Account>) serializer.Deserialize(reader);
-                }
-
-                _cacheService.AdminAccounts = adminAccounts;
-            }
-
-            return _cacheService.AdminAccounts;
-        }
-
         public void SaveAccount(Identifier claimedIdentifier, string emailAddress)
         {
             var account = new Account { ClaimedIdentifier = claimedIdentifier.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
 
-            var serializer = new XmlSerializer(typeof(Account));
+            Serialize(GetSavedAccountFilePath(claimedIdentifier), account);
+        }
 
-            using (var writer = new StreamWriter(GetSavedAccountFilePath(claimedIdentifier)))
+        private void Serialize<T>(string virtualPath, T obj)
+        {
+            var serializer = new XmlSerializer(typeof(T));
+
+            using (var writer = new StreamWriter(_server.MapPath(virtualPath)))
             {
-                serializer.Serialize(writer, account);
+                serializer.Serialize(writer, obj);
             }
         }
 
