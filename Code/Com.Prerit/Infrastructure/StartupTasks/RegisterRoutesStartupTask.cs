@@ -25,8 +25,14 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             // NOTE: default controller is handled via IIS's Url Rewriting module
             RouteTable.Routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
-                                          new { action = DefaultAction },
-                                          new { controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.OpenId.Name, MVC.Resume.Name) });
+                                          new
+                                              {
+                                                  action = DefaultAction
+                                              },
+                                          new
+                                              {
+                                                  controller = new ListConstraint(MVC.About.Name, MVC.Contact.Name, MVC.OpenId.Name, MVC.Resume.Name)
+                                              });
 
             RouteTable.Routes.MapSeoRoute("account routes",
                                           "{controller}/{action}",
@@ -34,10 +40,16 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Accounts.Name,
-                                                  action = new ListConstraint(MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut, MVC.Accounts.Actions.Unauthorized)
+                                                  action =
+                                              new ListConstraint(MVC.Accounts.Actions.LogIn, MVC.Accounts.Actions.LogOut, MVC.Accounts.Actions.Unauthorized)
                                               });
 
-            RouteTable.Routes.MapSeoRoute("resume formats route", "resume/formats/{action}", new { controller = MVC.ResumeFormats.Name });
+            RouteTable.Routes.MapSeoRoute("resume formats route",
+                                          "resume/formats/{action}",
+                                          new
+                                              {
+                                                  controller = MVC.ResumeFormats.Name
+                                              });
         }
 
         public void Reset()
