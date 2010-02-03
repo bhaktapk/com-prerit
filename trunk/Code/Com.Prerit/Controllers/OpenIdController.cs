@@ -2,7 +2,6 @@ using System;
 using System.Web.Mvc;
 
 using Com.Prerit.Filters;
-using Com.Prerit.Models.OpenId;
 using Com.Prerit.Services;
 
 using DotNetOpenAuth.Messaging;
@@ -115,9 +114,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Xrds()
         {
-            var model = new XrdsModel();
-
-            return View(model);
+            return View();
         }
 
         #endregion

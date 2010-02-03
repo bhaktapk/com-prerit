@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-using Com.Prerit.Models.Resume;
+using Com.Prerit.Filters;
 
 namespace Com.Prerit.Controllers
 {
@@ -11,9 +11,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Index()
         {
-            var model = new IndexModel();
-
-            return View(model);
+            return View();
         }
 
         #endregion

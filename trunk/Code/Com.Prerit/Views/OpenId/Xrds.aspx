@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Com.Prerit.Models.OpenId.XrdsModel>" ContentType="application/xrds+xml" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" ContentType="application/xrds+xml" %>
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <%--
