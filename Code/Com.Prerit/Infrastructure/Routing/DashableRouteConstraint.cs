@@ -6,9 +6,19 @@ namespace Com.Prerit.Infrastructure.Routing
 {
     public abstract class DashableRouteConstraint : IRouteConstraint
     {
+        #region Fields
+
+        private IEnumerable<string> _dashableData;
+
+        #endregion
+
         #region Properties
 
-        public IEnumerable<string> DashableData { get; set; }
+        public IEnumerable<string> DashableData
+        {
+            get { return _dashableData; }
+            set { _dashableData = value ?? new string[0]; }
+        }
 
         #endregion
 
