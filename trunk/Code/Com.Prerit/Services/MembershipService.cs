@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Xml.Serialization;
 
 using Com.Prerit.Domain;
 
@@ -21,6 +20,8 @@ namespace Com.Prerit.Services
 
         private readonly HttpServerUtilityBase _server;
 
+        private readonly IXmlStoreService _xmlStoreService;
+
         private static readonly object AccountDictionarySyncRoot = new object();
 
         private static readonly Dictionary<Identifier, object> AccountSyncRoots = new Dictionary<Identifier, object>();
@@ -31,11 +32,16 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public MembershipService(ICacheService cacheService, HttpServerUtilityBase server)
+        public MembershipService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
         {
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
+            }
+
+            if (xmlStoreService == null)
+            {
+                throw new ArgumentNullException("xmlStoreService");
             }
 
             if (server == null)
@@ -44,6 +50,7 @@ namespace Com.Prerit.Services
             }
 
             _cacheService = cacheService;
+            _xmlStoreService = xmlStoreService;
             _server = server;
         }
 
@@ -54,16 +61,6 @@ namespace Com.Prerit.Services
         private string CreateName(string emailAddress)
         {
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
-        }
-
-        private TDeserialized Deserialize<TSerialized, TDeserialized>(string filePath)
-        {
-            var serializer = new XmlSerializer(typeof(TSerialized));
-
-            using (var reader = new StreamReader(filePath))
-            {
-                return (TDeserialized) serializer.Deserialize(reader);
-            }
         }
 
         public Account GetAccount(Identifier id)
@@ -78,7 +75,7 @@ namespace Com.Prerit.Services
                     {
                         string filePath = GetSavedAccountFilePath(id);
 
-                        _cacheService.SetAccount(Deserialize<Account, Account>(filePath), accountId, filePath);
+                        _cacheService.SetAccount(_xmlStoreService.Load<Account>(filePath), accountId, filePath);
                     }
                 }
             }
@@ -112,7 +109,7 @@ namespace Com.Prerit.Services
                     {
                         string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
 
-                        _cacheService.SetAdminAccounts(Deserialize<Account[], IEnumerable<Account>>(filePath), filePath);
+                        _cacheService.SetAdminAccounts(_xmlStoreService.Load<Account[]>(filePath), filePath);
                     }
                 }
             }
@@ -142,21 +139,16 @@ namespace Com.Prerit.Services
 
         public void SaveAccount(Identifier id, string emailAddress)
         {
-            var account = new Account { Id = id.OriginalString, EmailAddress = emailAddress, Name = CreateName(emailAddress) };
+            var account = new Account
+                              {
+                                  Id = id.OriginalString,
+                                  EmailAddress = emailAddress,
+                                  Name = CreateName(emailAddress)
+                              };
 
             lock (GetAccountSyncRoot(id))
             {
-                Serialize(GetSavedAccountFilePath(id), account);
-            }
-        }
-
-        private void Serialize<T>(string filePath, T obj)
-        {
-            var serializer = new XmlSerializer(typeof(T));
-
-            using (var writer = new StreamWriter(filePath))
-            {
-                serializer.Serialize(writer, obj);
+                _xmlStoreService.Save(GetSavedAccountFilePath(id), account);
             }
         }
 
