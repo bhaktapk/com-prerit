@@ -11,7 +11,7 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
-        private readonly IMembershipService _membershipService;
+        private readonly IProfileService _profileService;
 
         private readonly HttpRequestBase _request;
 
@@ -19,9 +19,9 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public OpenIdService(IMembershipService membershipService, HttpRequestBase request)
+        public OpenIdService(IProfileService profileService, HttpRequestBase request)
         {
-            if (membershipService == null)
+            if (profileService == null)
             {
                 throw new ArgumentNullException("membershipService");
             }
@@ -31,7 +31,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("request");
             }
 
-            _membershipService = membershipService;
+            _profileService = profileService;
             _request = request;
         }
 
@@ -82,7 +82,7 @@ namespace Com.Prerit.Services
             {
                 var claimsResponse = response.GetExtension<ClaimsResponse>();
 
-                _membershipService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+                _profileService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
             }
 
             return response;

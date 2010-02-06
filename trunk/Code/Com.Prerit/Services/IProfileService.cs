@@ -4,7 +4,7 @@ using DotNetOpenAuth.OpenId;
 
 namespace Com.Prerit.Services
 {
-    public interface IMembershipService
+    public interface IProfileService
     {
         #region Methods
 
