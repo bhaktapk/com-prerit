@@ -14,26 +14,26 @@ namespace Com.Prerit.Controllers
 
         private readonly IFormsAuthenticationService _formsAuthenticationService;
 
-        private readonly IMembershipService _membershipService;
+        private readonly IProfileService _profileService;
 
         #endregion
 
         #region Constructors
 
-        public AccountsController(IFormsAuthenticationService formsAuthenticationService, IMembershipService membershipService)
+        public AccountsController(IFormsAuthenticationService formsAuthenticationService, IProfileService profileService)
         {
             if (formsAuthenticationService == null)
             {
                 throw new ArgumentNullException("formsAuthenticationService");
             }
 
-            if (membershipService == null)
+            if (profileService == null)
             {
                 throw new ArgumentNullException("membershipService");
             }
 
             _formsAuthenticationService = formsAuthenticationService;
-            _membershipService = membershipService;
+            _profileService = profileService;
         }
 
         #endregion
@@ -56,7 +56,7 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel { Name = _membershipService.GetAccount(User.Identity.Name).Name };
+                var model = new LoggedInStatusModel { Name = _profileService.GetAccount(User.Identity.Name).Name };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }

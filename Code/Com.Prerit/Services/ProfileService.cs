@@ -12,7 +12,7 @@ using Links;
 
 namespace Com.Prerit.Services
 {
-    public class MembershipService : IMembershipService
+    public class ProfileService : IProfileService
     {
         #region Fields
 
@@ -30,7 +30,7 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public MembershipService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
+        public ProfileService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
         {
             if (cacheService == null)
             {
