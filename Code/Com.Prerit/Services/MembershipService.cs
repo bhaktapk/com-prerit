@@ -26,8 +26,6 @@ namespace Com.Prerit.Services
 
         private static readonly Dictionary<Identifier, object> AccountSyncRoots = new Dictionary<Identifier, object>();
 
-        private static readonly object AdminAccountsSyncRoot = new object();
-
         #endregion
 
         #region Constructors
@@ -97,24 +95,6 @@ namespace Com.Prerit.Services
             }
 
             return AccountSyncRoots[id];
-        }
-
-        public IEnumerable<Account> GetAdminAccounts()
-        {
-            if (_cacheService.GetAdminAccounts() == null)
-            {
-                lock (AdminAccountsSyncRoot)
-                {
-                    if (_cacheService.GetAdminAccounts() == null)
-                    {
-                        string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
-
-                        _cacheService.SetAdminAccounts(_xmlStoreService.Load<Account[]>(filePath), filePath);
-                    }
-                }
-            }
-
-            return _cacheService.GetAdminAccounts();
         }
 
         private string GetSafeFilename(Identifier id)
