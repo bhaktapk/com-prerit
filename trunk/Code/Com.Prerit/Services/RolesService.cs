@@ -58,7 +58,7 @@ namespace Com.Prerit.Services
                 {
                     if (_cacheService.GetAdminAccounts() == null)
                     {
-                        string filePath = _server.MapPath(MembershipData.AdminAccounts_xml);
+                        string filePath = _server.MapPath(App_Data.Roles.AdminAccounts_xml);
 
                         _cacheService.SetAdminAccounts(_xmlStoreService.Load<Account[]>(filePath), filePath);
                     }

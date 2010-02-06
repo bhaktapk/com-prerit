@@ -147,12 +147,27 @@ namespace Links {
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         [CompilerGenerated]
+        public static class Profiles {
+            private const string URLPATH = "~/App_Data/Profiles";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        }
+    
+        [CompilerGenerated]
         public static class ResumeFormats {
             private const string URLPATH = "~/App_Data/ResumeFormats";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string AdobePdf_pdf = Url("AdobePdf.pdf");
             public static readonly string MicrosoftWord_doc = Url("MicrosoftWord.doc");
+        }
+    
+        [CompilerGenerated]
+        public static class Roles {
+            private const string URLPATH = "~/App_Data/Roles";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string AdminAccounts_xml = Url("AdminAccounts.xml");
         }
     
     }
@@ -199,14 +214,6 @@ namespace Links {
             public static readonly string screen_css = Url("screen.css");
         }
     
-    }
-
-    [CompilerGenerated]
-    public static class MembershipData {
-        private const string URLPATH = "~/MembershipData";
-        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string AdminAccounts_xml = Url("AdminAccounts.xml");
     }
 
     [CompilerGenerated]
