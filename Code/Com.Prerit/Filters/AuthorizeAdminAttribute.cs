@@ -28,9 +28,11 @@ namespace Com.Prerit.Filters
 
             var cacheService = new CacheService(httpContext.Cache);
 
+            var xmlStoreService = new XmlStoreService();
+
             var httpServerUtility = new HttpServerUtilityWrapper(httpContext.Server);
 
-            _membershipService = new MembershipService(cacheService, httpServerUtility);
+            _membershipService = new MembershipService(cacheService, xmlStoreService, httpServerUtility);
         }
 
         public AuthorizeAdminAttribute(IMembershipService membershipService)
