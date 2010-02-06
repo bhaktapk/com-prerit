@@ -11,7 +11,7 @@ namespace Com.Prerit.Filters
     {
         #region Fields
 
-        private readonly IMembershipService _membershipService;
+        private readonly IRolesService _rolesService;
 
         #endregion
 
@@ -32,17 +32,17 @@ namespace Com.Prerit.Filters
 
             var httpServerUtility = new HttpServerUtilityWrapper(httpContext.Server);
 
-            _membershipService = new MembershipService(cacheService, xmlStoreService, httpServerUtility);
+            _rolesService = new RolesService(cacheService, xmlStoreService, httpServerUtility);
         }
 
-        public AuthorizeAdminAttribute(IMembershipService membershipService)
+        public AuthorizeAdminAttribute(IRolesService rolesService)
         {
-            if (membershipService == null)
+            if (rolesService == null)
             {
-                throw new ArgumentNullException("membershipService");
+                throw new ArgumentNullException("rolesService");
             }
 
-            _membershipService = membershipService;
+            _rolesService = rolesService;
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            return _membershipService.GetAdminAccounts().Any(a => a.Id == httpContext.User.Identity.Name);
+            return _rolesService.GetAdminAccounts().Any(a => a.Id == httpContext.User.Identity.Name);
         }
 
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
