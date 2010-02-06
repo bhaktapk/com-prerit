@@ -23,7 +23,7 @@ namespace Com.Prerit.Services
         {
             if (profileService == null)
             {
-                throw new ArgumentNullException("membershipService");
+                throw new ArgumentNullException("profileService");
             }
 
             if (request == null)

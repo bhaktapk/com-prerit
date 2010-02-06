@@ -29,7 +29,7 @@ namespace Com.Prerit.Controllers
 
             if (profileService == null)
             {
-                throw new ArgumentNullException("membershipService");
+                throw new ArgumentNullException("profileService");
             }
 
             _formsAuthenticationService = formsAuthenticationService;
