@@ -18,7 +18,7 @@
     <call target="delete-user-file" />
 
     <call target="make-logs-directory" />
-    <call target="make-membership-data-directory" />
+    <call target="make-profiles-directory" />
 
     <call target="rename-web-config" />
   </target>
@@ -31,8 +31,8 @@
     <mkdir dir="${dir.build}\${project.name.com-prerit}\Logs" />
   </target>
 
-  <target name="make-membership-data-directory">
-    <mkdir dir="${dir.build}\${project.name.com-prerit}\MembershipData" />
+  <target name="make-profiles-directory">
+    <mkdir dir="${dir.build}\${project.name.com-prerit}\App_Data\Profiles" />
   </target>
 
   <target name="delete-app-code-directory">

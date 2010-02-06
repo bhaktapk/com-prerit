@@ -32,7 +32,6 @@ const string LinksNamespace = "Links";
 readonly string[] StaticFilesFolders = new string[] {
     "App_Data",
     "Content",
-    "MembershipData",
     "Scripts",
 };
 

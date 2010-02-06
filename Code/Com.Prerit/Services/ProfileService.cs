@@ -110,7 +110,7 @@ namespace Com.Prerit.Services
 
         private string GetSavedAccountFilePath(Identifier id)
         {
-            string directoryPath = _server.MapPath(MembershipData.Url());
+            string directoryPath = _server.MapPath(App_Data.Profiles.Url());
 
             string filename = GetSafeFilename(id.OriginalString);
 
