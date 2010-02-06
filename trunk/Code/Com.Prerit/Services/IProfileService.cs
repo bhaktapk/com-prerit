@@ -1,16 +1,14 @@
 using Com.Prerit.Domain;
 
-using DotNetOpenAuth.OpenId;
-
 namespace Com.Prerit.Services
 {
     public interface IProfileService
     {
         #region Methods
 
-        Account GetAccount(Identifier id);
+        Profile GetProfile(string id);
 
-        void SaveAccount(Identifier id, string emailAddress);
+        void SaveProfile(string id, string emailAddress);
 
         #endregion
     }

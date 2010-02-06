@@ -57,7 +57,7 @@
     <Compile Include="Services\IProfileService.cs" />
     <Compile Include="Services\IOpenIdService.cs" />
     <Compile Include="Services\OpenIdService.cs" />
-    <Compile Include="Domain\Account.cs" />
+    <Compile Include="Domain\Profile.cs" />
     <Compile Include="Filters\ContentDispositionAttribute.cs" />
     <Compile Include="Controllers\ControllerUtil.cs">
       <SubType>Code</SubType>
@@ -162,6 +162,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailSenderService.cs" />
     <Compile Include="Services\IEmailSenderService.cs" />
+    <Compile Include="Domain\Role.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\XmlStoreService.cs" />
     <Compile Include="Templates\AboutController.generated.cs">
@@ -295,7 +296,7 @@
     <Content Include="ErrorPages\ServiceUnavailable.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Roles\AdminAccounts.xml" />
+    <Content Include="App_Data\Roles\Admin.xml" />
     <Content Include="ProductionWeb.config" />
     <Content Include="scripts\master.js" />
     <Content Include="ServiceUnavailableWeb.config" />

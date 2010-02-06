@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web;
 
 using Com.Prerit.Domain;
@@ -18,7 +19,9 @@ namespace Com.Prerit.Services
 
         private readonly IXmlStoreService _xmlStoreService;
 
-        private static readonly object AdminAccountsSyncRoot = new object();
+        private static readonly object RoleDictionarySyncRoot = new object();
+
+        private static readonly Dictionary<string, object> RoleSyncRoots = new Dictionary<string, object>();
 
         #endregion
 
@@ -50,22 +53,43 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public IEnumerable<Account> GetAdminAccounts()
+        public IEnumerable<string> GetIdsByRole(string roleName)
         {
-            if (_cacheService.GetAdminAccounts() == null)
-            {
-                lock (AdminAccountsSyncRoot)
-                {
-                    if (_cacheService.GetAdminAccounts() == null)
-                    {
-                        string filePath = _server.MapPath(App_Data.Roles.AdminAccounts_xml);
+            string filePath = _server.MapPath(VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), roleName + ".xml"));
 
-                        _cacheService.SetAdminAccounts(_xmlStoreService.Load<Account[]>(filePath), filePath);
+            if (!File.Exists(filePath))
+            {
+                return new string[0];
+            }
+
+            if (_cacheService.GetRole(roleName) == null)
+            {
+                lock (GetProfileSyncRoot(roleName))
+                {
+                    if (_cacheService.GetRole(roleName) == null)
+                    {
+                        _cacheService.SetRole(_xmlStoreService.Load<Role>(filePath), filePath);
                     }
                 }
             }
 
-            return _cacheService.GetAdminAccounts();
+            return _cacheService.GetRole(roleName).Ids;
+        }
+
+        private object GetProfileSyncRoot(string roleName)
+        {
+            if (!RoleSyncRoots.ContainsKey(roleName))
+            {
+                lock (RoleDictionarySyncRoot)
+                {
+                    if (!RoleSyncRoots.ContainsKey(roleName))
+                    {
+                        RoleSyncRoots.Add(roleName, new object());
+                    }
+                }
+            }
+
+            return RoleSyncRoots[roleName];
         }
 
         #endregion

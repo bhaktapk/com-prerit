@@ -61,7 +61,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            return _rolesService.GetAdminAccounts().Any(a => a.Id == httpContext.User.Identity.Name);
+            return _rolesService.GetIdsByRole("Admin").Contains(httpContext.User.Identity.Name);
         }
 
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)

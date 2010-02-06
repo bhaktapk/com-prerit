@@ -1,6 +1,6 @@
 namespace Com.Prerit.Domain
 {
-    public class Account
+    public class Profile
     {
         #region Properties
 

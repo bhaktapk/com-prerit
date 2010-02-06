@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Web.Caching;
 
 using Com.Prerit.Domain;
-
-using DotNetOpenAuth.OpenId;
 
 namespace Com.Prerit.Services
 {
@@ -12,9 +9,9 @@ namespace Com.Prerit.Services
     {
         #region Constants
 
-        private const string AccountKeyBase = "Account-{0}";
+        private const string ProfileKeyBase = "Profile-{0}";
 
-        private const string AdminAccountsKey = "AdminAccounts";
+        private const string RoleKeyBase = "Role-{0}";
 
         #endregion
 
@@ -40,29 +37,34 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        private string CreateAccountKey(Identifier id)
+        private string CreateProfileKey(string id)
         {
-            return string.Format(AccountKeyBase, id);
+            return string.Format(ProfileKeyBase, id);
         }
 
-        public Account GetAccount(Identifier id)
+        private string CreateRoleKey(string name)
         {
-            return _cache[CreateAccountKey(id)] as Account;
+            return string.Format(RoleKeyBase, name);
         }
 
-        public IEnumerable<Account> GetAdminAccounts()
+        public Profile GetProfile(string id)
         {
-            return _cache[AdminAccountsKey] as IEnumerable<Account>;
+            return _cache[CreateProfileKey(id)] as Profile;
         }
 
-        public void SetAccount(Account value, Identifier id, string filePath)
+        public Role GetRole(string name)
         {
-            _cache.Insert(CreateAccountKey(id), value, new CacheDependency(filePath));
+            return _cache[CreateRoleKey(name)] as Role;
         }
 
-        public void SetAdminAccounts(IEnumerable<Account> value, string filePath)
+        public void SetProfile(Profile profile, string filePath)
         {
-            _cache.Insert(AdminAccountsKey, value, new CacheDependency(filePath));
+            _cache.Insert(CreateProfileKey(profile.Id), profile, new CacheDependency(filePath));
+        }
+
+        public void SetRole(Role role, string filePath)
+        {
+            _cache.Insert(CreateRoleKey(role.Name), role, new CacheDependency(filePath));
         }
 
         #endregion

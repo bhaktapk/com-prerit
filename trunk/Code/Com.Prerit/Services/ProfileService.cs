@@ -22,9 +22,9 @@ namespace Com.Prerit.Services
 
         private readonly IXmlStoreService _xmlStoreService;
 
-        private static readonly object AccountDictionarySyncRoot = new object();
+        private static readonly object ProfileDictionarySyncRoot = new object();
 
-        private static readonly Dictionary<Identifier, object> AccountSyncRoots = new Dictionary<Identifier, object>();
+        private static readonly Dictionary<string, object> ProfileSyncRoots = new Dictionary<string, object>();
 
         #endregion
 
@@ -61,45 +61,43 @@ namespace Com.Prerit.Services
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
         }
 
-        public Account GetAccount(Identifier id)
+        private object GetProfileSyncRoot(string id)
         {
-            string accountId = id.OriginalString;
-
-            if (_cacheService.GetAccount(accountId) == null)
+            if (!ProfileSyncRoots.ContainsKey(id))
             {
-                lock (GetAccountSyncRoot(accountId))
+                lock (ProfileDictionarySyncRoot)
                 {
-                    if (_cacheService.GetAccount(accountId) == null)
+                    if (!ProfileSyncRoots.ContainsKey(id))
                     {
-                        string filePath = GetSavedAccountFilePath(id);
-
-                        _cacheService.SetAccount(_xmlStoreService.Load<Account>(filePath), accountId, filePath);
+                        ProfileSyncRoots.Add(id, new object());
                     }
                 }
             }
 
-            return _cacheService.GetAccount(accountId);
+            return ProfileSyncRoots[id];
         }
 
-        private object GetAccountSyncRoot(Identifier id)
+        public Profile GetProfile(string id)
         {
-            if (!AccountSyncRoots.ContainsKey(id))
+            if (_cacheService.GetProfile(id) == null)
             {
-                lock (AccountDictionarySyncRoot)
+                lock (GetProfileSyncRoot(id))
                 {
-                    if (!AccountSyncRoots.ContainsKey(id))
+                    if (_cacheService.GetProfile(id) == null)
                     {
-                        AccountSyncRoots.Add(id, new object());
+                        string filePath = GetFilePath(id);
+
+                        _cacheService.SetProfile(_xmlStoreService.Load<Profile>(filePath), filePath);
                     }
                 }
             }
 
-            return AccountSyncRoots[id];
+            return _cacheService.GetProfile(id);
         }
 
-        private string GetSafeFilename(Identifier id)
+        private string GetSafeFilename(string id)
         {
-            char[] characters = id.OriginalString.ToCharArray();
+            char[] characters = id.ToCharArray();
 
             List<char> safeFilename = characters.Select(c => !Path.GetInvalidFileNameChars().Contains(c) ? c : '-').ToList();
 
@@ -108,27 +106,27 @@ namespace Com.Prerit.Services
             return new string(safeFilename.ToArray());
         }
 
-        private string GetSavedAccountFilePath(Identifier id)
+        private string GetFilePath(string id)
         {
             string directoryPath = _server.MapPath(App_Data.Profiles.Url());
 
-            string filename = GetSafeFilename(id.OriginalString);
+            string filename = GetSafeFilename(id);
 
             return Path.Combine(directoryPath, filename);
         }
 
-        public void SaveAccount(Identifier id, string emailAddress)
+        public void SaveProfile(string id, string emailAddress)
         {
-            var account = new Account
+            var profile = new Profile
                               {
-                                  Id = id.OriginalString,
+                                  Id = id,
                                   EmailAddress = emailAddress,
                                   Name = CreateName(emailAddress)
                               };
 
-            lock (GetAccountSyncRoot(id))
+            lock (GetProfileSyncRoot(id))
             {
-                _xmlStoreService.Save(GetSavedAccountFilePath(id), account);
+                _xmlStoreService.Save(GetFilePath(id), profile);
             }
         }
 
