@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-
 using Com.Prerit.Domain;
-
-using DotNetOpenAuth.OpenId;
 
 namespace Com.Prerit.Services
 {
@@ -10,13 +6,13 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        Account GetAccount(Identifier id);
+        Profile GetProfile(string id);
 
-        IEnumerable<Account> GetAdminAccounts();
+        Role GetRole(string name);
 
-        void SetAccount(Account value, Identifier id, string filePath);
+        void SetProfile(Profile profile, string filePath);
 
-        void SetAdminAccounts(IEnumerable<Account> value, string filePath);
+        void SetRole(Role role, string filePath);
 
         #endregion
     }

@@ -82,7 +82,7 @@ namespace Com.Prerit.Services
             {
                 var claimsResponse = response.GetExtension<ClaimsResponse>();
 
-                _profileService.SaveAccount(response.ClaimedIdentifier, claimsResponse.Email);
+                _profileService.SaveProfile(response.ClaimedIdentifier, claimsResponse.Email);
             }
 
             return response;

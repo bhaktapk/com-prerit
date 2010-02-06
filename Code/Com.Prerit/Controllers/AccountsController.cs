@@ -56,7 +56,7 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel { Name = _profileService.GetAccount(User.Identity.Name).Name };
+                var model = new LoggedInStatusModel { Name = _profileService.GetProfile(User.Identity.Name).Name };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }
