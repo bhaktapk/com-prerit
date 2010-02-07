@@ -1,23 +1,46 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Com.Prerit.Domain;
 using Com.Prerit.Services;
 
 namespace Com.Prerit.Filters
 {
-    public class AuthorizeAdminAttribute : FilterAttribute, IAuthorizationFilter
+    public class CustomAuthorize : FilterAttribute, IAuthorizationFilter
     {
         #region Fields
 
+        private KnownRole _allowedRoles;
+
         private readonly IRolesService _rolesService;
+
+        private IEnumerable<KnownRole> _splitAllowedRoles = new KnownRole[0];
+
+        #endregion
+
+        #region Properties
+
+        public KnownRole AllowedRoles
+        {
+            get { return _allowedRoles; }
+            set
+            {
+                _allowedRoles = value;
+
+                _splitAllowedRoles = from KnownRole knownRole in Enum.GetValues(typeof(KnownRole))
+                                     where (value & knownRole) == knownRole
+                                     select knownRole;
+            }
+        }
 
         #endregion
 
         #region Constructors
 
-        public AuthorizeAdminAttribute()
+        public CustomAuthorize()
         {
             HttpContext httpContext = HttpContext.Current;
 
@@ -35,7 +58,7 @@ namespace Com.Prerit.Filters
             _rolesService = new RolesService(cacheService, xmlStoreService, httpServerUtility);
         }
 
-        public AuthorizeAdminAttribute(IRolesService rolesService)
+        public CustomAuthorize(IRolesService rolesService)
         {
             if (rolesService == null)
             {
@@ -61,7 +84,14 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            return _rolesService.GetIdsByRole("Admin").Contains(httpContext.User.Identity.Name);
+            IEnumerable<KnownRole> userRoles = _rolesService.GetRolesById(httpContext.User.Identity.Name);
+
+            if (_splitAllowedRoles.Count() != 0 && _splitAllowedRoles.Intersect(userRoles).Count() == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
@@ -78,13 +108,16 @@ namespace Com.Prerit.Filters
 
             if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                filterContext.Result = new RedirectResult(new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.LogIn(filterContext.HttpContext.Request.Url.PathAndQuery)));
+                filterContext.Result =
+                    new RedirectResult(new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.LogIn(filterContext.HttpContext.Request.Url.PathAndQuery)));
                 return;
             }
 
             if (!AuthorizeCore(filterContext.HttpContext))
             {
-                filterContext.Result = new RedirectResult(new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.Unauthorized(filterContext.HttpContext.Request.Url.PathAndQuery)));
+                filterContext.Result =
+                    new RedirectResult(
+                        new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.Unauthorized(filterContext.HttpContext.Request.Url.PathAndQuery)));
                 return;
             }
 

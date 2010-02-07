@@ -42,9 +42,10 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Domain\KnownRole.cs" />
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
-    <Compile Include="Filters\AuthorizeAdminAttribute.cs" />
+    <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Models\Accounts\UnauthorizedModel.cs" />
     <Compile Include="Infrastructure\Routing\DashableRouteConstraint.cs" />
     <Compile Include="Services\CacheService.cs" />
