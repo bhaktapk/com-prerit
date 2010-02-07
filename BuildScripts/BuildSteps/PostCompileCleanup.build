@@ -11,7 +11,6 @@
     <call target="delete-templates-directory" />
 
     <call target="delete-log-files" />
-    <call target="delete-membership-data-files" />
     <call target="delete-production-config-files" />
 
     <call target="delete-csproj-file" />
@@ -47,14 +46,6 @@
     <delete>
       <fileset basedir="${dir.build}\${project.name.com-prerit}">
         <include name="Logs\**\*" />
-      </fileset>
-    </delete>
-  </target>
-
-  <target name="delete-membership-data-files">
-    <delete>
-      <fileset basedir="${dir.build}\${project.name.com-prerit}">
-        <include name="MembershipData\**\*" />
       </fileset>
     </delete>
   </target>
