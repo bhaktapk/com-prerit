@@ -4,7 +4,7 @@ using Com.Prerit.Domain;
 
 namespace Com.Prerit.Services
 {
-    public interface IRolesService
+    public interface IRoleService
     {
         #region Methods
 

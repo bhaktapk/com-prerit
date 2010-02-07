@@ -15,7 +15,7 @@ namespace Com.Prerit.Filters
 
         private RoleType _allowedRoleTypes;
 
-        private readonly IRolesService _rolesService;
+        private readonly IRoleService _roleService;
 
         private IEnumerable<RoleType> _splitAllowedRoleTypes = new RoleType[0];
 
@@ -55,17 +55,17 @@ namespace Com.Prerit.Filters
 
             var httpServerUtility = new HttpServerUtilityWrapper(httpContext.Server);
 
-            _rolesService = new RolesService(cacheService, xmlStoreService, httpServerUtility);
+            _roleService = new RoleService(cacheService, xmlStoreService, httpServerUtility);
         }
 
-        public CustomAuthorize(IRolesService rolesService)
+        public CustomAuthorize(IRoleService roleService)
         {
-            if (rolesService == null)
+            if (roleService == null)
             {
-                throw new ArgumentNullException("rolesService");
+                throw new ArgumentNullException("roleService");
             }
 
-            _rolesService = rolesService;
+            _roleService = roleService;
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            IEnumerable<RoleType> userRoles = _rolesService.GetRolesById(httpContext.User.Identity.Name);
+            IEnumerable<RoleType> userRoles = _roleService.GetRolesById(httpContext.User.Identity.Name);
 
             if (_splitAllowedRoleTypes.Count() != 0 && _splitAllowedRoleTypes.Intersect(userRoles).Count() == 0)
             {

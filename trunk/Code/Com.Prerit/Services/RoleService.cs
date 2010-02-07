@@ -10,7 +10,7 @@ using Links;
 
 namespace Com.Prerit.Services
 {
-    public class RolesService : IRolesService
+    public class RoleService : IRoleService
     {
         #region Fields
 
@@ -28,7 +28,7 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public RolesService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
+        public RoleService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
         {
             if (cacheService == null)
             {
