@@ -47,14 +47,19 @@ namespace Com.Prerit.Services
             return string.Format(RoleKeyBase, name);
         }
 
+        private string CreateRoleKey(KnownRole knownRole)
+        {
+            return CreateRoleKey(Enum.GetName(typeof(KnownRole), knownRole));
+        }
+
         public Profile GetProfile(string id)
         {
             return _cache[CreateProfileKey(id)] as Profile;
         }
 
-        public Role GetRole(string name)
+        public Role GetRole(KnownRole knownRole)
         {
-            return _cache[CreateRoleKey(name)] as Role;
+            return _cache[CreateRoleKey(knownRole)] as Role;
         }
 
         public void SetProfile(Profile profile, string filePath)
