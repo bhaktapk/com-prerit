@@ -10,7 +10,7 @@ namespace Com.Prerit.Domain
         [XmlArrayItem(typeof(string), ElementName = "Id")]
         public List<string> Ids { get; set; }
 
-        public string Name { get; set; }
+        public RoleType Type { get; set; }
 
         #endregion
     }

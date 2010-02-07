@@ -42,14 +42,9 @@ namespace Com.Prerit.Services
             return string.Format(ProfileKeyBase, id);
         }
 
-        private string CreateRoleKey(string name)
+        private string CreateRoleKey(RoleType roleType)
         {
-            return string.Format(RoleKeyBase, name);
-        }
-
-        private string CreateRoleKey(KnownRole knownRole)
-        {
-            return CreateRoleKey(Enum.GetName(typeof(KnownRole), knownRole));
+            return string.Format(RoleKeyBase, Enum.GetName(typeof(RoleType), roleType));
         }
 
         public Profile GetProfile(string id)
@@ -57,9 +52,9 @@ namespace Com.Prerit.Services
             return _cache[CreateProfileKey(id)] as Profile;
         }
 
-        public Role GetRole(KnownRole knownRole)
+        public Role GetRole(RoleType roleType)
         {
-            return _cache[CreateRoleKey(knownRole)] as Role;
+            return _cache[CreateRoleKey(roleType)] as Role;
         }
 
         public void SetProfile(Profile profile, string filePath)
@@ -69,7 +64,7 @@ namespace Com.Prerit.Services
 
         public void SetRole(Role role, string filePath)
         {
-            _cache.Insert(CreateRoleKey(role.Name), role, new CacheDependency(filePath));
+            _cache.Insert(CreateRoleKey(role.Type), role, new CacheDependency(filePath));
         }
 
         #endregion

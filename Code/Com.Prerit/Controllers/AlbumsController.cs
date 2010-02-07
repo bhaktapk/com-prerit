@@ -10,21 +10,21 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [CustomAuthorize(AllowedRoles = KnownRole.Admin)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult AlbumsByYear(int year)
         {
             return new EmptyResult();
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [CustomAuthorize(AllowedRoles = KnownRole.Admin)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult AlbumsByYearAndTitle(int year, string title)
         {
             return new EmptyResult();
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [CustomAuthorize(AllowedRoles = KnownRole.Admin)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult Index()
         {
             return new EmptyResult();

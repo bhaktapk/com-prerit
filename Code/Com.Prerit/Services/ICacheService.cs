@@ -8,7 +8,7 @@ namespace Com.Prerit.Services
 
         Profile GetProfile(string id);
 
-        Role GetRole(KnownRole knownRole);
+        Role GetRole(RoleType roleType);
 
         void SetProfile(Profile profile, string filePath);
 

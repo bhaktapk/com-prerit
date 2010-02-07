@@ -22,7 +22,7 @@ namespace Com.Prerit.Services
 
         private static readonly object RoleDictionarySyncRoot = new object();
 
-        private static readonly Dictionary<KnownRole, object> RoleSyncRoots = new Dictionary<KnownRole, object>();
+        private static readonly Dictionary<RoleType, object> RoleSyncRoots = new Dictionary<RoleType, object>();
 
         #endregion
 
@@ -54,38 +54,38 @@ namespace Com.Prerit.Services
 
         #region Methods
 
-        public IEnumerable<string> GetIdsByRole(KnownRole knownRole)
+        public IEnumerable<string> GetIdsByRole(RoleType roleType)
         {
-            return GetRole(knownRole).Ids;
+            return GetRole(roleType).Ids;
         }
 
-        private object GetProfileSyncRoot(KnownRole knownRole)
+        private object GetProfileSyncRoot(RoleType roleType)
         {
-            if (!RoleSyncRoots.ContainsKey(knownRole))
+            if (!RoleSyncRoots.ContainsKey(roleType))
             {
                 lock (RoleDictionarySyncRoot)
                 {
-                    if (!RoleSyncRoots.ContainsKey(knownRole))
+                    if (!RoleSyncRoots.ContainsKey(roleType))
                     {
-                        RoleSyncRoots.Add(knownRole, new object());
+                        RoleSyncRoots.Add(roleType, new object());
                     }
                 }
             }
 
-            return RoleSyncRoots[knownRole];
+            return RoleSyncRoots[roleType];
         }
 
-        private Role GetRole(KnownRole knownRole)
+        private Role GetRole(RoleType roleType)
         {
-            if (_cacheService.GetRole(knownRole) == null)
+            if (_cacheService.GetRole(roleType) == null)
             {
-                lock (GetProfileSyncRoot(knownRole))
+                lock (GetProfileSyncRoot(roleType))
                 {
-                    if (_cacheService.GetRole(knownRole) == null)
+                    if (_cacheService.GetRole(roleType) == null)
                     {
-                        string roleName = Enum.GetName(typeof(KnownRole), knownRole);
+                        string fileName = Enum.GetName(typeof(RoleType), roleType) + ".xml";
 
-                        string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), roleName + ".xml");
+                        string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), fileName);
 
                         string filePath = _server.MapPath(fileVirtualPath);
 
@@ -94,7 +94,7 @@ namespace Com.Prerit.Services
                                         : new Role
                                               {
                                                   Ids = new List<string>(),
-                                                  Name = roleName
+                                                  Type = roleType
                                               };
 
                         _cacheService.SetRole(role, filePath);
@@ -102,12 +102,12 @@ namespace Com.Prerit.Services
                 }
             }
 
-            return _cacheService.GetRole(knownRole);
+            return _cacheService.GetRole(roleType);
         }
 
-        public IEnumerable<KnownRole> GetRolesById(string id)
+        public IEnumerable<RoleType> GetRolesById(string id)
         {
-            return from KnownRole knownRole in Enum.GetValues(typeof(KnownRole))
+            return from RoleType knownRole in Enum.GetValues(typeof(RoleType))
                    where GetRole(knownRole).Ids.Contains(id)
                    select knownRole;
         }
