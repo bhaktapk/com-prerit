@@ -1,6 +1,7 @@
 using System;
 using System.Web.Mvc;
 
+using Com.Prerit.Domain;
 using Com.Prerit.Models.Accounts;
 using Com.Prerit.Services;
 
@@ -46,7 +47,10 @@ namespace Com.Prerit.Controllers
         {
             string validatedReturnUrl = Uri.IsWellFormedUriString(returnUrl, UriKind.Relative) ? returnUrl : null;
 
-            var model = new LogInModel { ReturnUrl = validatedReturnUrl };
+            var model = new LogInModel
+                            {
+                                ReturnUrl = validatedReturnUrl
+                            };
 
             return View(model);
         }
@@ -56,7 +60,17 @@ namespace Com.Prerit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var model = new LoggedInStatusModel { Name = _profileService.GetProfile(User.Identity.Name).Name };
+                Profile profile = _profileService.GetProfile(User.Identity.Name);
+
+                if (profile == null)
+                {
+                    throw new InvalidOperationException(string.Format("Cannot find profile with id {0}", User.Identity.Name));
+                }
+
+                var model = new LoggedInStatusModel
+                                {
+                                    Name = profile.Name
+                                };
 
                 return View(MVC.Accounts.Views.LoggedInStatus, model);
             }
@@ -87,7 +101,10 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Unauthorized(string returnUrl)
         {
-            var model = new UnauthorizedModel { ReturnUrl = returnUrl };
+            var model = new UnauthorizedModel
+                            {
+                                ReturnUrl = returnUrl
+                            };
 
             return View(model);
         }
