@@ -42,6 +42,7 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Security\IPrincipalExtensions.cs" />
     <Compile Include="Domain\RoleType.cs" />
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
