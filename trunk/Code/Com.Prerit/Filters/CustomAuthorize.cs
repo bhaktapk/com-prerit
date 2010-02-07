@@ -13,26 +13,26 @@ namespace Com.Prerit.Filters
     {
         #region Fields
 
-        private KnownRole _allowedRoles;
+        private RoleType _allowedRoleTypes;
 
         private readonly IRolesService _rolesService;
 
-        private IEnumerable<KnownRole> _splitAllowedRoles = new KnownRole[0];
+        private IEnumerable<RoleType> _splitAllowedRoleTypes = new RoleType[0];
 
         #endregion
 
         #region Properties
 
-        public KnownRole AllowedRoles
+        public RoleType AllowedRoleTypes
         {
-            get { return _allowedRoles; }
+            get { return _allowedRoleTypes; }
             set
             {
-                _allowedRoles = value;
+                _allowedRoleTypes = value;
 
-                _splitAllowedRoles = from KnownRole knownRole in Enum.GetValues(typeof(KnownRole))
-                                     where (value & knownRole) == knownRole
-                                     select knownRole;
+                _splitAllowedRoleTypes = from RoleType knownRole in Enum.GetValues(typeof(RoleType))
+                                         where (value & knownRole) == knownRole
+                                         select knownRole;
             }
         }
 
@@ -84,9 +84,9 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            IEnumerable<KnownRole> userRoles = _rolesService.GetRolesById(httpContext.User.Identity.Name);
+            IEnumerable<RoleType> userRoles = _rolesService.GetRolesById(httpContext.User.Identity.Name);
 
-            if (_splitAllowedRoles.Count() != 0 && _splitAllowedRoles.Intersect(userRoles).Count() == 0)
+            if (_splitAllowedRoleTypes.Count() != 0 && _splitAllowedRoleTypes.Intersect(userRoles).Count() == 0)
             {
                 return false;
             }

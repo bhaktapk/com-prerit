@@ -8,9 +8,9 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
-        IEnumerable<string> GetIdsByRole(KnownRole role);
+        IEnumerable<string> GetIdsByRole(RoleType roleType);
 
-        IEnumerable<KnownRole> GetRolesById(string id);
+        IEnumerable<RoleType> GetRolesById(string id);
 
         #endregion
     }

@@ -42,7 +42,7 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Domain\KnownRole.cs" />
+    <Compile Include="Domain\RoleType.cs" />
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
