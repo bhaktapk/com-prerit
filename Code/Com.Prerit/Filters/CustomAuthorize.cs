@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using Com.Prerit.Domain;
-using Com.Prerit.Services;
+using Com.Prerit.Security;
 
 namespace Com.Prerit.Filters
 {
@@ -14,8 +14,6 @@ namespace Com.Prerit.Filters
         #region Fields
 
         private RoleType _allowedRoleTypes;
-
-        private readonly IRoleService _roleService;
 
         private IEnumerable<RoleType> _splitAllowedRoleTypes = new RoleType[0];
 
@@ -38,38 +36,6 @@ namespace Com.Prerit.Filters
 
         #endregion
 
-        #region Constructors
-
-        public CustomAuthorize()
-        {
-            HttpContext httpContext = HttpContext.Current;
-
-            if (httpContext == null)
-            {
-                throw new InvalidOperationException("Cannot construct object without a current HttpContext");
-            }
-
-            var cacheService = new CacheService(httpContext.Cache);
-
-            var xmlStoreService = new XmlStoreService();
-
-            var httpServerUtility = new HttpServerUtilityWrapper(httpContext.Server);
-
-            _roleService = new RoleService(cacheService, xmlStoreService, httpServerUtility);
-        }
-
-        public CustomAuthorize(IRoleService roleService)
-        {
-            if (roleService == null)
-            {
-                throw new ArgumentNullException("roleService");
-            }
-
-            _roleService = roleService;
-        }
-
-        #endregion
-
         #region Methods
 
         protected virtual bool AuthorizeCore(HttpContextBase httpContext)
@@ -84,9 +50,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            IEnumerable<RoleType> userRoles = _roleService.GetRolesById(httpContext.User.Identity.Name);
-
-            if (_splitAllowedRoleTypes.Count() != 0 && _splitAllowedRoleTypes.Intersect(userRoles).Count() == 0)
+            if (_splitAllowedRoleTypes.Count() != 0 && !_splitAllowedRoleTypes.Any(roleType => httpContext.User.IsInRole(roleType)))
             {
                 return false;
             }
