@@ -300,7 +300,7 @@
     <Content Include="ErrorPages\ServiceUnavailable.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Roles\Admin.xml" />
+    <None Include="App_Data\Roles\RoleType.xml.template" />
     <Content Include="ProductionWeb.config" />
     <Content Include="scripts\master.js" />
     <Content Include="ServiceUnavailableWeb.config" />
