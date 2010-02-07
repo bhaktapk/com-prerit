@@ -46,6 +46,7 @@
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\ResumeFormatsController.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
+    <Compile Include="Infrastructure\Providers\RoleTypeProvider.cs" />
     <Compile Include="Models\Accounts\UnauthorizedModel.cs" />
     <Compile Include="Infrastructure\Routing\DashableRouteConstraint.cs" />
     <Compile Include="Services\CacheService.cs" />
@@ -253,6 +254,7 @@
       <HintPath>..\..\Libraries\MvcContrib.Castle.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
