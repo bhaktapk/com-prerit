@@ -6,8 +6,6 @@ using System.Web;
 
 using Com.Prerit.Domain;
 
-using DotNetOpenAuth.OpenId;
-
 using Links;
 
 namespace Com.Prerit.Services
@@ -61,6 +59,36 @@ namespace Com.Prerit.Services
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
         }
 
+        private string GetFilePath(string id)
+        {
+            string directoryPath = _server.MapPath(App_Data.Profiles.Url());
+
+            string filename = GetSafeFilename(id);
+
+            return Path.Combine(directoryPath, filename);
+        }
+
+        public Profile GetProfile(string id)
+        {
+            if (_cacheService.GetProfile(id) == null)
+            {
+                lock (GetProfileSyncRoot(id))
+                {
+                    if (_cacheService.GetProfile(id) == null)
+                    {
+                        string filePath = GetFilePath(id);
+
+                        if (File.Exists(filePath))
+                        {
+                            _cacheService.SetProfile(_xmlStoreService.Load<Profile>(filePath), filePath);
+                        }
+                    }
+                }
+            }
+
+            return _cacheService.GetProfile(id);
+        }
+
         private object GetProfileSyncRoot(string id)
         {
             if (!ProfileSyncRoots.ContainsKey(id))
@@ -77,24 +105,6 @@ namespace Com.Prerit.Services
             return ProfileSyncRoots[id];
         }
 
-        public Profile GetProfile(string id)
-        {
-            if (_cacheService.GetProfile(id) == null)
-            {
-                lock (GetProfileSyncRoot(id))
-                {
-                    if (_cacheService.GetProfile(id) == null)
-                    {
-                        string filePath = GetFilePath(id);
-
-                        _cacheService.SetProfile(_xmlStoreService.Load<Profile>(filePath), filePath);
-                    }
-                }
-            }
-
-            return _cacheService.GetProfile(id);
-        }
-
         private string GetSafeFilename(string id)
         {
             char[] characters = id.ToCharArray();
@@ -104,15 +114,6 @@ namespace Com.Prerit.Services
             safeFilename.AddRange(".xml".ToCharArray());
 
             return new string(safeFilename.ToArray());
-        }
-
-        private string GetFilePath(string id)
-        {
-            string directoryPath = _server.MapPath(App_Data.Profiles.Url());
-
-            string filename = GetSafeFilename(id);
-
-            return Path.Combine(directoryPath, filename);
         }
 
         public void SaveProfile(string id, string emailAddress)
@@ -126,7 +127,11 @@ namespace Com.Prerit.Services
 
             lock (GetProfileSyncRoot(id))
             {
-                _xmlStoreService.Save(GetFilePath(id), profile);
+                string filePath = GetFilePath(id);
+
+                _xmlStoreService.Save(filePath, profile);
+
+                _cacheService.SetProfile(profile, filePath);
             }
         }
 
