@@ -4,20 +4,20 @@ using System.Web.Routing;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public abstract class DashableRouteConstraint : IRouteConstraint
+    public abstract class HyphenatableRouteConstraint : IRouteConstraint
     {
         #region Fields
 
-        private IEnumerable<string> _dashableData;
+        private IEnumerable<string> _hyphenatableData;
 
         #endregion
 
         #region Properties
 
-        public IEnumerable<string> DashableData
+        public IEnumerable<string> HyphenatableData
         {
-            get { return _dashableData; }
-            set { _dashableData = value ?? new string[0]; }
+            get { return _hyphenatableData; }
+            set { _hyphenatableData = value ?? new string[0]; }
         }
 
         #endregion

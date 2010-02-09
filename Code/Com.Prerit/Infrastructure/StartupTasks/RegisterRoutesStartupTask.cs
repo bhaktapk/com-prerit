@@ -25,7 +25,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             // NOTE: default controller is handled via IIS's Url Rewriting module
             RouteTable.Routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
-                                          new[] { "controller", "action" },
+                                          new[]
+                                              {
+                                                  "controller", "action"
+                                              },
                                           new
                                               {
                                                   action = DefaultAction
@@ -40,7 +43,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.MapSeoRoute("account routes",
                                           "{controller}/{action}",
-                                          new[] { "controller", "action" },
+                                          new[]
+                                              {
+                                                  "controller", "action"
+                                              },
                                           null,
                                           new
                                               {
@@ -54,7 +60,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.MapSeoRoute("album routes with all albums",
                                           "{controller}",
-                                          new[] { "controller" },
+                                          new[]
+                                              {
+                                                  "controller"
+                                              },
                                           new
                                               {
                                                   action = DefaultAction
@@ -66,7 +75,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.MapSeoRoute("album routes by year",
                                           "{controller}/{year}",
-                                          new[] { "controller" },
+                                          new[]
+                                              {
+                                                  "controller"
+                                              },
                                           new
                                               {
                                                   action = MVC.Albums.Actions.AlbumsByYear,
@@ -79,7 +91,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.MapSeoRoute("album routes by year and title",
                                           "{controller}/{year}/{title}",
-                                          new[] { "controller", "title" },
+                                          new[]
+                                              {
+                                                  "controller", "title"
+                                              },
                                           new
                                               {
                                                   action = MVC.Albums.Actions.AlbumsByYearAndTitle,
@@ -92,7 +107,10 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
             RouteTable.Routes.MapSeoRoute("resume format routes",
                                           "resume/formats/{action}",
-                                          new[] { "action" },
+                                          new[]
+                                              {
+                                                  "action"
+                                              },
                                           new
                                               {
                                                   controller = MVC.ResumeFormats.Name

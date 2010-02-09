@@ -5,13 +5,13 @@ using System.Web.Routing;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public class ListConstraint : DashableRouteConstraint
+    public class ListConstraint : HyphenatableRouteConstraint
     {
         #region Constructors
 
         public ListConstraint(params string[] list)
         {
-            DashableData = list;
+            HyphenatableData = list;
         }
 
         #endregion
@@ -34,7 +34,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             if (values.TryGetValue(parameterName, out value) && value is string)
             {
-                return DashableData.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
+                return HyphenatableData.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
             }
 
             return false;
