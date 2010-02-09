@@ -29,7 +29,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult Culture()
         {
-            var model = new CultureModel { Culture = CultureInfo.CurrentCulture.Name.ToLowerInvariant() };
+            var model = new CultureModel { Culture = CultureInfo.CurrentCulture.Name.ToLower() };
 
             return View(model);
         }

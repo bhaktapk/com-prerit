@@ -201,7 +201,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
         private void LowercaseVirtualPath(VirtualPathData path)
         {
-            path.VirtualPath = path.VirtualPath.ToLowerInvariant();
+            path.VirtualPath = path.VirtualPath.ToLower();
         }
 
         private void UndashifyRouteParamValues(RouteValueDictionary routeValueDictionary)
