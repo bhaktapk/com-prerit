@@ -72,25 +72,72 @@ namespace Com.Prerit.Infrastructure.Routing
 
         #region Methods
 
-        private void DashifyRouteParamValues(RouteValueDictionary routeValueDictionary)
+        private static string Deoptimize(string value)
         {
-            foreach (string key in GetDashableRouteParams(routeValueDictionary))
+            var chars = new List<char>();
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (value[i] == '-')
+                {
+                    if (i + 1 < value.Length)
+                    {
+                        i++;
+
+                        chars.Add(char.ToUpper(value[i]));
+                    }
+                }
+                else if (i == 0)
+                {
+                    chars.Add(char.ToUpper(value[i]));
+                }
+                else
+                {
+                    chars.Add(value[i]);
+                }
+            }
+
+            return new string(chars.ToArray());
+        }
+
+        private void DeoptimizeRouteParamValues(RouteValueDictionary routeValueDictionary)
+        {
+            foreach (string key in GetDeoptimizableRouteParams(routeValueDictionary))
             {
                 if (routeValueDictionary[key] is string)
                 {
-                    routeValueDictionary[key] = GetDashedValue((string) routeValueDictionary[key]);
+                    routeValueDictionary[key] = Deoptimize((string) routeValueDictionary[key]);
                 }
-                else if (routeValueDictionary[key] is DashableRouteConstraint)
+                else if (routeValueDictionary[key] is HyphenatableRouteConstraint)
                 {
-                    var dashable = (DashableRouteConstraint) routeValueDictionary[key];
+                    var constraint = (HyphenatableRouteConstraint) routeValueDictionary[key];
 
-                    dashable.DashableData = from data in dashable.DashableData
-                                            select !data.Contains('-') ? GetDashedValue(data) : data;
+                    constraint.HyphenatableData = from data in constraint.HyphenatableData
+                                                  select data.Contains('-') ? Deoptimize(data) : data;
                 }
             }
         }
 
-        private string[] GetDashableRouteParams(RouteValueDictionary routeValueDictionary)
+        private IEnumerable<string> GetDeoptimizableRouteParams(RouteValueDictionary routeValueDictionary)
+        {
+            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
+                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
+                                                                             select kvp;
+
+            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
+                                                    where !string.IsNullOrEmpty(kvp.Value as string) && ((string) kvp.Value).Contains('-')
+                                                    select kvp.Key;
+
+            IEnumerable<string> hyphenatableRouteParams = from kvp in potentialRouteParams
+                                                          where
+                                                              kvp.Value as HyphenatableRouteConstraint != null &&
+                                                              ((HyphenatableRouteConstraint) kvp.Value).HyphenatableData.Any(data => data.Contains('-'))
+                                                          select kvp.Key;
+
+            return stringRouteParams.Concat(hyphenatableRouteParams);
+        }
+
+        private IEnumerable<string> GetHyphenatableRouteParams(RouteValueDictionary routeValueDictionary)
         {
             IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
                                                                              where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
@@ -100,16 +147,65 @@ namespace Com.Prerit.Infrastructure.Routing
                                                     where !string.IsNullOrEmpty(kvp.Value as string) && !((string) kvp.Value).Contains('-')
                                                     select kvp.Key;
 
-            IEnumerable<string> idashableRouteParams = from kvp in potentialRouteParams
-                                                       where
-                                                           kvp.Value as DashableRouteConstraint != null &&
-                                                           ((DashableRouteConstraint) kvp.Value).DashableData.Any(data => !data.Contains('-'))
-                                                       select kvp.Key;
+            IEnumerable<string> hyphenatableRouteParams = from kvp in potentialRouteParams
+                                                          where
+                                                              kvp.Value as HyphenatableRouteConstraint != null &&
+                                                              ((HyphenatableRouteConstraint) kvp.Value).HyphenatableData.Any(data => !data.Contains('-'))
+                                                          select kvp.Key;
 
-            return stringRouteParams.Concat(idashableRouteParams).ToArray();
+            return stringRouteParams.Concat(hyphenatableRouteParams);
         }
 
-        private static string GetDashedValue(string value)
+        public override RouteData GetRouteData(HttpContextBase httpContext)
+        {
+            if (Defaults != null)
+            {
+                HyphenateRouteParamValues(Defaults);
+            }
+
+            if (Constraints != null)
+            {
+                HyphenateRouteParamValues(Constraints);
+            }
+
+            RouteData routeData = base.GetRouteData(httpContext);
+
+            if (routeData != null && routeData.Values != null)
+            {
+                DeoptimizeRouteParamValues(routeData.Values);
+            }
+
+            return routeData;
+        }
+
+        public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
+        {
+            if (Defaults != null)
+            {
+                HyphenateRouteParamValues(Defaults);
+            }
+
+            if (Constraints != null)
+            {
+                HyphenateRouteParamValues(Constraints);
+            }
+
+            if (values != null)
+            {
+                HyphenateRouteParamValues(values);
+            }
+
+            VirtualPathData path = base.GetVirtualPath(requestContext, values);
+
+            if (path != null)
+            {
+                LowercaseVirtualPath(path);
+            }
+
+            return path;
+        }
+
+        private static string Hyphenate(string value)
         {
             var seoChars = new List<char>();
 
@@ -126,100 +222,27 @@ namespace Com.Prerit.Infrastructure.Routing
             return new string(seoChars.ToArray());
         }
 
-        public override RouteData GetRouteData(HttpContextBase httpContext)
+        private void HyphenateRouteParamValues(RouteValueDictionary routeValueDictionary)
         {
-            if (Defaults != null)
+            foreach (string key in GetHyphenatableRouteParams(routeValueDictionary))
             {
-                DashifyRouteParamValues(Defaults);
+                if (routeValueDictionary[key] is string)
+                {
+                    routeValueDictionary[key] = Hyphenate((string) routeValueDictionary[key]);
+                }
+                else if (routeValueDictionary[key] is HyphenatableRouteConstraint)
+                {
+                    var constraint = (HyphenatableRouteConstraint) routeValueDictionary[key];
+
+                    constraint.HyphenatableData = from data in constraint.HyphenatableData
+                                                  select !data.Contains('-') ? Hyphenate(data) : data;
+                }
             }
-
-            if (Constraints != null)
-            {
-                DashifyRouteParamValues(Constraints);
-            }
-
-            RouteData routeData = base.GetRouteData(httpContext);
-
-            if (routeData != null && routeData.Values != null)
-            {
-                UndashifyRouteParamValues(routeData.Values);
-            }
-
-            return routeData;
-        }
-
-        private string[] GetUndashableRouteParams(RouteValueDictionary routeValueDictionary)
-        {
-            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
-                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
-                                                                             select kvp;
-
-            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
-                                                    where !string.IsNullOrEmpty(kvp.Value as string) && ((string) kvp.Value).Contains('-')
-                                                    select kvp.Key;
-
-            IEnumerable<string> idashableRouteParams = from kvp in potentialRouteParams
-                                                       where
-                                                           kvp.Value as DashableRouteConstraint != null &&
-                                                           ((DashableRouteConstraint) kvp.Value).DashableData.Any(data => data.Contains('-'))
-                                                       select kvp.Key;
-
-            return stringRouteParams.Concat(idashableRouteParams).ToArray();
-        }
-
-        private static string GetUndashedValue(string value)
-        {
-            return value.Replace("-", "");
-        }
-
-        public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
-        {
-            if (Defaults != null)
-            {
-                DashifyRouteParamValues(Defaults);
-            }
-
-            if (Constraints != null)
-            {
-                DashifyRouteParamValues(Constraints);
-            }
-
-            if (values != null)
-            {
-                DashifyRouteParamValues(values);
-            }
-
-            VirtualPathData path = base.GetVirtualPath(requestContext, values);
-
-            if (path != null)
-            {
-                LowercaseVirtualPath(path);
-            }
-
-            return path;
         }
 
         private void LowercaseVirtualPath(VirtualPathData path)
         {
             path.VirtualPath = path.VirtualPath.ToLower();
-        }
-
-        private void UndashifyRouteParamValues(RouteValueDictionary routeValueDictionary)
-        {
-            foreach (string key in GetUndashableRouteParams(routeValueDictionary))
-            {
-                if (routeValueDictionary[key] is string)
-                {
-                    routeValueDictionary[key] = GetUndashedValue((string) routeValueDictionary[key]);
-                }
-                else if (routeValueDictionary[key] is DashableRouteConstraint)
-                {
-                    var dashable = (DashableRouteConstraint) routeValueDictionary[key];
-
-                    dashable.DashableData = from data in dashable.DashableData
-                                            select data.Contains('-') ? GetUndashedValue(data) : data;
-                }
-            }
         }
 
         #endregion

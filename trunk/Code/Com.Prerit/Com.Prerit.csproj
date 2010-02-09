@@ -49,7 +49,7 @@
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\Providers\RoleTypeProvider.cs" />
     <Compile Include="Models\Accounts\UnauthorizedModel.cs" />
-    <Compile Include="Infrastructure\Routing\DashableRouteConstraint.cs" />
+    <Compile Include="Infrastructure\Routing\HyphenatableRouteConstraint.cs" />
     <Compile Include="Services\CacheService.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="Services\ICacheService.cs" />
