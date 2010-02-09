@@ -10,30 +10,62 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Fields
 
-        private static readonly string[] RouteParams = new[] { "action", "controller" };
+        private IEnumerable<string> _routeParams;
+
+        #endregion
+
+        #region Properties
+
+        public IEnumerable<string> RouteParams
+        {
+            get { return _routeParams; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                if (value.Count() == 0)
+                {
+                    throw new ArgumentException("Must have at least one route param", "value");
+                }
+
+                _routeParams = value;
+            }
+        }
 
         #endregion
 
         #region Constructors
 
-        public SeoRoute(string url, IRouteHandler routeHandler)
+        public SeoRoute(string url, IEnumerable<string> routeParams, IRouteHandler routeHandler)
             : base(url, routeHandler)
         {
+            RouteParams = routeParams;
         }
 
-        public SeoRoute(string url, RouteValueDictionary defaults, IRouteHandler routeHandler)
+        public SeoRoute(string url, IEnumerable<string> routeParams, RouteValueDictionary defaults, IRouteHandler routeHandler)
             : base(url, defaults, routeHandler)
         {
+            RouteParams = routeParams;
         }
 
-        public SeoRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, IRouteHandler routeHandler)
+        public SeoRoute(string url, IEnumerable<string> routeParams, RouteValueDictionary defaults, RouteValueDictionary constraints, IRouteHandler routeHandler)
             : base(url, defaults, constraints, routeHandler)
         {
+            RouteParams = routeParams;
         }
 
-        public SeoRoute(string url, RouteValueDictionary defaults, RouteValueDictionary constraints, RouteValueDictionary dataTokens, IRouteHandler routeHandler)
+        public SeoRoute(string url,
+                        IEnumerable<string> routeParams,
+                        RouteValueDictionary defaults,
+                        RouteValueDictionary constraints,
+                        RouteValueDictionary dataTokens,
+                        IRouteHandler routeHandler)
             : base(url, defaults, constraints, dataTokens, routeHandler)
         {
+            RouteParams = routeParams;
         }
 
         #endregion

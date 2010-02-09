@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -8,12 +10,12 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Methods
 
-        public static void IgnoreSeoRoute(this RouteCollection routes, string url)
+        public static void IgnoreSeoRoute(this RouteCollection routes, string url, IEnumerable<string> routeParams)
         {
-            routes.IgnoreSeoRoute(url, null);
+            routes.IgnoreSeoRoute(url, routeParams, null);
         }
 
-        public static void IgnoreSeoRoute(this RouteCollection routes, string url, object constraints)
+        public static void IgnoreSeoRoute(this RouteCollection routes, string url, IEnumerable<string> routeParams, object constraints)
         {
             if (routes == null)
             {
@@ -25,38 +27,64 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("url");
             }
 
-            routes.Add(new IgnoreSeoRoute(url)
+            if (routeParams == null)
+            {
+                throw new ArgumentNullException("routeParams");
+            }
+
+            if (routeParams.Count() == 0)
+            {
+                throw new ArgumentException("Must have at least one route param", "routeParams");
+            }
+
+            routes.Add(new IgnoreSeoRoute(url, routeParams)
                            {
-                               Constraints = new RouteValueDictionary(constraints)
+                               Constraints = new RouteValueDictionary(constraints),
                            });
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url)
+        public static void MapSeoRoute(this RouteCollection routes, string name, string url, IEnumerable<string> routeParams)
         {
-            routes.MapSeoRoute(name, url, null, null);
+            routes.MapSeoRoute(name, url, routeParams, null, null, null);
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url, object defaults)
+        public static void MapSeoRoute(this RouteCollection routes, string name, string url, IEnumerable<string> routeParams, object defaults)
         {
-            routes.MapSeoRoute(name, url, defaults, null);
+            routes.MapSeoRoute(name, url, routeParams, defaults, null, null);
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url, string[] namespaces)
+        public static void MapSeoRoute(this RouteCollection routes, string name, string url, IEnumerable<string> routeParams, string[] namespaces)
         {
-            routes.MapSeoRoute(name, url, null, null, namespaces);
+            routes.MapSeoRoute(name, url, routeParams, null, null, namespaces);
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url, object defaults, object constraints)
+        public static void MapSeoRoute(this RouteCollection routes,
+                                       string name,
+                                       string url,
+                                       IEnumerable<string> routeParams,
+                                       object defaults,
+                                       object constraints)
         {
-            routes.MapSeoRoute(name, url, defaults, constraints, null);
+            routes.MapSeoRoute(name, url, routeParams, defaults, constraints, null);
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url, object defaults, string[] namespaces)
+        public static void MapSeoRoute(this RouteCollection routes,
+                                       string name,
+                                       string url,
+                                       IEnumerable<string> routeParams,
+                                       object defaults,
+                                       string[] namespaces)
         {
-            routes.MapSeoRoute(name, url, defaults, null, namespaces);
+            routes.MapSeoRoute(name, url, routeParams, defaults, null, namespaces);
         }
 
-        public static void MapSeoRoute(this RouteCollection routes, string name, string url, object defaults, object constraints, string[] namespaces)
+        public static void MapSeoRoute(this RouteCollection routes,
+                                       string name,
+                                       string url,
+                                       IEnumerable<string> routeParams,
+                                       object defaults,
+                                       object constraints,
+                                       string[] namespaces)
         {
             if (routes == null)
             {
@@ -68,7 +96,17 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("url");
             }
 
-            var route = new SeoRoute(url, new RouteValueDictionary(defaults), new RouteValueDictionary(constraints), new MvcRouteHandler());
+            if (routeParams == null)
+            {
+                throw new ArgumentNullException("routeParams");
+            }
+
+            if (routeParams.Count() == 0)
+            {
+                throw new ArgumentException("Must have at least one route param", "routeParams");
+            }
+
+            var route = new SeoRoute(url, routeParams, new RouteValueDictionary(defaults), new RouteValueDictionary(constraints), new MvcRouteHandler());
 
             if (namespaces != null && namespaces.Length > 0)
             {
