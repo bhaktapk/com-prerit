@@ -25,7 +25,7 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
-        public virtual ActionResult Index()
+        public virtual ActionResult AllAlbums()
         {
             return new EmptyResult();
         }

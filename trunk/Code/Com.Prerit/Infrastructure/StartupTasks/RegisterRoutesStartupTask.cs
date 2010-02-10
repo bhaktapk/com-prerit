@@ -66,7 +66,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                               },
                                           new
                                               {
-                                                  action = DefaultAction
+                                                  action = MVC.Albums.Actions.AllAlbums
                                               },
                                           new
                                               {
