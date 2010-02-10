@@ -9,7 +9,7 @@
     <meta name="keywords" content="email sent, contact, Prerit Bhakta" />
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="metaTagContent" runat="server">
+<asp:Content ContentPlaceHolderID="linkContent" runat="server">
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Contact.EmailSent())).AbsoluteUri %>" />
 </asp:Content>
 
