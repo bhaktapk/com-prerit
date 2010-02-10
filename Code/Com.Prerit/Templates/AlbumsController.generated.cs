@@ -46,7 +46,7 @@ namespace Com.Prerit.Controllers {
         public class ActionNames {
             public readonly string AlbumsByYear = "AlbumsByYear";
             public readonly string AlbumsByYearAndTitle = "AlbumsByYearAndTitle";
-            public readonly string Index = "Index";
+            public readonly string AllAlbums = "AllAlbums";
         }
 
 
@@ -73,8 +73,8 @@ namespace Com.Prerit.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Index);
+        public override System.Web.Mvc.ActionResult AllAlbums() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.AllAlbums);
             return callInfo;
         }
 
