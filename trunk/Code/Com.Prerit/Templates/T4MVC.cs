@@ -147,6 +147,13 @@ namespace Links {
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         [CompilerGenerated]
+        public static class Albums {
+            private const string URLPATH = "~/App_Data/Albums";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        }
+    
+        [CompilerGenerated]
         public static class Profiles {
             private const string URLPATH = "~/App_Data/Profiles";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -167,7 +174,7 @@ namespace Links {
             private const string URLPATH = "~/App_Data/Roles";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string Admin_xml = Url("Admin.xml");
+            public static readonly string RoleType_xml_template = Url("RoleType.xml.template");
         }
     
     }
