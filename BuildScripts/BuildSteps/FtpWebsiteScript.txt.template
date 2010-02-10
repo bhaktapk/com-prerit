@@ -1,4 +1,4 @@
 #debug 10
 open @SERVER@
 user @USERNAME@ @PASSWORD@
-mirror --delete --exclude "(_db_backups|App_Data/Profiles|App_Data/Roles|Logs|stats)" --reverse
+mirror --delete --exclude "(_db_backups|App_Data/Albums|App_Data/Profiles|App_Data/Roles|Logs|stats)" --reverse
