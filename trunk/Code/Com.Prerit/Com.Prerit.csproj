@@ -340,6 +340,7 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Albums\" />
     <Folder Include="App_Data\Profiles\" />
     <Folder Include="Logs\" />
   </ItemGroup>
