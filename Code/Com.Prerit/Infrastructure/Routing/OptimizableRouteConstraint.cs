@@ -4,20 +4,20 @@ using System.Web.Routing;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public abstract class HyphenatableRouteConstraint : IRouteConstraint
+    public abstract class OptimizableRouteConstraint : IRouteConstraint
     {
         #region Fields
 
-        private IEnumerable<string> _hyphenatableData;
+        private IEnumerable<string> _optimizableData;
 
         #endregion
 
         #region Properties
 
-        public IEnumerable<string> HyphenatableData
+        public IEnumerable<string> OptimizableData
         {
-            get { return _hyphenatableData; }
-            set { _hyphenatableData = value ?? new string[0]; }
+            get { return _optimizableData; }
+            set { _optimizableData = value ?? new string[0]; }
         }
 
         #endregion

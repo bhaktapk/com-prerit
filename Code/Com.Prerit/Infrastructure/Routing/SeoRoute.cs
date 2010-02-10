@@ -72,54 +72,21 @@ namespace Com.Prerit.Infrastructure.Routing
 
         #region Methods
 
-        private static string Deoptimize(string value)
+        private void DeoptimizeRouteValues(RouteValueDictionary routeValueDictionary)
         {
-            var chars = new List<char>();
+            IEnumerable<string> potentialKeys = from kvp in routeValueDictionary
+                                                where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase) && kvp.Value != null
+                                                select kvp.Key;
 
-            for (int i = 0; i < value.Length; i++)
+            var loopableKeys = new List<string>(potentialKeys);
+
+            foreach (string key in loopableKeys)
             {
-                if (value[i] == '-')
-                {
-                    if (i + 1 < value.Length)
-                    {
-                        i++;
+                object routeValue = routeValueDictionary[key];
 
-                        chars.Add(char.ToUpper(value[i]));
-                    }
-                }
-                else if (i == 0)
-                {
-                    chars.Add(char.ToUpper(value[i]));
-                }
-                else
-                {
-                    chars.Add(value[i]);
-                }
-            }
+                IRouteValueOptimizer optimizer = RouteValueOptimizerFactory.Create(routeValue.GetType());
 
-            return new string(chars.ToArray());
-        }
-
-        private void DeoptimizeRouteParamValues(RouteValueDictionary routeValueDictionary)
-        {
-            var loopableKeys = new List<string>(routeValueDictionary.Keys);
-
-            IEnumerable<string> potentialKeys = loopableKeys.Where(key => RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase));
-
-            foreach (string key in potentialKeys)
-            {
-                var stringValue = routeValueDictionary[key] as string;
-                var hyphenatableValue = routeValueDictionary[key] as HyphenatableRouteConstraint;
-
-                if (!string.IsNullOrEmpty(stringValue) && stringValue.Contains('-'))
-                {
-                    routeValueDictionary[key] = Deoptimize(stringValue);
-                }
-                else if (hyphenatableValue != null && hyphenatableValue.HyphenatableData.Any(data => data.Contains('-')))
-                {
-                    hyphenatableValue.HyphenatableData = from data in hyphenatableValue.HyphenatableData
-                                                         select data.Contains('-') ? Deoptimize(data) : data;
-                }
+                routeValueDictionary[key] = optimizer.DeoptimizeRouteValue(routeValue);
             }
         }
 
@@ -127,19 +94,19 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             if (Defaults != null)
             {
-                HyphenateRouteParamValues(Defaults);
+                OptimizeRouteValues(Defaults);
             }
 
             if (Constraints != null)
             {
-                HyphenateRouteParamValues(Constraints);
+                OptimizeRouteValues(Constraints);
             }
 
             RouteData routeData = base.GetRouteData(httpContext);
 
             if (routeData != null && routeData.Values != null)
             {
-                DeoptimizeRouteParamValues(routeData.Values);
+                DeoptimizeRouteValues(routeData.Values);
             }
 
             return routeData;
@@ -149,17 +116,17 @@ namespace Com.Prerit.Infrastructure.Routing
         {
             if (Defaults != null)
             {
-                HyphenateRouteParamValues(Defaults);
+                OptimizeRouteValues(Defaults);
             }
 
             if (Constraints != null)
             {
-                HyphenateRouteParamValues(Constraints);
+                OptimizeRouteValues(Constraints);
             }
 
             if (values != null)
             {
-                HyphenateRouteParamValues(values);
+                OptimizeRouteValues(values);
             }
 
             VirtualPathData path = base.GetVirtualPath(requestContext, values);
@@ -172,49 +139,27 @@ namespace Com.Prerit.Infrastructure.Routing
             return path;
         }
 
-        private static string Hyphenate(string value)
-        {
-            var seoChars = new List<char>();
-
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (i != 0 && char.IsUpper(value[i]))
-                {
-                    seoChars.Add('-');
-                }
-
-                seoChars.Add(value[i]);
-            }
-
-            return new string(seoChars.ToArray());
-        }
-
-        private void HyphenateRouteParamValues(RouteValueDictionary routeValueDictionary)
-        {
-            var loopableKeys = new List<string>(routeValueDictionary.Keys);
-
-            IEnumerable<string> potentialKeys = loopableKeys.Where(key => RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase));
-
-            foreach (string key in potentialKeys)
-            {
-                var stringValue = routeValueDictionary[key] as string;
-                var hyphenatableValue = routeValueDictionary[key] as HyphenatableRouteConstraint;
-
-                if (!string.IsNullOrEmpty(stringValue) && !stringValue.Contains('-'))
-                {
-                    routeValueDictionary[key] = Hyphenate(stringValue);
-                }
-                else if (hyphenatableValue != null && hyphenatableValue.HyphenatableData.Any(data => !data.Contains('-')))
-                {
-                    hyphenatableValue.HyphenatableData = from data in hyphenatableValue.HyphenatableData
-                                                         select !data.Contains('-') ? Hyphenate(data) : data;
-                }
-            }
-        }
-
         private void LowercaseVirtualPath(VirtualPathData path)
         {
             path.VirtualPath = path.VirtualPath.ToLower();
+        }
+
+        private void OptimizeRouteValues(RouteValueDictionary routeValueDictionary)
+        {
+            IEnumerable<string> potentialKeys = from kvp in routeValueDictionary
+                                                where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase) && kvp.Value != null
+                                                select kvp.Key;
+
+            var loopableKeys = new List<string>(potentialKeys);
+
+            foreach (string key in loopableKeys)
+            {
+                object routeValue = routeValueDictionary[key];
+
+                IRouteValueOptimizer optimizer = RouteValueOptimizerFactory.Create(routeValue.GetType());
+
+                routeValueDictionary[key] = optimizer.OptimizeRouteValue(routeValue);
+            }
         }
 
         #endregion

@@ -3,6 +3,7 @@
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
+using Com.Prerit.Infrastructure.Routing;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
 
@@ -29,6 +30,10 @@ namespace Com.Prerit.Infrastructure.Windsor
                     AllTypes.Of<IMapCreator>().FromAssemblyNamed(assemblyName))
                 .Register(
                     AllTypes.Of<IModelBinder>().FromAssemblyNamed(assemblyName))
+                .Register(
+                    AllTypes.Of<IRouteValueOptimizer>().FromAssemblyNamed(assemblyName)
+                        .ConfigureFor<RouteConstraintOptimizer>(c => c.Named(typeof(ListConstraint).FullName))
+                        .ConfigureFor<StringOptimizer>(c => c.Named(typeof(string).FullName)))
                 .Register(
                     AllTypes.Of<IStartupTask>().FromAssemblyNamed(assemblyName));
         }
