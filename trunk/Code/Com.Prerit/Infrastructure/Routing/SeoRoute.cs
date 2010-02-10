@@ -102,58 +102,25 @@ namespace Com.Prerit.Infrastructure.Routing
 
         private void DeoptimizeRouteParamValues(RouteValueDictionary routeValueDictionary)
         {
-            foreach (string key in GetDeoptimizableRouteParams(routeValueDictionary))
-            {
-                if (routeValueDictionary[key] is string)
-                {
-                    routeValueDictionary[key] = Deoptimize((string) routeValueDictionary[key]);
-                }
-                else if (routeValueDictionary[key] is HyphenatableRouteConstraint)
-                {
-                    var constraint = (HyphenatableRouteConstraint) routeValueDictionary[key];
+            var loopableKeys = new List<string>(routeValueDictionary.Keys);
 
-                    constraint.HyphenatableData = from data in constraint.HyphenatableData
-                                                  select data.Contains('-') ? Deoptimize(data) : data;
+            IEnumerable<string> potentialKeys = loopableKeys.Where(key => RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase));
+
+            foreach (string key in potentialKeys)
+            {
+                var stringValue = routeValueDictionary[key] as string;
+                var hyphenatableValue = routeValueDictionary[key] as HyphenatableRouteConstraint;
+
+                if (!string.IsNullOrEmpty(stringValue) && stringValue.Contains('-'))
+                {
+                    routeValueDictionary[key] = Deoptimize(stringValue);
+                }
+                else if (hyphenatableValue != null && hyphenatableValue.HyphenatableData.Any(data => data.Contains('-')))
+                {
+                    hyphenatableValue.HyphenatableData = from data in hyphenatableValue.HyphenatableData
+                                                         select data.Contains('-') ? Deoptimize(data) : data;
                 }
             }
-        }
-
-        private IEnumerable<string> GetDeoptimizableRouteParams(RouteValueDictionary routeValueDictionary)
-        {
-            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
-                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
-                                                                             select kvp;
-
-            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
-                                                    where !string.IsNullOrEmpty(kvp.Value as string) && ((string) kvp.Value).Contains('-')
-                                                    select kvp.Key;
-
-            IEnumerable<string> hyphenatableRouteParams = from kvp in potentialRouteParams
-                                                          where
-                                                              kvp.Value as HyphenatableRouteConstraint != null &&
-                                                              ((HyphenatableRouteConstraint) kvp.Value).HyphenatableData.Any(data => data.Contains('-'))
-                                                          select kvp.Key;
-
-            return stringRouteParams.Concat(hyphenatableRouteParams);
-        }
-
-        private IEnumerable<string> GetHyphenatableRouteParams(RouteValueDictionary routeValueDictionary)
-        {
-            IEnumerable<KeyValuePair<string, object>> potentialRouteParams = from kvp in routeValueDictionary
-                                                                             where RouteParams.Contains(kvp.Key, StringComparer.OrdinalIgnoreCase)
-                                                                             select kvp;
-
-            IEnumerable<string> stringRouteParams = from kvp in potentialRouteParams
-                                                    where !string.IsNullOrEmpty(kvp.Value as string) && !((string) kvp.Value).Contains('-')
-                                                    select kvp.Key;
-
-            IEnumerable<string> hyphenatableRouteParams = from kvp in potentialRouteParams
-                                                          where
-                                                              kvp.Value as HyphenatableRouteConstraint != null &&
-                                                              ((HyphenatableRouteConstraint) kvp.Value).HyphenatableData.Any(data => !data.Contains('-'))
-                                                          select kvp.Key;
-
-            return stringRouteParams.Concat(hyphenatableRouteParams);
         }
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
@@ -224,18 +191,23 @@ namespace Com.Prerit.Infrastructure.Routing
 
         private void HyphenateRouteParamValues(RouteValueDictionary routeValueDictionary)
         {
-            foreach (string key in GetHyphenatableRouteParams(routeValueDictionary))
-            {
-                if (routeValueDictionary[key] is string)
-                {
-                    routeValueDictionary[key] = Hyphenate((string) routeValueDictionary[key]);
-                }
-                else if (routeValueDictionary[key] is HyphenatableRouteConstraint)
-                {
-                    var constraint = (HyphenatableRouteConstraint) routeValueDictionary[key];
+            var loopableKeys = new List<string>(routeValueDictionary.Keys);
 
-                    constraint.HyphenatableData = from data in constraint.HyphenatableData
-                                                  select !data.Contains('-') ? Hyphenate(data) : data;
+            IEnumerable<string> potentialKeys = loopableKeys.Where(key => RouteParams.Contains(key, StringComparer.OrdinalIgnoreCase));
+
+            foreach (string key in potentialKeys)
+            {
+                var stringValue = routeValueDictionary[key] as string;
+                var hyphenatableValue = routeValueDictionary[key] as HyphenatableRouteConstraint;
+
+                if (!string.IsNullOrEmpty(stringValue) && !stringValue.Contains('-'))
+                {
+                    routeValueDictionary[key] = Hyphenate(stringValue);
+                }
+                else if (hyphenatableValue != null && hyphenatableValue.HyphenatableData.Any(data => !data.Contains('-')))
+                {
+                    hyphenatableValue.HyphenatableData = from data in hyphenatableValue.HyphenatableData
+                                                         select !data.Contains('-') ? Hyphenate(data) : data;
                 }
             }
         }
