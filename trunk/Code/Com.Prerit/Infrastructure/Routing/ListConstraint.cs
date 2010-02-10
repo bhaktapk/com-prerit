@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Routing;
@@ -9,8 +10,18 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Constructors
 
-        public ListConstraint(params string[] list)
+        public ListConstraint(IEnumerable<string> list)
         {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+
+            if (list.Count() == 0)
+            {
+                throw new ArgumentException("Cannot be empty", "list");
+            }
+
             HyphenatableData = list;
         }
 
