@@ -6,7 +6,7 @@ using System.Web.Routing;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public class ListConstraint : HyphenatableRouteConstraint
+    public class ListConstraint : OptimizableRouteConstraint
     {
         #region Constructors
 
@@ -22,7 +22,7 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentException("Cannot be empty", "list");
             }
 
-            HyphenatableData = list;
+            OptimizableData = list;
         }
 
         #endregion
@@ -45,7 +45,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             if (values.TryGetValue(parameterName, out value) && value is string)
             {
-                return HyphenatableData.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
+                return OptimizableData.Any(item => string.Compare(item, (string) value, StringComparison.OrdinalIgnoreCase) == 0);
             }
 
             return false;
