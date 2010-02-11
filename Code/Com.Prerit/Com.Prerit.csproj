@@ -47,6 +47,8 @@
     <Compile Include="Infrastructure\Routing\RouteConstraintOptimizer.cs" />
     <Compile Include="Infrastructure\Routing\RouteValueOptimizerFactory.cs" />
     <Compile Include="Infrastructure\Routing\StringOptimizer.cs" />
+    <Compile Include="Services\AlbumService.cs" />
+    <Compile Include="Services\IAlbumService.cs" />
     <Compile Include="Security\IPrincipalExtensions.cs" />
     <Compile Include="Domain\RoleType.cs" />
     <Compile Include="Controllers\OpenIdController.cs" />
