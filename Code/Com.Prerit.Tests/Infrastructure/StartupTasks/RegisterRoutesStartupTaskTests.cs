@@ -2,6 +2,9 @@
 using System.Web.Routing;
 
 using Com.Prerit.Infrastructure.StartupTasks;
+using Com.Prerit.Services;
+
+using Moq;
 
 using NUnit.Framework;
 
@@ -16,10 +19,12 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         public void Should_Add_Routes()
         {
             // arrange
+            var albumService = new Mock<IAlbumService>();
+
             RouteTable.Routes.Clear();
 
             // act
-            new RegisterRoutesStartupTask().Execute();
+            new RegisterRoutesStartupTask(albumService.Object).Execute();
 
             // assert
             Assert.That(RouteTable.Routes, Is.Not.Empty);
@@ -29,10 +34,12 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         public void Should_Reset_Routes()
         {
             // arrange
+            var albumService = new Mock<IAlbumService>();
+
             RouteTable.Routes.MapRoute("", "");
 
             // act
-            new RegisterRoutesStartupTask().Reset();
+            new RegisterRoutesStartupTask(albumService.Object).Reset();
 
             // assert
             Assert.That(RouteTable.Routes, Is.Empty);

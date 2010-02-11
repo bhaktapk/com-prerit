@@ -1,7 +1,9 @@
+using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 
 using Com.Prerit.Infrastructure.Routing;
+using Com.Prerit.Services;
 
 namespace Com.Prerit.Infrastructure.StartupTasks
 {
@@ -10,6 +12,26 @@ namespace Com.Prerit.Infrastructure.StartupTasks
         #region Constants
 
         private const string DefaultAction = "Index";
+
+        #endregion
+
+        #region Fields
+
+        private readonly IAlbumService _albumService;
+
+        #endregion
+
+        #region Constructors
+
+        public RegisterRoutesStartupTask(IAlbumService albumService)
+        {
+            if (albumService == null)
+            {
+                throw new ArgumentNullException("albumService");
+            }
+
+            _albumService = albumService;
+        }
 
         #endregion
 
