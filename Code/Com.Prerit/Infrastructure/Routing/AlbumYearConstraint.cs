@@ -47,7 +47,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             int typedValue;
 
-            if (values.TryGetValue(parameterName, out value) && value is string && int.TryParse((string) value, out typedValue))
+            if (values.TryGetValue(parameterName, out value) && int.TryParse(value as string, out typedValue))
             {
                 return _albumService.GetAlbumYears().Contains(typedValue);
             }
