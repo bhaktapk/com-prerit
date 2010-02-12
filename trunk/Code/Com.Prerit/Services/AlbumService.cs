@@ -29,11 +29,11 @@ namespace Com.Prerit.Services
             return albums.GroupBy(album => album.Year);
         }
 
-        public IEnumerable<string> GetAlbumTitles(int year)
+        public IEnumerable<string> GetAlbumSlugs(int year)
         {
             IEnumerable<Album> albums = GetAlbums(year);
 
-            return albums.Select(album => album.Title);
+            return albums.Select(album => album.Slug);
         }
 
         public IEnumerable<int> GetAlbumYears()
