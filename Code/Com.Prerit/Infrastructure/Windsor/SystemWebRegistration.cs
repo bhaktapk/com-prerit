@@ -11,12 +11,11 @@ namespace Com.Prerit.Infrastructure.Windsor
         public void Register(IKernel kernel)
         {
             kernel
+                .Register(Component.For<Cache>()
+                    .UsingFactoryMethod(() => HttpRuntime.Cache))
                 .Register(Component.For<HttpContextBase>()
                     .LifeStyle.PerWebRequest
                     .UsingFactoryMethod(() => new HttpContextWrapper(HttpContext.Current)))
-                .Register(Component.For<Cache>()
-                    .LifeStyle.PerWebRequest
-                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Cache))
                 .Register(Component.For<HttpRequestBase>()
                     .LifeStyle.PerWebRequest
                     .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Request))
