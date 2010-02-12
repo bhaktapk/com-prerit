@@ -66,10 +66,10 @@ namespace Com.Prerit.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AlbumsByYearAndSlug(int year, string title) {
+        public override System.Web.Mvc.ActionResult AlbumsByYearAndSlug(int year, string slug) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.AlbumsByYearAndSlug);
             callInfo.RouteValues.Add("year", year);
-            callInfo.RouteValues.Add("title", title);
+            callInfo.RouteValues.Add("slug", slug);
             return callInfo;
         }
 
