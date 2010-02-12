@@ -4,6 +4,8 @@ namespace Com.Prerit.Domain
     {
         #region Properties
 
+        public string Slug { get; set; }
+
         public string Title { get; set; }
 
         public int Year { get; set; }

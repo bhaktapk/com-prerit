@@ -111,15 +111,15 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   year = @"\d+"
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album routes by year and title",
-                                          "{controller}/{year}/{title}",
+            RouteTable.Routes.MapSeoRoute("album routes by year and slug",
+                                          "{controller}/{year}/{slug}",
                                           new[]
                                               {
-                                                  "controller", "title"
+                                                  "controller", "slug"
                                               },
                                           new
                                               {
-                                                  action = MVC.Albums.Actions.AlbumsByYearAndTitle,
+                                                  action = MVC.Albums.Actions.AlbumsByYearAndSlug,
                                               },
                                           new
                                               {

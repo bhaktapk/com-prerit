@@ -15,7 +15,7 @@ namespace Com.Prerit.Services
 
         IEnumerable<IGrouping<int, Album>> GetAlbumsGroupedByYear();
 
-        IEnumerable<string> GetAlbumTitles(int year);
+        IEnumerable<string> GetAlbumSlugs(int year);
 
         IEnumerable<int> GetAlbumYears();
 

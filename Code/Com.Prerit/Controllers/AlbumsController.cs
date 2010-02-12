@@ -18,7 +18,7 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
-        public virtual ActionResult AlbumsByYearAndTitle(int year, string title)
+        public virtual ActionResult AlbumsByYearAndSlug(int year, string slug)
         {
             return new EmptyResult();
         }
