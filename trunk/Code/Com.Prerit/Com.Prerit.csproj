@@ -48,6 +48,7 @@
     <Compile Include="Infrastructure\Routing\RouteValueOptimizerFactory.cs" />
     <Compile Include="Infrastructure\Routing\StringOptimizer.cs" />
     <Compile Include="Domain\Album.cs" />
+    <Compile Include="Infrastructure\Routing\AlbumYearConstraint.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\IAlbumService.cs" />
     <Compile Include="Security\IPrincipalExtensions.cs" />
