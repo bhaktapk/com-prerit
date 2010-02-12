@@ -115,7 +115,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           "{controller}/{year}/{slug}",
                                           new[]
                                               {
-                                                  "controller", "slug"
+                                                  "controller"
                                               },
                                           new
                                               {
