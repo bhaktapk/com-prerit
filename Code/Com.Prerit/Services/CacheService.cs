@@ -60,6 +60,11 @@ namespace Com.Prerit.Services
 
         public Album GetAlbum(string dirPath)
         {
+            if (dirPath == null)
+            {
+                throw new ArgumentNullException("dirPath");
+            }
+
             return _cache[CreateAlbumKey(dirPath)] as Album;
         }
 
@@ -75,16 +80,16 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("id");
             }
 
-            if (id == string.Empty)
-            {
-                throw new ArgumentException("Cannot be empty string", "id");
-            }
-
             return _cache[CreateProfileKey(id)] as Profile;
         }
 
         public Role GetRole(RoleType roleType)
         {
+            if (!Enum.IsDefined(typeof(RoleType), roleType))
+            {
+                throw  new ArgumentOutOfRangeException("roleType");
+            }
+
             return _cache[CreateRoleKey(roleType)] as Role;
         }
 
@@ -145,6 +150,11 @@ namespace Com.Prerit.Services
             if (role == null)
             {
                 throw new ArgumentNullException("role");
+            }
+
+            if (!Enum.IsDefined(typeof(RoleType), role.Type))
+            {
+                throw new ArgumentException("Role.Type is an undefined", "role");
             }
 
             if (filePath == null)
