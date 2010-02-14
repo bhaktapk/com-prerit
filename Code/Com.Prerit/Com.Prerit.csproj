@@ -65,7 +65,7 @@
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IFormsAuthenticationService.cs" />
     <Compile Include="Services\IRoleService.cs" />
-    <Compile Include="Services\IXmlStoreService.cs" />
+    <Compile Include="Services\IDiskInputOutputService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\IProfileService.cs" />
     <Compile Include="Services\IOpenIdService.cs" />
@@ -177,7 +177,7 @@
     <Compile Include="Services\IEmailSenderService.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Services\RoleService.cs" />
-    <Compile Include="Services\XmlStoreService.cs" />
+    <Compile Include="Services\DiskInputOutputService.cs" />
     <Compile Include="Templates\AboutController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

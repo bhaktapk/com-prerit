@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 
 using Com.Prerit.Domain;
 
@@ -16,9 +15,7 @@ namespace Com.Prerit.Services
 
         private readonly ICacheService _cacheService;
 
-        private readonly HttpServerUtilityBase _server;
-
-        private readonly IXmlStoreService _xmlStoreService;
+        private readonly IDiskInputOutputService _diskInputOutputService;
 
         private static readonly object ProfileDictionarySyncRoot = new object();
 
@@ -28,26 +25,20 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public ProfileService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
+        public ProfileService(ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
         {
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
             }
 
-            if (xmlStoreService == null)
+            if (diskInputOutputService == null)
             {
-                throw new ArgumentNullException("xmlStoreService");
-            }
-
-            if (server == null)
-            {
-                throw new ArgumentNullException("server");
+                throw new ArgumentNullException("diskInputOutputService");
             }
 
             _cacheService = cacheService;
-            _xmlStoreService = xmlStoreService;
-            _server = server;
+            _diskInputOutputService = diskInputOutputService;
         }
 
         #endregion
@@ -61,7 +52,7 @@ namespace Com.Prerit.Services
 
         private string GetFilePath(string id)
         {
-            string directoryPath = _server.MapPath(App_Data.Profiles.Url());
+            string directoryPath = _diskInputOutputService.MapPath(App_Data.Profiles.Url());
 
             string filename = GetSafeFilename(id);
 
@@ -80,7 +71,7 @@ namespace Com.Prerit.Services
 
                         if (File.Exists(filePath))
                         {
-                            _cacheService.SetProfile(_xmlStoreService.Load<Profile>(filePath), filePath);
+                            _cacheService.SetProfile(_diskInputOutputService.LoadXmlFile<Profile>(filePath), filePath);
                         }
                     }
                 }
@@ -129,7 +120,7 @@ namespace Com.Prerit.Services
             {
                 string filePath = GetFilePath(id);
 
-                _xmlStoreService.Save(filePath, profile);
+                _diskInputOutputService.SaveXmlFile(filePath, profile);
 
                 _cacheService.SetProfile(profile, filePath);
             }
