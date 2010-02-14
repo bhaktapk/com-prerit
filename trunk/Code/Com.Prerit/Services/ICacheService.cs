@@ -18,7 +18,7 @@ namespace Com.Prerit.Services
 
         void SetAlbum(Album album, string dirPath);
 
-        void SetAlbums(IEnumerable<Album> albums, string rootAlbumDirPath, string[] albumDirPaths);
+        void SetAlbums(IEnumerable<Album> albums, string rootAlbumDirPath, IEnumerable<string> albumDirPaths, IEnumerable<string> validAlbumDirPaths);
 
         void SetProfile(Profile profile, string filePath);
 
