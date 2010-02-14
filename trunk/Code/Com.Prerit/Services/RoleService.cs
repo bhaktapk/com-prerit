@@ -16,9 +16,7 @@ namespace Com.Prerit.Services
 
         private readonly ICacheService _cacheService;
 
-        private readonly HttpServerUtilityBase _server;
-
-        private readonly IXmlStoreService _xmlStoreService;
+        private readonly IDiskInputOutputService _diskInputOutputService;
 
         private static readonly object RoleDictionarySyncRoot = new object();
 
@@ -28,26 +26,20 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public RoleService(ICacheService cacheService, IXmlStoreService xmlStoreService, HttpServerUtilityBase server)
+        public RoleService(ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
         {
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
             }
 
-            if (xmlStoreService == null)
+            if (diskInputOutputService == null)
             {
-                throw new ArgumentNullException("xmlStoreService");
-            }
-
-            if (server == null)
-            {
-                throw new ArgumentNullException("server");
+                throw new ArgumentNullException("diskInputOutputService");
             }
 
             _cacheService = cacheService;
-            _xmlStoreService = xmlStoreService;
-            _server = server;
+            _diskInputOutputService = diskInputOutputService;
         }
 
         #endregion
@@ -87,10 +79,10 @@ namespace Com.Prerit.Services
 
                         string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), fileName);
 
-                        string filePath = _server.MapPath(fileVirtualPath);
+                        string filePath = _diskInputOutputService.MapPath(fileVirtualPath);
 
                         Role role = File.Exists(filePath)
-                                        ? _xmlStoreService.Load<Role>(filePath)
+                                        ? _diskInputOutputService.LoadXmlFile<Role>(filePath)
                                         : new Role
                                               {
                                                   Ids = new List<string>(),

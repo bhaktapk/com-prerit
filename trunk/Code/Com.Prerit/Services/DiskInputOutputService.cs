@@ -1,13 +1,14 @@
 using System.IO;
+using System.Web.Hosting;
 using System.Xml.Serialization;
 
 namespace Com.Prerit.Services
 {
-    public class XmlStoreService : IXmlStoreService
+    public class DiskInputOutputService : IDiskInputOutputService
     {
         #region Methods
 
-        public T Load<T>(string filePath)
+        public T LoadXmlFile<T>(string filePath)
         {
             var serializer = new XmlSerializer(typeof(T));
 
@@ -17,7 +18,12 @@ namespace Com.Prerit.Services
             }
         }
 
-        public void Save<T>(string filePath, T obj)
+        public string MapPath(string virtualPath)
+        {
+            return HostingEnvironment.MapPath(virtualPath);
+        }
+
+        public void SaveXmlFile<T>(string filePath, T obj)
         {
             var serializer = new XmlSerializer(typeof(T));
 
