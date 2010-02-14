@@ -63,6 +63,7 @@
     <Compile Include="Services\CacheService.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="Services\ICacheService.cs" />
+    <Compile Include="Core\IEnumerableExtensions.cs" />
     <Compile Include="Services\IFormsAuthenticationService.cs" />
     <Compile Include="Services\IRoleService.cs" />
     <Compile Include="Services\IDiskInputOutputService.cs" />
