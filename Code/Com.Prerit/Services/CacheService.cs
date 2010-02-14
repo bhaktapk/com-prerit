@@ -87,7 +87,7 @@ namespace Com.Prerit.Services
         {
             if (!Enum.IsDefined(typeof(RoleType), roleType))
             {
-                throw  new ArgumentOutOfRangeException("roleType");
+                throw new ArgumentOutOfRangeException("roleType");
             }
 
             return _cache[CreateRoleKey(roleType)] as Role;
@@ -108,7 +108,7 @@ namespace Com.Prerit.Services
             _cache.Insert(CreateAlbumKey(dirPath), album, new CacheDependency(dirPath));
         }
 
-        public void SetAlbums(IEnumerable<Album> albums, string rootAlbumDirPath, string[] albumDirPaths)
+        public void SetAlbums(IEnumerable<Album> albums, string rootAlbumDirPath, IEnumerable<string> albumDirPaths, IEnumerable<string> validAlbumDirPaths)
         {
             if (albums == null)
             {
@@ -120,14 +120,26 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("rootAlbumDirPath");
             }
 
-            var diskDependencies = new[]
+            if (albumDirPaths == null)
+            {
+                throw new ArgumentNullException("albumDirPaths");
+            }
+
+            if (validAlbumDirPaths == null)
+            {
+                throw new ArgumentNullException("validAlbumDirPaths");
+            }
+
+            var diskDependencies = new List<string>
                                        {
                                            rootAlbumDirPath
                                        };
 
-            string[] albumCachekeys = albumDirPaths != null ? albumDirPaths.Select(path => CreateAlbumKey(path)).ToArray() : null;
+            diskDependencies.AddRange(albumDirPaths);
 
-            _cache.Insert(AlbumsKey, albums, new CacheDependency(diskDependencies, albumCachekeys));
+            string[] albumCachekeys = validAlbumDirPaths.Select(path => CreateAlbumKey(path)).ToArray();
+
+            _cache.Insert(AlbumsKey, albums, new CacheDependency(diskDependencies.ToArray(), albumCachekeys));
         }
 
         public void SetProfile(Profile profile, string filePath)
