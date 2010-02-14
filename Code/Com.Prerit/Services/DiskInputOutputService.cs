@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Hosting;
 using System.Xml.Serialization;
@@ -7,6 +8,16 @@ namespace Com.Prerit.Services
     public class DiskInputOutputService : IDiskInputOutputService
     {
         #region Methods
+
+        public bool FileExists(string filePath)
+        {
+            return File.Exists(filePath);
+        }
+
+        public IEnumerable<string> GetDirectories(string path)
+        {
+            return Directory.GetDirectories(path);
+        }
 
         public T LoadXmlFile<T>(string filePath)
         {
