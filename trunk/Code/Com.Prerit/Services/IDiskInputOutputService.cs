@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace Com.Prerit.Services
 {
@@ -13,6 +14,8 @@ namespace Com.Prerit.Services
         IEnumerable<string> GetFiles(string path);
 
         IEnumerable<string> GetFiles(string path, string searchPattern);
+
+        IEnumerable<string> GetFiles(string path, string searchPattern, SearchOption searchOption);
 
         T LoadXmlFile<T>(string filePath);
 
