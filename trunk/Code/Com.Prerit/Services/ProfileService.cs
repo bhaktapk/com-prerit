@@ -69,7 +69,7 @@ namespace Com.Prerit.Services
                     {
                         string filePath = GetFilePath(id);
 
-                        if (File.Exists(filePath))
+                        if (_diskInputOutputService.FileExists(filePath))
                         {
                             _cacheService.SetProfile(_diskInputOutputService.LoadXmlFile<Profile>(filePath), filePath);
                         }

@@ -82,7 +82,7 @@ namespace Com.Prerit.Services
 
                         string filePath = _diskInputOutputService.MapPath(fileVirtualPath);
 
-                        Role role = File.Exists(filePath)
+                        Role role = _diskInputOutputService.FileExists(filePath)
                                         ? _diskInputOutputService.LoadXmlFile<Role>(filePath)
                                         : new Role
                                               {
