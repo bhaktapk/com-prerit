@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
+using Com.Prerit.Core;
 using Com.Prerit.Domain;
 
 using Links;
@@ -99,9 +100,9 @@ namespace Com.Prerit.Services
 
         public IEnumerable<RoleType> GetRolesById(string id)
         {
-            return from RoleType knownRole in Enum.GetValues(typeof(RoleType))
-                   where GetRole(knownRole).Ids.Contains(id)
-                   select knownRole;
+            return (from RoleType knownRole in Enum.GetValues(typeof(RoleType))
+                    where GetRole(knownRole).Ids.Contains(id)
+                    select knownRole).ExecuteQuery();
         }
 
         #endregion
