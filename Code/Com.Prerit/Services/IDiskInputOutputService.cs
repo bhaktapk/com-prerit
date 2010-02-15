@@ -10,6 +10,10 @@ namespace Com.Prerit.Services
 
         IEnumerable<string> GetDirectories(string path);
 
+        IEnumerable<string> GetFiles(string path);
+
+        IEnumerable<string> GetFiles(string path, string searchPattern);
+
         T LoadXmlFile<T>(string filePath);
 
         string MapPath(string virtualPath);

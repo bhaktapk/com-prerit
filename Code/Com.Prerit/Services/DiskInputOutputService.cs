@@ -19,6 +19,16 @@ namespace Com.Prerit.Services
             return Directory.GetDirectories(path);
         }
 
+        public IEnumerable<string> GetFiles(string path)
+        {
+            return Directory.GetFiles(path);
+        }
+
+        public IEnumerable<string> GetFiles(string path, string searchPattern)
+        {
+            return Directory.GetFiles(path, searchPattern);
+        }
+
         public T LoadXmlFile<T>(string filePath)
         {
             var serializer = new XmlSerializer(typeof(T));
