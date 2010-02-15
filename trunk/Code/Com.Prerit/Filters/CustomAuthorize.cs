@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Com.Prerit.Core;
 using Com.Prerit.Domain;
 using Com.Prerit.Security;
 
@@ -28,9 +29,9 @@ namespace Com.Prerit.Filters
             {
                 _allowedRoleTypes = value;
 
-                _splitAllowedRoleTypes = from RoleType knownRole in Enum.GetValues(typeof(RoleType))
-                                         where (value & knownRole) == knownRole
-                                         select knownRole;
+                _splitAllowedRoleTypes = (from RoleType knownRole in Enum.GetValues(typeof(RoleType))
+                                          where (value & knownRole) == knownRole
+                                          select knownRole).ExecuteQuery();
             }
         }
 
