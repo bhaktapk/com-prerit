@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -47,55 +46,33 @@ namespace Com.Prerit.Services
 
         #region Methods
 
+        private object AddRoleSyncRoot(RoleType roleType)
+        {
+            var roleSyncRoot = new object();
+
+            RoleSyncRoots.Add(roleType, roleSyncRoot);
+
+            return roleSyncRoot;
+        }
+
         public IEnumerable<string> GetIdsByRole(RoleType roleType)
         {
             return GetRole(roleType).Ids;
         }
 
-        private object GetProfileSyncRoot(RoleType roleType)
-        {
-            if (!RoleSyncRoots.ContainsKey(roleType))
-            {
-                lock (RoleDictionarySyncRoot)
-                {
-                    if (!RoleSyncRoots.ContainsKey(roleType))
-                    {
-                        RoleSyncRoots.Add(roleType, new object());
-                    }
-                }
-            }
-
-            return RoleSyncRoots[roleType];
-        }
-
         private Role GetRole(RoleType roleType)
         {
-            if (_cacheService.GetRole(roleType) == null)
+            Role role = _cacheService.GetRole(roleType);
+
+            if (role != null)
             {
-                lock (GetProfileSyncRoot(roleType))
-                {
-                    if (_cacheService.GetRole(roleType) == null)
-                    {
-                        string fileName = Enum.GetName(typeof(RoleType), roleType) + ".xml";
-
-                        string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), fileName);
-
-                        string filePath = _diskInputOutputService.MapPath(fileVirtualPath);
-
-                        Role role = _diskInputOutputService.FileExists(filePath)
-                                        ? _diskInputOutputService.LoadXmlFile<Role>(filePath)
-                                        : new Role
-                                              {
-                                                  Ids = new List<string>(),
-                                                  Type = roleType
-                                              };
-
-                        _cacheService.SetRole(role, filePath);
-                    }
-                }
+                return role;
             }
 
-            return _cacheService.GetRole(roleType);
+            lock (GetRoleSyncRoot(roleType))
+            {
+                return _cacheService.GetRole(roleType) ?? LoadRole(roleType);
+            }
         }
 
         public IEnumerable<RoleType> GetRolesById(string id)
@@ -103,6 +80,54 @@ namespace Com.Prerit.Services
             return (from RoleType knownRole in Enum.GetValues(typeof(RoleType))
                     where GetRole(knownRole).Ids.Contains(id)
                     select knownRole).ExecuteQuery();
+        }
+
+        private object GetRoleSyncRoot(RoleType roleType)
+        {
+            object roleSyncRoot;
+
+            if (RoleSyncRoots.TryGetValue(roleType, out roleSyncRoot))
+            {
+                return roleSyncRoot;
+            }
+
+            lock (RoleDictionarySyncRoot)
+            {
+                if (RoleSyncRoots.TryGetValue(roleType, out roleSyncRoot))
+                {
+                    return roleSyncRoot;
+                }
+
+                return AddRoleSyncRoot(roleType);
+            }
+        }
+
+        private Role LoadRole(RoleType roleType)
+        {
+            string fileName = Enum.GetName(typeof(RoleType), roleType) + ".xml";
+
+            string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), fileName);
+
+            string filePath = _diskInputOutputService.MapPath(fileVirtualPath);
+
+            Role role;
+
+            if (_diskInputOutputService.FileExists(filePath))
+            {
+                role = _diskInputOutputService.LoadXmlFile<Role>(filePath);
+            }
+            else
+            {
+                role = new Role
+                           {
+                               Ids = new List<string>(),
+                               Type = roleType
+                           };
+            }
+
+            _cacheService.SetRole(role, filePath);
+
+            return role;
         }
 
         #endregion
