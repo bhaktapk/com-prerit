@@ -45,6 +45,15 @@ namespace Com.Prerit.Services
 
         #region Methods
 
+        private object AddProfileSyncRoot(string id)
+        {
+            var profileSyncRoot = new object();
+
+            ProfileSyncRoots.Add(id, profileSyncRoot);
+
+            return profileSyncRoot;
+        }
+
         private string CreateName(string emailAddress)
         {
             return emailAddress.Replace("@", " at ").Replace(".", " dot ");
@@ -61,39 +70,37 @@ namespace Com.Prerit.Services
 
         public Profile GetProfile(string id)
         {
-            if (_cacheService.GetProfile(id) == null)
-            {
-                lock (GetProfileSyncRoot(id))
-                {
-                    if (_cacheService.GetProfile(id) == null)
-                    {
-                        string filePath = GetFilePath(id);
+            Profile profile = _cacheService.GetProfile(id);
 
-                        if (_diskInputOutputService.FileExists(filePath))
-                        {
-                            _cacheService.SetProfile(_diskInputOutputService.LoadXmlFile<Profile>(filePath), filePath);
-                        }
-                    }
-                }
+            if (profile != null)
+            {
+                return profile;
             }
 
-            return _cacheService.GetProfile(id);
+            lock (GetProfileSyncRoot(id))
+            {
+                return _cacheService.GetProfile(id) ?? TryLoadProfile(id);
+            }
         }
 
         private object GetProfileSyncRoot(string id)
         {
-            if (!ProfileSyncRoots.ContainsKey(id))
+            object profileSyncRoot;
+
+            if (ProfileSyncRoots.TryGetValue(id, out profileSyncRoot))
             {
-                lock (ProfileDictionarySyncRoot)
-                {
-                    if (!ProfileSyncRoots.ContainsKey(id))
-                    {
-                        ProfileSyncRoots.Add(id, new object());
-                    }
-                }
+                return profileSyncRoot;
             }
 
-            return ProfileSyncRoots[id];
+            lock (ProfileDictionarySyncRoot)
+            {
+                if (ProfileSyncRoots.TryGetValue(id, out profileSyncRoot))
+                {
+                    return profileSyncRoot;
+                }
+
+                return AddProfileSyncRoot(id);
+            }
         }
 
         private string GetSafeFilename(string id)
@@ -109,21 +116,37 @@ namespace Com.Prerit.Services
 
         public void SaveProfile(string id, string emailAddress)
         {
-            var profile = new Profile
-                              {
-                                  Id = id,
-                                  EmailAddress = emailAddress,
-                                  Name = CreateName(emailAddress)
-                              };
-
             lock (GetProfileSyncRoot(id))
             {
+                var profile = new Profile
+                                  {
+                                      Id = id,
+                                      EmailAddress = emailAddress,
+                                      Name = CreateName(emailAddress)
+                                  };
+
                 string filePath = GetFilePath(id);
 
                 _diskInputOutputService.SaveXmlFile(filePath, profile);
 
                 _cacheService.SetProfile(profile, filePath);
             }
+        }
+
+        private Profile TryLoadProfile(string id)
+        {
+            string filePath = GetFilePath(id);
+
+            if (!_diskInputOutputService.FileExists(filePath))
+            {
+                return null;
+            }
+
+            var profile = _diskInputOutputService.LoadXmlFile<Profile>(filePath);
+
+            _cacheService.SetProfile(profile, filePath);
+
+            return profile;
         }
 
         #endregion

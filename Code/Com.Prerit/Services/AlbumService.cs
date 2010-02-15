@@ -46,26 +46,28 @@ namespace Com.Prerit.Services
 
         #region Methods
 
+        private object AddAlbumSyncRoot(string dirPath)
+        {
+            var albumSyncRoot = new object();
+
+            AlbumSyncRoots.Add(dirPath, albumSyncRoot);
+
+            return albumSyncRoot;
+        }
+
         private Album GetAlbum(string dirPath)
         {
-            if (_cacheService.GetAlbum(dirPath) == null)
+            Album album = _cacheService.GetAlbum(dirPath);
+
+            if (album != null)
             {
-                lock (GetAlbumSyncRoot(dirPath))
-                {
-                    if (_cacheService.GetAlbum(dirPath) == null)
-                    {
-                        string albumFilePath = GetAlbumFilePath(dirPath);
-
-                        var album = _diskInputOutputService.LoadXmlFile<Album>(albumFilePath);
-
-                        album.PhotoCount = _diskInputOutputService.GetFiles(dirPath, "*.jpg", SearchOption.TopDirectoryOnly).Count();
-
-                        _cacheService.SetAlbum(album, dirPath);
-                    }
-                }
+                return album;
             }
 
-            return _cacheService.GetAlbum(dirPath);
+            lock (GetAlbumSyncRoot(dirPath))
+            {
+                return _cacheService.GetAlbum(dirPath) ?? LoadAlbum(dirPath);
+            }
         }
 
         private string GetAlbumFilePath(string dirPath)
@@ -81,26 +83,17 @@ namespace Com.Prerit.Services
 
         public IEnumerable<Album> GetAlbums()
         {
-            if (_cacheService.GetAlbums() == null)
+            IEnumerable<Album> albums = _cacheService.GetAlbums();
+
+            if (albums != null)
             {
-                lock (AlbumDictionarySyncRoot)
-                {
-                    if (_cacheService.GetAlbums() == null)
-                    {
-                        string albumRootDirPath = _diskInputOutputService.MapPath(App_Data.Albums.Url());
-
-                        IEnumerable<string> albumDirPaths = _diskInputOutputService.GetDirectories(albumRootDirPath);
-
-                        IEnumerable<string> validAlbumDirPaths = GetValidAlbumDirPaths(albumDirPaths);
-
-                        IEnumerable<Album> albums = GetAlbumObjects(validAlbumDirPaths);
-
-                        _cacheService.SetAlbums(albums, albumRootDirPath, albumDirPaths, validAlbumDirPaths);
-                    }
-                }
+                return albums;
             }
 
-            return _cacheService.GetAlbums();
+            lock (AlbumDictionarySyncRoot)
+            {
+                return _cacheService.GetAlbums() ?? LoadAlbums();
+            }
         }
 
         public IEnumerable<Album> GetAlbums(int year)
@@ -126,18 +119,22 @@ namespace Com.Prerit.Services
 
         private object GetAlbumSyncRoot(string dirPath)
         {
-            if (!AlbumSyncRoots.ContainsKey(dirPath))
+            object albumSyncRoot;
+
+            if (AlbumSyncRoots.TryGetValue(dirPath, out albumSyncRoot))
             {
-                lock (AlbumDictionarySyncRoot)
-                {
-                    if (!AlbumSyncRoots.ContainsKey(dirPath))
-                    {
-                        AlbumSyncRoots.Add(dirPath, new object());
-                    }
-                }
+                return albumSyncRoot;
             }
 
-            return AlbumSyncRoots[dirPath];
+            lock (AlbumDictionarySyncRoot)
+            {
+                if (AlbumSyncRoots.TryGetValue(dirPath, out albumSyncRoot))
+                {
+                    return albumSyncRoot;
+                }
+
+                return AddAlbumSyncRoot(dirPath);
+            }
         }
 
         public IEnumerable<int> GetAlbumYears()
@@ -152,6 +149,34 @@ namespace Com.Prerit.Services
             return (from albumDirPath in albumDirPaths
                     where _diskInputOutputService.FileExists(GetAlbumFilePath(albumDirPath))
                     select albumDirPath).ExecuteQuery();
+        }
+
+        private Album LoadAlbum(string dirPath)
+        {
+            string albumFilePath = GetAlbumFilePath(dirPath);
+
+            var album = _diskInputOutputService.LoadXmlFile<Album>(albumFilePath);
+
+            album.PhotoCount = _diskInputOutputService.GetFiles(dirPath, "*.jpg", SearchOption.TopDirectoryOnly).Count();
+
+            _cacheService.SetAlbum(album, dirPath);
+
+            return album;
+        }
+
+        private IEnumerable<Album> LoadAlbums()
+        {
+            string albumRootDirPath = _diskInputOutputService.MapPath(App_Data.Albums.Url());
+
+            IEnumerable<string> albumDirPaths = _diskInputOutputService.GetDirectories(albumRootDirPath);
+
+            IEnumerable<string> validAlbumDirPaths = GetValidAlbumDirPaths(albumDirPaths);
+
+            IEnumerable<Album> albums = GetAlbumObjects(validAlbumDirPaths);
+
+            _cacheService.SetAlbums(albums, albumRootDirPath, albumDirPaths, validAlbumDirPaths);
+
+            return albums;
         }
 
         #endregion
