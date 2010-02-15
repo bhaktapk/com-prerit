@@ -42,6 +42,7 @@
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Domain\Photo.cs" />
     <Compile Include="Infrastructure\Routing\AlbumSlugConstraint.cs" />
     <Compile Include="Infrastructure\Routing\IRouteValueOptimizer.cs" />
     <Compile Include="Infrastructure\Routing\RouteValueOptimizer.cs" />
