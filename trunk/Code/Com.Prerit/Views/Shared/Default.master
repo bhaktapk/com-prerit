@@ -33,6 +33,7 @@
             <h2><span>Main Menu</span></h2>
             <ul>
                 <li><a href="<%= Url.Action(MVC.About.Index()) %>" accesskey="A" title="A brief description about prerit.com and it's author"><em>A</em>bout</a></li>
+                <li><a href="<%= Url.Action(MVC.Albums.AllAlbums()) %>" accesskey="L" title="View all of the albums">A<em>l</em>bums</a></li>
                 <li><a href="<%= Url.Action(MVC.Contact.Index()) %>" accesskey="C" title="Contact Prerit directly"><em>C</em>ontact</a></li>
                 <li><a href="<%= Url.Action(MVC.Resume.Index()) %>" accesskey="R" title="Resume of Prerit Bhakta"><em>R</em>esume</a></li>
             </ul>
