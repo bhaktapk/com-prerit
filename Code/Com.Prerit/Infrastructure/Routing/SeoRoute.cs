@@ -124,12 +124,14 @@ namespace Com.Prerit.Infrastructure.Routing
                 OptimizeRouteValues(Constraints);
             }
 
-            if (values != null)
+            var clonedValues = values != null ? new RouteValueDictionary(values) : null;
+
+            if (clonedValues != null)
             {
-                OptimizeRouteValues(values);
+                OptimizeRouteValues(clonedValues);
             }
 
-            VirtualPathData path = base.GetVirtualPath(requestContext, values);
+            VirtualPathData path = base.GetVirtualPath(requestContext, clonedValues);
 
             if (path != null)
             {
