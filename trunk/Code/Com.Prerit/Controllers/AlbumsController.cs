@@ -61,7 +61,7 @@ namespace Com.Prerit.Controllers
 
             var model = new AllAlbumsModel
                             {
-                                GroupedAlbums = albums.GroupBy(album => album.Year)
+                                GroupedAlbums = albums.OrderByDescending(album => album.Year).GroupBy(album => album.Year)
                             };
 
             return View(model);
