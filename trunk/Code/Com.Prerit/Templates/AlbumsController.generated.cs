@@ -20,8 +20,6 @@ using T4MVC;
 namespace Com.Prerit.Controllers {
     [CompilerGenerated]
     public partial class AlbumsController {
-        public AlbumsController() { }
-
         protected AlbumsController(Dummy d) { }
 
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -54,6 +52,7 @@ namespace Com.Prerit.Controllers {
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
             public readonly string AllAlbums = "~/Views/Albums/AllAlbums.aspx";
+            public readonly string NoAlbums = "~/Views/Albums/NoAlbums.aspx";
         }
     }
 
