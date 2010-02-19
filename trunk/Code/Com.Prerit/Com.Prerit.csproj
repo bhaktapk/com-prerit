@@ -76,9 +76,6 @@
     <Compile Include="Controllers\ControllerUtil.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\DefaultMasterController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controllers\ResumeController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -174,9 +171,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\ContactController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\DefaultMasterController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\OpenIdController.generated.cs">
