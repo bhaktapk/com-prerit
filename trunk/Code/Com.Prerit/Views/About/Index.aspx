@@ -35,8 +35,7 @@
         when it comes to the web. Why? Well, because the web changes so fast that it takes dedicated people who love it to learn it's complexities.
         He didn't always started out that way but he's always had a love of technology and science. He may have started late compared to some of my
         peers but once he learned about the underling structure and it's mathematical nature, he fell in love with it and took his education into overdrive.
-        Now, he is one of the top developers in the area and gives constant feedback on improving systems. Feel free to check out his
-        <%= Html.ActionLink("resume", MVC.Resume.Index(), new { title = "Resume of Prerit Bhakta" }) %>
-        for more details on what he has accomplished and what he knows.
+        Now, he is one of the top developers in the area and gives constant feedback on improving systems. Feel free to check out his <a href="<%= Url.Action(MVC.Resume.Index()) %>"
+        title="Resume of Prerit Bhakta">resume</a> for more details on what he has accomplished and what he knows.
     </p>
 </asp:Content>
