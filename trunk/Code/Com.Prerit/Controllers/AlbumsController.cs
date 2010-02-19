@@ -1,12 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 using Com.Prerit.Domain;
 using Com.Prerit.Filters;
+using Com.Prerit.Models.Albums;
+using Com.Prerit.Services;
 
 namespace Com.Prerit.Controllers
 {
     public partial class AlbumsController : Controller
     {
+        #region Fields
+
+        private readonly IAlbumService _albumService;
+
+        #endregion
+
+        #region Constructors
+
+        public AlbumsController(IAlbumService albumService)
+        {
+            if (albumService == null)
+            {
+                throw new ArgumentNullException("albumService");
+            }
+
+            _albumService = albumService;
+        }
+
+        #endregion
+
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -27,7 +52,19 @@ namespace Com.Prerit.Controllers
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult AllAlbums()
         {
-            return new EmptyResult();
+            IEnumerable<Album> albums = _albumService.GetAlbums();
+
+            if (albums == null || albums.Count() == 0)
+            {
+                return View(MVC.Albums.Views.NoAlbums);
+            }
+
+            var model = new AllAlbumsModel
+                            {
+                                GroupedAlbums = albums.GroupBy(album => album.Year)
+                            };
+
+            return View(model);
         }
 
         #endregion
