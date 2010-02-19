@@ -1,3 +1,4 @@
+<%@ Import Namespace="Com.Prerit.Helpers.Albums" %>
 <%@ Import Namespace="Com.Prerit.Models.Albums" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<AllAlbumsModel>" %>
 
@@ -13,4 +14,5 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
+    <% Html.RenderAlbumsByYearPartial(); %>
 </asp:Content>
