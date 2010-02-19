@@ -1,7 +1,5 @@
 using System.Web.Mvc;
 
-using Com.Prerit.Filters;
-
 using Links;
 
 namespace Com.Prerit.Controllers
@@ -11,17 +9,21 @@ namespace Com.Prerit.Controllers
         #region Methods
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ContentDisposition("Resume of Prerit Bhakta.pdf")]
         public virtual ActionResult AdobePdf()
         {
-            return new FilePathResult(App_Data.ResumeFormats.AdobePdf_pdf, "application/pdf");
+            return new FilePathResult(App_Data.ResumeFormats.AdobePdf_pdf, "application/pdf")
+                       {
+                           FileDownloadName = "Resume of Prerit Bhakta.pdf"
+                       };
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        [ContentDisposition("Resume of Prerit Bhakta.doc")]
         public virtual ActionResult MicrosoftWord()
         {
-            return new FilePathResult(App_Data.ResumeFormats.MicrosoftWord_doc, "application/msword");
+            return new FilePathResult(App_Data.ResumeFormats.MicrosoftWord_doc, "application/msword")
+                       {
+                           FileDownloadName = "Resume of Prerit Bhakta.doc"
+                       };
         }
 
         #endregion
