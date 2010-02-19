@@ -158,21 +158,6 @@
     <Compile Include="Models\Contact\IndexModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Shared\ContentEncodingModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Shared\ContentTypeModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Shared\CultureModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Shared\CurrentUrlEncodedModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Shared\YearModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailSenderService.cs" />
     <Compile Include="Services\IEmailSenderService.cs" />
@@ -342,11 +327,6 @@
     <Content Include="Views\Contact\Index.aspx" />
     <Content Include="Views\Shared\ValidationSummary.ascx" />
     <Content Include="Views\Resume\Index.aspx" />
-    <Content Include="Views\Shared\ContentEncoding.ascx" />
-    <Content Include="Views\Shared\ContentType.ascx" />
-    <Content Include="Views\Shared\Culture.ascx" />
-    <Content Include="Views\Shared\CurrentUrlEncoded.ascx" />
-    <Content Include="Views\Shared\Year.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />

@@ -24,12 +24,7 @@ namespace T4MVC {
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
-            public readonly string ContentEncoding = "~/Views/Shared/ContentEncoding.ascx";
-            public readonly string ContentType = "~/Views/Shared/ContentType.ascx";
-            public readonly string Culture = "~/Views/Shared/Culture.ascx";
-            public readonly string CurrentUrlEncoded = "~/Views/Shared/CurrentUrlEncoded.ascx";
             public readonly string ValidationSummary = "~/Views/Shared/ValidationSummary.ascx";
-            public readonly string Year = "~/Views/Shared/Year.ascx";
         }
     }
 
