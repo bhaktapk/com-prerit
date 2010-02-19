@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
+using Com.Prerit.Domain;
 using Com.Prerit.Models.Albums;
 
 namespace Com.Prerit.Helpers.Albums
@@ -9,6 +10,25 @@ namespace Com.Prerit.Helpers.Albums
     public static class AlbumsHelper
     {
         #region Methods
+
+        public static void RenderAlbumPortraitPartial(this HtmlHelper<AlbumsByYearModel> helper)
+        {
+            if (helper == null)
+            {
+                throw new ArgumentNullException("helper");
+            }
+
+            foreach (Album album in helper.ViewData.Model.Albums)
+            {
+                var model = new AlbumPortraitModel
+                                {
+                                    Album = album,
+                                    AlbumItemCount = null
+                                };
+
+                helper.RenderPartial(MVC.Albums.Views.AlbumPortrait, model);
+            }
+        }
 
         public static void RenderAlbumsByYearPartial(this HtmlHelper<AllAlbumsModel> helper)
         {
