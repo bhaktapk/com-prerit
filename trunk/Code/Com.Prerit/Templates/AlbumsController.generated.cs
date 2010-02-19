@@ -53,6 +53,7 @@ namespace Com.Prerit.Controllers {
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
+            public readonly string AllAlbums = "~/Views/Albums/AllAlbums.aspx";
         }
     }
 
