@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using Com.Prerit.Domain;
 
@@ -12,8 +11,6 @@ namespace Com.Prerit.Services
         IEnumerable<Album> GetAlbums();
 
         IEnumerable<Album> GetAlbums(int year);
-
-        IEnumerable<IGrouping<int, Album>> GetAlbumsGroupedByYear();
 
         IEnumerable<string> GetAlbumSlugs(int year);
 

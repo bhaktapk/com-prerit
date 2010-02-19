@@ -103,13 +103,6 @@ namespace Com.Prerit.Services
             return albums.Where(album => album.Year == year);
         }
 
-        public IEnumerable<IGrouping<int, Album>> GetAlbumsGroupedByYear()
-        {
-            IEnumerable<Album> albums = GetAlbums();
-
-            return albums.GroupBy(album => album.Year);
-        }
-
         public IEnumerable<string> GetAlbumSlugs(int year)
         {
             IEnumerable<Album> albums = GetAlbums(year);
