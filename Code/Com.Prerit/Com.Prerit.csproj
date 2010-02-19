@@ -50,7 +50,7 @@
     <Compile Include="Infrastructure\Routing\StringOptimizer.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Infrastructure\Routing\AlbumYearConstraint.cs" />
-    <Compile Include="Models\Accounts\AlbumsByYearModel.cs" />
+    <Compile Include="Models\Albums\AlbumsByYearModel.cs" />
     <Compile Include="Models\Albums\AllAlbumsModel.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\IAlbumService.cs" />
@@ -307,6 +307,7 @@
     <Content Include="Views\Accounts\LogIn.aspx" />
     <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
     <Content Include="Views\Accounts\Unauthorized.aspx" />
+    <Content Include="Views\Albums\AlbumsByYear.ascx" />
     <Content Include="Views\Albums\AllAlbums.aspx" />
     <Content Include="Views\Albums\NoAlbums.aspx" />
     <Content Include="Views\OpenId\Index.aspx" />

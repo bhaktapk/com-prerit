@@ -2,7 +2,7 @@
 
 using Com.Prerit.Domain;
 
-namespace Com.Prerit.Models.Accounts
+namespace Com.Prerit.Models.Albums
 {
     public class AlbumsByYearModel
     {
