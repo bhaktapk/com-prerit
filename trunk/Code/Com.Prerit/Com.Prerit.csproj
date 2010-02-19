@@ -50,6 +50,7 @@
     <Compile Include="Infrastructure\Routing\StringOptimizer.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Infrastructure\Routing\AlbumYearConstraint.cs" />
+    <Compile Include="Models\Accounts\AlbumsByYearModel.cs" />
     <Compile Include="Models\Albums\AllAlbumsModel.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\IAlbumService.cs" />
