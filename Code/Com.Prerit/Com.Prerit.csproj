@@ -307,6 +307,7 @@
     <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
     <Content Include="Views\Accounts\Unauthorized.aspx" />
     <Content Include="Views\Albums\AllAlbums.aspx" />
+    <Content Include="Views\Albums\NoAlbums.aspx" />
     <Content Include="Views\OpenId\Index.aspx" />
     <Content Include="Views\OpenId\Xrds.aspx" />
     <Content Include="Views\Web.config" />
