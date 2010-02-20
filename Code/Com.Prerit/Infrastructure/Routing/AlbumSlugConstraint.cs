@@ -53,19 +53,43 @@ namespace Com.Prerit.Infrastructure.Routing
 
             object parameterValue;
 
-            if (values.TryGetValue(parameterName, out parameterValue) && parameterValue is string)
+            if (!values.TryGetValue(parameterName, out parameterValue) || !(parameterValue is string))
             {
-                object yearParamValue;
-
-                int typedYearParamValue;
-
-                if (values.TryGetValue(_yearRouteParam, out yearParamValue) && int.TryParse(yearParamValue as string, out typedYearParamValue))
-                {
-                    return _albumService.GetAlbumSlugs(typedYearParamValue).Contains((string) parameterValue);
-                }
+                return false;
             }
 
-            return false;
+            object yearParamValue;
+
+            if (!values.TryGetValue(_yearRouteParam, out yearParamValue))
+            {
+                return false;
+            }
+
+            int? year = TryGetYear(yearParamValue);
+
+            if (year == null)
+            {
+                return false;
+            }
+
+            return _albumService.GetAlbumSlugs(year.Value).Contains((string) parameterValue);
+        }
+
+        private int? TryGetYear(object value)
+        {
+            int parsedYear;
+
+            if (value is int)
+            {
+                return (int) value;
+            }
+
+            if (value is string && int.TryParse((string) value, out parsedYear))
+            {
+                return parsedYear;
+            }
+
+            return null;
         }
 
         #endregion
