@@ -2,7 +2,8 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<AlbumPortraitModel>" %>
 
 <p>
-    <a href="" title=""><img alt="" height="" width="" src="" />
+    <a href="<%= Url.Action(MVC.Albums.AlbumsByYearAndSlug(Model.Album.Year, Model.Album.Slug)) %>" title="Portrait of album '<%= Model.Album.Title %>'"><img
+    alt="Portrait of album '<%= Model.Album.Title %>'" src="" />
     <br />
-    <span><%= Model.Album.Title %> (<%= Model.AlbumItemCount != null ? Model.AlbumItemCount.ToString() : "?" %>)</span></a>
+    <span><%= Model.Album.Title %> (<%= Model.Album.PhotoCount %>)</span></a>
 </p>
