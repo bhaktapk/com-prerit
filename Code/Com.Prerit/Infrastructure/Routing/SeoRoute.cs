@@ -10,6 +10,14 @@ namespace Com.Prerit.Infrastructure.Routing
     {
         #region Fields
 
+        private readonly object _optimizeConstraintsSyncRoot = new object();
+
+        private bool _optimizedConstraints;
+
+        private bool _optimizedDefaults;
+
+        private readonly object _optimizeDefaultsSyncRoot = new object();
+
         private IEnumerable<string> _routeParams;
 
         #endregion
@@ -92,15 +100,9 @@ namespace Com.Prerit.Infrastructure.Routing
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            if (Defaults != null)
-            {
-                OptimizeRouteValues(Defaults);
-            }
+            OptimizeDefaults();
 
-            if (Constraints != null)
-            {
-                OptimizeRouteValues(Constraints);
-            }
+            OptimizeConstraints();
 
             RouteData routeData = base.GetRouteData(httpContext);
 
@@ -114,17 +116,11 @@ namespace Com.Prerit.Infrastructure.Routing
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
-            if (Defaults != null)
-            {
-                OptimizeRouteValues(Defaults);
-            }
+            OptimizeDefaults();
 
-            if (Constraints != null)
-            {
-                OptimizeRouteValues(Constraints);
-            }
+            OptimizeConstraints();
 
-            var clonedValues = values != null ? new RouteValueDictionary(values) : null;
+            RouteValueDictionary clonedValues = values != null ? new RouteValueDictionary(values) : null;
 
             if (clonedValues != null)
             {
@@ -144,6 +140,56 @@ namespace Com.Prerit.Infrastructure.Routing
         private void LowercaseVirtualPath(VirtualPathData path)
         {
             path.VirtualPath = path.VirtualPath.ToLower();
+        }
+
+        private void OptimizeConstraints()
+        {
+            if (Constraints == null)
+            {
+                return;
+            }
+
+            if (_optimizedConstraints)
+            {
+                return;
+            }
+
+            lock (_optimizeConstraintsSyncRoot)
+            {
+                if (_optimizedConstraints)
+                {
+                    return;
+                }
+
+                OptimizeRouteValues(Constraints);
+
+                _optimizedConstraints = true;
+            }
+        }
+
+        private void OptimizeDefaults()
+        {
+            if (Defaults == null)
+            {
+                return;
+            }
+
+            if (_optimizedDefaults)
+            {
+                return;
+            }
+
+            lock (_optimizeDefaultsSyncRoot)
+            {
+                if (_optimizedDefaults)
+                {
+                    return;
+                }
+
+                OptimizeRouteValues(Defaults);
+
+                _optimizedDefaults = true;
+            }
         }
 
         private void OptimizeRouteValues(RouteValueDictionary routeValueDictionary)
