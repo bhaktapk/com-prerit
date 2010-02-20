@@ -22,8 +22,7 @@ namespace Com.Prerit.Helpers.Albums
             {
                 var model = new AlbumPortraitModel
                                 {
-                                    Album = album,
-                                    AlbumItemCount = null
+                                    Album = album
                                 };
 
                 helper.RenderPartial(MVC.Albums.Views.AlbumPortrait, model);

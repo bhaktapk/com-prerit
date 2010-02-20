@@ -8,8 +8,6 @@ namespace Com.Prerit.Models.Albums
 
         public Album Album { get; set; }
 
-        public int? AlbumItemCount { get; set; }
-
         #endregion
     }
 }
