@@ -1,4 +1,7 @@
+using System.Web;
 using System.Web.Mvc;
+
+using Com.Prerit.ActionResults;
 
 using Links;
 
@@ -11,7 +14,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult AdobePdf()
         {
-            return new FilePathResult(App_Data.ResumeFormats.AdobePdf_pdf, "application/pdf")
+            return new StaticFilePathResult(App_Data.ResumeFormats.AdobePdf_pdf, "application/pdf", HttpCacheability.Public)
                        {
                            FileDownloadName = "Resume of Prerit Bhakta.pdf"
                        };
@@ -20,7 +23,7 @@ namespace Com.Prerit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public virtual ActionResult MicrosoftWord()
         {
-            return new FilePathResult(App_Data.ResumeFormats.MicrosoftWord_doc, "application/msword")
+            return new StaticFilePathResult(App_Data.ResumeFormats.MicrosoftWord_doc, "application/msword", HttpCacheability.Public)
                        {
                            FileDownloadName = "Resume of Prerit Bhakta.doc"
                        };
