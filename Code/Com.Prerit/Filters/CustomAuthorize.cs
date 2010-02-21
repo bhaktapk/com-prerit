@@ -51,7 +51,7 @@ namespace Com.Prerit.Filters
                 return false;
             }
 
-            if (_splitAllowedRoleTypes.Count() != 0 && !_splitAllowedRoleTypes.Any(roleType => httpContext.User.IsInRole(roleType)))
+            if (_splitAllowedRoleTypes.Count() > 0 && !_splitAllowedRoleTypes.Any(roleType => httpContext.User.IsInRole(roleType)))
             {
                 return false;
             }
