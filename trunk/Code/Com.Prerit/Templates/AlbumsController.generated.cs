@@ -35,6 +35,10 @@ namespace Com.Prerit.Controllers {
         public System.Web.Mvc.ActionResult AlbumsByYearAndSlug() {
             return new T4MVC_ActionResult(Area, Name, Actions.AlbumsByYearAndSlug);
         }
+        [NonAction]
+        public System.Web.Mvc.ActionResult Portrait() {
+            return new T4MVC_ActionResult(Area, Name, Actions.Portrait);
+        }
 
         public readonly string Area = "";
         public readonly string Name = "Albums";
@@ -45,6 +49,7 @@ namespace Com.Prerit.Controllers {
             public readonly string AlbumsByYear = "AlbumsByYear";
             public readonly string AlbumsByYearAndSlug = "AlbumsByYearAndSlug";
             public readonly string AllAlbums = "AllAlbums";
+            public readonly string Portrait = "Portrait";
         }
 
 
@@ -77,6 +82,13 @@ namespace Com.Prerit.Controllers {
 
         public override System.Web.Mvc.ActionResult AllAlbums() {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.AllAlbums);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Portrait(int year, string slug) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Portrait);
+            callInfo.RouteValues.Add("year", year);
+            callInfo.RouteValues.Add("slug", slug);
             return callInfo;
         }
 
