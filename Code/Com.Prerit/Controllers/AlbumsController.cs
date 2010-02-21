@@ -67,6 +67,13 @@ namespace Com.Prerit.Controllers
             return View(model);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
+        public virtual ActionResult Portrait(int year, string slug)
+        {
+            return new EmptyResult();
+        }
+
         #endregion
     }
 }

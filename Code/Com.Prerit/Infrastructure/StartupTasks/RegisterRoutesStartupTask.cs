@@ -128,6 +128,24 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   slug = new AlbumSlugConstraint("year", _albumService)
                                               });
 
+            RouteTable.Routes.MapSeoRoute("album photo routes by year and slug",
+                                          "{controller}/{year}/{slug}/{action}",
+                                          new[]
+                                              {
+                                                  "controller", "action"
+                                              },
+                                          null,
+                                          new
+                                              {
+                                                  controller = MVC.Albums.Name,
+                                                  year = new AlbumYearConstraint(_albumService),
+                                                  slug = new AlbumSlugConstraint("year", _albumService),
+                                                  action = new ListConstraint(new[]
+                                                                                  {
+                                                                                      MVC.Albums.Actions.Portrait
+                                                                                  })
+                                              });
+
             RouteTable.Routes.MapSeoRoute("resume format routes",
                                           "resume/formats/{action}",
                                           new[]
