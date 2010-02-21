@@ -42,7 +42,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
             for (int i = 0; i < value.Length; i++)
             {
-                if (i != 0 && char.IsUpper(value[i]))
+                if (i > 0 && char.IsUpper(value[i]))
                 {
                     chars.Add('-');
                 }
