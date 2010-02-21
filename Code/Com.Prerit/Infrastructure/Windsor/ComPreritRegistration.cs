@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Hosting;
+using System.Web.Mvc;
 
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
@@ -6,6 +7,9 @@ using Castle.MicroKernel.Registration;
 using Com.Prerit.Infrastructure.Routing;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
+using Com.Prerit.Services;
+
+using Links;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
@@ -22,7 +26,9 @@ namespace Com.Prerit.Infrastructure.Windsor
                     AllTypes.Pick().FromAssemblyNamed(assemblyName)
                         .If(t => t.Name.EndsWith("Service"))
                         .Configure(c => c.LifeStyle.Transient)
-                        .WithService.FirstInterface())
+                        .WithService.FirstInterface()
+                        .ConfigureFor<IProfileService>(c => c.Parameters(Parameter.ForKey("profilesDirectoryPath").Eq(HostingEnvironment.MapPath(App_Data.Profiles.Url()))))
+                        .ConfigureFor<IRoleService>(c => c.Parameters(Parameter.ForKey("rolesDirectoryPath").Eq(HostingEnvironment.MapPath(App_Data.Roles.Url())))))
                 .Register(
                     AllTypes.Of<IController>().FromAssemblyNamed(assemblyName)
                         .Configure(c => c.LifeStyle.Transient))

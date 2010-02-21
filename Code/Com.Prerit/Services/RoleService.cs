@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
 
 using Com.Prerit.Core;
 using Com.Prerit.Domain;
-
-using Links;
 
 namespace Com.Prerit.Services
 {
@@ -18,6 +16,8 @@ namespace Com.Prerit.Services
 
         private readonly IDiskInputOutputService _diskInputOutputService;
 
+        private readonly string _rolesDirectoryPath;
+
         private static readonly object RoleDictionarySyncRoot = new object();
 
         private static readonly Dictionary<RoleType, object> RoleSyncRoots = new Dictionary<RoleType, object>();
@@ -26,8 +26,13 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public RoleService(ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
+        public RoleService(string rolesDirectoryPath, ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
         {
+            if (rolesDirectoryPath == null)
+            {
+                throw new ArgumentNullException("rolesDirectoryPath");
+            }
+
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
@@ -38,6 +43,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("diskInputOutputService");
             }
 
+            _rolesDirectoryPath = rolesDirectoryPath;
             _cacheService = cacheService;
             _diskInputOutputService = diskInputOutputService;
         }
@@ -106,9 +112,7 @@ namespace Com.Prerit.Services
         {
             string fileName = Enum.GetName(typeof(RoleType), roleType) + ".xml";
 
-            string fileVirtualPath = VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(App_Data.Roles.Url()), fileName);
-
-            string filePath = _diskInputOutputService.MapPath(fileVirtualPath);
+            string filePath = Path.Combine(_rolesDirectoryPath, fileName);
 
             Role role;
 
