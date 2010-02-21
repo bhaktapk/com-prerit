@@ -34,6 +34,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ActionResults\StaticFilePathResult.cs" />
     <Compile Include="Controllers\AboutController.cs">
       <SubType>Code</SubType>
     </Compile>
