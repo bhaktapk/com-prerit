@@ -5,13 +5,13 @@ using System.Linq;
 
 using Com.Prerit.Domain;
 
-using Links;
-
 namespace Com.Prerit.Services
 {
     public class ProfileService : IProfileService
     {
         #region Fields
+
+        private readonly string _profilesDirectoryPath;
 
         private readonly ICacheService _cacheService;
 
@@ -25,8 +25,13 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public ProfileService(ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
+        public ProfileService(string profilesDirectoryPath, ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
         {
+            if (profilesDirectoryPath == null)
+            {
+                throw new ArgumentNullException("profilesDirectoryPath");
+            }
+
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
@@ -37,6 +42,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("diskInputOutputService");
             }
 
+            _profilesDirectoryPath = profilesDirectoryPath;
             _cacheService = cacheService;
             _diskInputOutputService = diskInputOutputService;
         }
@@ -61,11 +67,9 @@ namespace Com.Prerit.Services
 
         private string GetFilePath(string id)
         {
-            string directoryPath = _diskInputOutputService.MapPath(App_Data.Profiles.Url());
-
             string filename = GetSafeFilename(id);
 
-            return Path.Combine(directoryPath, filename);
+            return Path.Combine(_profilesDirectoryPath, filename);
         }
 
         public Profile GetProfile(string id)
