@@ -144,8 +144,8 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                   })
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo index",
-                                          "{controller}/{year}/{slug}/photos/{photoIndex}/{action}",
+            RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo item",
+                                          "{controller}/{year}/{slug}/photos/{photoItem}/{action}",
                                           new[]
                                               {
                                                   "controller", "action"
@@ -154,7 +154,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Albums.Name,
-                                                  photoIndex = new AlbumPhotoIndexConstraint("year", "slug", _albumService),
+                                                  photoItem = new AlbumPhotoItemConstraint("year", "slug", _albumService),
                                                   action = new ListConstraint(new[]
                                                                                   {
                                                                                       MVC.Albums.Actions.Thumbnail, MVC.Albums.Actions.WebOptimized

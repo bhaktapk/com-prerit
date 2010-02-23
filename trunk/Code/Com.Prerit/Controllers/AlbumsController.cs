@@ -80,8 +80,10 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
-        public virtual ActionResult Thumbnail(int year, string slug, int photoIndex)
+        public virtual ActionResult Thumbnail(int year, string slug, int photoItem)
         {
+            int photoIndex = photoItem - 1;
+
             WebImage webImage = _albumService.GetAlbumPhoto(year, slug, photoIndex, AlbumPhotoType.Thumbnail);
 
             return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
@@ -89,8 +91,10 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
-        public virtual ActionResult WebOptimized(int year, string slug, int photoIndex)
+        public virtual ActionResult WebOptimized(int year, string slug, int photoItem)
         {
+            int photoIndex = photoItem - 1;
+
             WebImage webImage = _albumService.GetAlbumPhoto(year, slug, photoIndex, AlbumPhotoType.WebOptimized);
 
             return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
