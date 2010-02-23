@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
+using Com.Prerit.ActionResults;
 using Com.Prerit.Domain;
 using Com.Prerit.Filters;
 using Com.Prerit.Models.Albums;
@@ -71,7 +73,9 @@ namespace Com.Prerit.Controllers
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult Portrait(int year, string slug)
         {
-            return new EmptyResult();
+            WebImage webImage = _albumService.GetAlbumPortrait(year, slug);
+
+            return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
         }
 
         #endregion
