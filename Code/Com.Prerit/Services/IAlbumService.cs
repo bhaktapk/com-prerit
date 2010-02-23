@@ -10,7 +10,7 @@ namespace Com.Prerit.Services
 
         Album GetAlbum(int year, string slug);
 
-        WebImage GetAlbumPhoto(int year, string slug, int index, AlbumPhotoType albumPhotoType);
+        WebImage GetAlbumPhoto(int year, string slug, int photoIndex, AlbumPhotoType albumPhotoType);
 
         WebImage GetAlbumPortrait(int year, string slug);
 
