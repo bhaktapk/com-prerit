@@ -55,6 +55,7 @@
     <Compile Include="Models\Albums\AlbumPortraitModel.cs" />
     <Compile Include="Models\Albums\AlbumsByYearModel.cs" />
     <Compile Include="Models\Albums\AllAlbumsModel.cs" />
+    <Compile Include="Domain\WebImage.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\IAlbumService.cs" />
     <Compile Include="Security\IPrincipalExtensions.cs" />

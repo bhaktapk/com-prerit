@@ -8,6 +8,10 @@ namespace Com.Prerit.Services
     {
         #region Methods
 
+        Album GetAlbum(int year, string slug);
+
+        WebImage GetAlbumPortrait(int year, string slug);
+        
         IEnumerable<Album> GetAlbums();
 
         IEnumerable<Album> GetAlbums(int year);
