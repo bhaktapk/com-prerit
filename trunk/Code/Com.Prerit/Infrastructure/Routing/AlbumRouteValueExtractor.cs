@@ -27,44 +27,38 @@ namespace Com.Prerit.Infrastructure.Routing
 
         #region Methods
 
-        public bool TryExtractSlug(string slugParameterName, out string slug)
+        public int? ExtractInt(string parameterName)
         {
-            object slugParameterValue;
+            object parameterValue;
 
-            if (_values.TryGetValue(slugParameterName, out slugParameterValue) && slugParameterValue is string)
+            int typedParameterValue;
+
+            if (_values.TryGetValue(parameterName, out parameterValue))
             {
-                slug = (string) slugParameterValue;
+                if (parameterValue is int)
+                {
+                    return (int) parameterValue;
+                }
 
-                return true;
+                if (parameterValue is string && int.TryParse((string) parameterValue, out typedParameterValue))
+                {
+                    return typedParameterValue;
+                }
             }
 
-            slug = null;
-
-            return false;
+            return null;
         }
 
-        public bool TryExtractYear(string yearParameterName, out int year)
+        public string ExtractString(string parameterName)
         {
-            object yearParameterValue;
+            object parameterValue;
 
-            if (_values.TryGetValue(yearParameterName, out yearParameterValue))
+            if (_values.TryGetValue(parameterName, out parameterValue) && parameterValue is string)
             {
-                if (yearParameterValue is int)
-                {
-                    year = (int) yearParameterValue;
-
-                    return true;
-                }
-
-                if (yearParameterValue is string && int.TryParse((string) yearParameterValue, out year))
-                {
-                    return true;
-                }
+                return (string) parameterValue;
             }
 
-            year = 0;
-
-            return false;
+            return null;
         }
 
         #endregion

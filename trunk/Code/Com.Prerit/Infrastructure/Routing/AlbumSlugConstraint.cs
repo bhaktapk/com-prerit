@@ -51,21 +51,18 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("values");
             }
 
-            string slug;
-
             var extractor = new AlbumRouteValueExtractor(values);
 
-            if (extractor.TryExtractSlug(parameterName, out slug))
-            {
-                int year;
+            string slug = extractor.ExtractString(parameterName);
 
-                if (extractor.TryExtractYear(_yearParameterName, out year))
-                {
-                    return _albumService.GetAlbumSlugs(year).Contains(slug);
-                }
+            int? year = extractor.ExtractInt(_yearParameterName);
+
+            if (slug == null || year == null)
+            {
+                return false;
             }
 
-            return false;
+            return _albumService.GetAlbumSlugs(year.Value).Contains(slug);
         }
 
         #endregion
