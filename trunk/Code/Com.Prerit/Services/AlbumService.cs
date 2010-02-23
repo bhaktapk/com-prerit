@@ -12,6 +12,12 @@ namespace Com.Prerit.Services
 {
     public class AlbumService : IAlbumService
     {
+        #region Constants
+
+        private const string AlbumPortraitFileName = "AlbumPortrait.jpg";
+
+        #endregion
+
         #region Fields
 
         private readonly ICacheService _cacheService;
@@ -55,6 +61,13 @@ namespace Com.Prerit.Services
             return albumSyncRoot;
         }
 
+        public Album GetAlbum(int year, string slug)
+        {
+            IEnumerable<Album> albums = GetAlbums();
+
+            return albums.Where(album => album.Year == year && string.Compare(album.Slug, slug, StringComparison.OrdinalIgnoreCase) == 0).FirstOrDefault();
+        }
+
         private Album GetAlbum(string dirPath)
         {
             Album album = _cacheService.GetAlbum(dirPath);
@@ -79,6 +92,30 @@ namespace Com.Prerit.Services
         {
             return (from albumDirPath in validAlbumDirPaths
                     select GetAlbum(albumDirPath)).ExecuteQuery();
+        }
+
+        public WebImage GetAlbumPortrait(int year, string slug)
+        {
+            Album album = GetAlbum(year, slug);
+
+            if (album == null)
+            {
+                return null;
+            }
+
+            string albumPortraitFilePath = GetAlbumPortraitFilePath(album.DirectoryPath);
+
+            // TODO: create thumbnail and return it's file path instead of original's file path
+
+            return new WebImage
+                       {
+                           FilePath = albumPortraitFilePath
+                       };
+        }
+
+        private string GetAlbumPortraitFilePath(string dirPath)
+        {
+            return Path.Combine(dirPath, AlbumPortraitFileName);
         }
 
         public IEnumerable<Album> GetAlbums()
@@ -140,8 +177,17 @@ namespace Com.Prerit.Services
         private IEnumerable<string> GetValidAlbumDirPaths(IEnumerable<string> albumDirPaths)
         {
             return (from albumDirPath in albumDirPaths
-                    where _diskInputOutputService.FileExists(GetAlbumFilePath(albumDirPath))
+                    where
+                        _diskInputOutputService.FileExists(GetAlbumFilePath(albumDirPath)) &&
+                        _diskInputOutputService.FileExists(GetAlbumPortraitFilePath(albumDirPath)) && GetValidPhotosCount(albumDirPath) > 0
                     select albumDirPath).ExecuteQuery();
+        }
+
+        private int GetValidPhotosCount(string dirPath)
+        {
+            return (from filePath in _diskInputOutputService.GetFiles(dirPath, "*.jpg", SearchOption.TopDirectoryOnly)
+                    where string.Compare(Path.GetFileName(filePath), AlbumPortraitFileName, StringComparison.OrdinalIgnoreCase) != 0
+                    select filePath).Count();
         }
 
         private Album LoadAlbum(string dirPath)
@@ -150,7 +196,8 @@ namespace Com.Prerit.Services
 
             var album = _diskInputOutputService.LoadXmlFile<Album>(albumFilePath);
 
-            album.PhotoCount = _diskInputOutputService.GetFiles(dirPath, "*.jpg", SearchOption.TopDirectoryOnly).Count();
+            album.DirectoryPath = dirPath;
+            album.PhotoCount = GetValidPhotosCount(dirPath);
 
             _cacheService.SetAlbum(album, dirPath);
 

@@ -7,6 +7,9 @@ namespace Com.Prerit.Domain
         #region Properties
 
         [XmlIgnore]
+        public string DirectoryPath { get; set; }
+
+        [XmlIgnore]
         public int PhotoCount { get; set; }
 
         public string Slug { get; set; }
