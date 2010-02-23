@@ -78,6 +78,24 @@ namespace Com.Prerit.Controllers
             return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
+        public virtual ActionResult Thumbnail(int year, string slug, int photoIndex)
+        {
+            WebImage webImage = _albumService.GetAlbumPhoto(year, slug, photoIndex, AlbumPhotoType.Thumbnail);
+
+            return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
+        public virtual ActionResult WebOptimized(int year, string slug, int photoIndex)
+        {
+            WebImage webImage = _albumService.GetAlbumPhoto(year, slug, photoIndex, AlbumPhotoType.WebOptimized);
+
+            return new StaticFilePathResult(webImage.FilePath, "image/jpeg", HttpCacheability.ServerAndPrivate);
+        }
+
         #endregion
     }
 }

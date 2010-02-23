@@ -144,6 +144,23 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                   })
                                               });
 
+            RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo index",
+                                          "{controller}/{year}/{slug}/photos/{photoIndex}/{action}",
+                                          new[]
+                                              {
+                                                  "controller", "action"
+                                              },
+                                          null,
+                                          new
+                                              {
+                                                  controller = MVC.Albums.Name,
+                                                  photoIndex = new AlbumPhotoIndexConstraint("year", "slug", _albumService),
+                                                  action = new ListConstraint(new[]
+                                                                                  {
+                                                                                      MVC.Albums.Actions.Thumbnail, MVC.Albums.Actions.WebOptimized
+                                                                                  })
+                                              });
+
             RouteTable.Routes.MapSeoRoute("resume format routes",
                                           "resume/formats/{action}",
                                           new[]

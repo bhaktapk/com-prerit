@@ -39,6 +39,14 @@ namespace Com.Prerit.Controllers {
         public System.Web.Mvc.ActionResult Portrait() {
             return new T4MVC_ActionResult(Area, Name, Actions.Portrait);
         }
+        [NonAction]
+        public System.Web.Mvc.ActionResult Thumbnail() {
+            return new T4MVC_ActionResult(Area, Name, Actions.Thumbnail);
+        }
+        [NonAction]
+        public System.Web.Mvc.ActionResult WebOptimized() {
+            return new T4MVC_ActionResult(Area, Name, Actions.WebOptimized);
+        }
 
         public readonly string Area = "";
         public readonly string Name = "Albums";
@@ -50,6 +58,8 @@ namespace Com.Prerit.Controllers {
             public readonly string AlbumsByYearAndSlug = "AlbumsByYearAndSlug";
             public readonly string AllAlbums = "AllAlbums";
             public readonly string Portrait = "Portrait";
+            public readonly string Thumbnail = "Thumbnail";
+            public readonly string WebOptimized = "WebOptimized";
         }
 
 
@@ -89,6 +99,22 @@ namespace Com.Prerit.Controllers {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Portrait);
             callInfo.RouteValues.Add("year", year);
             callInfo.RouteValues.Add("slug", slug);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult Thumbnail(int year, string slug, int photoIndex) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Thumbnail);
+            callInfo.RouteValues.Add("year", year);
+            callInfo.RouteValues.Add("slug", slug);
+            callInfo.RouteValues.Add("photoIndex", photoIndex);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult WebOptimized(int year, string slug, int photoIndex) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.WebOptimized);
+            callInfo.RouteValues.Add("year", year);
+            callInfo.RouteValues.Add("slug", slug);
+            callInfo.RouteValues.Add("photoIndex", photoIndex);
             return callInfo;
         }
 
