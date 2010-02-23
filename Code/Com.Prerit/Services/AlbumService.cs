@@ -94,6 +94,11 @@ namespace Com.Prerit.Services
                     select GetAlbum(albumDirPath)).ExecuteQuery();
         }
 
+        public WebImage GetAlbumPhoto(int year, string slug, int index, AlbumPhotoType albumPhotoType)
+        {
+            throw new NotImplementedException();
+        }
+
         public WebImage GetAlbumPortrait(int year, string slug)
         {
             Album album = GetAlbum(year, slug);
