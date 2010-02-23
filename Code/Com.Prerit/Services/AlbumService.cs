@@ -109,28 +109,28 @@ namespace Com.Prerit.Services
 
             string photoFilePath = GetValidPhotoFilePaths(album.DirectoryPath).ElementAt(photoIndex);
 
-            string thumbnailFilePath;
+            string resizedFilePath;
 
             switch (albumPhotoType)
             {
                 case AlbumPhotoType.Thumbnail:
-                    thumbnailFilePath = GetAlbumPhotoThumbnailFilePath(album.DirectoryPath, photoFilePath);
+                    resizedFilePath = GetAlbumPhotoThumbnailFilePath(album.DirectoryPath, photoFilePath);
                     break;
                 case AlbumPhotoType.WebOptimized:
-                    thumbnailFilePath = GetAlbumPhotoWebOptimizedFilePath(album.DirectoryPath, photoFilePath);
+                    resizedFilePath = GetAlbumPhotoWebOptimizedFilePath(album.DirectoryPath, photoFilePath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("albumPhotoType");
             }
 
-            if (!_diskInputOutputService.FileExists(thumbnailFilePath))
+            if (!_diskInputOutputService.FileExists(resizedFilePath))
             {
                 // TODO: create thumbnail
             }
 
             return new WebImage
             {
-                FilePath = thumbnailFilePath
+                FilePath = resizedFilePath
             };
         }
 
