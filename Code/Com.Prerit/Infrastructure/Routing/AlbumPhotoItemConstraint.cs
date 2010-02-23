@@ -7,7 +7,7 @@ using Com.Prerit.Services;
 
 namespace Com.Prerit.Infrastructure.Routing
 {
-    public class AlbumPhotoIndexConstraint : IRouteConstraint
+    public class AlbumPhotoItemConstraint : IRouteConstraint
     {
         #region Fields
 
@@ -21,7 +21,7 @@ namespace Com.Prerit.Infrastructure.Routing
 
         #region Constructors
 
-        public AlbumPhotoIndexConstraint(string yearParameterName, string slugParameterName, IAlbumService albumService)
+        public AlbumPhotoItemConstraint(string yearParameterName, string slugParameterName, IAlbumService albumService)
         {
             if (yearParameterName == null)
             {
@@ -61,13 +61,13 @@ namespace Com.Prerit.Infrastructure.Routing
 
             var extractor = new AlbumRouteValueExtractor(values);
 
-            int? photoIndex = extractor.ExtractInt(parameterName);
+            int? photoItem = extractor.ExtractInt(parameterName);
 
             string slug = extractor.ExtractString(_slugParameterName);
 
             int? year = extractor.ExtractInt(_yearParameterName);
 
-            if (photoIndex == null || photoIndex < 0 || slug == null || year == null)
+            if (photoItem == null || photoItem <= 0 || slug == null || year == null)
             {
                 return false;
             }
@@ -79,7 +79,7 @@ namespace Com.Prerit.Infrastructure.Routing
                 return false;
             }
 
-            return photoIndex < album.PhotoCount;
+            return photoItem <= album.PhotoCount;
         }
 
         #endregion

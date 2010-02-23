@@ -102,19 +102,19 @@ namespace Com.Prerit.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Thumbnail(int year, string slug, int photoIndex) {
+        public override System.Web.Mvc.ActionResult Thumbnail(int year, string slug, int photoItem) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.Thumbnail);
             callInfo.RouteValues.Add("year", year);
             callInfo.RouteValues.Add("slug", slug);
-            callInfo.RouteValues.Add("photoIndex", photoIndex);
+            callInfo.RouteValues.Add("photoItem", photoItem);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult WebOptimized(int year, string slug, int photoIndex) {
+        public override System.Web.Mvc.ActionResult WebOptimized(int year, string slug, int photoItem) {
             var callInfo = new T4MVC_ActionResult(Area, Name, Actions.WebOptimized);
             callInfo.RouteValues.Add("year", year);
             callInfo.RouteValues.Add("slug", slug);
-            callInfo.RouteValues.Add("photoIndex", photoIndex);
+            callInfo.RouteValues.Add("photoItem", photoItem);
             return callInfo;
         }
 
