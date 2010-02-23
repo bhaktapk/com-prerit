@@ -124,7 +124,6 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Albums.Name,
-                                                  year = new AlbumYearConstraint(_albumService),
                                                   slug = new AlbumSlugConstraint("year", _albumService)
                                               });
 
@@ -138,7 +137,6 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                           new
                                               {
                                                   controller = MVC.Albums.Name,
-                                                  year = new AlbumYearConstraint(_albumService),
                                                   slug = new AlbumSlugConstraint("year", _albumService),
                                                   action = new ListConstraint(new[]
                                                                                   {
