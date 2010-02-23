@@ -43,38 +43,16 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("values");
             }
 
-            object value;
+            int year;
 
-            if (!values.TryGetValue(parameterName, out value))
+            var extractor = new AlbumRouteValueExtractor(values);
+
+            if (extractor.TryExtractYear(parameterName, out year))
             {
-                return false;
+                return _albumService.GetAlbumYears().Contains(year);
             }
 
-            int? year = TryGetYear(value);
-
-            if (year == null)
-            {
-                return false;
-            }
-
-            return _albumService.GetAlbumYears().Contains(year.Value);
-        }
-
-        private int? TryGetYear(object value)
-        {
-            int parsedYear;
-
-            if (value is int)
-            {
-                return (int) value;
-            }
-
-            if (value is string && int.TryParse((string) value, out parsedYear))
-            {
-                return parsedYear;
-            }
-
-            return null;
+            return false;
         }
 
         #endregion

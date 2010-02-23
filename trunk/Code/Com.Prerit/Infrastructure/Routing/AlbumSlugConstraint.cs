@@ -13,17 +13,17 @@ namespace Com.Prerit.Infrastructure.Routing
 
         private readonly IAlbumService _albumService;
 
-        private readonly string _yearRouteParam;
+        private readonly string _yearParameterName;
 
         #endregion
 
         #region Constructors
 
-        public AlbumSlugConstraint(string yearRouteParam, IAlbumService albumService)
+        public AlbumSlugConstraint(string yearParameterName, IAlbumService albumService)
         {
-            if (yearRouteParam == null)
+            if (yearParameterName == null)
             {
-                throw new ArgumentNullException("yearRouteParam");
+                throw new ArgumentNullException("yearParameterName");
             }
 
             if (albumService == null)
@@ -31,7 +31,7 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("albumService");
             }
 
-            _yearRouteParam = yearRouteParam;
+            _yearParameterName = yearParameterName;
             _albumService = albumService;
         }
 
@@ -51,45 +51,21 @@ namespace Com.Prerit.Infrastructure.Routing
                 throw new ArgumentNullException("values");
             }
 
-            object parameterValue;
+            string slug;
 
-            if (!values.TryGetValue(parameterName, out parameterValue) || !(parameterValue is string))
+            var extractor = new AlbumRouteValueExtractor(values);
+
+            if (extractor.TryExtractSlug(parameterName, out slug))
             {
-                return false;
+                int year;
+
+                if (extractor.TryExtractYear(_yearParameterName, out year))
+                {
+                    return _albumService.GetAlbumSlugs(year).Contains(slug);
+                }
             }
 
-            object yearParamValue;
-
-            if (!values.TryGetValue(_yearRouteParam, out yearParamValue))
-            {
-                return false;
-            }
-
-            int? year = TryGetYear(yearParamValue);
-
-            if (year == null)
-            {
-                return false;
-            }
-
-            return _albumService.GetAlbumSlugs(year.Value).Contains((string) parameterValue);
-        }
-
-        private int? TryGetYear(object value)
-        {
-            int parsedYear;
-
-            if (value is int)
-            {
-                return (int) value;
-            }
-
-            if (value is string && int.TryParse((string) value, out parsedYear))
-            {
-                return parsedYear;
-            }
-
-            return null;
+            return false;
         }
 
         #endregion
