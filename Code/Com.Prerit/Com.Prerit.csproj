@@ -44,6 +44,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\Albums\AlbumsHelper.cs" />
+    <Compile Include="Infrastructure\Routing\AlbumPhotoIndexConstraint.cs" />
     <Compile Include="Infrastructure\Routing\AlbumRouteValueExtractor.cs" />
     <Compile Include="Infrastructure\Routing\AlbumSlugConstraint.cs" />
     <Compile Include="Infrastructure\Routing\IRouteValueOptimizer.cs" />
