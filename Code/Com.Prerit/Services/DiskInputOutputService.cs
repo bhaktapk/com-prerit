@@ -34,6 +34,16 @@ namespace Com.Prerit.Services
             image.RotateFlip(RotateFlipType.Rotate180FlipNone);
         }
 
+        private void EnsureDirectoryExists(string filePath)
+        {
+            string directoryPath = Path.GetDirectoryName(filePath);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
+
         public bool FileExists(string filePath)
         {
             return File.Exists(filePath);
@@ -112,6 +122,8 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("destinationFilePath");
             }
 
+            EnsureDirectoryExists(destinationFilePath);
+
             using (Image image = Image.FromFile(sourceFilePath))
             {
                 Size scaledSize = ScaleToMaxDimension(maxDimension, image);
@@ -127,6 +139,8 @@ namespace Com.Prerit.Services
         public void SaveXmlFile<T>(string filePath, T obj)
         {
             var serializer = new XmlSerializer(typeof(T));
+
+            EnsureDirectoryExists(filePath);
 
             using (var writer = new StreamWriter(filePath))
             {
