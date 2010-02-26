@@ -1,3 +1,4 @@
+<%@ Import Namespace="Links" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server">Resume of Prerit Bhakta</asp:Content>
@@ -8,8 +9,8 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="linkContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.print_css) %>" media="print" />
-    <link rel="stylesheet" type="text/css" href="<%= Url.Content(Links.content.styles.resume.screen_css) %>" media="projection, screen, tv" />
+    <link rel="stylesheet" type="text/css" href="<%= content.styles.resume.print_css %>" media="print" />
+    <link rel="stylesheet" type="text/css" href="<%= content.styles.resume.screen_css %>" media="projection, screen, tv" />
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Resume.Index())).AbsoluteUri %>" />
 </asp:Content>
 

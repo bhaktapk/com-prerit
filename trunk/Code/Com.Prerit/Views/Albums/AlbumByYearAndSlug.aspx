@@ -1,5 +1,6 @@
 <%@ Import Namespace="Com.Prerit.Helpers.Albums" %>
 <%@ Import Namespace="Com.Prerit.Models.Albums" %>
+<%@ Import Namespace="Links" %>
 <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Default.master" Inherits="System.Web.Mvc.ViewPage<AlbumByYearAndSlugModel>" %>
 
 <asp:Content ContentPlaceHolderID="titleContent" runat="server"><%= Model.Album.Title %> (<%= Model.Album.Year %>)</asp:Content>
@@ -14,13 +15,13 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="scriptContent" runat="server">
-    <script src="<%= Links.scripts.albums_js %>" type="text/javascript"></script>
+    <script src="<%= scripts.albums_js %>" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
     <h1><span><%= Model.Album.Title %> (<%= Model.Album.Year %>)</span></h1>
     <div class="photos">
-        <img class="eagerload" src="<%= Url.Content(Links.content.images.processing_notifier_gif) %>" alt="Eager loading of background image" height="16" width="16" />
+        <img class="eagerload" src="<%= content.images.processing_notifier_gif %>" alt="Eager loading of background image" height="16" width="16" />
         <% Html.RenderAlbumPhotosPartial(); %>
     </div>
 </asp:Content>
