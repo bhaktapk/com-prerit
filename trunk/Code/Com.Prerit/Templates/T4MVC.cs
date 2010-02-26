@@ -227,6 +227,7 @@ namespace Links {
         private const string URLPATH = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string albums_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/albums.min.js") ? Url("albums.min.js") : Url("albums.js");
         public static readonly string master_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/master.min.js") ? Url("master.min.js") : Url("master.js");
     }
 

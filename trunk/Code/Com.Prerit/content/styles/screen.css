@@ -532,12 +532,16 @@ img
 
 #mainbar div.photos p
 {
-    background: url(../images/processing-notifier.gif) no-repeat center center;
     float: left;
     height: 160px;
     line-height: 160px;
     margin: 0 10px 40px 10px;
     width: 160px;
+}
+
+#mainbar div.photos p.processing
+{
+    background: url(../images/processing-notifier.gif) no-repeat center center;
 }
 
 #mainbar div.photos p a
