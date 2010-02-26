@@ -142,7 +142,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                               });
 
             RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo item",
-                                          "{controller}/{year}/{slug}/photos/{photoItem}/{action}",
+                                          "{controller}/{year}/{slug}/photos/{photoItem}/types/{action}",
                                           new[]
                                               {
                                                   "controller", "action"
