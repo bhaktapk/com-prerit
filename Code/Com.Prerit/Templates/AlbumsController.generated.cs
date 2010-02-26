@@ -66,6 +66,8 @@ namespace Com.Prerit.Controllers {
         static readonly ViewNames s_views = new ViewNames();
         public ViewNames Views { get { return s_views; } }
         public class ViewNames {
+            public readonly string AlbumByYearAndSlug = "~/Views/Albums/AlbumByYearAndSlug.aspx";
+            public readonly string AlbumPhoto = "~/Views/Albums/AlbumPhoto.ascx";
             public readonly string AlbumPortrait = "~/Views/Albums/AlbumPortrait.ascx";
             public readonly string AlbumsByYear = "~/Views/Albums/AlbumsByYear.ascx";
             public readonly string AlbumsByYear_aspx = "~/Views/Albums/AlbumsByYear.aspx";
