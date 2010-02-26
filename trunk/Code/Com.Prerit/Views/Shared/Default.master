@@ -26,6 +26,7 @@
     <asp:ContentPlaceHolder ID="linkContent" runat="server" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
     <script src="<%= Links.scripts.master_js %>" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="scriptContent" runat="server" />
 </head>
 <body>
     <div id="header">
