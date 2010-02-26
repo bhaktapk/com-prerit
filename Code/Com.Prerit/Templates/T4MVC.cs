@@ -188,7 +188,6 @@ namespace Links {
             private const string URLPATH = "~/content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string ajax_processing_notifier_gif = Url("ajax-processing-notifier.gif");
             public static readonly string bg_body_gif = Url("bg-body.gif");
             public static readonly string bg_header_gif = Url("bg-header.gif");
             public static readonly string bg_subheading_gif = Url("bg-subheading.gif");
@@ -196,6 +195,7 @@ namespace Links {
             public static readonly string logo_fullahead_gif = Url("logo-fullahead.gif");
             public static readonly string logo_greenery_gif = Url("logo-greenery.gif");
             public static readonly string menu_tab_gif = Url("menu-tab.gif");
+            public static readonly string processing_notifier_gif = Url("processing-notifier.gif");
             public static readonly string rounded_bl_gif = Url("rounded-bl.gif");
             public static readonly string rounded_br_gif = Url("rounded-br.gif");
             public static readonly string rounded_tl_gif = Url("rounded-tl.gif");

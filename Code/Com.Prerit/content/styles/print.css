@@ -129,6 +129,11 @@ img
 	text-align: center;
 }
 
+#mainbar div.photos img.eagerload
+{
+    display: none;
+}
+
 #mainbar div.photos p
 {
 	display: inline;
@@ -173,11 +178,6 @@ img
 #mainbar p
 {
     line-height: 18pt;
-}
-
-#mainbar #processingNotification
-{
-    display: none;
 }
 
 

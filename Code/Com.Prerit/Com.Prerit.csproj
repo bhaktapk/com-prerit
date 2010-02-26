@@ -279,7 +279,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\images\ajax-processing-notifier.gif" />
     <Content Include="content\images\bg-body.gif" />
     <Content Include="content\images\bg-header.gif" />
     <Content Include="content\images\bg-subheading.gif" />
@@ -302,6 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Roles\RoleType.xml.template" />
+    <Content Include="content\images\processing-notifier.gif" />
     <Content Include="ProductionWeb.config" />
     <Content Include="scripts\master.js" />
     <Content Include="ServiceUnavailableWeb.config" />

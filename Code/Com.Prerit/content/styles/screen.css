@@ -525,8 +525,14 @@ img
     text-align: center;
 }
 
+#mainbar div.photos img.eagerload
+{
+    display: none;
+}
+
 #mainbar div.photos p
 {
+    background: url(../images/processing-notifier.gif) no-repeat center center;
     float: left;
     height: 160px;
     line-height: 160px;
@@ -550,22 +556,6 @@ img
 #mainbar p
 {
     line-height: 1.75em;
-}
-
-#mainbar #processingNotification
-{
-    background: #85e15f url(../images/ajax-processing-notifier.gif) no-repeat 50% 70%;
-    border: 2px solid #222;
-    color: #222;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 5px 10px 25px 10px;
-    text-align: center;
-    width: 150px;
-
-    /* invalid CSS */
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
 }
 
 
