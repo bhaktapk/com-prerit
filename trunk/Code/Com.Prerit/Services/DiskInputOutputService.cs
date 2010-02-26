@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Hosting;
@@ -7,6 +8,26 @@ namespace Com.Prerit.Services
 {
     public class DiskInputOutputService : IDiskInputOutputService
     {
+        #region Properties
+
+        public IImageEditorService ImageEditor { get; private set; }
+
+        #endregion
+
+        #region Constructors
+
+        public DiskInputOutputService(IImageEditorService imageEditor)
+        {
+            if (imageEditor == null)
+            {
+                throw new ArgumentNullException("imageEditor");
+            }
+
+            ImageEditor = imageEditor;
+        }
+
+        #endregion
+
         #region Methods
 
         public bool FileExists(string filePath)
