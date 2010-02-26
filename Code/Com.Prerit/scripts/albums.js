@@ -1,16 +1,16 @@
 ﻿$(function() {
     $(".photos p")
-                .addClass("processing");
+        .addClass("processing");
 
     $(".photos p a img")
-                .hide()
+        .hide()
 
-                .load(function() {
-                    $(this)
-                        .show()
+        .load(function() {
+            $(this)
+                .show()
 
-                        .closest("p")
-                            .removeClass("processing");
-                }
-            );
+                .closest("p")
+                    .removeClass("processing");
+        }
+    );
 });
