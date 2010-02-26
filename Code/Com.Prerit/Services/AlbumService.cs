@@ -135,7 +135,7 @@ namespace Com.Prerit.Services
 
             if (!_diskInputOutputService.FileExists(resizedFilePath))
             {
-                _diskInputOutputService.ImageEditor.ResizeImage(maxDimension, photoFilePath, resizedFilePath);
+                _diskInputOutputService.ResizeImage(maxDimension, photoFilePath, resizedFilePath);
             }
 
             return new WebImage
@@ -169,7 +169,7 @@ namespace Com.Prerit.Services
 
             if (!_diskInputOutputService.FileExists(thumbnailFilePath))
             {
-                _diskInputOutputService.ImageEditor.ResizeImage(MaxAlbumPortraitDimension, portraitFilePath, thumbnailFilePath);
+                _diskInputOutputService.ResizeImage(MaxAlbumPortraitDimension, portraitFilePath, thumbnailFilePath);
             }
 
             return new WebImage

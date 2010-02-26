@@ -74,8 +74,6 @@
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Core\IEnumerableExtensions.cs" />
     <Compile Include="Services\IFormsAuthenticationService.cs" />
-    <Compile Include="Services\IImageEditorService.cs" />
-    <Compile Include="Services\ImageEditorService.cs" />
     <Compile Include="Services\IRoleService.cs" />
     <Compile Include="Services\IDiskInputOutputService.cs" />
     <Compile Include="Services\ProfileService.cs" />

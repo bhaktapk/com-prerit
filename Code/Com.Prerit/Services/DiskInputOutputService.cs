@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Web.Hosting;
 using System.Xml.Serialization;
 
@@ -8,27 +12,27 @@ namespace Com.Prerit.Services
 {
     public class DiskInputOutputService : IDiskInputOutputService
     {
-        #region Properties
+        #region Methods
 
-        public IImageEditorService ImageEditor { get; private set; }
-
-        #endregion
-
-        #region Constructors
-
-        public DiskInputOutputService(IImageEditorService imageEditor)
+        private Image CreateScaledImage(Size size, Image image)
         {
-            if (imageEditor == null)
+            Image scaledImage = new Bitmap(size.Width, size.Height);
+
+            using (Graphics graphics = Graphics.FromImage(scaledImage))
             {
-                throw new ArgumentNullException("imageEditor");
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.FillRectangle(Brushes.White, 0, 0, size.Width, size.Height);
+                graphics.DrawImage(image, 0, 0, size.Width, size.Height);
             }
 
-            ImageEditor = imageEditor;
+            return scaledImage;
         }
 
-        #endregion
-
-        #region Methods
+        private void DisallowUsageOfEmbeddedThumbnail(Image image)
+        {
+            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+        }
 
         public bool FileExists(string filePath)
         {
@@ -38,6 +42,20 @@ namespace Com.Prerit.Services
         public IEnumerable<string> GetDirectories(string path)
         {
             return Directory.GetDirectories(path);
+        }
+
+        private EncoderParameters GetEncoderParams()
+        {
+            var quality = new[]
+                              {
+                                  75L
+                              };
+
+            var encoderParams = new EncoderParameters();
+
+            encoderParams.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+
+            return encoderParams;
         }
 
         public IEnumerable<string> GetFiles(string path)
@@ -55,6 +73,13 @@ namespace Com.Prerit.Services
             return Directory.GetFiles(path, searchPattern, searchOption);
         }
 
+        private ImageCodecInfo GetJpegCodecInfo()
+        {
+            return (from codecInfo in ImageCodecInfo.GetImageEncoders()
+                    where string.Compare(codecInfo.FormatDescription, "JPEG", StringComparison.OrdinalIgnoreCase) == 0
+                    select codecInfo).First();
+        }
+
         public T LoadXmlFile<T>(string filePath)
         {
             var serializer = new XmlSerializer(typeof(T));
@@ -70,6 +95,35 @@ namespace Com.Prerit.Services
             return HostingEnvironment.MapPath(virtualPath);
         }
 
+        public void ResizeImage(int maxDimension, string sourceFilePath, string destinationFilePath)
+        {
+            if (maxDimension < 0)
+            {
+                throw new ArgumentOutOfRangeException("maxDimension", maxDimension, "Cannot be less than zero");
+            }
+
+            if (sourceFilePath == null)
+            {
+                throw new ArgumentNullException("sourceFilePath");
+            }
+
+            if (destinationFilePath == null)
+            {
+                throw new ArgumentNullException("destinationFilePath");
+            }
+
+            using (Image image = Image.FromFile(sourceFilePath))
+            {
+                Size scaledSize = ScaleToMaxDimension(maxDimension, image);
+
+                DisallowUsageOfEmbeddedThumbnail(image);
+
+                Image resizedImage = CreateScaledImage(scaledSize, image);
+
+                resizedImage.Save(destinationFilePath, GetJpegCodecInfo(), GetEncoderParams());
+            }
+        }
+
         public void SaveXmlFile<T>(string filePath, T obj)
         {
             var serializer = new XmlSerializer(typeof(T));
@@ -77,6 +131,24 @@ namespace Com.Prerit.Services
             using (var writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, obj);
+            }
+        }
+
+        private Size ScaleToMaxDimension(int maxDimension, Image image)
+        {
+            bool isLandscapeImage = image.Height < image.Width;
+
+            if (isLandscapeImage)
+            {
+                float scaleFactor = (float) maxDimension / image.Height;
+
+                return new Size(Convert.ToInt32(scaleFactor * image.Width), maxDimension);
+            }
+            else
+            {
+                float scaleFactor = (float) maxDimension / image.Width;
+
+                return new Size(maxDimension, Convert.ToInt32(scaleFactor * image.Height));
             }
         }
 

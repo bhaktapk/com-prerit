@@ -5,12 +5,6 @@ namespace Com.Prerit.Services
 {
     public interface IDiskInputOutputService
     {
-        #region Properties
-
-        IImageEditorService ImageEditor { get; }
-
-        #endregion
-
         #region Methods
 
         bool FileExists(string filePath);
@@ -26,6 +20,8 @@ namespace Com.Prerit.Services
         T LoadXmlFile<T>(string filePath);
 
         string MapPath(string virtualPath);
+
+        void ResizeImage(int maxDimension, string sourceFilePath, string destinationFilePath);
 
         void SaveXmlFile<T>(string filePath, T obj);
 
