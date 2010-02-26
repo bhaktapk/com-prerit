@@ -48,6 +48,16 @@ namespace Com.Prerit.Helpers.Albums
             }
         }
 
+        public static void RenderAlbumsByYearPartial(this HtmlHelper<AlbumsByYearModel> helper)
+        {
+            if (helper == null)
+            {
+                throw new ArgumentNullException("helper");
+            }
+
+            helper.RenderPartial(MVC.Albums.Views.AlbumsByYear);
+        }
+
         #endregion
     }
 }

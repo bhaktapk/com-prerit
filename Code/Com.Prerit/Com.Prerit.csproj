@@ -317,6 +317,7 @@
     <Content Include="Views\Accounts\Unauthorized.aspx" />
     <Content Include="Views\Albums\AlbumPortrait.ascx" />
     <Content Include="Views\Albums\AlbumsByYear.ascx" />
+    <Content Include="Views\Albums\AlbumsByYear.aspx" />
     <Content Include="Views\Albums\AllAlbums.aspx" />
     <Content Include="Views\Albums\NoAlbums.aspx" />
     <Content Include="Views\OpenId\Index.aspx" />
