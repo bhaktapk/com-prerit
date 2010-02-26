@@ -11,6 +11,25 @@ namespace Com.Prerit.Helpers.Albums
     {
         #region Methods
 
+        public static void RenderAlbumPhotosPartial(this HtmlHelper<AlbumByYearAndSlugModel> helper)
+        {
+            if (helper == null)
+            {
+                throw new ArgumentNullException("helper");
+            }
+
+            for (int i = 1; i <= helper.ViewData.Model.Album.PhotoCount; i++)
+            {
+                var model = new AlbumPhotoModel
+                                {
+                                    Album = helper.ViewData.Model.Album,
+                                    PhotoItem = i
+                                };
+
+                helper.RenderPartial(MVC.Albums.Views.AlbumPhoto, model);
+            }
+        }
+
         public static void RenderAlbumPortraitPartial(this HtmlHelper<AlbumsByYearModel> helper)
         {
             if (helper == null)

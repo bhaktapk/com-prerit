@@ -55,7 +55,14 @@ namespace Com.Prerit.Controllers
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult AlbumByYearAndSlug(int year, string slug)
         {
-            return new EmptyResult();
+            Album album = _albumService.GetAlbum(year, slug);
+
+            var model = new AlbumByYearAndSlugModel
+                            {
+                                Album = album
+                            };
+
+            return View(model);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

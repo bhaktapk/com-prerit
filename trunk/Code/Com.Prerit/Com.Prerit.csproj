@@ -39,6 +39,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Models\Albums\AlbumByYearAndSlugModel.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
@@ -54,6 +55,7 @@
     <Compile Include="Infrastructure\Routing\StringOptimizer.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Infrastructure\Routing\AlbumYearConstraint.cs" />
+    <Compile Include="Models\Albums\AlbumPhotoModel.cs" />
     <Compile Include="Models\Albums\AlbumPortraitModel.cs" />
     <Compile Include="Models\Albums\AlbumsByYearModel.cs" />
     <Compile Include="Models\Albums\AllAlbumsModel.cs" />
@@ -315,6 +317,8 @@
     <Content Include="Views\Accounts\LogIn.aspx" />
     <Content Include="Views\Accounts\NotLoggedInStatus.ascx" />
     <Content Include="Views\Accounts\Unauthorized.aspx" />
+    <Content Include="Views\Albums\AlbumByYearAndSlug.aspx" />
+    <Content Include="Views\Albums\AlbumPhoto.ascx" />
     <Content Include="Views\Albums\AlbumPortrait.ascx" />
     <Content Include="Views\Albums\AlbumsByYear.ascx" />
     <Content Include="Views\Albums\AlbumsByYear.aspx" />
