@@ -13,9 +13,14 @@
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Albums.AlbumByYearAndSlug(Model.Album.Year, Model.Album.Slug))).AbsoluteUri %>" />
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="scriptContent" runat="server">
+    <script src="<%= Links.scripts.albums_js %>" type="text/javascript"></script>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
     <h1><span><%= Model.Album.Title %> (<%= Model.Album.Year %>)</span></h1>
     <div class="photos">
+        <img class="eagerload" src="<%= Url.Content(Links.content.images.processing_notifier_gif) %>" alt="Eager loading of background image" height="16" width="16" />
         <% Html.RenderAlbumPhotosPartial(); %>
     </div>
 </asp:Content>
