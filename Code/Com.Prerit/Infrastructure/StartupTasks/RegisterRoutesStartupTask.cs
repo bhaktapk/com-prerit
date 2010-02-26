@@ -119,7 +119,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                               },
                                           new
                                               {
-                                                  action = MVC.Albums.Actions.AlbumsByYearAndSlug,
+                                                  action = MVC.Albums.Actions.AlbumByYearAndSlug,
                                               },
                                           new
                                               {
