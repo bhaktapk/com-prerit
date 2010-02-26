@@ -32,8 +32,8 @@ namespace Com.Prerit.Controllers {
             return new T4MVC_ActionResult(Area, Name, Actions.AlbumsByYear);
         }
         [NonAction]
-        public System.Web.Mvc.ActionResult AlbumsByYearAndSlug() {
-            return new T4MVC_ActionResult(Area, Name, Actions.AlbumsByYearAndSlug);
+        public System.Web.Mvc.ActionResult AlbumByYearAndSlug() {
+            return new T4MVC_ActionResult(Area, Name, Actions.AlbumByYearAndSlug);
         }
         [NonAction]
         public System.Web.Mvc.ActionResult Portrait() {
@@ -55,7 +55,7 @@ namespace Com.Prerit.Controllers {
         public ActionNames Actions { get { return s_actions; } }
         public class ActionNames {
             public readonly string AlbumsByYear = "AlbumsByYear";
-            public readonly string AlbumsByYearAndSlug = "AlbumsByYearAndSlug";
+            public readonly string AlbumByYearAndSlug = "AlbumByYearAndSlug";
             public readonly string AllAlbums = "AllAlbums";
             public readonly string Portrait = "Portrait";
             public readonly string Thumbnail = "Thumbnail";
@@ -84,8 +84,8 @@ namespace Com.Prerit.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AlbumsByYearAndSlug(int year, string slug) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.AlbumsByYearAndSlug);
+        public override System.Web.Mvc.ActionResult AlbumByYearAndSlug(int year, string slug) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, Actions.AlbumByYearAndSlug);
             callInfo.RouteValues.Add("year", year);
             callInfo.RouteValues.Add("slug", slug);
             return callInfo;
