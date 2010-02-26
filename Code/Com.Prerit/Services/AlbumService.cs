@@ -16,7 +16,15 @@ namespace Com.Prerit.Services
 
         private const string AlbumPortraitFileName = "AlbumPortrait.jpg";
 
+        private const int MaxAlbumPortraitDimension = 240;
+
+        private const int MaxThumbnailDimension = 150;
+
+        private const int MaxWebOptimizedDimension = 480;
+
         private const string ThumbnailDirectoryName = "Thumbnails";
+
+        private const string WebOptimizedDirectoryName = "WebOptimized";
 
         #endregion
 
@@ -29,8 +37,6 @@ namespace Com.Prerit.Services
         private static readonly object AlbumDictionarySyncRoot = new object();
 
         private static readonly Dictionary<string, object> AlbumSyncRoots = new Dictionary<string, object>();
-
-        private const string WebOptimizedDirectoryName = "WebOptimized";
 
         #endregion
 
@@ -107,16 +113,20 @@ namespace Com.Prerit.Services
                 return null;
             }
 
-            string photoFilePath = GetValidPhotoFilePaths(album.DirectoryPath).ElementAt(photoIndex);
+            int maxDimension;
 
             string resizedFilePath;
+
+            string photoFilePath = GetValidPhotoFilePaths(album.DirectoryPath).ElementAt(photoIndex);
 
             switch (albumPhotoType)
             {
                 case AlbumPhotoType.Thumbnail:
+                    maxDimension = MaxThumbnailDimension;
                     resizedFilePath = GetAlbumPhotoThumbnailFilePath(album.DirectoryPath, photoFilePath);
                     break;
                 case AlbumPhotoType.WebOptimized:
+                    maxDimension = MaxWebOptimizedDimension;
                     resizedFilePath = GetAlbumPhotoWebOptimizedFilePath(album.DirectoryPath, photoFilePath);
                     break;
                 default:
@@ -125,13 +135,13 @@ namespace Com.Prerit.Services
 
             if (!_diskInputOutputService.FileExists(resizedFilePath))
             {
-                // TODO: create thumbnail
+                _diskInputOutputService.ImageEditor.ResizeImage(maxDimension, photoFilePath, resizedFilePath);
             }
 
             return new WebImage
-            {
-                FilePath = resizedFilePath
-            };
+                       {
+                           FilePath = resizedFilePath
+                       };
         }
 
         private string GetAlbumPhotoThumbnailFilePath(string albumDirectoryPath, string photoFilePath)
@@ -159,7 +169,7 @@ namespace Com.Prerit.Services
 
             if (!_diskInputOutputService.FileExists(thumbnailFilePath))
             {
-                // TODO: create thumbnail
+                _diskInputOutputService.ImageEditor.ResizeImage(MaxAlbumPortraitDimension, portraitFilePath, thumbnailFilePath);
             }
 
             return new WebImage

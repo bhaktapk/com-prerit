@@ -5,6 +5,12 @@ namespace Com.Prerit.Services
 {
     public interface IDiskInputOutputService
     {
+        #region Properties
+
+        IImageEditorService ImageEditor { get; }
+
+        #endregion
+
         #region Methods
 
         bool FileExists(string filePath);
