@@ -38,6 +38,10 @@ namespace Com.Prerit.Services
 
         private static readonly Dictionary<string, object> AlbumSyncRoots = new Dictionary<string, object>();
 
+        private static readonly object ImageDictionarySyncRoot = new object();
+
+        private static readonly Dictionary<string, object> ImageSyncRoots = new Dictionary<string, object>();
+
         #endregion
 
         #region Constructors
@@ -69,6 +73,33 @@ namespace Com.Prerit.Services
             AlbumSyncRoots.Add(dirPath, albumSyncRoot);
 
             return albumSyncRoot;
+        }
+
+        private object AddImageSyncRoot(string filePath)
+        {
+            var imageSyncRoot = new object();
+
+            ImageSyncRoots.Add(filePath, imageSyncRoot);
+
+            return imageSyncRoot;
+        }
+
+        private void EnsureImageExists(int maxDimension, string sourceFilePath, string destinationFilePath)
+        {
+            if (_diskInputOutputService.FileExists(destinationFilePath))
+            {
+                return;
+            }
+
+            lock (GetImageSyncRoot(destinationFilePath))
+            {
+                if (_diskInputOutputService.FileExists(destinationFilePath))
+                {
+                    return;
+                }
+
+                _diskInputOutputService.ResizeImage(maxDimension, sourceFilePath, destinationFilePath);
+            }
         }
 
         public Album GetAlbum(int year, string slug)
@@ -133,10 +164,7 @@ namespace Com.Prerit.Services
                     throw new ArgumentOutOfRangeException("albumPhotoType");
             }
 
-            if (!_diskInputOutputService.FileExists(resizedFilePath))
-            {
-                _diskInputOutputService.ResizeImage(maxDimension, photoFilePath, resizedFilePath);
-            }
+            EnsureImageExists(maxDimension, photoFilePath, resizedFilePath);
 
             return new WebImage
                        {
@@ -167,10 +195,7 @@ namespace Com.Prerit.Services
 
             string thumbnailFilePath = GetAlbumPortraitThumbnailFilePath(album.DirectoryPath);
 
-            if (!_diskInputOutputService.FileExists(thumbnailFilePath))
-            {
-                _diskInputOutputService.ResizeImage(MaxAlbumPortraitDimension, portraitFilePath, thumbnailFilePath);
-            }
+            EnsureImageExists(MaxAlbumPortraitDimension, portraitFilePath, thumbnailFilePath);
 
             return new WebImage
                        {
@@ -242,6 +267,26 @@ namespace Com.Prerit.Services
             IEnumerable<Album> albums = GetAlbums();
 
             return albums.Select(album => album.Year).Distinct();
+        }
+
+        private object GetImageSyncRoot(string filePath)
+        {
+            object imageSyncRoot;
+
+            if (ImageSyncRoots.TryGetValue(filePath, out imageSyncRoot))
+            {
+                return imageSyncRoot;
+            }
+
+            lock (ImageDictionarySyncRoot)
+            {
+                if (ImageSyncRoots.TryGetValue(filePath, out imageSyncRoot))
+                {
+                    return imageSyncRoot;
+                }
+
+                return AddImageSyncRoot(filePath);
+            }
         }
 
         private IEnumerable<string> GetValidAlbumDirPaths(IEnumerable<string> albumDirPaths)
