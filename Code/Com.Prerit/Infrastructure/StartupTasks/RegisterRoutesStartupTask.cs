@@ -138,10 +138,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                               {
                                                   controller = MVC.Albums.Name,
                                                   slug = new AlbumSlugConstraint("year", _albumService),
-                                                  action = new ListConstraint(new[]
-                                                                                  {
-                                                                                      MVC.Albums.Actions.Portrait
-                                                                                  })
+                                                  action = MVC.Albums.Actions.Portrait
                                               });
 
             RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo item",
