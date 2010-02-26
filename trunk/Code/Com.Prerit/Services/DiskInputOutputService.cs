@@ -154,15 +154,15 @@ namespace Com.Prerit.Services
 
             if (isLandscapeImage)
             {
-                float scaleFactor = (float) maxDimension / image.Height;
-
-                return new Size(Convert.ToInt32(scaleFactor * image.Width), maxDimension);
-            }
-            else
-            {
                 float scaleFactor = (float) maxDimension / image.Width;
 
                 return new Size(maxDimension, Convert.ToInt32(scaleFactor * image.Height));
+            }
+            else
+            {
+                float scaleFactor = (float) maxDimension / image.Height;
+
+                return new Size(Convert.ToInt32(scaleFactor * image.Width), maxDimension);
             }
         }
 
