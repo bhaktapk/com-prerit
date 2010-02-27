@@ -6,8 +6,6 @@ using System.Linq;
 using Com.Prerit.Core;
 using Com.Prerit.Domain;
 
-using Links;
-
 namespace Com.Prerit.Services
 {
     public class AlbumService : IAlbumService
@@ -30,6 +28,8 @@ namespace Com.Prerit.Services
 
         #region Fields
 
+        private readonly string _albumRootDirPath;
+
         private readonly ICacheService _cacheService;
 
         private readonly IDiskInputOutputService _diskInputOutputService;
@@ -46,8 +46,13 @@ namespace Com.Prerit.Services
 
         #region Constructors
 
-        public AlbumService(ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
+        public AlbumService(string albumRootDirPath, ICacheService cacheService, IDiskInputOutputService diskInputOutputService)
         {
+            if (albumRootDirPath == null)
+            {
+                throw new ArgumentNullException("albumRootDirPath");
+            }
+
             if (cacheService == null)
             {
                 throw new ArgumentNullException("cacheService");
@@ -58,6 +63,7 @@ namespace Com.Prerit.Services
                 throw new ArgumentNullException("diskInputOutputService");
             }
 
+            _albumRootDirPath = albumRootDirPath;
             _cacheService = cacheService;
             _diskInputOutputService = diskInputOutputService;
         }
@@ -321,15 +327,13 @@ namespace Com.Prerit.Services
 
         private IEnumerable<Album> LoadAlbums()
         {
-            string albumRootDirPath = _diskInputOutputService.MapPath(App_Data.Albums.Url());
-
-            IEnumerable<string> albumDirPaths = _diskInputOutputService.GetDirectories(albumRootDirPath);
+            IEnumerable<string> albumDirPaths = _diskInputOutputService.GetDirectories(_albumRootDirPath);
 
             IEnumerable<string> validAlbumDirPaths = GetValidAlbumDirPaths(albumDirPaths);
 
             IEnumerable<Album> albums = GetAlbumObjects(validAlbumDirPaths);
 
-            _cacheService.SetAlbums(albums, albumRootDirPath, albumDirPaths, validAlbumDirPaths);
+            _cacheService.SetAlbums(albums, _albumRootDirPath, albumDirPaths, validAlbumDirPaths);
 
             return albums;
         }
