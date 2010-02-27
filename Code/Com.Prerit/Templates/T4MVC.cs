@@ -191,6 +191,17 @@ namespace Links {
             public static readonly string bg_body_gif = Url("bg-body.gif");
             public static readonly string bg_header_gif = Url("bg-header.gif");
             public static readonly string bg_subheading_gif = Url("bg-subheading.gif");
+            [CompilerGenerated]
+            public static class colorbox {
+                private const string URLPATH = "~/content/images/colorbox";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string border_png = Url("border.png");
+                public static readonly string controls_png = Url("controls.png");
+                public static readonly string loading_gif = Url("loading.gif");
+                public static readonly string loading_background_png = Url("loading_background.png");
+            }
+        
             public static readonly string li_bullet_gif = Url("li-bullet.gif");
             public static readonly string logo_fullahead_gif = Url("logo-fullahead.gif");
             public static readonly string logo_greenery_gif = Url("logo-greenery.gif");
@@ -207,6 +218,14 @@ namespace Links {
             private const string URLPATH = "~/content/styles";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [CompilerGenerated]
+            public static class colorbox {
+                private const string URLPATH = "~/content/styles/colorbox";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string colorbox_css = Url("colorbox.css");
+            }
+        
             public static readonly string print_css = Url("print.css");
             [CompilerGenerated]
             public static class resume {
