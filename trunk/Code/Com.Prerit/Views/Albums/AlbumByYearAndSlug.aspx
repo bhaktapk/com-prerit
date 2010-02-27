@@ -15,7 +15,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="scriptContent" runat="server">
-    <script src="<%= scripts.albums_js %>" type="text/javascript"></script>
+    <script src="<%= scripts.albums.album_by_year_and_slug_js %>" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="mainbarContent" runat="server">
