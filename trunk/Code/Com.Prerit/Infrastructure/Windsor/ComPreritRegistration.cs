@@ -27,6 +27,7 @@ namespace Com.Prerit.Infrastructure.Windsor
                         .If(t => t.Name.EndsWith("Service"))
                         .Configure(c => c.LifeStyle.Transient)
                         .WithService.FirstInterface()
+                        .ConfigureFor<IAlbumService>(c => c.Parameters(Parameter.ForKey("albumRootDirPath").Eq(HostingEnvironment.MapPath(App_Data.Albums.Url()))))
                         .ConfigureFor<IProfileService>(c => c.Parameters(Parameter.ForKey("profilesDirectoryPath").Eq(HostingEnvironment.MapPath(App_Data.Profiles.Url()))))
                         .ConfigureFor<IRoleService>(c => c.Parameters(Parameter.ForKey("rolesDirectoryPath").Eq(HostingEnvironment.MapPath(App_Data.Roles.Url())))))
                 .Register(
