@@ -303,7 +303,8 @@
     <None Include="App_Data\Roles\RoleType.xml.template" />
     <Content Include="content\images\processing-notifier.gif" />
     <Content Include="ProductionWeb.config" />
-    <Content Include="scripts\albums.js" />
+    <Content Include="scripts\albums\album-by-year-and-slug.js" />
+    <Content Include="scripts\colorbox-min.js" />
     <Content Include="scripts\master.js" />
     <Content Include="ServiceUnavailableWeb.config" />
     <None Include="App_Data\ResumeFormats\AdobePdf.pdf" />

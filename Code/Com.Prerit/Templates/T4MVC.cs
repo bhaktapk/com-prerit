@@ -227,7 +227,15 @@ namespace Links {
         private const string URLPATH = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string albums_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/albums.min.js") ? Url("albums.min.js") : Url("albums.js");
+        [CompilerGenerated]
+        public static class albums {
+            private const string URLPATH = "~/scripts/albums";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string album_by_year_and_slug_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/album-by-year-and-slug.min.js") ? Url("album-by-year-and-slug.min.js") : Url("album-by-year-and-slug.js");
+        }
+    
+        public static readonly string colorbox_min_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/colorbox-min.min.js") ? Url("colorbox-min.min.js") : Url("colorbox-min.js");
         public static readonly string master_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/master.min.js") ? Url("master.min.js") : Url("master.js");
     }
 

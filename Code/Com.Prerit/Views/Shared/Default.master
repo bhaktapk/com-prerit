@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="<%= content.styles.screen_css %>" media="projection, screen, tv" />
     <asp:ContentPlaceHolder ID="linkContent" runat="server" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script>
+    <script src="<%= scripts.colorbox_min_js %>" type="text/javascript"></script>
     <script src="<%= scripts.master_js %>" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="scriptContent" runat="server" />
 </head>
