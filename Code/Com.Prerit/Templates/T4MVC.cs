@@ -223,7 +223,8 @@ namespace Links {
                 private const string URLPATH = "~/content/styles/colorbox";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                public static readonly string colorbox_css = Url("colorbox.css");
+                public static readonly string print_css = Url("print.css");
+                public static readonly string screen_css = Url("screen.css");
             }
         
             public static readonly string print_css = Url("print.css");

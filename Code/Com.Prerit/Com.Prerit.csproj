@@ -306,7 +306,8 @@
     <Content Include="content\images\colorbox\loading.gif" />
     <Content Include="content\images\colorbox\loading_background.png" />
     <Content Include="content\images\processing-notifier.gif" />
-    <Content Include="content\styles\colorbox\colorbox.css" />
+    <Content Include="content\styles\colorbox\print.css" />
+    <Content Include="content\styles\colorbox\screen.css" />
     <Content Include="ProductionWeb.config" />
     <Content Include="scripts\albums\album-by-year-and-slug.js" />
     <Content Include="scripts\colorbox-min.js" />
