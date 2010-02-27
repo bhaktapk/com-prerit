@@ -11,6 +11,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="linkContent" runat="server">
+    <link rel="stylesheet" type="text/css" href="<%= content.styles.colorbox.colorbox_css %>" media="screen" />
     <link rel="canonical" href="<%= new Uri(Request.Url, Url.Action(MVC.Albums.AlbumByYearAndSlug(Model.Album.Year, Model.Album.Slug))).AbsoluteUri %>" />
 </asp:Content>
 

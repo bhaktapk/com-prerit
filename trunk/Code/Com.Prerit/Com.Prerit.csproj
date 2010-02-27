@@ -301,7 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\Roles\RoleType.xml.template" />
+    <Content Include="content\images\colorbox\border.png" />
+    <Content Include="content\images\colorbox\controls.png" />
+    <Content Include="content\images\colorbox\loading.gif" />
+    <Content Include="content\images\colorbox\loading_background.png" />
     <Content Include="content\images\processing-notifier.gif" />
+    <Content Include="content\styles\colorbox\colorbox.css" />
     <Content Include="ProductionWeb.config" />
     <Content Include="scripts\albums\album-by-year-and-slug.js" />
     <Content Include="scripts\colorbox-min.js" />
