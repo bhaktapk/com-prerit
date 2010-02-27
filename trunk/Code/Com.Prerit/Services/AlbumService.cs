@@ -20,7 +20,7 @@ namespace Com.Prerit.Services
 
         private const int MaxThumbnailDimension = 150;
 
-        private const int MaxWebOptimizedDimension = 480;
+        private const int MaxWebOptimizedDimension = 640;
 
         private const string ThumbnailDirectoryName = "Thumbnails";
 
