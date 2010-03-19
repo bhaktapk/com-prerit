@@ -38,6 +38,20 @@ namespace Com.Prerit.Controllers
 
         [AcceptVerbs(HttpVerbs.Get)]
         [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
+        public virtual ActionResult AlbumByYearAndSlug(int year, string slug)
+        {
+            Album album = _albumService.GetAlbum(year, slug);
+
+            var model = new AlbumByYearAndSlugModel
+                            {
+                                Album = album
+                            };
+
+            return View(model);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
         public virtual ActionResult AlbumsByYear(int year)
         {
             IEnumerable<Album> albums = _albumService.GetAlbums(year);
@@ -46,20 +60,6 @@ namespace Com.Prerit.Controllers
                             {
                                 Albums = albums,
                                 Year = year
-                            };
-
-            return View(model);
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        [CustomAuthorize(AllowedRoleTypes = RoleType.Admin)]
-        public virtual ActionResult AlbumByYearAndSlug(int year, string slug)
-        {
-            Album album = _albumService.GetAlbum(year, slug);
-
-            var model = new AlbumByYearAndSlugModel
-                            {
-                                Album = album
                             };
 
             return View(model);

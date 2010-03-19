@@ -9,8 +9,6 @@ using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
 using Com.Prerit.Services;
 
-using Links;
-
 namespace Com.Prerit.Infrastructure.Windsor
 {
     public class ComPreritRegistration : IRegistration

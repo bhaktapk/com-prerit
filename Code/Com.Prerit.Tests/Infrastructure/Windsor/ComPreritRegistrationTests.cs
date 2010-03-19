@@ -10,7 +10,6 @@ using Castle.Windsor;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.Infrastructure.Windsor;
 using Com.Prerit.MapCreators;
-using Com.Prerit.Services;
 
 using NUnit.Framework;
 
