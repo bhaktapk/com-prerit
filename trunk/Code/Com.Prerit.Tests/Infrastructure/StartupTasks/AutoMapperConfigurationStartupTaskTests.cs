@@ -23,7 +23,10 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             var serviceLocator = new Mock<IServiceLocator>();
             var mapCreator = new Mock<IMapCreator>();
 
-            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[] { mapCreator.Object });
+            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[]
+                                                                                      {
+                                                                                          mapCreator.Object
+                                                                                      });
 
             mapCreator.Setup(mc => mc.CreateMap()).Callback(() => Mapper.CreateMap<Source, Destination>());
 

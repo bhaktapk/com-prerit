@@ -64,7 +64,10 @@ namespace Com.Prerit.Services
                 request = openIdRelyingParty.CreateRequest(Identifier.Parse("https://www.google.com/accounts/o8/id"), new Realm(realmUri), returnToUri);
             }
 
-            request.AddExtension(new ClaimsRequest { Email = DemandLevel.Require });
+            request.AddExtension(new ClaimsRequest
+                                     {
+                                         Email = DemandLevel.Require
+                                     });
 
             return request;
         }

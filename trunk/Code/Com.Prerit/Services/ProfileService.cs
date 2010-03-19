@@ -11,11 +11,11 @@ namespace Com.Prerit.Services
     {
         #region Fields
 
-        private readonly string _profilesDirectoryPath;
-
         private readonly ICacheService _cacheService;
 
         private readonly IDiskInputOutputService _diskInputOutputService;
+
+        private readonly string _profilesDirectoryPath;
 
         private static readonly object ProfileDictionarySyncRoot = new object();
 

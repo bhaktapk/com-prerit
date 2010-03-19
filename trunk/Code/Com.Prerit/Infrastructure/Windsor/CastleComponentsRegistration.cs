@@ -5,6 +5,8 @@ namespace Com.Prerit.Infrastructure.Windsor
 {
     public class CastleComponentsRegistration : IRegistration
     {
+        #region Methods
+
         public void Register(IKernel kernel)
         {
             const string assemblyName = "Castle.Components.Validator";
@@ -14,5 +16,7 @@ namespace Com.Prerit.Infrastructure.Windsor
                 AllTypes.Pick().FromAssemblyNamed(assemblyName)
                     .WithService.FirstInterface());
         }
+
+        #endregion
     }
 }

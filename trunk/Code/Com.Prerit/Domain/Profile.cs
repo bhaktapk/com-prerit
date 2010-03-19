@@ -4,9 +4,9 @@ namespace Com.Prerit.Domain
     {
         #region Properties
 
-        public string Id { get; set; }
-
         public string EmailAddress { get; set; }
+
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

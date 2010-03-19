@@ -8,6 +8,8 @@ namespace Com.Prerit.Infrastructure.Windsor
 {
     public class SystemWebRegistration : IRegistration
     {
+        #region Methods
+
         public void Register(IKernel kernel)
         {
             kernel
@@ -29,5 +31,7 @@ namespace Com.Prerit.Infrastructure.Windsor
                     .LifeStyle.PerWebRequest
                     .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Server));
         }
+
+        #endregion
     }
 }
