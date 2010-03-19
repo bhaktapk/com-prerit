@@ -73,16 +73,17 @@ namespace Com.Prerit.Filters
 
             if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                filterContext.Result =
-                    new RedirectResult(new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.LogIn(filterContext.HttpContext.Request.Url.PathAndQuery)));
+                var urlHelper = new UrlHelper(filterContext.RequestContext);
+
+                filterContext.Result = new RedirectResult(urlHelper.Action(MVC.Accounts.LogIn(filterContext.HttpContext.Request.Url.PathAndQuery)));
                 return;
             }
 
             if (!AuthorizeCore(filterContext.HttpContext))
             {
-                filterContext.Result =
-                    new RedirectResult(
-                        new UrlHelper(filterContext.RequestContext).Action(MVC.Accounts.Unauthorized(filterContext.HttpContext.Request.Url.PathAndQuery)));
+                var urlHelper = new UrlHelper(filterContext.RequestContext);
+
+                filterContext.Result = new RedirectResult(urlHelper.Action(MVC.Accounts.Unauthorized(filterContext.HttpContext.Request.Url.PathAndQuery)));
                 return;
             }
 
