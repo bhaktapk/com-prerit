@@ -20,18 +20,26 @@ namespace Com.Prerit.Controllers
 
         private readonly IEmailSenderService _emailSenderService;
 
+        private readonly IMappingEngine _mapper;
+
         #endregion
 
         #region Constructors
 
-        public ContactController(IEmailSenderService emailSenderService)
+        public ContactController(IEmailSenderService emailSenderService, IMappingEngine mapper)
         {
             if (emailSenderService == null)
             {
                 throw new ArgumentNullException("emailSenderService");
             }
 
+            if (mapper == null)
+            {
+                throw new ArgumentNullException("mapper");
+            }
+
             _emailSenderService = emailSenderService;
+            _mapper = mapper;
         }
 
         #endregion
@@ -72,7 +80,7 @@ namespace Com.Prerit.Controllers
                 return RedirectToAction(MVC.Contact.Index());
             }
 
-            Email email = Mapper.Map<IndexModel, Email>(model);
+            Email email = _mapper.Map<IndexModel, Email>(model);
 
             try
             {
@@ -85,7 +93,7 @@ namespace Com.Prerit.Controllers
                 return RedirectToAction(MVC.Contact.Index());
             }
 
-            ViewData.Model = Mapper.Map<IndexModel, EmailSentModel>(model);
+            ViewData.Model = _mapper.Map<IndexModel, EmailSentModel>(model);
 
             return RedirectToAction(MVC.Contact.EmailSent());
         }
