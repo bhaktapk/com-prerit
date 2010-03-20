@@ -39,6 +39,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Infrastructure\Windsor\AutoMapperRegistration.cs" />
     <Compile Include="Models\Albums\AlbumByYearAndSlugModel.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ContactController.cs">
