@@ -13,8 +13,8 @@ namespace Com.Prerit.Infrastructure.Windsor
 
             kernel
                 .Register(
-                AllTypes.Pick().FromAssemblyNamed(assemblyName)
-                    .WithService.FirstInterface());
+                    AllTypes.Pick().FromAssemblyNamed(assemblyName)
+                        .WithService.FirstInterface());
         }
 
         #endregion
