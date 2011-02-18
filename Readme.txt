@@ -6,6 +6,7 @@ REQUIREMENTS
 Build Server
 ------------
 
+ASP.NET MVC 1.0
 CruiseControl.NET (1.5)
   * configured using BuildScripts\CCNet.config
   * dashboard deployed to ccnet.localhost
@@ -33,6 +34,7 @@ ccnet.prerit.com / www.ccnet.prerit.com
 Development Machine
 -------------------
 
+ASP.NET MVC 1.0
 TortoiseSVN (1.6)
 Visual Studio 2008 SP1 (C#)
 Web Deployment Project 2008
