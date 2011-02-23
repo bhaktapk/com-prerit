@@ -11,6 +11,7 @@ CruiseControl.NET (1.5)
   * configured using BuildScripts\CCNet.config
   * dashboard deployed to ccnet.localhost
   * managed pipeline mode set to classic
+IIS URL Rewrite Module 2.0
 Microsoft .NET Framework 3.5 SP1 Runtime
 SVN Command Line Client (1.6)
 Web Deployment Project 2008
@@ -35,6 +36,7 @@ Development Machine
 -------------------
 
 ASP.NET MVC 1.0
+IIS URL Rewrite Module 2.0
 TortoiseSVN (1.6)
 Visual Studio 2008 SP1 (C#)
 Web Deployment Project 2008
