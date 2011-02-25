@@ -13,6 +13,7 @@ CruiseControl.NET (1.5)
   * managed pipeline mode set to classic
 IIS URL Rewrite Module 2.0
 Microsoft .NET Framework 3.5 SP1 Runtime
+smtp4dev
 SVN Command Line Client (1.6)
 Web Deployment Project 2008
 Windows SDK for Windows Server 2008 and .NET Framework 3.5
@@ -37,6 +38,7 @@ Development Machine
 
 ASP.NET MVC 1.0
 IIS URL Rewrite Module 2.0
+smtp4dev
 TortoiseSVN (1.6)
 Visual Studio 2008 SP1 (C#)
 Web Deployment Project 2008
