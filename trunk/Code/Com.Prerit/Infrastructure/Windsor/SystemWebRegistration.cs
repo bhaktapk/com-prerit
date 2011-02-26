@@ -1,17 +1,20 @@
 ﻿using System.Web;
 using System.Web.Caching;
 
+using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class SystemWebRegistration : IRegistration
+    public class SystemWebRegistration : RegistrationBase, IRegistration
     {
         #region Methods
 
         public void Register(IKernel kernel)
         {
+            AddFacility<FactorySupportFacility>(kernel);
+
             kernel
                 .Register(Component.For<Cache>()
                     .UsingFactoryMethod(() => HttpRuntime.Cache))

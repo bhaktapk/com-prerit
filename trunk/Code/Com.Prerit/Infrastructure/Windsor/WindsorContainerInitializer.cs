@@ -15,7 +15,6 @@ namespace Com.Prerit.Infrastructure.Windsor
             var container = new WindsorContainer();
 
             container
-                .AddFacility<FactorySupportFacility>()
                 .Register(
                     AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
 

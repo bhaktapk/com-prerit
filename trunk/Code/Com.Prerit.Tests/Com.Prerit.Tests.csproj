@@ -38,6 +38,7 @@
     <Compile Include="Domain\EmailTests.cs" />
     <Compile Include="Infrastructure\HttpModules\CustomErrorsHelperModuleTests.cs" />
     <Compile Include="Infrastructure\HttpModules\ServiceUnavailableModuleTests.cs" />
+    <Compile Include="Infrastructure\Windsor\AutoMapperRegistrationTests.cs" />
     <Compile Include="MapCreators\IndexModelToEmailMapCreatorTests.cs" />
     <Compile Include="MapCreators\IndexModelToEmailSentModelMapCreatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

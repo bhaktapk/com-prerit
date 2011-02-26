@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Mappers;
 
 using Com.Prerit.MapCreators;
 
@@ -15,13 +16,26 @@ namespace Com.Prerit.Tests.MapCreators
         public void Should_Create_Map()
         {
             // arrange
-            Mapper.Reset();
+            var configuration = new Configuration(MapperRegistry.AllMappers());
 
             // act
-            new IndexModelToEmailSentModelMapCreator().CreateMap();
+            new IndexModelToEmailSentModelMapCreator().CreateMap(configuration);
 
             // assert
-            Mapper.AssertConfigurationIsValid();
+            Assert.That(configuration.GetAllTypeMaps(), Is.Not.Null & Has.Length.EqualTo(1));
+        }
+
+        [Test]
+        public void Should_Create_Valid_Map()
+        {
+            // arrange
+            var configuration = new Configuration(MapperRegistry.AllMappers());
+
+            // act
+            new IndexModelToEmailSentModelMapCreator().CreateMap(configuration);
+
+            // assert
+            configuration.AssertConfigurationIsValid();
         }
 
         #endregion
