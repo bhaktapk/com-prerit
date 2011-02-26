@@ -1,10 +1,12 @@
-﻿namespace Com.Prerit.MapCreators
+﻿using AutoMapper;
+
+namespace Com.Prerit.MapCreators
 {
     public interface IMapCreator
     {
         #region Methods
 
-        void CreateMap();
+        void CreateMap(IProfileExpression profileExpression);
 
         #endregion
     }

@@ -9,9 +9,9 @@ namespace Com.Prerit.MapCreators
     {
         #region Methods
 
-        public void CreateMap()
+        public void CreateMap(IProfileExpression profileExpression)
         {
-            Mapper.CreateMap<IndexModel, Email>()
+            profileExpression.CreateMap<IndexModel, Email>()
                 .ForMember(d => d.FromEmailAddress, opt => opt.MapFrom(s => s.EmailAddress))
                 .ForMember(d => d.ToEmailAddress, opt => opt.MapFrom(s => "prerit.bhakta@gmail.com"))
                 .ForMember(d => d.Subject, opt => opt.MapFrom(s => string.Format("prerit.com user, '{0}', is contacting you", s.Name)));

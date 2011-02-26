@@ -3,8 +3,6 @@
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
 
-using Microsoft.Practices.ServiceLocation;
-
 using Moq;
 
 using NUnit.Framework;
@@ -20,82 +18,38 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         public void Should_Assert_Configuration_Is_Valid()
         {
             // arrange
-            var serviceLocator = new Mock<IServiceLocator>();
-            var mapCreator = new Mock<IMapCreator>();
-
-            serviceLocator.Setup(sl => sl.GetAllInstances<IMapCreator>()).Returns(new[]
-                                                                                      {
-                                                                                          mapCreator.Object
-                                                                                      });
-
-            mapCreator.Setup(mc => mc.CreateMap()).Callback(() => Mapper.CreateMap<Source, Destination>());
-
-            ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
-
-            Mapper.Reset();
+            var configurationProvider = new Mock<IConfigurationProvider>();
+            var profileExpression = new Mock<IProfileExpression>();
+            var mapCreators = new IMapCreator[] { };
 
             // act
-            TestDelegate act = () => new AutoMapperConfigurationStartupTask().Execute();
+            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, mapCreators).Execute();
 
             // assert
-            Assert.That(act, Throws.InstanceOf<AutoMapperConfigurationException>());
+            configurationProvider.Verify(configProvider => configProvider.AssertConfigurationIsValid());
+        }
+
+        [Test]
+        public void Should_Create_Maps_Via_Map_Creators()
+        {
+            // arrange
+            var configurationProvider = new Mock<IConfigurationProvider>();
+            var profileExpression = new Mock<IProfileExpression>();
+            var mapCreator1 = new Mock<IMapCreator>();
+            var mapCreator2 = new Mock<IMapCreator>();
+
+            // act
+            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, new[] { mapCreator1.Object, mapCreator2.Object }).Execute();
+
+            // assert
+            mapCreator1.Verify(creator => creator.CreateMap(profileExpression.Object));
+            mapCreator2.Verify(creator => creator.CreateMap(profileExpression.Object));
         }
 
         [Test]
         public void Should_Reset_Mapper()
         {
-            // arrange
-            Mapper.CreateMap<Source, Destination>();
-
-            // act
-            new AutoMapperConfigurationStartupTask().Reset();
-
-            // assert
-            Assert.That(Mapper.GetAllTypeMaps(), Is.Empty);
-        }
-
-        #endregion
-
-        #region Nested Type: Destination
-
-        private class Destination
-        {
-            #region Properties
-
-            public int PropertyB { private get; set; }
-
-            #endregion
-
-            #region Constructors
-
-            public Destination(int propertyB)
-            {
-                PropertyB = propertyB;
-            }
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Nested Type: Source
-
-        private class Source
-        {
-            #region Properties
-
-            public int PropertyA { private get; set; }
-
-            #endregion
-
-            #region Constructors
-
-            public Source(int propertyA)
-            {
-                PropertyA = propertyA;
-            }
-
-            #endregion
+            //NOTE: there isn't a need to reset the maps because IConfigurationProvider and IProfileExpression should be new instances on subsequent calls to Execute
         }
 
         #endregion

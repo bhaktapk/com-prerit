@@ -3,7 +3,7 @@ using Castle.MicroKernel.Registration;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class CastleComponentsRegistration : IRegistration
+    public class CastleComponentsRegistration : RegistrationBase, IRegistration
     {
         #region Methods
 

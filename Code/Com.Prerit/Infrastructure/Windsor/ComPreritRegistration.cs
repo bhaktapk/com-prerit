@@ -11,7 +11,7 @@ using Com.Prerit.Services;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class ComPreritRegistration : IRegistration
+    public class ComPreritRegistration : RegistrationBase, IRegistration
     {
         #region Methods
 

@@ -8,9 +8,9 @@ namespace Com.Prerit.MapCreators
     {
         #region Methods
 
-        public void CreateMap()
+        public void CreateMap(IProfileExpression profileExpression)
         {
-            Mapper.CreateMap<IndexModel, EmailSentModel>();
+            profileExpression.CreateMap<IndexModel, EmailSentModel>();
         }
 
         #endregion
