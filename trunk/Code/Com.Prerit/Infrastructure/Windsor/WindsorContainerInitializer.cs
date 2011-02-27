@@ -1,6 +1,5 @@
 using System.Reflection;
 
-using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
