@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
+using Com.Prerit.Infrastructure.HttpApplications;
 using Com.Prerit.Infrastructure.Routing;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
@@ -17,7 +18,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
         public void Register(IKernel kernel)
         {
-            const string assemblyName = "Com.Prerit";
+            string assemblyName = typeof(MvcApplication).Assembly.FullName;
 
             kernel
                 .Register(
