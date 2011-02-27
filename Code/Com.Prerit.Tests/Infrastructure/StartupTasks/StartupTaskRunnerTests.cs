@@ -54,10 +54,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             var container = new Mock<IWindsorContainer>();
             var startupTask = new Mock<IStartupTask>();
 
-            container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new[]
-                                                                                 {
-                                                                                     startupTask.Object, startupTask.Object
-                                                                                 });
+            container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new[] { startupTask.Object, startupTask.Object });
 
             // act
             StartupTaskRunner.Run(container.Object);
@@ -71,10 +68,6 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         {
             // arrange
             var serviceLocator = new Mock<IServiceLocator>();
-
-            serviceLocator.Setup(sl => sl.GetAllInstances<IStartupTask>()).Returns(new IStartupTask[]
-                                                                                       {
-                                                                                       });
 
             ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
 
@@ -90,10 +83,6 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         {
             // arrange
             var serviceLocator = new Mock<IServiceLocator>();
-
-            serviceLocator.Setup(sl => sl.GetAllInstances<IStartupTask>()).Returns(new IStartupTask[]
-                                                                                       {
-                                                                                       });
 
             ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
 
@@ -111,10 +100,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             var serviceLocator = new Mock<IServiceLocator>();
             var startupTask = new Mock<IStartupTask>();
 
-            serviceLocator.Setup(sl => sl.GetAllInstances<IStartupTask>()).Returns(new[]
-                                                                                       {
-                                                                                           startupTask.Object, startupTask.Object
-                                                                                       });
+            serviceLocator.Setup(sl => sl.GetAllInstances<IStartupTask>()).Returns(new[] { startupTask.Object, startupTask.Object });
 
             ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
 
