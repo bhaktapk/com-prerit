@@ -39,7 +39,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Is.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Is.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Is.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -137,7 +137,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Is.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
             Assert.That(handlers, Has.All.Matches((IHandler h) => h.ComponentModel.LifestyleType == LifestyleType.Transient));
         }
 

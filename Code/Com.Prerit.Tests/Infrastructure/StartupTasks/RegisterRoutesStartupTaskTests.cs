@@ -27,7 +27,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             new RegisterRoutesStartupTask(albumService.Object).Execute();
 
             // assert
-            Assert.That(RouteTable.Routes, Is.Not.Empty);
+            Assert.That(RouteTable.Routes, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
