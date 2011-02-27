@@ -1,3 +1,4 @@
+using Castle.Components.Validator;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 
@@ -9,7 +10,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
         public void Register(IKernel kernel)
         {
-            const string assemblyName = "Castle.Components.Validator";
+            string assemblyName = typeof(IValidatorRunner).Assembly.FullName;
 
             kernel
                 .Register(
