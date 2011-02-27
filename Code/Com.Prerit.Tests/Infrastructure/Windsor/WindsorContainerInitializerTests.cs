@@ -15,9 +15,14 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         [Test]
         public void Should_Initialize_Windsor_Container()
         {
-            IWindsorContainer container = WindsorContainerInitializer.Init();
+            //arrange
+            IWindsorContainer container;
 
-            Assert.That(container.ResolveAll<IRegistration>(), Is.Not.Empty);
+            //act
+            container = WindsorContainerInitializer.Init();
+
+            //assert
+            Assert.That(container.ResolveAll<IRegistration>(), Is.Not.Null.And.Not.Empty);
         }
 
         #endregion
