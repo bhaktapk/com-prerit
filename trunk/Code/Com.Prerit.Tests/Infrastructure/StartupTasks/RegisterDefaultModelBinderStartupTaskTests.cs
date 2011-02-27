@@ -5,8 +5,6 @@ using Castle.Components.Validator;
 using Com.Prerit.Infrastructure.ModelBinders;
 using Com.Prerit.Infrastructure.StartupTasks;
 
-using Microsoft.Practices.ServiceLocation;
-
 using Moq;
 
 using NUnit.Framework;
@@ -22,10 +20,13 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         public void Should_Reset_Binder()
         {
             // arrange
+            var runner = new Mock<IValidatorRunner>();
+            var simpleValidatingModelBinder = new Mock<SimpleValidatingModelBinder>(runner.Object);
+
             ModelBinders.Binders.DefaultBinder = null;
 
             // act
-            new RegisterDefaultModelBinderStartupTask().Reset();
+            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder.Object).Reset();
 
             // assert
             Assert.That(ModelBinders.Binders.DefaultBinder, Is.InstanceOf<DefaultModelBinder>());
@@ -35,18 +36,13 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         public void Should_Set_Default_Binder()
         {
             // arrange
-            var serviceLocator = new Mock<IServiceLocator>();
             var runner = new Mock<IValidatorRunner>();
             var simpleValidatingModelBinder = new Mock<SimpleValidatingModelBinder>(runner.Object);
 
-            serviceLocator.Setup(sl => sl.GetInstance<SimpleValidatingModelBinder>()).Returns(simpleValidatingModelBinder.Object);
-
             ModelBinders.Binders.DefaultBinder = new DefaultModelBinder();
 
-            ServiceLocator.SetLocatorProvider(() => serviceLocator.Object);
-
             // act
-            new RegisterDefaultModelBinderStartupTask().Execute();
+            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder.Object).Execute();
 
             // assert
             Assert.That(ModelBinders.Binders.DefaultBinder, Is.InstanceOf<SimpleValidatingModelBinder>());
