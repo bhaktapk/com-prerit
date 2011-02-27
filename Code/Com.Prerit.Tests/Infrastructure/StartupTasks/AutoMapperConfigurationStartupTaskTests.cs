@@ -35,15 +35,13 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             // arrange
             var configurationProvider = new Mock<IConfigurationProvider>();
             var profileExpression = new Mock<IProfileExpression>();
-            var mapCreator1 = new Mock<IMapCreator>();
-            var mapCreator2 = new Mock<IMapCreator>();
+            var mapCreator = new Mock<IMapCreator>();
 
             // act
-            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, new[] { mapCreator1.Object, mapCreator2.Object }).Execute();
+            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, new[] { mapCreator.Object, mapCreator.Object }).Execute();
 
             // assert
-            mapCreator1.Verify(creator => creator.CreateMap(profileExpression.Object));
-            mapCreator2.Verify(creator => creator.CreateMap(profileExpression.Object));
+            mapCreator.Verify(creator => creator.CreateMap(profileExpression.Object), Times.Exactly(2));
         }
 
         [Test]
