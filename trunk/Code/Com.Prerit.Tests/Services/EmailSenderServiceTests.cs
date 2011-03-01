@@ -31,9 +31,14 @@ namespace Com.Prerit.Tests.Services
         [Test]
         public void Should_Fail_To_Send_Email_Because_Email_Is_Invalid()
         {
+            // arrange
             var email = new Email();
 
-            Assert.That(() => _emailSenderService.Send(email), Throws.InstanceOf<ValidationException>());
+            // act
+            TestDelegate act = () => _emailSenderService.Send(email);
+
+            // assert
+            Assert.That(act, Throws.InstanceOf<ValidationException>());
         }
 
         #endregion
