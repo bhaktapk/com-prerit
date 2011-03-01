@@ -19,17 +19,25 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         private readonly IAlbumService _albumService;
 
+        private readonly RouteCollection _routes;
+
         #endregion
 
         #region Constructors
 
-        public RegisterRoutesStartupTask(IAlbumService albumService)
+        public RegisterRoutesStartupTask(RouteCollection routes, IAlbumService albumService)
         {
+            if (routes == null)
+            {
+                throw new ArgumentNullException("routes");
+            }
+
             if (albumService == null)
             {
                 throw new ArgumentNullException("albumService");
             }
 
+            _routes = routes;
             _albumService = albumService;
         }
 
@@ -39,13 +47,13 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public void Execute()
         {
-            RouteTable.Routes.IgnoreRoute("errors/{*pathInfo}");
+            _routes.IgnoreRoute("errors/{*pathInfo}");
 
-            RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            _routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // NOTE: lack of default controller forces ASP.NET MVC to generate full url instead of just "/"
             // NOTE: default controller is handled via IIS's Url Rewriting module
-            RouteTable.Routes.MapSeoRoute("root routes with default action",
+            _routes.MapSeoRoute("root routes with default action",
                                           "{controller}/{action}",
                                           new[]
                                               {
@@ -63,7 +71,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                       })
                                               });
 
-            RouteTable.Routes.MapSeoRoute("account routes",
+            _routes.MapSeoRoute("account routes",
                                           "{controller}/{action}",
                                           new[]
                                               {
@@ -80,7 +88,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                   })
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album routes with all albums",
+            _routes.MapSeoRoute("album routes with all albums",
                                           "{controller}",
                                           new[]
                                               {
@@ -95,7 +103,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   controller = MVC.Albums.Name
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album routes by year",
+            _routes.MapSeoRoute("album routes by year",
                                           "{controller}/{year}",
                                           new[]
                                               {
@@ -111,7 +119,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   year = new AlbumYearConstraint(_albumService)
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album routes by year and slug",
+            _routes.MapSeoRoute("album routes by year and slug",
                                           "{controller}/{year}/{slug}",
                                           new[]
                                               {
@@ -127,7 +135,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   slug = new AlbumSlugConstraint("year", _albumService)
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album photo routes by year and slug",
+            _routes.MapSeoRoute("album photo routes by year and slug",
                                           "{controller}/{year}/{slug}/{action}",
                                           new[]
                                               {
@@ -141,7 +149,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                   action = MVC.Albums.Actions.Portrait
                                               });
 
-            RouteTable.Routes.MapSeoRoute("album photo routes by year, slug and photo item",
+            _routes.MapSeoRoute("album photo routes by year, slug and photo item",
                                           "{controller}/{year}/{slug}/photos/{photoItem}/types/{action}",
                                           new[]
                                               {
@@ -158,7 +166,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                                                                                   })
                                               });
 
-            RouteTable.Routes.MapSeoRoute("resume format routes",
+            _routes.MapSeoRoute("resume format routes",
                                           "resume/formats/{action}",
                                           new[]
                                               {
@@ -172,7 +180,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public void Reset()
         {
-            RouteTable.Routes.Clear();
+            _routes.Clear();
         }
 
         #endregion
