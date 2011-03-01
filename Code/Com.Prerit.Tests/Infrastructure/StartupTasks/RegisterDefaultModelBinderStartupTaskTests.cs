@@ -21,12 +21,12 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         {
             // arrange
             var runner = new Mock<IValidatorRunner>();
-            var simpleValidatingModelBinder = new Mock<SimpleValidatingModelBinder>(runner.Object);
+            var simpleValidatingModelBinder = new SimpleValidatingModelBinder(runner.Object);
 
             ModelBinders.Binders.DefaultBinder = null;
 
             // act
-            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder.Object).Reset();
+            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder).Reset();
 
             // assert
             Assert.That(ModelBinders.Binders.DefaultBinder, Is.InstanceOf<DefaultModelBinder>());
@@ -37,12 +37,12 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         {
             // arrange
             var runner = new Mock<IValidatorRunner>();
-            var simpleValidatingModelBinder = new Mock<SimpleValidatingModelBinder>(runner.Object);
+            var simpleValidatingModelBinder = new SimpleValidatingModelBinder(runner.Object);
 
             ModelBinders.Binders.DefaultBinder = new DefaultModelBinder();
 
             // act
-            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder.Object).Execute();
+            new RegisterDefaultModelBinderStartupTask(simpleValidatingModelBinder).Execute();
 
             // assert
             Assert.That(ModelBinders.Binders.DefaultBinder, Is.InstanceOf<SimpleValidatingModelBinder>());
