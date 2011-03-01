@@ -21,13 +21,13 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             // arrange
             var albumService = new Mock<IAlbumService>();
 
-            RouteTable.Routes.Clear();
+            var routes = new RouteCollection();
 
             // act
-            new RegisterRoutesStartupTask(albumService.Object).Execute();
+            new RegisterRoutesStartupTask(routes, albumService.Object).Execute();
 
             // assert
-            Assert.That(RouteTable.Routes, Is.Not.Null.And.Not.Empty);
+            Assert.That(routes, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -36,13 +36,15 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             // arrange
             var albumService = new Mock<IAlbumService>();
 
-            RouteTable.Routes.MapRoute("", "");
+            var routes = new RouteCollection();
+
+            routes.MapRoute("", "");
 
             // act
-            new RegisterRoutesStartupTask(albumService.Object).Reset();
+            new RegisterRoutesStartupTask(routes, albumService.Object).Reset();
 
             // assert
-            Assert.That(RouteTable.Routes, Is.Empty);
+            Assert.That(routes, Is.Not.Null.And.Not.Empty);
         }
 
         #endregion

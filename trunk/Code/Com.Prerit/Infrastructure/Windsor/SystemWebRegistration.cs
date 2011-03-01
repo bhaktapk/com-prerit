@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Caching;
+using System.Web.Routing;
 
 using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel;
@@ -32,7 +33,9 @@ namespace Com.Prerit.Infrastructure.Windsor
                     .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Session))
                 .Register(Component.For<HttpServerUtilityBase>()
                     .LifeStyle.PerWebRequest
-                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Server));
+                    .UsingFactoryMethod(k => k.Resolve<HttpContextBase>().Server))
+                .Register(Component.For<RouteCollection>()
+                    .UsingFactoryMethod(() => RouteTable.Routes));
         }
 
         #endregion
