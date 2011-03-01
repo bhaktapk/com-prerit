@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -71,13 +70,19 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             var container = new WindsorContainer();
             var handlers = new List<IHandler>();
 
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) => handlers.Add(handler);
+            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
+                                                      {
+                                                          if (handler.Service.Name.EndsWith("Service"))
+                                                          {
+                                                              handlers.Add(handler);
+                                                          }
+                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Has.Some.Matches((IHandler h) => h.ComponentModel.Implementation.Name.EndsWith("Service")));
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -87,13 +92,20 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             var container = new WindsorContainer();
             var handlers = new List<IHandler>();
 
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) => handlers.Add(handler);
+            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
+                                                      {
+                                                          if (handler.Service.Name.EndsWith("Service") &&
+                                                              handler.ComponentModel.Implementation.GetInterfaces().Contains(handler.Service))
+                                                          {
+                                                              handlers.Add(handler);
+                                                          }
+                                                      };
 
             // act
-            new CastleComponentsRegistration().Register(container.Kernel);
+            new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Has.Some.Matches((IHandler h) => h.ComponentModel.Implementation.GetInterfaces().Contains(h.Service)));
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
@@ -127,7 +139,8 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.GetInterfaces().Contains(typeof(IController)))
+                                                          if (handler.Service.GetInterfaces().Contains(typeof(IController)) &&
+                                                              handler.ComponentModel.LifestyleType == LifestyleType.Transient)
                                                           {
                                                               handlers.Add(handler);
                                                           }
@@ -138,7 +151,6 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
-            Assert.That(handlers, Has.All.Matches((IHandler h) => h.ComponentModel.LifestyleType == LifestyleType.Transient));
         }
 
         [Test]
@@ -150,9 +162,8 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          Type[] interfaces = handler.Service.GetInterfaces();
-
-                                                          if (interfaces.Length > 0 && interfaces[0].Name.EndsWith("Service"))
+                                                          if (handler.Service.Name.EndsWith("Service") &&
+                                                              handler.ComponentModel.LifestyleType == LifestyleType.Transient)
                                                           {
                                                               handlers.Add(handler);
                                                           }
@@ -162,7 +173,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             // assert
-            Assert.That(handlers, Has.All.Matches((IHandler h) => h.ComponentModel.LifestyleType == LifestyleType.Transient));
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         #endregion
