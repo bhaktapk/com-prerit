@@ -14,88 +14,136 @@ namespace Com.Prerit.Tests.Core
         [Test]
         public void Should_Be_Equal_To_Itself_When_ToStringed()
         {
-            var a = new HelperStringEnum("a");
+            // arrange
+            var a1 = new HelperStringEnum("a");
 
-            Assert.That(a.ToString(), Is.EqualTo(a.Value));
+            // act
+            string a2 = a1.ToString();
+
+            // assert
+            Assert.That(a2, Is.EqualTo(a1.Value));
         }
 
         [Test]
         public void Should_Be_Equal_When_Casted_To_Object()
         {
-            var a1 = new HelperStringEnum("a");
+            // arrange
+            object a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
 
-            Assert.That(((Object) a1).Equals(a2), Is.True);
+            // act
+            bool isEquatable = a1.Equals(a2);
+
+            // assert
+            Assert.That(isEquatable, Is.True);
         }
 
         [Test]
         public void Should_Be_Equal_When_Compared()
         {
+            // arrange
             var a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
 
-            Assert.That(a1.CompareTo(a2), Is.EqualTo(0));
+            // act
+            int comparisonResult = a1.CompareTo(a2);
+
+            // assert
+            Assert.That(comparisonResult, Is.EqualTo(0));
         }
 
         [Test]
         public void Should_Be_Equal_When_Hashed()
         {
+            // arrange
             var a1 = new HelperStringEnum("a");
             var a2 = new HelperStringEnum("a");
 
-            Assert.That(a1.GetHashCode(), Is.EqualTo(a2.GetHashCode()));
+            // act
+            int hashCode = a1.GetHashCode();
+
+            // assert
+            Assert.That(hashCode, Is.EqualTo(a2.GetHashCode()));
         }
 
         [Test]
         public void Should_Be_Greater_Than_When_Compared_To_Null()
         {
+            // arrange
             var a = new HelperStringEnum("a");
 
-            Assert.That(a.CompareTo(null), Is.GreaterThan(0));
+            // act
+            int comparisonResult = a.CompareTo(null);
+
+            // assert
+            Assert.That(comparisonResult, Is.GreaterThan(0));
         }
 
         [Test]
         public void Should_Be_Greater_When_Compared()
         {
+            // arrange
             var a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
 
-            Assert.That(b.CompareTo(a), Is.GreaterThan(0));
+            // act
+            int comparisonResult = b.CompareTo(a);
+
+            // assert
+            Assert.That(comparisonResult, Is.GreaterThan(0));
         }
 
         [Test]
         public void Should_Be_Less_Than_When_Compared()
         {
+            // arrange
             var a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
 
-            Assert.That(a.CompareTo(b), Is.LessThan(0));
+            // act
+            int comparisonResult = a.CompareTo(b);
+
+            // assert
+            Assert.That(comparisonResult, Is.LessThan(0));
         }
 
         [Test]
         public void Should_Fail_When_Constructed_With_Null_Value()
         {
-            TestDelegate code = () => new HelperStringEnum(null);
+            // arrange
 
-            Assert.That(code, Throws.InstanceOf<ArgumentNullException>());
+            // act
+            TestDelegate act = () => new HelperStringEnum(null);
+
+            // assert
+            Assert.That(act, Throws.InstanceOf<ArgumentNullException>());
         }
 
         [Test]
         public void Should_Not_Be_Equal_When_Casted_To_Object()
         {
-            var a = new HelperStringEnum("a");
+            // arrange
+            object a = new HelperStringEnum("a");
             var b = new HelperStringEnum("b");
 
-            Assert.That(((Object) a).Equals(b), Is.False);
+            // act
+            bool isEquatable = a.Equals(b);
+
+            // assert
+            Assert.That(isEquatable, Is.False);
         }
 
         [Test]
         public void Should_Not_Be_Equal_When_Casted_To_Object_And_Tested_With_Null()
         {
-            var a = new HelperStringEnum("a");
+            object a = new HelperStringEnum("a");
             var b = (HelperStringEnum) null;
 
-            Assert.That(((Object) a).Equals(b), Is.False);
+            // act
+            bool isEquatable = a.Equals(b);
+
+            // assert
+            Assert.That(isEquatable, Is.False);
         }
 
         #endregion
