@@ -60,10 +60,11 @@ namespace Com.Prerit.Tests.Core
             var a2 = new HelperStringEnum("a");
 
             // act
-            int hashCode = a1.GetHashCode();
+            int hashCode1 = a1.GetHashCode();
+            int hashCode2 = a2.GetHashCode();
 
             // assert
-            Assert.That(hashCode, Is.EqualTo(a2.GetHashCode()));
+            Assert.That(hashCode1, Is.EqualTo(hashCode2));
         }
 
         [Test]
@@ -91,6 +92,19 @@ namespace Com.Prerit.Tests.Core
 
             // assert
             Assert.That(comparisonResult, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void Should_Be_Implicitly_Convertible_To_A_String()
+        {
+            // arrange
+            var a1 = new HelperStringEnum("a");
+
+            // act
+            var a2 = (string) a1;
+
+            // assert
+            Assert.That(a2, Is.EqualTo(a1.Value));
         }
 
         [Test]
