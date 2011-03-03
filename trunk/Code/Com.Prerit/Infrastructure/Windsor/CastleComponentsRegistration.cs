@@ -6,16 +6,25 @@ namespace Com.Prerit.Infrastructure.Windsor
 {
     public class CastleComponentsRegistration : RegistrationBase, IRegistration
     {
+        #region Fields
+
+        private readonly string _assemblyName = typeof(IValidatorRunner).Assembly.FullName;
+
+        #endregion
+
         #region Methods
 
         public void Register(IKernel kernel)
         {
-            string assemblyName = typeof(IValidatorRunner).Assembly.FullName;
+            RegisterServices(kernel);
+        }
 
-            kernel
-                .Register(
-                    AllTypes.Pick().FromAssemblyNamed(assemblyName)
-                        .WithService.FirstInterface());
+        private void RegisterServices(IKernel kernel)
+        {
+            kernel.Register(
+                AllTypes.Pick().FromAssemblyNamed(_assemblyName)
+                    .WithService.FirstInterface()
+            );
         }
 
         #endregion
