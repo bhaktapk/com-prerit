@@ -18,48 +18,72 @@ namespace Com.Prerit.Tests.Domain
         [Test]
         public void Should_Contain_ValidateEmailAttribute_On_FromEmailAddress_Property()
         {
-            object[] attributes = GetAttributes(e => e.FromEmailAddress, typeof(ValidateEmailAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateEmailAttribute>(e => e.FromEmailAddress);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
         [Test]
         public void Should_Contain_ValidateEmailAttribute_On_ToEmailAddress_Property()
         {
-            object[] attributes = GetAttributes(e => e.ToEmailAddress, typeof(ValidateEmailAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateEmailAttribute>(e => e.ToEmailAddress);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
         [Test]
         public void Should_Contain_ValidateNonEmptyAttribute_On_FromEmailAddress_Property()
         {
-            object[] attributes = GetAttributes(e => e.FromEmailAddress, typeof(ValidateNonEmptyAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateNonEmptyAttribute>(e => e.FromEmailAddress);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
         [Test]
         public void Should_Contain_ValidateNonEmptyAttribute_On_Message_Property()
         {
-            object[] attributes = GetAttributes(e => e.Message, typeof(ValidateNonEmptyAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateNonEmptyAttribute>(e => e.Message);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
         [Test]
         public void Should_Contain_ValidateNonEmptyAttribute_On_Subject_Property()
         {
-            object[] attributes = GetAttributes(e => e.Subject, typeof(ValidateNonEmptyAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateNonEmptyAttribute>(e => e.Subject);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
         [Test]
         public void Should_Contain_ValidateNonEmptyAttribute_On_ToEmailAddress_Property()
         {
-            object[] attributes = GetAttributes(e => e.ToEmailAddress, typeof(ValidateNonEmptyAttribute));
+            // arrange
+            object[] attributes = GetAttributes<ValidateNonEmptyAttribute>(e => e.ToEmailAddress);
 
+            // act
+
+            // assert
             Assert.That(attributes.Length, Is.EqualTo(1));
         }
 
@@ -67,9 +91,9 @@ namespace Com.Prerit.Tests.Domain
 
         #region Methods
 
-        private object[] GetAttributes(Expression<Func<Email, object>> member, Type attributeType)
+        private object[] GetAttributes<T>(Expression<Func<Email, object>> member)
         {
-            return Reflect<Email>.GetProperty(member).GetCustomAttributes(attributeType, false);
+            return Reflect<Email>.GetProperty(member).GetCustomAttributes(typeof(T), false);
         }
 
         #endregion
