@@ -15,13 +15,26 @@ namespace Com.Prerit.Infrastructure.Windsor
         {
             AddFacility<FactorySupportFacility>(kernel);
 
-            kernel
-                .Register(Component.For<IConfiguration, IConfigurationProvider, IFormatterExpression, IProfileConfiguration, IProfileExpression>()
+            RegisterConfiguration(kernel);
+            RegisterIMappingEngine(kernel);
+        }
+
+        private void RegisterConfiguration(IKernel kernel)
+        {
+            kernel.Register(
+                Component.For<IConfiguration, IConfigurationProvider, IFormatterExpression, IProfileConfiguration, IProfileExpression>()
                     .LifeStyle.Transient
-                    .UsingFactoryMethod(k => new Configuration(MapperRegistry.AllMappers())))
-                .Register(Component.For<IMappingEngine>()
+                    .UsingFactoryMethod(k => new Configuration(MapperRegistry.AllMappers()))
+            );
+        }
+
+        private void RegisterIMappingEngine(IKernel kernel)
+        {
+            kernel.Register(
+                Component.For<IMappingEngine>()
                     .LifeStyle.Transient
-                    .UsingFactoryMethod(k => new MappingEngine(kernel.Resolve<IConfigurationProvider>())));
+                    .UsingFactoryMethod(k => new MappingEngine(kernel.Resolve<IConfigurationProvider>()))
+            );
         }
 
         #endregion
