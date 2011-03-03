@@ -14,7 +14,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         #region Tests
 
         [Test]
-        public void Should_Resolve_To_Different_Instances_For_IConfiguration()
+        public void Should_Register_Transient_IConfiguration()
         {
             // arrange
             var container = new WindsorContainer();
@@ -30,7 +30,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Resolve_To_Different_Instances_For_IMappingEngine()
+        public void Should_Register_Transient_IMappingEngine()
         {
             // arrange
             var container = new WindsorContainer();
