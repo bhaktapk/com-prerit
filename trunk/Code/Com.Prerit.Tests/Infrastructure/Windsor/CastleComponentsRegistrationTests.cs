@@ -23,7 +23,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.IsInterface && !handler.ComponentModel.Implementation.IsInterface)
+                                                          if (handler.Service.IsInterface)
                                                           {
                                                               handlers.Add(handler);
                                                           }
