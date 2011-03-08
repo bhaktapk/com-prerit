@@ -26,6 +26,23 @@ namespace Com.Prerit.Infrastructure.Windsor
             kernel.AddFacility<T>();
         }
 
+        protected void AddSubResolver<T>(IKernel kernel, T resolver) where T : class, ISubDependencyResolver
+        {
+            if (kernel == null)
+            {
+                throw new ArgumentNullException("kernel");
+            }
+
+            if (resolver == null)
+            {
+                throw new ArgumentNullException("resolver");
+            }
+
+            // NOTE: there currently isn't a way to check to see if a resolver has already been added in order to prevent duplicate resolvers
+
+            kernel.Resolver.AddSubResolver(resolver);
+        }
+
         #endregion
     }
 }
