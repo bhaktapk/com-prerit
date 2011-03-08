@@ -15,13 +15,13 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         private readonly IProfileExpression _profileExpression;
 
-        private readonly IEnumerable<IMapCreator> _mapCreators;
+        private readonly IMapCreator[] _mapCreators;
 
         #endregion
 
         #region Constructors
 
-        public AutoMapperConfigurationStartupTask(IConfigurationProvider configurationProvider, IProfileExpression profileExpression, IEnumerable<IMapCreator> mapCreators)
+        public AutoMapperConfigurationStartupTask(IConfigurationProvider configurationProvider, IProfileExpression profileExpression, IMapCreator[] mapCreators)
         {
             if (configurationProvider == null)
             {
@@ -36,6 +36,11 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             if (mapCreators == null)
             {
                 throw new ArgumentNullException("mapCreators");
+            }
+
+            if (mapCreators.Length == 0)
+            {
+                throw new ArgumentException("Cannot be an empty array", "mapCreators");
             }
 
             _configurationProvider = configurationProvider;
