@@ -20,7 +20,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             // arrange
             var configurationProvider = new Mock<IConfigurationProvider>();
             var profileExpression = new Mock<IProfileExpression>();
-            var mapCreators = new IMapCreator[] { };
+            var mapCreators = new IMapCreator[] { new Mock<IMapCreator>().Object };
 
             // act
             new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, mapCreators).Execute();

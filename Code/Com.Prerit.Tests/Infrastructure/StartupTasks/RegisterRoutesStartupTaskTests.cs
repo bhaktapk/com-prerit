@@ -44,7 +44,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             new RegisterRoutesStartupTask(routes, albumService.Object).Reset();
 
             // assert
-            Assert.That(routes, Is.Not.Null.And.Not.Empty);
+            Assert.That(routes, Is.Not.Null.And.Empty);
         }
 
         #endregion
