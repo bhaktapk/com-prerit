@@ -64,7 +64,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public void Reset()
         {
-            //NOTE: there isn't a need to reset the maps because IConfigurationProvider and IProfileExpression should be new instances on subsequent calls to Execute
+            // NOTE: there currently is no way to remove maps
         }
 
         #endregion

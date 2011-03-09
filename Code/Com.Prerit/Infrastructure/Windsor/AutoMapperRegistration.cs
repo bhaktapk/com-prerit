@@ -22,8 +22,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterConfiguration(IKernel kernel)
         {
             kernel.Register(
-                Component.For<IConfiguration, IConfigurationProvider, IFormatterExpression, IProfileConfiguration, IProfileExpression>()
-                    .LifeStyle.Transient
+                Component.For<IConfigurationProvider, IProfileExpression>()
                     .UsingFactoryMethod(k => new Configuration(MapperRegistry.AllMappers()))
             );
         }
@@ -32,7 +31,6 @@ namespace Com.Prerit.Infrastructure.Windsor
         {
             kernel.Register(
                 Component.For<IMappingEngine>()
-                    .LifeStyle.Transient
                     .UsingFactoryMethod(k => new MappingEngine(kernel.Resolve<IConfigurationProvider>()))
             );
         }
