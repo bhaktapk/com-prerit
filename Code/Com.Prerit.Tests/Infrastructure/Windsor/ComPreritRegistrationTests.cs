@@ -20,7 +20,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         #region Tests
 
         [Test]
-        public void Should_Register_MapCreators()
+        public void Should_Register_MapCreators_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
@@ -28,7 +28,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.GetInterfaces().Contains(typeof(IMapCreator)))
+                                                          if (handler.Service == typeof(IMapCreator))
                                                           {
                                                               handlers.Add(handler);
                                                           }
@@ -42,7 +42,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_ModelBinders()
+        public void Should_Register_ModelBinders_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
@@ -50,7 +50,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.GetInterfaces().Contains(typeof(IModelBinder)))
+                                                          if (handler.Service == typeof(IModelBinder))
                                                           {
                                                               handlers.Add(handler);
                                                           }
@@ -94,8 +94,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.Name.EndsWith("Service") &&
-                                                              handler.ComponentModel.Implementation.GetInterfaces().Contains(handler.Service))
+                                                          if (handler.Service.Name.EndsWith("Service") && handler.Service.IsInterface)
                                                           {
                                                               handlers.Add(handler);
                                                           }
@@ -109,7 +108,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_StartupTasks()
+        public void Should_Register_StartupTasks_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
@@ -117,7 +116,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
                                                       {
-                                                          if (handler.Service.GetInterfaces().Contains(typeof(IStartupTask)))
+                                                          if (handler.Service == typeof(IStartupTask))
                                                           {
                                                               handlers.Add(handler);
                                                           }
