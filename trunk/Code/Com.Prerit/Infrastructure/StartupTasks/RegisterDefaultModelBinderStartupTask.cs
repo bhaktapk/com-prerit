@@ -1,28 +1,26 @@
 using System;
 using System.Web.Mvc;
 
-using Com.Prerit.Infrastructure.ModelBinders;
-
 namespace Com.Prerit.Infrastructure.StartupTasks
 {
     public class RegisterDefaultModelBinderStartupTask : IStartupTask
     {
         #region Fields
 
-        private readonly SimpleValidatingModelBinder _simpleValidatingModelBinder;
+        private readonly IModelBinder _modelBinder;
 
         #endregion
 
         #region Constructors
 
-        public RegisterDefaultModelBinderStartupTask(SimpleValidatingModelBinder simpleValidatingModelBinder)
+        public RegisterDefaultModelBinderStartupTask(IModelBinder modelBinder)
         {
-            if (simpleValidatingModelBinder == null)
+            if (modelBinder == null)
             {
-                throw new ArgumentNullException("simpleValidatingModelBinder");
+                throw new ArgumentNullException("modelBinder");
             }
 
-            _simpleValidatingModelBinder = simpleValidatingModelBinder;
+            _modelBinder = modelBinder;
         }
 
         #endregion
@@ -31,7 +29,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public void Execute()
         {
-            System.Web.Mvc.ModelBinders.Binders.DefaultBinder = _simpleValidatingModelBinder;
+            System.Web.Mvc.ModelBinders.Binders.DefaultBinder = _modelBinder;
         }
 
         public void Reset()
