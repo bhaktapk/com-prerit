@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 
 using Castle.MicroKernel.Registration;
@@ -5,24 +6,23 @@ using Castle.Windsor;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public static class WindsorContainerInitializer
+    public class WindsorContainerInitializer
     {
         #region Methods
 
-        public static IWindsorContainer Init()
+        public void Init(IWindsorContainer container)
         {
-            var container = new WindsorContainer();
-
-            container
-                .Register(
-                    AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly()));
-
-            foreach (IRegistration registration in container.ResolveAll<IRegistration>())
+            if (container == null)
             {
-                container.Register(registration);
+                throw new ArgumentNullException("container");
             }
 
-            return container;
+            container.Register(
+                AllTypes.Of<IRegistration>().FromAssembly(Assembly.GetExecutingAssembly())
+                    .WithService.FirstInterface()
+            );
+
+            container.Register(container.ResolveAll<IRegistration>());
         }
 
         #endregion
