@@ -41,7 +41,11 @@ namespace Com.Prerit.Infrastructure.StartupTasks
 
         public static void Run()
         {
-            Run(WindsorContainerInitializer.Init());
+            var container = new WindsorContainer();
+            
+            new WindsorContainerInitializer().Init(container);
+
+            Run(container);
         }
 
         public static void Run(IWindsorContainer container)
