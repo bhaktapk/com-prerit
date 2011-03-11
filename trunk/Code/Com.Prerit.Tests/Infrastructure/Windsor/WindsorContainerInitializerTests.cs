@@ -62,7 +62,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IRegistration[] registrations = container.ResolveAll<IRegistration>();
 
             //assert
-            Assert.That(registrations, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(handlers.Length));
+            Assert.That(registrations, Is.Not.Null & Has.Length.EqualTo(handlers.Length));
         }
 
         #endregion

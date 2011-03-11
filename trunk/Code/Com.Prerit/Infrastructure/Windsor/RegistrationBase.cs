@@ -2,10 +2,11 @@
 using System.Linq;
 
 using Castle.MicroKernel;
+using Castle.MicroKernel.Registration;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public abstract class RegistrationBase
+    public abstract class RegistrationBase : IRegistration
     {
         #region Methods
 
@@ -42,6 +43,8 @@ namespace Com.Prerit.Infrastructure.Windsor
 
             kernel.Resolver.AddSubResolver(resolver);
         }
+
+        public abstract void Register(IKernel kernel);
 
         #endregion
     }

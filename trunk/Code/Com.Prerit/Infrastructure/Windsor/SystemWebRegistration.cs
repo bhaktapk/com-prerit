@@ -8,11 +8,11 @@ using Castle.MicroKernel.Registration;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class SystemWebRegistration : RegistrationBase, IRegistration
+    public class SystemWebRegistration : RegistrationBase
     {
         #region Methods
 
-        public void Register(IKernel kernel)
+        public override void Register(IKernel kernel)
         {
             AddFacility<FactorySupportFacility>(kernel);
 

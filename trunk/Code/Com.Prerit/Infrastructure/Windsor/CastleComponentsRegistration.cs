@@ -4,7 +4,7 @@ using Castle.MicroKernel.Registration;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class CastleComponentsRegistration : RegistrationBase, IRegistration
+    public class CastleComponentsRegistration : RegistrationBase
     {
         #region Fields
 
@@ -14,7 +14,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
         #region Methods
 
-        public void Register(IKernel kernel)
+        public override void Register(IKernel kernel)
         {
             RegisterServices(kernel);
         }
