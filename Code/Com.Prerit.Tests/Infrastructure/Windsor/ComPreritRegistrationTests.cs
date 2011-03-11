@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -48,6 +49,23 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             IEnumerable<IHandler> handlers = container.Kernel.GetAssignableHandlers(typeof(IController));
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+        }
+
+        [Test]
+        public void Should_Register_IControllers_That_Are_Not_T4MVC_Generated()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(IController))
+                                             where !handler.Service.Name.StartsWith("T4MVC_", StringComparison.InvariantCultureIgnoreCase)
+                                             select handler;
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
