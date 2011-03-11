@@ -6,6 +6,7 @@ using Castle.Core;
 using Castle.MicroKernel;
 using Castle.Windsor;
 
+using Com.Prerit.Infrastructure.Routing;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.Infrastructure.Windsor;
 using Com.Prerit.MapCreators;
@@ -67,7 +68,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_ModelBinders_With_Interfaces()
+        public void Should_Register_ModelBinder()
         {
             // arrange
             var container = new WindsorContainer();
@@ -76,6 +77,21 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IModelBinder));
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+        }
+
+        [Test]
+        public void Should_Register_RouteValueOptimizers_With_Interfaces()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IRouteValueOptimizer));
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);

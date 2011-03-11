@@ -7,6 +7,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 
 using Com.Prerit.Infrastructure.HttpApplications;
+using Com.Prerit.Infrastructure.ModelBinders;
 using Com.Prerit.Infrastructure.Routing;
 using Com.Prerit.Infrastructure.StartupTasks;
 using Com.Prerit.MapCreators;
@@ -57,17 +58,20 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterModelBinder(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Of<IModelBinder>().FromAssemblyNamed(_assemblyName)
-                    .WithService.FirstInterface()
+                Component.For<IModelBinder>()
+                    .ImplementedBy<SimpleValidatingModelBinder>()
             );
         }
 
         private void RegisterRouteValueOptimizers(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Of<IRouteValueOptimizer>().FromAssemblyNamed(_assemblyName)
-                    .ConfigureFor<RouteConstraintOptimizer>(c => c.Named(typeof(ListConstraint).FullName))
-                    .ConfigureFor<StringOptimizer>(c => c.Named(typeof(string).FullName))
+                Component.For<IRouteValueOptimizer>()
+                    .ImplementedBy<RouteConstraintOptimizer>()
+                        .Named(typeof(ListConstraint).FullName),
+                Component.For<IRouteValueOptimizer>()
+                    .ImplementedBy<StringOptimizer>()
+                        .Named(typeof(string).FullName)
             );
         }
 
