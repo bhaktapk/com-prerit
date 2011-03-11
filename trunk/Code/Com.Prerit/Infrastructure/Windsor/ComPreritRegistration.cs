@@ -33,7 +33,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
             AddSubResolver(kernel, new ArrayResolver(kernel));
 
-            RegisterIControllers(kernel);
+            RegisterControllers(kernel);
             RegisterIMapCreators(kernel);
             RegisterIModelBinder(kernel);
             RegisterIRouteValueOptimizers(kernel);
@@ -41,7 +41,7 @@ namespace Com.Prerit.Infrastructure.Windsor
             RegisterServices(kernel);
         }
 
-        private void RegisterIControllers(IKernel kernel)
+        private void RegisterControllers(IKernel kernel)
         {
             kernel.Register(
                 AllTypes.Of<IController>().FromAssembly(_assembly)

@@ -40,7 +40,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IControllers()
+        public void Should_Register_Controllers()
         {
             // arrange
             var container = new WindsorContainer();
@@ -55,7 +55,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IControllers_That_Are_Not_T4MVC_Generated()
+        public void Should_Register_Controllers_That_Are_Not_T4MVC_Generated()
         {
             // arrange
             var container = new WindsorContainer();
@@ -72,7 +72,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IControllers_That_Are_Transient()
+        public void Should_Register_Controllers_That_Are_Transient()
         {
             // arrange
             var container = new WindsorContainer();
@@ -89,7 +89,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IMapCreators_With_Interfaces()
+        public void Should_Register_IMapCreators()
         {
             // arrange
             var container = new WindsorContainer();
@@ -119,7 +119,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IRouteValueOptimizers_With_Interfaces()
+        public void Should_Register_IRouteValueOptimizers()
         {
             // arrange
             var container = new WindsorContainer();
@@ -134,7 +134,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IStartupTasks_With_Interfaces()
+        public void Should_Register_IStartupTasks()
         {
             // arrange
             var container = new WindsorContainer();
