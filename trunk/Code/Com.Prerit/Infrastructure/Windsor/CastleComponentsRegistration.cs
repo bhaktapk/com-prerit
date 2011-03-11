@@ -1,3 +1,5 @@
+using System.Reflection;
+
 using Castle.Components.Validator;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
@@ -8,7 +10,7 @@ namespace Com.Prerit.Infrastructure.Windsor
     {
         #region Fields
 
-        private readonly string _assemblyName = typeof(IValidatorRunner).Assembly.FullName;
+        private readonly Assembly _assembly = typeof(IValidatorRunner).Assembly;
 
         #endregion
 
@@ -21,10 +23,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
         private void RegisterServices(IKernel kernel)
         {
-            kernel.Register(
-                AllTypes.Pick().FromAssemblyNamed(_assemblyName)
-                    .WithService.FirstInterface()
-            );
+            kernel.Register(AllTypes.Pick().FromAssembly(_assembly).WithService.FirstInterface());
         }
 
         #endregion

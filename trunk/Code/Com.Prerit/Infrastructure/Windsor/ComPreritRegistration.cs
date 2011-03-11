@@ -1,4 +1,5 @@
-﻿using System.Web.Hosting;
+﻿using System.Reflection;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 using Castle.Facilities.FactorySupport;
@@ -19,7 +20,7 @@ namespace Com.Prerit.Infrastructure.Windsor
     {
         #region Fields
 
-        private readonly string _assemblyName = typeof(MvcApplication).Assembly.FullName;
+        private readonly Assembly _assembly = typeof(MvcApplication).Assembly;
 
         #endregion
 
@@ -42,7 +43,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterControllers(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Of<IController>().FromAssemblyNamed(_assemblyName)
+                AllTypes.Of<IController>().FromAssembly(_assembly)
                     .Configure(c => c.LifeStyle.Transient)
             );
         }
@@ -50,7 +51,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterMapCreators(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Of<IMapCreator>().FromAssemblyNamed(_assemblyName)
+                AllTypes.Of<IMapCreator>().FromAssembly(_assembly)
                     .WithService.FirstInterface()
             );
         }
@@ -78,7 +79,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterServices(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Pick().FromAssemblyNamed(_assemblyName)
+                AllTypes.Pick().FromAssembly(_assembly)
                     .If(t => t.Name.EndsWith("Service"))
                     .Configure(c => c.LifeStyle.Transient)
                     .WithService.FirstInterface()
@@ -91,7 +92,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         private void RegisterStartupTasks(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Of<IStartupTask>().FromAssemblyNamed(_assemblyName)
+                AllTypes.Of<IStartupTask>().FromAssembly(_assembly)
                     .WithService.FirstInterface()
             );
         }
