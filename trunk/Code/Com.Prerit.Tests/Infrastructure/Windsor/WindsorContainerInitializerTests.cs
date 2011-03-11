@@ -26,7 +26,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] iRegistrationHandlers = container.Kernel.GetHandlers(typeof(IRegistration));
 
             //assert
-            Assert.That(handlers, Is.Not.Empty & Has.Count.GreaterThan(iRegistrationHandlers.Length));
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.GreaterThan(iRegistrationHandlers.Length));
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IRegistration[] registrations = container.ResolveAll<IRegistration>();
 
             //assert
-            Assert.That(registrations, Is.Not.Empty & Has.Length.EqualTo(handlers.Length));
+            Assert.That(registrations, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(handlers.Length));
         }
 
         #endregion
