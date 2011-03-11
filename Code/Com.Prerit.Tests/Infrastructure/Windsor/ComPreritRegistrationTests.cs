@@ -20,22 +20,47 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         #region Tests
 
         [Test]
+        public void Should_Register_Controllers()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = container.Kernel.GetAssignableHandlers(typeof(IController));
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+        }
+
+        [Test]
+        public void Should_Register_Controllers_That_Are_Transient()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(IController))
+                                             where handler.ComponentModel.LifestyleType == LifestyleType.Transient
+                                             select handler;
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+        }
+
+        [Test]
         public void Should_Register_MapCreators_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IMapCreator))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
+
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IMapCreator));
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
@@ -46,18 +71,28 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IModelBinder))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
+
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IModelBinder));
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+        }
+
+        [Test]
+        public void Should_Register_Services_That_Are_Transient()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
+                                             where handler.Service.Name.EndsWith("Service") && handler.ComponentModel.LifestyleType == LifestyleType.Transient
+                                             select handler;
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
@@ -68,18 +103,13 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service.Name.EndsWith("Service"))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
+                                             where handler.Service.Name.EndsWith("Service")
+                                             select handler;
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
@@ -90,18 +120,13 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service.Name.EndsWith("Service") && handler.Service.IsInterface)
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
+                                             where handler.Service.Name.EndsWith("Service") && handler.Service.IsInterface
+                                             select handler;
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
@@ -112,64 +137,11 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IStartupTask))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new ComPreritRegistration().Register(container.Kernel);
 
-            // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
-        }
-
-        [Test]
-        public void Should_Register_Transient_Controllers()
-        {
-            // arrange
-            var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service.GetInterfaces().Contains(typeof(IController)) &&
-                                                              handler.ComponentModel.LifestyleType == LifestyleType.Transient)
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
-
-            // act
-            new ComPreritRegistration().Register(container.Kernel);
-
-            // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
-        }
-
-        [Test]
-        public void Should_Register_Transient_Services()
-        {
-            // arrange
-            var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service.Name.EndsWith("Service") &&
-                                                              handler.ComponentModel.LifestyleType == LifestyleType.Transient)
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
-
-            // act
-            new ComPreritRegistration().Register(container.Kernel);
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IStartupTask));
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
