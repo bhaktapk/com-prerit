@@ -59,7 +59,7 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new[] { startupTask.Object, startupTask.Object });
             container.SetupGet(c => c.Kernel).Returns(kernel.Object);
 
-            kernel.Setup(k => k.GetAssignableHandlers(typeof(object))).Returns(new IHandler[] { });
+            kernel.Setup(k => k.GetAssignableHandlers(typeof(object))).Returns(new IHandler[0]);
 
             // act
             StartupTaskRunner.Run(container.Object);
