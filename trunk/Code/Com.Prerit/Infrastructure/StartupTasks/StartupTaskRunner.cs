@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
+using Castle.MicroKernel;
 using Castle.Windsor;
 
 using Com.Prerit.Infrastructure.Windsor;
@@ -42,7 +44,7 @@ namespace Com.Prerit.Infrastructure.StartupTasks
         public static void Run()
         {
             var container = new WindsorContainer();
-            
+
             new WindsorContainerInitializer().Init(container);
 
             Run(container);
@@ -55,6 +57,8 @@ namespace Com.Prerit.Infrastructure.StartupTasks
                 throw new ArgumentNullException("container");
             }
 
+            Verify(container.Kernel);
+
             ConfigureCommonServiceLocator(new WindsorServiceLocator(container));
 
             ConfigureControllerFactory(new WindsorControllerFactory(container));
@@ -62,6 +66,18 @@ namespace Com.Prerit.Infrastructure.StartupTasks
             foreach (IStartupTask task in ServiceLocator.Current.GetAllInstances<IStartupTask>())
             {
                 task.Execute();
+            }
+        }
+
+        private static void Verify(IKernel kernel)
+        {
+            string[] handlers = (from handler in kernel.GetAssignableHandlers(typeof(object))
+                                 where handler.CurrentState == HandlerState.WaitingDependency
+                                 select handler.ComponentModel.Name).ToArray();
+
+            if (handlers.Length != 0)
+            {
+                throw new ComponentRegistrationException("The following types could not be resolved: " + string.Join(", ", handlers));
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 
+using Castle.MicroKernel;
 using Castle.Windsor;
 
 using Com.Prerit.Infrastructure.StartupTasks;
@@ -52,9 +53,13 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
         {
             // arrange
             var container = new Mock<IWindsorContainer>();
+            var kernel = new Mock<IKernel>();
             var startupTask = new Mock<IStartupTask>();
 
             container.Setup(c => c.ResolveAll(typeof(IStartupTask))).Returns(new[] { startupTask.Object, startupTask.Object });
+            container.SetupGet(c => c.Kernel).Returns(kernel.Object);
+
+            kernel.Setup(k => k.GetAssignableHandlers(typeof(object))).Returns(new IHandler[] { });
 
             // act
             StartupTaskRunner.Run(container.Object);
@@ -109,13 +114,6 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
 
             // assert
             startupTask.Verify(task => task.Reset(), Times.Exactly(2));
-        }
-
-        [Test]
-        public void Should_Run_With_Auto_Configuration()
-        {
-            // act
-            StartupTaskRunner.Run();
         }
 
         #endregion
