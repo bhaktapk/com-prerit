@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Castle.MicroKernel;
 using Castle.Windsor;
@@ -19,18 +20,13 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service.IsInterface)
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             new CastleComponentsRegistration().Register(container.Kernel);
+
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
+                                             where handler.Service.IsInterface
+                                             select handler;
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
