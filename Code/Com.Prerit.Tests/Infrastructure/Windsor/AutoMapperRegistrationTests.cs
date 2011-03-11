@@ -62,7 +62,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IConfigurationProvider));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IMappingEngine));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IProfileExpression));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         #endregion

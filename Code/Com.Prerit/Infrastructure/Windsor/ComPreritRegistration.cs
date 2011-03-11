@@ -15,7 +15,7 @@ using Com.Prerit.Services;
 
 namespace Com.Prerit.Infrastructure.Windsor
 {
-    public class ComPreritRegistration : RegistrationBase, IRegistration
+    public class ComPreritRegistration : RegistrationBase
     {
         #region Fields
 
@@ -25,7 +25,7 @@ namespace Com.Prerit.Infrastructure.Windsor
 
         #region Methods
 
-        public void Register(IKernel kernel)
+        public override void Register(IKernel kernel) 
         {
             AddFacility<FactorySupportFacility>(kernel);
 

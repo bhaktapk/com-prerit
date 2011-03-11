@@ -48,7 +48,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(Cache));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(HttpContextBase));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(HttpRequestBase));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(HttpResponseBase));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(HttpServerUtilityBase));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(HttpSessionStateBase));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(RouteCollection));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         #endregion

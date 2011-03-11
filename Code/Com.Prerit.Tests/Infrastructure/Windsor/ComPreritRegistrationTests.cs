@@ -97,7 +97,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IModelBinder));
 
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
+            Assert.That(handlers, Is.Not.Null & Has.Length.EqualTo(1));
         }
 
         [Test]
