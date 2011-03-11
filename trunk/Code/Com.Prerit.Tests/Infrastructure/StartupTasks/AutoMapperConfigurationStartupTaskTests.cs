@@ -20,7 +20,8 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             // arrange
             var configurationProvider = new Mock<IConfigurationProvider>();
             var profileExpression = new Mock<IProfileExpression>();
-            var mapCreators = new IMapCreator[] { new Mock<IMapCreator>().Object };
+            var mapCreator = new Mock<IMapCreator>();
+            var mapCreators = new[] { mapCreator.Object };
 
             // act
             new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, mapCreators).Execute();
@@ -36,9 +37,10 @@ namespace Com.Prerit.Tests.Infrastructure.StartupTasks
             var configurationProvider = new Mock<IConfigurationProvider>();
             var profileExpression = new Mock<IProfileExpression>();
             var mapCreator = new Mock<IMapCreator>();
+            var mapCreators = new[] { mapCreator.Object, mapCreator.Object };
 
             // act
-            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, new[] { mapCreator.Object, mapCreator.Object }).Execute();
+            new AutoMapperConfigurationStartupTask(configurationProvider.Object, profileExpression.Object, mapCreators).Execute();
 
             // assert
             mapCreator.Verify(creator => creator.CreateMap(profileExpression.Object), Times.Exactly(2));
