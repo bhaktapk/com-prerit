@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using AutoMapper;
 
+using Castle.Facilities.FactorySupport;
 using Castle.MicroKernel;
 using Castle.Windsor;
 
@@ -15,6 +17,23 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
     public class AutoMapperRegistrationTests
     {
         #region Tests
+
+        [Test]
+        public void Should_Add_FactorySupportFacility()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            container.Register(new AutoMapperRegistration());
+
+            IEnumerable<IFacility> facilities = from facility in container.Kernel.GetFacilities()
+                                                where facility.GetType() == typeof(FactorySupportFacility)
+                                                select facility;
+
+            // assert
+            Assert.That(facilities, Is.Not.Null.And.Not.Empty);
+        }
 
         [Test]
         public void Should_Not_Use_Static_Mapper_Class()
@@ -56,7 +75,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             container.Register(new AutoMapperRegistration());
 
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IMappingEngine));
-            
+
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
         }
