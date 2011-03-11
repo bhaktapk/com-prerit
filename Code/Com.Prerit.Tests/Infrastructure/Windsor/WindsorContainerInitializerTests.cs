@@ -34,7 +34,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_IRegistrations_With_Interfaces()
+        public void Should_Register_IRegistrations()
         {
             //arrange
             var container = new WindsorContainer();
@@ -46,23 +46,6 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
 
             //assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
-        }
-
-        [Test]
-        public void Should_Resolve_All_IRegistrations()
-        {
-            //arrange
-            var container = new WindsorContainer();
-
-            //act
-            new WindsorContainerInitializer().Init(container);
-
-            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IRegistration));
-
-            IRegistration[] registrations = container.ResolveAll<IRegistration>();
-
-            //assert
-            Assert.That(registrations, Is.Not.Null & Has.Length.EqualTo(handlers.Length));
         }
 
         #endregion
