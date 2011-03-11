@@ -1,4 +1,7 @@
-﻿using Castle.MicroKernel;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
@@ -22,11 +25,12 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             //act
             new WindsorContainerInitializer().Init(container);
 
-            IHandler[] handlers = container.Kernel.GetAssignableHandlers(typeof(object));
-            IHandler[] iRegistrationHandlers = container.Kernel.GetHandlers(typeof(IRegistration));
+            IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
+                                             where handler.Service != typeof(IRegistration)
+                                             select handler;
 
             //assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.GreaterThan(iRegistrationHandlers.Length));
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
