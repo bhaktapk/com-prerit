@@ -15,11 +15,11 @@ namespace Com.Prerit.Infrastructure.Windsor
         {
             AddFacility<FactorySupportFacility>(kernel);
 
-            RegisterConfiguration(kernel);
+            RegisterIConfigurationProviderAndIProfileExpression(kernel);
             RegisterIMappingEngine(kernel);
         }
 
-        private void RegisterConfiguration(IKernel kernel)
+        private void RegisterIConfigurationProviderAndIProfileExpression(IKernel kernel)
         {
             kernel.Register(
                 Component.For<IConfigurationProvider, IProfileExpression>()

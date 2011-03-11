@@ -32,15 +32,15 @@ namespace Com.Prerit.Infrastructure.Windsor
 
             AddSubResolver(kernel, new ArrayResolver(kernel));
 
+            RegisterIControllers(kernel);
+            RegisterIMapCreators(kernel);
+            RegisterIModelBinder(kernel);
+            RegisterIRouteValueOptimizers(kernel);
+            RegisterIStartupTasks(kernel);
             RegisterServices(kernel);
-            RegisterControllers(kernel);
-            RegisterMapCreators(kernel);
-            RegisterModelBinder(kernel);
-            RegisterRouteValueOptimizers(kernel);
-            RegisterStartupTasks(kernel);
         }
 
-        private void RegisterControllers(IKernel kernel)
+        private void RegisterIControllers(IKernel kernel)
         {
             kernel.Register(
                 AllTypes.Of<IController>().FromAssembly(_assembly)
@@ -48,7 +48,7 @@ namespace Com.Prerit.Infrastructure.Windsor
             );
         }
 
-        private void RegisterMapCreators(IKernel kernel)
+        private void RegisterIMapCreators(IKernel kernel)
         {
             kernel.Register(
                 AllTypes.Of<IMapCreator>().FromAssembly(_assembly)
@@ -56,7 +56,7 @@ namespace Com.Prerit.Infrastructure.Windsor
             );
         }
 
-        private void RegisterModelBinder(IKernel kernel)
+        private void RegisterIModelBinder(IKernel kernel)
         {
             kernel.Register(
                 Component.For<IModelBinder>()
@@ -64,7 +64,7 @@ namespace Com.Prerit.Infrastructure.Windsor
             );
         }
 
-        private void RegisterRouteValueOptimizers(IKernel kernel)
+        private void RegisterIRouteValueOptimizers(IKernel kernel)
         {
             kernel.Register(
                 Component.For<IRouteValueOptimizer>()
@@ -73,6 +73,14 @@ namespace Com.Prerit.Infrastructure.Windsor
                 Component.For<IRouteValueOptimizer>()
                     .ImplementedBy<StringOptimizer>()
                         .Named(typeof(string).FullName)
+            );
+        }
+
+        private void RegisterIStartupTasks(IKernel kernel)
+        {
+            kernel.Register(
+                AllTypes.Of<IStartupTask>().FromAssembly(_assembly)
+                    .WithService.FirstInterface()
             );
         }
 
@@ -86,14 +94,6 @@ namespace Com.Prerit.Infrastructure.Windsor
                     .ConfigureFor<IAlbumService>(c => c.Parameters(Parameter.ForKey("albumRootDirPath").Eq(HostingEnvironment.MapPath("~/App_Data/Albums/"))))
                     .ConfigureFor<IProfileService>(c => c.Parameters(Parameter.ForKey("profilesDirectoryPath").Eq(HostingEnvironment.MapPath("~/App_Data/Profiles/"))))
                     .ConfigureFor<IRoleService>(c => c.Parameters(Parameter.ForKey("rolesDirectoryPath").Eq(HostingEnvironment.MapPath("~/App_Data/Roles/"))))
-            );
-        }
-
-        private void RegisterStartupTasks(IKernel kernel)
-        {
-            kernel.Register(
-                AllTypes.Of<IStartupTask>().FromAssembly(_assembly)
-                    .WithService.FirstInterface()
             );
         }
 
