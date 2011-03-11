@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Web.Hosting;
 using System.Web.Mvc;
 
@@ -44,6 +45,7 @@ namespace Com.Prerit.Infrastructure.Windsor
         {
             kernel.Register(
                 AllTypes.Of<IController>().FromAssembly(_assembly)
+                    .If(t => !t.Name.StartsWith("T4MVC_", StringComparison.InvariantCultureIgnoreCase))
                     .Configure(c => c.LifeStyle.Transient)
             );
         }
