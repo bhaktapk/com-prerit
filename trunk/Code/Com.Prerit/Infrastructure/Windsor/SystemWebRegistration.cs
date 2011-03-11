@@ -20,8 +20,8 @@ namespace Com.Prerit.Infrastructure.Windsor
             RegisterHttpContextBase(kernel);
             RegisterHttpRequestBase(kernel);
             RegisterHttpResponseBase(kernel);
-            RegisterHttpSessionStateBase(kernel);
             RegisterHttpServerUtilityBase(kernel);
+            RegisterHttpSessionStateBase(kernel);
             RegisterRouteCollection(kernel);
         }
 

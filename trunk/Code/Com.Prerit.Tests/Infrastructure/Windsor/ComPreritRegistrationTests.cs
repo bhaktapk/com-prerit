@@ -39,7 +39,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_Controllers()
+        public void Should_Register_IControllers()
         {
             // arrange
             var container = new WindsorContainer();
@@ -54,7 +54,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_Controllers_That_Are_Transient()
+        public void Should_Register_IControllers_That_Are_Transient()
         {
             // arrange
             var container = new WindsorContainer();
@@ -71,7 +71,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_MapCreators_With_Interfaces()
+        public void Should_Register_IMapCreators_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
@@ -86,7 +86,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_ModelBinder()
+        public void Should_Register_IModelBinder()
         {
             // arrange
             var container = new WindsorContainer();
@@ -101,7 +101,7 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         }
 
         [Test]
-        public void Should_Register_RouteValueOptimizers_With_Interfaces()
+        public void Should_Register_IRouteValueOptimizers_With_Interfaces()
         {
             // arrange
             var container = new WindsorContainer();
@@ -110,6 +110,21 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             new ComPreritRegistration().Register(container.Kernel);
 
             IHandler[] handlers = container.Kernel.GetHandlers(typeof(IRouteValueOptimizer));
+
+            // assert
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+        }
+
+        [Test]
+        public void Should_Register_IStartupTasks_With_Interfaces()
+        {
+            // arrange
+            var container = new WindsorContainer();
+
+            // act
+            new ComPreritRegistration().Register(container.Kernel);
+
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IStartupTask));
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
@@ -161,21 +176,6 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             IEnumerable<IHandler> handlers = from handler in container.Kernel.GetAssignableHandlers(typeof(object))
                                              where handler.Service.Name.EndsWith("Service") && handler.Service.IsInterface
                                              select handler;
-
-            // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
-        }
-
-        [Test]
-        public void Should_Register_StartupTasks_With_Interfaces()
-        {
-            // arrange
-            var container = new WindsorContainer();
-
-            // act
-            new ComPreritRegistration().Register(container.Kernel);
-
-            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IStartupTask));
 
             // assert
             Assert.That(handlers, Is.Not.Null.And.Not.Empty);
