@@ -1,5 +1,3 @@
-using System.Reflection;
-
 using Castle.Components.Validator;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
@@ -8,24 +6,27 @@ namespace Com.Prerit.Infrastructure.Windsor
 {
     public class CastleComponentsRegistration : RegistrationBase
     {
-        #region Fields
-
-        private readonly Assembly _assembly = typeof(IValidatorRunner).Assembly;
-
-        #endregion
-
         #region Methods
 
         public override void Register(IKernel kernel)
         {
-            RegisterServices(kernel);
+            RegisterIValidatorRegistry(kernel);
+            RegisterIValidatorRunner(kernel);
         }
 
-        private void RegisterServices(IKernel kernel)
+        private void RegisterIValidatorRegistry(IKernel kernel)
         {
             kernel.Register(
-                AllTypes.Pick().FromAssembly(_assembly)
-                    .WithService.FirstInterface()
+                Component.For(typeof(IValidatorRegistry))
+                    .ImplementedBy(typeof(CachedValidationRegistry))
+            );
+        }
+
+        private void RegisterIValidatorRunner(IKernel kernel)
+        {
+            kernel.Register(
+                Component.For(typeof(IValidatorRunner))
+                    .ImplementedBy(typeof(ValidatorRunner))
             );
         }
 
