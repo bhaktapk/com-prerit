@@ -36,21 +36,14 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IConfigurationProvider))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             container.Register(new AutoMapperRegistration());
 
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IConfigurationProvider));
+
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -59,21 +52,13 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
             // arrange
             var container = new WindsorContainer();
 
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IMappingEngine))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
-
             // act
             container.Register(new AutoMapperRegistration());
 
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IMappingEngine));
+            
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
         }
 
         [Test]
@@ -81,21 +66,14 @@ namespace Com.Prerit.Tests.Infrastructure.Windsor
         {
             // arrange
             var container = new WindsorContainer();
-            var handlers = new List<IHandler>();
-
-            container.Kernel.HandlerRegistered += (IHandler handler, ref bool stateChanged) =>
-                                                      {
-                                                          if (handler.Service == typeof(IProfileExpression))
-                                                          {
-                                                              handlers.Add(handler);
-                                                          }
-                                                      };
 
             // act
             container.Register(new AutoMapperRegistration());
 
+            IHandler[] handlers = container.Kernel.GetHandlers(typeof(IProfileExpression));
+
             // assert
-            Assert.That(handlers, Is.Not.Null.And.Not.Empty);
+            Assert.That(handlers, Is.Not.Null.And.Not.Empty & Has.Length.EqualTo(1));
         }
 
         #endregion
